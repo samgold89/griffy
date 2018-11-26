@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		93412C539572DA15072FD06A /* Pods_Griffy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A2B5E1B83AB8992CCC3418C /* Pods_Griffy.framework */; };
 		A95B21D021A0D02B001E1F28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B21CF21A0D02B001E1F28 /* AppDelegate.swift */; };
 		A95B21D321A0D02B001E1F28 /* Griffy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A95B21D121A0D02B001E1F28 /* Griffy.xcdatamodeld */; };
 		A95B21D521A0D02B001E1F28 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B21D421A0D02B001E1F28 /* MasterViewController.swift */; };
@@ -18,9 +19,13 @@
 		A95B21ED21A0DC88001E1F28 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B21EC21A0DC88001E1F28 /* BluetoothManager.swift */; };
 		A95B21EF21A0EF0B001E1F28 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B21EE21A0EF0B001E1F28 /* Extensions.swift */; };
 		A95C8A5521A2405F00387444 /* CharacteristicExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95C8A5421A2405F00387444 /* CharacteristicExtensions.swift */; };
+		A9B966EC21ABC5EA0079EBB7 /* GriffyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966EB21ABC5EA0079EBB7 /* GriffyModel.swift */; };
+		A9B966EE21ABCBCE0079EBB7 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966ED21ABCBCE0079EBB7 /* SettingsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A2B5E1B83AB8992CCC3418C /* Pods_Griffy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Griffy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F143CB311D88810991B4607 /* Pods-Griffy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Griffy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Griffy/Pods-Griffy.debug.xcconfig"; sourceTree = "<group>"; };
 		A95B21CC21A0D02B001E1F28 /* Griffy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Griffy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95B21CF21A0D02B001E1F28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A95B21D221A0D02B001E1F28 /* Griffy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Griffy.xcdatamodel; sourceTree = "<group>"; };
@@ -35,6 +40,9 @@
 		A95B21EC21A0DC88001E1F28 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		A95B21EE21A0EF0B001E1F28 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A95C8A5421A2405F00387444 /* CharacteristicExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacteristicExtensions.swift; sourceTree = "<group>"; };
+		A9B966EB21ABC5EA0079EBB7 /* GriffyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GriffyModel.swift; sourceTree = "<group>"; };
+		A9B966ED21ABCBCE0079EBB7 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		C7627662C0CC93BB4C7CEC23 /* Pods-Griffy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Griffy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Griffy/Pods-Griffy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +51,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A95B21E921A0D05A001E1F28 /* CoreBluetooth.framework in Frameworks */,
+				93412C539572DA15072FD06A /* Pods_Griffy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +64,7 @@
 				A95B21CE21A0D02B001E1F28 /* Griffy */,
 				A95B21CD21A0D02B001E1F28 /* Products */,
 				A95B21E721A0D05A001E1F28 /* Frameworks */,
+				CD0C92496895C6A8DA24B47B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,6 +79,8 @@
 		A95B21CE21A0D02B001E1F28 /* Griffy */ = {
 			isa = PBXGroup;
 			children = (
+				A9B966ED21ABCBCE0079EBB7 /* SettingsTableViewController.swift */,
+				A9B966EB21ABC5EA0079EBB7 /* GriffyModel.swift */,
 				A95B21EE21A0EF0B001E1F28 /* Extensions.swift */,
 				A95C8A5421A2405F00387444 /* CharacteristicExtensions.swift */,
 				A95B21E621A0D045001E1F28 /* Griffy.entitlements */,
@@ -89,8 +101,18 @@
 			isa = PBXGroup;
 			children = (
 				A95B21E821A0D05A001E1F28 /* CoreBluetooth.framework */,
+				8A2B5E1B83AB8992CCC3418C /* Pods_Griffy.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CD0C92496895C6A8DA24B47B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8F143CB311D88810991B4607 /* Pods-Griffy.debug.xcconfig */,
+				C7627662C0CC93BB4C7CEC23 /* Pods-Griffy.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -100,9 +122,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A95B21E321A0D02B001E1F28 /* Build configuration list for PBXNativeTarget "Griffy" */;
 			buildPhases = (
+				53C0D2D86C7694E7B2261C89 /* [CP] Check Pods Manifest.lock */,
 				A95B21C821A0D02B001E1F28 /* Sources */,
 				A95B21C921A0D02B001E1F28 /* Frameworks */,
 				A95B21CA21A0D02B001E1F28 /* Resources */,
+				4BDCB41A2E6F994889454F9D /* [CP] Embed Pods Frameworks */,
+				7844651EF094D04A700644CD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -168,6 +193,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4BDCB41A2E6F994889454F9D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Griffy/Pods-Griffy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		53C0D2D86C7694E7B2261C89 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7844651EF094D04A700644CD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Griffy/Pods-Griffy-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A95B21C821A0D02B001E1F28 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -179,7 +252,9 @@
 				A95B21D021A0D02B001E1F28 /* AppDelegate.swift in Sources */,
 				A95B21D521A0D02B001E1F28 /* MasterViewController.swift in Sources */,
 				A95B21ED21A0DC88001E1F28 /* BluetoothManager.swift in Sources */,
+				A9B966EC21ABC5EA0079EBB7 /* GriffyModel.swift in Sources */,
 				A95B21EF21A0EF0B001E1F28 /* Extensions.swift in Sources */,
+				A9B966EE21ABCBCE0079EBB7 /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +397,7 @@
 		};
 		A95B21E421A0D02B001E1F28 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F143CB311D88810991B4607 /* Pods-Griffy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Griffy/Griffy.entitlements;
@@ -338,6 +414,7 @@
 		};
 		A95B21E521A0D02B001E1F28 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7627662C0CC93BB4C7CEC23 /* Pods-Griffy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Griffy/Griffy.entitlements;

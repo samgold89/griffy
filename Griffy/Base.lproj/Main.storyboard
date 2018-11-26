@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.19.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -49,13 +50,13 @@
         <!--Master-->
         <scene sceneID="smW-Zh-WAh">
             <objects>
-                <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="MasterViewController" customModule="Griffy" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="AdminMainTableViewController" customModule="Griffy" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="r7i-6Z-zg0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Arm-wq-HPj" detailTextLabel="J63-75-n66" style="IBUITableViewCellStyleValue1" id="WCw-Qf-5nD">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" editingAccessoryType="disclosureIndicator" textLabel="Arm-wq-HPj" detailTextLabel="j9m-Re-JBV" style="IBUITableViewCellStyleValue1" id="WCw-Qf-5nD">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCw-Qf-5nD" id="37f-cq-3Eg">
@@ -69,7 +70,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="J63-75-n66">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j9m-Re-JBV">
                                             <rect key="frame" x="315" y="12" width="44" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -79,6 +80,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <segue destination="nQH-WL-rqU" kind="show" identifier="showCharacteristicDetail" id="Its-TS-vSD"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -92,6 +96,75 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="709" y="-630"/>
+        </scene>
+        <!--Characteristic Detail View Controller-->
+        <scene sceneID="Gbn-hC-jYJ">
+            <objects>
+                <viewController id="nQH-WL-rqU" customClass="CharacteristicDetailViewController" customModule="Griffy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kjw-94-xTg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j5u-gu-bvg">
+                                <rect key="frame" x="139" y="166" width="25" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OaN-5n-POk">
+                                <rect key="frame" x="0.0" y="650" width="375" height="61"/>
+                                <color key="backgroundColor" red="0.29019607843137252" green="0.56470588235294117" blue="0.88627450980392153" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="GcE-Qv-Eg5"/>
+                                </constraints>
+                                <state key="normal" title="Update Value">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="updateValuePressed:" destination="nQH-WL-rqU" eventType="touchUpInside" id="CGd-Cm-5nF"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Updated: –– –– ––" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgl-bF-coN">
+                                <rect key="frame" x="16" y="579" width="343" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E4D-2J-DDX">
+                                <rect key="frame" x="16" y="112.5" width="343" height="33.5"/>
+                                <string key="text">Current Value
+Some Value</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.92000000000000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="j5u-gu-bvg" firstAttribute="leading" secondItem="VXL-mH-7CJ" secondAttribute="leading" constant="139" id="8KK-xi-u0s"/>
+                            <constraint firstItem="OaN-5n-POk" firstAttribute="top" secondItem="Kjw-94-xTg" secondAttribute="topMargin" constant="586" id="CDC-sW-mcD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="E4D-2J-DDX" secondAttribute="trailing" id="WUT-Eg-9Lj"/>
+                            <constraint firstItem="j5u-gu-bvg" firstAttribute="top" secondItem="VXL-mH-7CJ" secondAttribute="top" constant="102" id="YPY-Hz-KG6"/>
+                            <constraint firstItem="E4D-2J-DDX" firstAttribute="leading" secondItem="Kjw-94-xTg" secondAttribute="leadingMargin" id="aF3-IK-xN9"/>
+                            <constraint firstItem="j5u-gu-bvg" firstAttribute="top" secondItem="E4D-2J-DDX" secondAttribute="bottom" constant="20" id="bsM-os-E36"/>
+                            <constraint firstItem="mgl-bF-coN" firstAttribute="top" secondItem="Kjw-94-xTg" secondAttribute="top" constant="579" id="dg2-nv-8fc"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="OaN-5n-POk" secondAttribute="bottom" id="dwL-Bt-V0C"/>
+                            <constraint firstAttribute="trailing" secondItem="OaN-5n-POk" secondAttribute="trailing" id="eQC-BG-aFN"/>
+                            <constraint firstItem="OaN-5n-POk" firstAttribute="leading" secondItem="Kjw-94-xTg" secondAttribute="leading" id="klu-FB-jIL"/>
+                            <constraint firstItem="mgl-bF-coN" firstAttribute="leading" secondItem="VXL-mH-7CJ" secondAttribute="leading" constant="16" id="kqU-7T-ZTZ"/>
+                            <constraint firstItem="VXL-mH-7CJ" firstAttribute="trailing" secondItem="mgl-bF-coN" secondAttribute="trailing" constant="16" id="mVB-nw-Vg5"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="mgl-bF-coN" secondAttribute="bottom" constant="22" id="y5s-Zx-D90"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VXL-mH-7CJ"/>
+                    </view>
+                    <connections>
+                        <outlet property="currentValueLabel" destination="E4D-2J-DDX" id="z0c-mJ-SAt"/>
+                        <outlet property="updateButton" destination="OaN-5n-POk" id="WlP-Nf-NfU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XFw-EE-gW4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2220" y="355.7721139430285"/>
         </scene>
         <!--Master-->
         <scene sceneID="H4G-py-fGc">
@@ -113,7 +186,7 @@
         <!--Master-->
         <scene sceneID="1En-bq-9GT">
             <objects>
-                <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="fNm-tV-W2Y" sceneMemberID="viewController">
+                <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="fNm-tV-W2Y" customClass="ImagesTableViewController" customModule="Griffy" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dJ4-jZ-lsn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -143,6 +216,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <segue destination="nQH-WL-rqU" kind="show" identifier="showCharacteristicDetail" id="8bZ-RY-uvC"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -177,7 +253,7 @@
         <!--Master-->
         <scene sceneID="XiT-Cg-YYF">
             <objects>
-                <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="OVn-YV-Y8Z" sceneMemberID="viewController">
+                <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="OVn-YV-Y8Z" customClass="SettingsTableViewController" customModule="Griffy" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vmn-Yq-TA9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -207,6 +283,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <segue destination="nQH-WL-rqU" kind="show" identifier="showCharacteristicDetail" id="IGG-af-pCl"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -241,7 +320,7 @@
         <!--Master-->
         <scene sceneID="fgp-PG-gjJ">
             <objects>
-                <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="cGe-jP-uNH" sceneMemberID="viewController">
+                <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="cGe-jP-uNH" customClass="StatusTableViewController" customModule="Griffy" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2Sa-FD-XEp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -271,6 +350,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <segue destination="nQH-WL-rqU" kind="show" identifier="showCharacteristicDetail" id="Rtr-ek-OS7"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -286,4 +368,7 @@
             <point key="canvasLocation" x="708" y="1568"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Rtr-ek-OS7"/>
+    </inferredMetricsTieBreakers>
 </document>

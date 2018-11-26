@@ -1,5 +1,5 @@
 //
-//  SettingsTableViewController.swift
+//  AdminMainTableViewController.swift
 //  Griffy
 //
 //  Created by Sam Goldstein on 11/25/18.
@@ -10,9 +10,10 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class SettingsTableViewController: UITableViewController {
+class AdminMainTableViewController: UITableViewController {
   var observedCharacteristics: Results<GFCharacteristic>?
-  let observedIds = [CharacteristicIds.testId, CharacteristicIds.brightnessId, CharacteristicIds.ledPitchId, CharacteristicIds.speedThresholdId, CharacteristicIds.connectTimeoutId]
+  let observedIds = [CharacteristicIds.imageSelectId, CharacteristicIds.wheelSpeedId, CharacteristicIds.percentageChargeId]
+  
   var token: NotificationToken?
   
   override func viewDidLoad() {
@@ -26,7 +27,7 @@ class SettingsTableViewController: UITableViewController {
     super.viewWillAppear(animated)
     token = observedCharacteristics?.GFObseveDataChanges(for: tableView, animateChanges: true)
   }
-
+  
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     token?.invalidate()
@@ -69,5 +70,5 @@ class SettingsTableViewController: UITableViewController {
     } else {
       cell.detailTextLabel?.text = "👎🏽"
     }
-  }
+  }  
 }

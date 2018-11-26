@@ -1,5 +1,5 @@
 //
-//  SettingsTableViewController.swift
+//  StatusTableViewController.swift
 //  Griffy
 //
 //  Created by Sam Goldstein on 11/25/18.
@@ -10,9 +10,10 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class SettingsTableViewController: UITableViewController {
+class StatusTableViewController: UITableViewController {
   var observedCharacteristics: Results<GFCharacteristic>?
-  let observedIds = [CharacteristicIds.testId, CharacteristicIds.brightnessId, CharacteristicIds.ledPitchId, CharacteristicIds.speedThresholdId, CharacteristicIds.connectTimeoutId]
+  let observedIds = [CharacteristicIds.firmwareVersionId, CharacteristicIds.hardwareVersionId, CharacteristicIds.serialNumberId, CharacteristicIds.percentageChargeId, CharacteristicIds.secondsRemainingId, CharacteristicIds.mahRemainingId, CharacteristicIds.temperatureId, CharacteristicIds.instantCurrentId, CharacteristicIds.averageCurrentId, CharacteristicIds.voltageId, CharacteristicIds.imu1Id, CharacteristicIds.imu2Id, CharacteristicIds.alu1Id, CharacteristicIds.alu2Id]
+  
   var token: NotificationToken?
   
   override func viewDidLoad() {
@@ -26,7 +27,7 @@ class SettingsTableViewController: UITableViewController {
     super.viewWillAppear(animated)
     token = observedCharacteristics?.GFObseveDataChanges(for: tableView, animateChanges: true)
   }
-
+  
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     token?.invalidate()
@@ -70,4 +71,5 @@ class SettingsTableViewController: UITableViewController {
       cell.detailTextLabel?.text = "👎🏽"
     }
   }
+
 }

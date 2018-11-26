@@ -16,6 +16,7 @@ final class BluetoothManager: NSObject {
   static let shared = BluetoothManager()
   var centralManager: CBCentralManager!
   var griffyPeripheral: CBPeripheral?
+  var characteristicsById = [String: CBCharacteristic]()
   
   var hasDiscoveredGriffy: Bool {
     get {
@@ -30,6 +31,28 @@ final class BluetoothManager: NSObject {
   
   func getAll() {
     //Placeholder just so the init() gets called
+  }
+  
+  func startUpdateTimer() {
+    Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (tiemr) in
+      self.updateAllValues()
+    }
+  }
+  
+  func updateAllValues() {
+    griffyPeripheral?.services?.forEach({ (service) in
+      service.characteristics?.forEach({ (char) in
+        griffyPeripheral?.readValue(for: char)
+      })
+    })
+  }
+  
+  func writeValue(data: Data, toCharacteristic characteristic: GFCharacteristic) {
+    guard let char = characteristicsById[characteristic.uuid] else {
+      assertionFailure("Couldn't find characteristic with that GFUUID: \(characteristic)")
+      return
+    }
+    griffyPeripheral?.writeValue(data, for: char, type: CBCharacteristicWriteType.withResponse)
   }
 }
 
@@ -72,7 +95,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
   }
 }
 
-extension MasterViewController: CBPeripheralDelegate {
+extension BluetoothManager: CBPeripheralDelegate {
   func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
     guard let services = peripheral.services else { return }
     for service in services {
@@ -87,40 +110,29 @@ extension MasterViewController: CBPeripheralDelegate {
     }
     
     for characteristic in characteristics {
-      if characteristicsByServiceId[service.uuid.uuidString] == nil {
-        characteristicsByServiceId[service.uuid.uuidString] = [String: CBCharacteristic]()
-      }
-      characteristicsByServiceId[service.uuid.uuidString]?[characteristic.uuid.uuidString] = characteristic
-      
-      print("Discovered: \(characteristicNameById[characteristic.uuid.uuidString])")
-      //      griffyPeripheral?.setNotifyValue(true, for: characteristic)
+      print("Discovered: \(characteristicNameById[characteristic.uuid.uuidString] ?? "nil-zip-nada")")
       printCharacteristicValue(characteristic)
+      let _ = GFCharacteristic.parse(GFCharacteristic.self, characteristic: characteristic)
+      characteristicsById[characteristic.uuid.uuidString] = characteristic
     }
-    tableView.reloadData()
   }
   
   func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
     if let e = error {
       print("ERROR writing value: \(e)")
-      showAlertWithTitle(title: "Error", body: e.localizedDescription, buttonTitles: ["🤦‍♀️"])
+      assertionFailure("ERROR writing value: \(e)")
     } else {
-      let name = characteristicNameById[characteristic.uuid.uuidString] ?? "MISSING"
-      //      showAlertWithTitle(title: "Success", body: "Wrote value to \(name).\nNew value is: \(getCharacteristicValue(characteristic)).\nLook right?", buttonTitles: ["Probably Not"])
-      updateAllValues()
-      //      characteristicsByServiceId[characteristic.service.uuid.uuidString]![characteristic.uuid.uuidString] = characteristic
-      tableView.reloadData()
+//      print("CHECK TO SEE IF THE VALUE HERE IS THE NEW, UPDATED VALUE OR IF WE SHOULD REFETCH")
+      griffyPeripheral?.readValue(for: characteristic)
+      NotificationCenter.default.post(name: .didWriteToCharacteristic, object: characteristic)
     }
   }
   
   func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-    printCharacteristicValue(characteristic)
-    characteristicsByServiceId[characteristic.service.uuid.uuidString]?[characteristic.uuid.uuidString] = characteristic
-    tableView.reloadData()
-  }
-  
-  private func getCharacteristicValue(_ characteristic: CBCharacteristic) -> UInt8! {
-    guard let characteristicData = characteristic.value, let byte = characteristicData.first else {return nil}
-    return byte
+//    printCharacteristicValue(characteristic)
+    let _ = GFCharacteristic.parse(GFCharacteristic.self, characteristic: characteristic)
+    characteristicsById[characteristic.uuid.uuidString] = characteristic
+    NotificationCenter.default.post(name: .didUpdateCharacteristic, object: characteristic)
   }
   
   private func printCharacteristicValue(_ characteristic: CBCharacteristic) {
@@ -128,7 +140,7 @@ extension MasterViewController: CBPeripheralDelegate {
     //    SerialNumber(
     //    print(characteristicNameById[characteristic.uuid.uuidString]!, characteristicData.count)
     let vals = characteristic.griffyValue()
-    print(vals)
-    print("\(characteristicNameById[characteristic.uuid.uuidString]!) = \(vals)")
+    print(vals!)
+    print("\(characteristicNameById[characteristic.uuid.uuidString]!) = \(vals ?? nil)")
   }
 }

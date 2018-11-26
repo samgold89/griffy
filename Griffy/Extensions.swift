@@ -162,3 +162,79 @@ extension NSObject {
       execute: closure)
   }
 }
+
+extension Notification.Name {
+  static let didUpdateCharacteristic = Notification.Name("didUpdateCharacteristic")
+  static let didWriteToCharacteristic = Notification.Name("didWriteToCharacteristic")
+}
+
+//extension UIButton {
+//  func setLoaderVisible(visible: Bool, style: UIActivityIndicatorView.Style) {
+//    /**********************************************
+//     If you're using the disabled state, handle it.
+//     currently it'll show an empty title label
+//     **********************************************/
+//    setTitle("", for: .disabled)
+//
+//    let tagForLoader = 432253
+//    if visible {
+//      isEnabled = false
+//      if let _ = viewWithTag(tagForLoader) {
+//        var loader = viewWithTag(tagForLoader)
+//        loader!.removeFromSuperview()
+//        loader = nil
+//      }
+//
+//      let loader = UIActivityIndicatorView(style: style)
+//      loader.startAnimating()
+//      loader.translatesAutoresizingMaskIntoConstraints = false
+//      loader.tag = tagForLoader
+//      addSubview(loader)
+//      loader.autoCenterInSuperview()
+//
+//      imageView?.isHidden = true
+//      titleLabel?.isHidden = true
+//    } else {
+//      isEnabled = true
+//      if let loader = viewWithTag(tagForLoader) {
+//        loader.removeFromSuperview()
+//      } else {
+//        //        assertionFailure("Shouldn't be setting a non-existent loader invisible on a button")
+//      }
+//      imageView?.isHidden = false
+//      titleLabel?.isHidden = false
+//    }
+//  }
+//
+//  func setBarLoading(isLoading: Bool, duration: Float) {
+//    let tagForBar = 381842
+//
+//    if let view = viewWithTag(tagForBar) {
+//      view.removeFromSuperview()
+//    }
+//
+//    if isLoading {
+//      let loaderView = UIView()
+//      loaderView.tag = tagForBar
+//      loaderView.layer.cornerRadius = layer.cornerRadius
+//      loaderView.layer.masksToBounds = layer.masksToBounds
+//      loaderView.backgroundColor = UIColor.black.withAlphaComponent(0.07)
+//      loaderView.translatesAutoresizingMaskIntoConstraints = false
+//      addSubview(loaderView)
+//      loaderView.autoPinEdge(.left, to: .left, of: self)
+//      loaderView.autoPinEdge(.top, to: .top, of: self)
+//      loaderView.autoPinEdge(.bottom, to: .bottom, of: self)
+//
+//      let rightConstraint = loaderView.autoPinEdge(.right, to: .right, of: self)
+//      rightConstraint.constant = -bounds.width
+//      layoutIfNeeded()
+//
+//      UIView.animate(withDuration: TimeInterval(duration), animations: {
+//        rightConstraint.constant = 0
+//        self.layoutIfNeeded()
+//      }, completion: { (comp) in
+//        loaderView.removeFromSuperview()
+//      })
+//    }
+//  }
+//}

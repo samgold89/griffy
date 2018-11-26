@@ -13,6 +13,11 @@ import CoreBluetooth
 class GFObject: Object {
   @objc dynamic var updatedAt: Date? = nil
   @objc dynamic var deletedAt: Date? = nil
+  @objc dynamic var id = ""
+  
+  override static func primaryKey() -> String? {
+    return "id"
+  }
   
   public static func find<T: Object>(_ type: T.Type, byId id: String) -> T? {
     let realm = try! Realm()
@@ -33,7 +38,7 @@ class GFObject: Object {
     
     var modified: T?
     try! realm.write {
-      let dict = ["id": characteristic.uuid.uuidString, "uuid": characteristic.uuid.uuidString, "updatedAt": Date()] as [String : Any]
+      let dict = ["id": characteristic.uuid.uuidString, "uuid": characteristic.uuid.uuidString, "updatedAt": Date(), "name": characteristic.griffyName(), "value": characteristic.value] as [String : Any]
       modified = realm.create(T.self, value: dict, update: true)
       if let m = modified as? GFObject {
         if m.deletedAt != nil {
@@ -48,13 +53,9 @@ class GFObject: Object {
 }
 
 class GFCharacteristic: GFObject {
-  
+  @objc dynamic var name = ""
   @objc dynamic var uuid = ""
   @objc dynamic var value: Data? = nil
-  
-  override static func primaryKey() -> String? {
-    return "uuid"
-  }
 }
 
 // Use them like regular Swift objects

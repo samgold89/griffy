@@ -21,6 +21,11 @@
 		A95C8A5521A2405F00387444 /* CharacteristicExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95C8A5421A2405F00387444 /* CharacteristicExtensions.swift */; };
 		A9B966EC21ABC5EA0079EBB7 /* GriffyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966EB21ABC5EA0079EBB7 /* GriffyModel.swift */; };
 		A9B966EE21ABCBCE0079EBB7 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966ED21ABCBCE0079EBB7 /* SettingsTableViewController.swift */; };
+		A9B966F021ABD7E10079EBB7 /* RealmMigrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966EF21ABD7E10079EBB7 /* RealmMigrations.swift */; };
+		A9B966F221ABDDED0079EBB7 /* StatusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966F121ABDDED0079EBB7 /* StatusTableViewController.swift */; };
+		A9B966F421ABDE840079EBB7 /* ImagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966F321ABDE840079EBB7 /* ImagesTableViewController.swift */; };
+		A9B966F621ABDE9A0079EBB7 /* AdminMainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966F521ABDE9A0079EBB7 /* AdminMainTableViewController.swift */; };
+		A9B966F821ABE18A0079EBB7 /* CharacteristicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966F721ABE18A0079EBB7 /* CharacteristicDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +47,11 @@
 		A95C8A5421A2405F00387444 /* CharacteristicExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacteristicExtensions.swift; sourceTree = "<group>"; };
 		A9B966EB21ABC5EA0079EBB7 /* GriffyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GriffyModel.swift; sourceTree = "<group>"; };
 		A9B966ED21ABCBCE0079EBB7 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		A9B966EF21ABD7E10079EBB7 /* RealmMigrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMigrations.swift; sourceTree = "<group>"; };
+		A9B966F121ABDDED0079EBB7 /* StatusTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewController.swift; sourceTree = "<group>"; };
+		A9B966F321ABDE840079EBB7 /* ImagesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesTableViewController.swift; sourceTree = "<group>"; };
+		A9B966F521ABDE9A0079EBB7 /* AdminMainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMainTableViewController.swift; sourceTree = "<group>"; };
+		A9B966F721ABE18A0079EBB7 /* CharacteristicDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacteristicDetailViewController.swift; sourceTree = "<group>"; };
 		C7627662C0CC93BB4C7CEC23 /* Pods-Griffy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Griffy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Griffy/Pods-Griffy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +89,11 @@
 		A95B21CE21A0D02B001E1F28 /* Griffy */ = {
 			isa = PBXGroup;
 			children = (
+				A9B966F121ABDDED0079EBB7 /* StatusTableViewController.swift */,
+				A9B966F321ABDE840079EBB7 /* ImagesTableViewController.swift */,
+				A9B966F521ABDE9A0079EBB7 /* AdminMainTableViewController.swift */,
+				A9B966F721ABE18A0079EBB7 /* CharacteristicDetailViewController.swift */,
+				A9B966EF21ABD7E10079EBB7 /* RealmMigrations.swift */,
 				A9B966ED21ABCBCE0079EBB7 /* SettingsTableViewController.swift */,
 				A9B966EB21ABC5EA0079EBB7 /* GriffyModel.swift */,
 				A95B21EE21A0EF0B001E1F28 /* Extensions.swift */,
@@ -246,12 +261,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9B966F821ABE18A0079EBB7 /* CharacteristicDetailViewController.swift in Sources */,
+				A9B966F021ABD7E10079EBB7 /* RealmMigrations.swift in Sources */,
 				A95B21EB21A0D8E8001E1F28 /* Constants.swift in Sources */,
 				A95B21D321A0D02B001E1F28 /* Griffy.xcdatamodeld in Sources */,
+				A9B966F421ABDE840079EBB7 /* ImagesTableViewController.swift in Sources */,
+				A9B966F221ABDDED0079EBB7 /* StatusTableViewController.swift in Sources */,
 				A95C8A5521A2405F00387444 /* CharacteristicExtensions.swift in Sources */,
 				A95B21D021A0D02B001E1F28 /* AppDelegate.swift in Sources */,
 				A95B21D521A0D02B001E1F28 /* MasterViewController.swift in Sources */,
 				A95B21ED21A0DC88001E1F28 /* BluetoothManager.swift in Sources */,
+				A9B966F621ABDE9A0079EBB7 /* AdminMainTableViewController.swift in Sources */,
 				A9B966EC21ABC5EA0079EBB7 /* GriffyModel.swift in Sources */,
 				A95B21EF21A0EF0B001E1F28 /* Extensions.swift in Sources */,
 				A9B966EE21ABCBCE0079EBB7 /* SettingsTableViewController.swift in Sources */,

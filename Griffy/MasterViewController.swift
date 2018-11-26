@@ -24,51 +24,33 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     navigationItem.title = "Touch a row to refresh it."
     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.refresh, target: self, action: #selector(MasterViewController.updateAllValues))
   }
+  
+  @objc func updateAllValues() {
+    BluetoothManager.shared.updateAllValues()
+  }
 
   // MARK: - Segues
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showDetail" {
       if let indexPath = tableView.indexPathForSelectedRow {
-//        let characteristicName = rows[indexPath.section][indexPath.row]
-//        let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-//        controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-//        controller.navigationItem.leftItemsSupplementBackButton = true
+        
       }
     }
-  }
-
-  @objc func updateAllValues() {
-    griffyPeripheral?.services?.forEach({ (service) in
-      service.characteristics?.forEach({ (char) in
-        griffyPeripheral?.readValue(for: char)
-      })
-    })
   }
   
   // MARK: - Table View
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    var theData:UInt8!
-//    theData = 1
-//    if let char = characteristicsById[CharacteristicImageselectId] {
-//      griffyPeripheral?.writeValue(theData!.data, for: char, type: CBCharacteristicWriteType.withResponse)
-//    }
-    
-//    let serviceId = Array(servicesById.keys)[indexPath.section]
-//    let characteristic = Array(characteristicsByServiceId[serviceId]!.values)[indexPath.row]
-//    griffyPeripheral?.readValue(for: characteristic)
-    
     guard let char = getCharacteristic(forIndexPath: indexPath) else {
       assertionFailure("Should have a characteristic when selecting.")
       return
     }
-    var value: Data!
-    if char.value == UInt8(3).data {
-      value = UInt8(4).data
-    } else {
-      value = UInt8(3).data
-    }
-    print("Writing new value: \(value)")
-    griffyPeripheral?.writeValue(value, for: char, type: CBCharacteristicWriteType.withResponse)
+//    var value: Data!
+//    if char.value == UInt8(3).data {
+//      value = UInt8(4).data
+//    } else {
+//      value = UInt8(3).data
+//    }
+//    print("Writing new value: \(value)")
 //    delay(0.2) {
 //      let serviceId = Array(self.servicesById.keys)[indexPath.section]
 //      let characteristic = Array(self.characteristicsByServiceId[serviceId]!.values)[indexPath.row]
@@ -136,3 +118,37 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     return characteristic
   }
 }
+
+struct SerialNumber {
+  var uuid: CBUUID?
+  var name: String?
+  var characteristic: CBCharacteristic?
+  
+  func value() -> String {
+    return ""
+  }
+}
+
+//SerialNumber
+//HardwareVersion
+//FirmwareVersion
+//LEDPitch
+//IMU1
+//IMU2
+//ALU1
+//ALU2
+//Status
+//ConnectTimeout
+//ImageLoad
+//ImageSelect
+//ImageErase
+//Test
+//SpeedThreshold
+//Brightness
+//Temperature
+//InstantCurrent
+//AverageCurrent
+//Voltage
+//SecondsRemaining
+//PercentageCharge
+//MAHRemaining

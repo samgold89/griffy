@@ -8,4 +8,7 @@ target 'Griffy' do
   # Pods for Griffy
   pod 'RealmSwift'
   pod 'PureLayout'
+  pod 'Fabric'
+  pod 'Crashlytics'
+
 end

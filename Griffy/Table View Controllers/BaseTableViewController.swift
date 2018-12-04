@@ -1,8 +1,8 @@
 //
-//  StatusTableViewController.swift
+//  BaseTableViewController.swift
 //  Griffy
 //
-//  Created by Sam Goldstein on 11/25/18.
+//  Created by Sam Goldstein on 12/3/18.
 //  Copyright © 2018 Sam Goldstein. All rights reserved.
 //
 
@@ -10,17 +10,18 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class StatusTableViewController: UITableViewController {
+class BaseTableViewController: UITableViewController {
   var observedCharacteristics: Results<GFCharacteristic>?
-  let observedIds = [CharacteristicIds.firmwareVersionId, CharacteristicIds.hardwareVersionId, CharacteristicIds.serialNumberId, CharacteristicIds.percentageChargeId, CharacteristicIds.secondsRemainingId, CharacteristicIds.mahRemainingId, CharacteristicIds.temperatureId, CharacteristicIds.instantCurrentId, CharacteristicIds.averageCurrentId, CharacteristicIds.voltageId, CharacteristicIds.imu1Id, CharacteristicIds.imu2Id, CharacteristicIds.alu1Id, CharacteristicIds.alu2Id]
-  
   var token: NotificationToken?
-  
+  var observedIds: [String] = [] {
+    didSet {
+      let realm = try! Realm()
+      observedCharacteristics = realm.objects(GFCharacteristic.self).filter(NSPredicate(format: "id IN %@", observedIds))
+    }
+  }
+    
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    let realm = try! Realm()
-    observedCharacteristics = realm.objects(GFCharacteristic.self).filter(NSPredicate(format: "id IN %@", observedIds))
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +34,12 @@ class StatusTableViewController: UITableViewController {
     token?.invalidate()
   }
   
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+    configureCell(cell, withIndexPath: indexPath)
+    return cell
+  }
+  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let vc = segue.destination as? CharacteristicDetailViewController {
       let idx = tableView.indexPathForSelectedRow?.row ?? 0
@@ -41,6 +48,7 @@ class StatusTableViewController: UITableViewController {
       }
       vc.characteristicId = char.id
     }
+    BluetoothManager.shared.writeImageToDevice()
   }
   
   override func numberOfSections(in tableView: UITableView) -> Int {
@@ -49,12 +57,6 @@ class StatusTableViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return observedCharacteristics?.count ?? 0
-  }
-  
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-    configureCell(cell, withIndexPath: indexPath)
-    return cell
   }
   
   func configureCell(_ cell: UITableViewCell, withIndexPath indexPath: IndexPath) {
@@ -66,10 +68,15 @@ class StatusTableViewController: UITableViewController {
     let char = observedCharacteristics[indexPath.row]
     cell.textLabel!.text = char.name
     if let value = char.value?.griffyValue(characteristicId: char.uuid) {
-      cell.detailTextLabel?.text = "\(value)"
+      var string = ""
+      var i = 0
+      for element in value {
+        string += (i == 0 ? element : ", \(element)")
+        i += 1
+      }
+      cell.detailTextLabel?.text = string
     } else {
       cell.detailTextLabel?.text = "👎🏽"
     }
   }
-
 }

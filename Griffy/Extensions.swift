@@ -7,8 +7,8 @@
 //
 
 import Foundation
-
 import UIKit
+import PureLayout
 
 extension Int {
   var data: Data {
@@ -54,6 +54,50 @@ extension String {
   }
 }
 
+/******* Probably garbage stuff
+extension Data {
+  init?(hexString: String) {
+    let len = hexString.count / 2
+    var data = Data(capacity: len)
+    for i in 0..<len {
+      let j = hexString.index(hexString.startIndex, offsetBy: i*2)
+      let k = hexString.index(j, offsetBy: 2)
+      let bytes = hexString[j..<k]
+      if var num = UInt8(bytes, radix: 16) {
+        data.append(&num, count: 1)
+      } else {
+        return nil
+      }
+    }
+    self = data
+  }
+}
+extension String {
+  
+  /// Create `Data` from hexadecimal string representation
+  ///
+  /// This creates a `Data` object from hex string. Note, if the string has any spaces or non-hex characters (e.g. starts with '<' and with a '>'), those are ignored and only hex characters are processed.
+  ///
+  /// - returns: Data represented by this hexadecimal string.
+  
+  var hexadecimal: Data? {
+    var data = Data(capacity: count / 2)
+    
+    let regex = try! NSRegularExpression(pattern: "[0-9a-f]{1,2}", options: .caseInsensitive)
+    regex.enumerateMatches(in: self, range: NSRange(startIndex..., in: self)) { match, _, _ in
+      let byteString = (self as NSString).substring(with: match!.range)
+      let num = UInt8(byteString, radix: 16)!
+      data.append(num)
+    }
+    
+    guard data.count > 0 else { return nil }
+    
+    return data
+  }
+}
+
+ ****/
+
 extension UIViewController {
   func showAlertWithTitle(title: String?, body: String?, buttonTitles: [String]) {
     let alert = UIAlertController(title: title, message: body, preferredStyle: UIAlertController.Style.alert)
@@ -64,19 +108,22 @@ extension UIViewController {
   }
 }
 extension Int {
-  func toHex() -> Int {
-    if let val = Int("\(self)", radix: 16) {
-      return val
-    } else {
-      assertionFailure("Failed to convert integer to hex. self=\(self)")
-      return 0
-    }
+  func toHex() -> String {
+    return String(format:"%02X", self)
+//    if let val = Int("\(self)", radix: 16) {
+//      return val
+//    } else {
+//      assertionFailure("Failed to convert integer to hex. self=\(self)")
+//      return 0
+//    }
   }
   
   func toDecimal() -> Int {
     let decimal = String.init(self, radix: 16, uppercase: false)
+    
     if let dec = Int(decimal) {
       return dec
+      Data.init(from: 3.self)
     } else {
       assertionFailure("Failed to convert hex to decimal")
       return 0
@@ -168,73 +215,73 @@ extension Notification.Name {
   static let didWriteToCharacteristic = Notification.Name("didWriteToCharacteristic")
 }
 
-//extension UIButton {
-//  func setLoaderVisible(visible: Bool, style: UIActivityIndicatorView.Style) {
-//    /**********************************************
-//     If you're using the disabled state, handle it.
-//     currently it'll show an empty title label
-//     **********************************************/
-//    setTitle("", for: .disabled)
-//
-//    let tagForLoader = 432253
-//    if visible {
-//      isEnabled = false
-//      if let _ = viewWithTag(tagForLoader) {
-//        var loader = viewWithTag(tagForLoader)
-//        loader!.removeFromSuperview()
-//        loader = nil
-//      }
-//
-//      let loader = UIActivityIndicatorView(style: style)
-//      loader.startAnimating()
-//      loader.translatesAutoresizingMaskIntoConstraints = false
-//      loader.tag = tagForLoader
-//      addSubview(loader)
-//      loader.autoCenterInSuperview()
-//
-//      imageView?.isHidden = true
-//      titleLabel?.isHidden = true
-//    } else {
-//      isEnabled = true
-//      if let loader = viewWithTag(tagForLoader) {
-//        loader.removeFromSuperview()
-//      } else {
-//        //        assertionFailure("Shouldn't be setting a non-existent loader invisible on a button")
-//      }
-//      imageView?.isHidden = false
-//      titleLabel?.isHidden = false
-//    }
-//  }
-//
-//  func setBarLoading(isLoading: Bool, duration: Float) {
-//    let tagForBar = 381842
-//
-//    if let view = viewWithTag(tagForBar) {
-//      view.removeFromSuperview()
-//    }
-//
-//    if isLoading {
-//      let loaderView = UIView()
-//      loaderView.tag = tagForBar
-//      loaderView.layer.cornerRadius = layer.cornerRadius
-//      loaderView.layer.masksToBounds = layer.masksToBounds
-//      loaderView.backgroundColor = UIColor.black.withAlphaComponent(0.07)
-//      loaderView.translatesAutoresizingMaskIntoConstraints = false
-//      addSubview(loaderView)
-//      loaderView.autoPinEdge(.left, to: .left, of: self)
-//      loaderView.autoPinEdge(.top, to: .top, of: self)
-//      loaderView.autoPinEdge(.bottom, to: .bottom, of: self)
-//
-//      let rightConstraint = loaderView.autoPinEdge(.right, to: .right, of: self)
-//      rightConstraint.constant = -bounds.width
-//      layoutIfNeeded()
-//
-//      UIView.animate(withDuration: TimeInterval(duration), animations: {
-//        rightConstraint.constant = 0
-//        self.layoutIfNeeded()
-//      }, completion: { (comp) in
-//        loaderView.removeFromSuperview()
-//      })
-//    }
-//  }
-//}
+extension UIButton {
+  func setLoaderVisible(visible: Bool, style: UIActivityIndicatorView.Style?) {
+    /**********************************************
+     If you're using the disabled state, handle it.
+     currently it'll show an empty title label
+     **********************************************/
+    setTitle("", for: .disabled)
+
+    let tagForLoader = 432253
+    if visible {
+      isEnabled = false
+      if let _ = viewWithTag(tagForLoader) {
+        var loader = viewWithTag(tagForLoader)
+        loader!.removeFromSuperview()
+        loader = nil
+      }
+
+      let loader = UIActivityIndicatorView(style: style ?? UIActivityIndicatorView.Style.whiteLarge)
+      loader.startAnimating()
+      loader.translatesAutoresizingMaskIntoConstraints = false
+      loader.tag = tagForLoader
+      addSubview(loader)
+      loader.autoCenterInSuperview()
+
+      imageView?.isHidden = true
+      titleLabel?.isHidden = true
+    } else {
+      isEnabled = true
+      if let loader = viewWithTag(tagForLoader) {
+        loader.removeFromSuperview()
+      } else {
+        //        assertionFailure("Shouldn't be setting a non-existent loader invisible on a button")
+      }
+      imageView?.isHidden = false
+      titleLabel?.isHidden = false
+    }
+  }
+
+  func setBarLoading(isLoading: Bool, duration: Float) {
+    let tagForBar = 381842
+
+    if let view = viewWithTag(tagForBar) {
+      view.removeFromSuperview()
+    }
+
+    if isLoading {
+      let loaderView = UIView()
+      loaderView.tag = tagForBar
+      loaderView.layer.cornerRadius = layer.cornerRadius
+      loaderView.layer.masksToBounds = layer.masksToBounds
+      loaderView.backgroundColor = UIColor.black.withAlphaComponent(0.07)
+      loaderView.translatesAutoresizingMaskIntoConstraints = false
+      addSubview(loaderView)
+      loaderView.autoPinEdge(.left, to: .left, of: self)
+      loaderView.autoPinEdge(.top, to: .top, of: self)
+      loaderView.autoPinEdge(.bottom, to: .bottom, of: self)
+
+      let rightConstraint = loaderView.autoPinEdge(.right, to: .right, of: self)
+      rightConstraint.constant = -bounds.width
+      layoutIfNeeded()
+
+      UIView.animate(withDuration: TimeInterval(duration), animations: {
+        rightConstraint.constant = 0
+        self.layoutIfNeeded()
+      }, completion: { (comp) in
+        loaderView.removeFromSuperview()
+      })
+    }
+  }
+}

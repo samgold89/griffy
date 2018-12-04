@@ -52,7 +52,16 @@ extension Data {
     let uiint8ArrayIds = [CharacteristicImageloadId, CharacteristicSpeedthresholdId, CharacteristicBrightnessId]
     let serialId = [CharacteristicSerialnumberId]
     
-    if uiint16Ids.contains(characteristicId) {
+    if characteristicId == CharacteristicIds.imu1Id || characteristicId == CharacteristicIds.imu2Id {
+      var array = [String]()
+      var idx = 0
+      while idx < self.count-1 {
+        let chunk1 = Data(bytes: [self[idx],self[idx+1]], count: 2)
+        array.append("\(Int(chunk1.uint16))")
+        idx += 2
+      }
+      return array
+    } else if uiint16Ids.contains(characteristicId) {
       return ["\(Int(self.uint16))"]
     } else if uiint32Ids.contains(characteristicId) {
       return ["\(Int(self.uint32))"]
@@ -95,5 +104,62 @@ extension CBCharacteristic {
   
   func griffyName() -> String {
     return characteristicNameById[uuid.uuidString] ?? "Missing Name!"
+  }
+  
+  struct CharacteristicInputError {
+    var success: Bool
+    var error: String
+  }
+  
+  func isValidInput(input: String) -> CharacteristicInputError {
+    let myId = uuid.uuidString
+    if myId == CharacteristicIds.testId {
+      let intValue = Int(input) ?? -1
+      return CharacteristicInputError(success: intValue == 0 || intValue == 1, error: "Must be 0 or 1")
+    } else if myId == CharacteristicIds.brightnessId {
+      let split = input.split(separator: ",")
+      if split.count != 2 {
+        return CharacteristicInputError(success: false, error: "Must have 2 values, each >= 0, <= 31")
+      }
+      var allGood = true
+      for digit in split {
+        let doubleValue = Double(digit) ?? -1.0
+        if !(doubleValue <= 31 && doubleValue >= 0) {
+          allGood = false
+        }
+      }
+      return CharacteristicInputError(success: allGood, error: "Must be >= 0 and <= 31")
+    } else if myId == CharacteristicIds.ledPitchId {
+      let intValue = Int(input) ?? -1
+      return CharacteristicInputError(success: intValue == 3 || intValue == 4, error: "Must be 3 or 4")
+    } else if myId == CharacteristicIds.speedThresholdId {
+      let split = input.split(separator: ",")
+      if split.count != 2 {
+        return CharacteristicInputError(success: false, error: "Must have 2 values, each >= 0, < 10, and < 3 digits")
+      }
+      var allGood = true
+      for digit in split {
+        let doubleValue = Double(digit) ?? -1.0
+        let format = "0.00"
+        if !(digit.count <= format.count && doubleValue < 10 && doubleValue >= 0) {
+          allGood = false
+        }
+      }
+      
+      return CharacteristicInputError(success: allGood, error: "Each number must be >= 0, < 10, and < 3 digits")
+    } else if myId == CharacteristicIds.connectTimeoutId {
+      let intValue = Int(input) ?? -1
+      return CharacteristicInputError(success: intValue >= 0 && intValue <= 999, error: "Must be >= 0 and <= 1000")
+    } else if myId == CharacteristicIds.imu1Id || myId == CharacteristicIds.imu2Id {
+      let split = input.split(separator: ",")
+      if split.count != 6 {
+        return CharacteristicInputError(success: false, error: "Must have 6 values!")
+      }
+      
+      return CharacteristicInputError(success: true, error: "Must have 6 values!")
+    } else {
+      //TODO: Add 'em all
+      return CharacteristicInputError(success: false, error: "Can't update this value (yet)...")
+    }
   }
 }

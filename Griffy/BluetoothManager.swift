@@ -12,11 +12,19 @@ import Foundation
 import UIKit
 import CoreBluetooth
 
+struct CharacterWriteResponse {
+  var characteristic: CBCharacteristic
+  var error: String?
+}
+
 final class BluetoothManager: NSObject {
   static let shared = BluetoothManager()
   var centralManager: CBCentralManager!
   var griffyPeripheral: CBPeripheral?
   var characteristicsById = [String: CBCharacteristic]()
+  
+  let minimumPacketSize = 27
+  let griffyHeaderSize = 7
   
   var hasDiscoveredGriffy: Bool {
     get {
@@ -34,7 +42,7 @@ final class BluetoothManager: NSObject {
   }
   
   func startUpdateTimer() {
-    Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (tiemr) in
+    Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { (timer) in
       self.updateAllValues()
     }
   }
@@ -45,6 +53,57 @@ final class BluetoothManager: NSObject {
         griffyPeripheral?.readValue(for: char)
       })
     })
+  }
+  
+  func writeImageToDevice() {
+    guard let filePath = Bundle.main.url(forResource: "bun", withExtension: "radial") else {
+      assertionFailure("Couldn't create bun.radial filepath")
+      return
+    }
+    
+    do {
+      let data = try Data(contentsOf: filePath)
+      let maxLength = (griffyPeripheral?.maximumWriteValueLength(for: CBCharacteristicWriteType.withResponse) ?? minimumPacketSize) - griffyHeaderSize
+      let array = getDataChunks(data: data, length: maxLength)
+      print("Writeable Data")
+      print(array)
+      if let char = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.imageLoadId) {
+        var idx = 0
+        var offsetCounter = 0
+        
+        for el in array {
+          if let data = el.first {
+            Data(base64Encoded: "13740")
+            
+            print("offset: \(offsetCounter)")
+            var offsetCounterData = Data(base64Encoded: "\(Int(offsetCounter.toHex()))")
+            print("offsetData: \(offsetCounterData)")
+            offsetCounterData!.append(Data(base64Encoded: "\(Int(idx.toHex()))")!)
+            print("offsetData2: \(offsetCounterData)")
+            offsetCounterData!.append(data)
+            print("offsetData3: \(offsetCounterData)")
+            writeValue(data: offsetCounterData!, toCharacteristic: char)
+            idx += 1
+            offsetCounter += data.count
+          } else {
+            assertionFailure("Didn't find data in the first element...")
+          }
+        }
+      }
+    } catch {
+      print(error.localizedDescription)
+    }
+  }
+
+  func getDataChunks(data: Data, length: Int) -> [[Data]] {
+    var idx = 0
+    var chunks = [[Data]]()
+    while idx < data.count-1 {
+      let sub = [data.subdata(in: idx..<(min(idx+length, data.count-1)))]
+      chunks.append(sub)
+      idx += length
+    }
+    return chunks
   }
   
   func writeValue(data: Data, toCharacteristic characteristic: GFCharacteristic) {
@@ -124,12 +183,11 @@ extension BluetoothManager: CBPeripheralDelegate {
     } else {
 //      print("CHECK TO SEE IF THE VALUE HERE IS THE NEW, UPDATED VALUE OR IF WE SHOULD REFETCH")
       griffyPeripheral?.readValue(for: characteristic)
-      NotificationCenter.default.post(name: .didWriteToCharacteristic, object: characteristic)
     }
+    NotificationCenter.default.post(name: .didWriteToCharacteristic, object: CharacterWriteResponse(characteristic: characteristic, error: error?.localizedDescription))
   }
   
   func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-//    printCharacteristicValue(characteristic)
     let _ = GFCharacteristic.parse(GFCharacteristic.self, characteristic: characteristic)
     characteristicsById[characteristic.uuid.uuidString] = characteristic
     NotificationCenter.default.post(name: .didUpdateCharacteristic, object: characteristic)

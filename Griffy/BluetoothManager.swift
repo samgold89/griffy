@@ -248,6 +248,9 @@ extension BluetoothManager: CBPeripheralDelegate {
     let char = GFCharacteristic.parse(GFCharacteristic.self, characteristic: characteristic)
     characteristicsById[characteristic.uuid.uuidString] = characteristic
     NotificationCenter.default.post(name: .didUpdateCharacteristic, object: characteristic)
+//    if characteristic.uuid.uuidString == CharacteristicIds.instantCurrentId || characteristic.uuid.uuidString == CharacteristicIds.averageCurrentId {
+//      print("we here \(characteristic.uuid.uuidString)")
+//    }
   }
   
   private func printCharacteristicValue(_ characteristic: CBCharacteristic) {

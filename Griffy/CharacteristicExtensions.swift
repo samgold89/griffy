@@ -73,7 +73,16 @@ extension Data {
         arrayString = ["\(valueInt)"]
       }
     } else if uiint32Ids.contains(characteristicId) {
-      arrayString = ["\(Int(self.uint32))"]
+      let intValue = Int(self.uint32)
+      if characteristicId == CharacteristicIds.firmwareVersionId {
+        let remainder = intValue % 65536
+        let byteTwo = (intValue - remainder)/65536
+        let byteZero = remainder % 256
+        let byteOne = (remainder - byteZero)/256
+        arrayString = ["\(byteTwo).\(byteOne).\(byteZero)"]
+      } else {
+        arrayString = ["\(intValue)"]
+      }
     } else if uiint8ids.contains(characteristicId) {
       arrayString = ["\(Int(self.uint8))"]
     } else if uiint8ArrayIds.contains(characteristicId) {
@@ -93,7 +102,12 @@ extension Data {
       var idx = 0
       while idx < self.count-1 {
         let chunk1 = Data(bytes: [self[idx],self[idx+1]], count: 2)
-        array.append("\(Int(chunk1.uint16))")
+        let intValue = Int(chunk1.uint16)
+        if [CharacteristicIds.temperatureId, CharacteristicIds.instantCurrentId, CharacteristicIds.averageCurrentId, CharacteristicIds.voltageId].contains(characteristicId) {
+          array.append(String(format: "%0.3f", Float(intValue)/1000.0))
+        } else {
+          array.append("\(intValue)")
+        }
         idx += 2
       }
       arrayString = array

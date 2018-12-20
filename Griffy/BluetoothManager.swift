@@ -66,7 +66,7 @@ final class BluetoothManager: NSObject {
     }
   }
   
-  func sendImageToDevice(withFileName fileName: String, completion: @escaping ()->()) {
+  func sendImageToDevice(withFileName fileName: String, index: Int, completion: @escaping ()->()) {
     guard let filePath = Bundle.main.url(forResource: fileName, withExtension: "radial") else {
       completion()
       assertionFailure("Couldn't create bun.radial filepath")
@@ -88,7 +88,7 @@ final class BluetoothManager: NSObject {
       
       for el in imageDataArray {
         if let data = el.first {
-          var prependedData = getOffsetData(imageId: 0, offset: offsetCounter)
+          var prependedData = getOffsetData(imageId: index, offset: offsetCounter)
           prependedData.append(data)
 //          print(Array(prependedData))
           writeValue(data: prependedData, toCharacteristic: char)

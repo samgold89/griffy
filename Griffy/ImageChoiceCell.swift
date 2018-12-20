@@ -31,7 +31,7 @@ class ImageChoiceCell: UICollectionViewCell {
     }
     
     self.sendRadialButton.setLoaderVisible(visible: true, style: UIActivityIndicatorView.Style.gray)
-    BluetoothManager.shared.sendImageToDevice(withFileName: g.fileName) {
+    BluetoothManager.shared.sendImageToDevice(withFileName: g.fileName, index: g.index) {
       self.sendRadialButton.setLoaderVisible(visible: false, style: UIActivityIndicatorView.Style.gray)
     }
   }

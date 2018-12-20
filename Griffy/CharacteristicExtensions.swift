@@ -45,12 +45,12 @@ import CoreBluetooth
 
 extension Data {
   func griffyDisplayValue(characteristicId: String) -> String {
-    let uiint16Ids = [CharacteristicAlu1Id,CharacteristicAlu2Id,CharacteristicWheelspeedId,CharacteristicConnecttimeoutId]
-    let uiint16ArrayIds = [CharacteristicTemperatureId, CharacteristicInstantcurrentId, CharacteristicAveragecurrentId, CharacteristicVoltageId, CharacteristicSecondsremainingId, CharacteristicPercentagechargeId, CharacteristicMahremainingId]
-    let uiint32Ids = [CharacteristicHardwareversionId, CharacteristicFirmwareversionId]
-    let uiint8ids = [CharacteristicLedpitchId, CharacteristicImu1Id, CharacteristicImu2Id, CharacteristicStatusId, CharacteristicImageselectId, CharacteristicImageeraseId, CharacteristicTestId]
-    let uiint8ArrayIds = [CharacteristicImageloadId, CharacteristicSpeedthresholdId, CharacteristicBrightnessId]
-    let serialId = [CharacteristicSerialnumberId]
+    let uiint16Ids = [CharacteristicIds.alu1Id,CharacteristicIds.alu2Id,CharacteristicIds.wheelSpeedId,CharacteristicIds.connectTimeoutId]
+    let uiint16ArrayIds = [CharacteristicIds.temperatureId, CharacteristicIds.instantCurrentId, CharacteristicIds.averageCurrentId, CharacteristicIds.voltageId, CharacteristicIds.secondsRemainingId, CharacteristicIds.percentageChargeId, CharacteristicIds.mahRemainingId]
+    let uiint32Ids = [CharacteristicIds.hardwareVersionId, CharacteristicIds.firmwareVersionId]
+    let uiint8ids = [CharacteristicIds.ledPitchId, CharacteristicIds.imu1Id, CharacteristicIds.imu2Id, CharacteristicIds.statusId, CharacteristicIds.imageSelectId, CharacteristicIds.imageEraseId, CharacteristicIds.testId]
+    let uiint8ArrayIds = [CharacteristicIds.imageLoadId, CharacteristicIds.speedThresholdId, CharacteristicIds.brightnessId]
+    let serialId = [CharacteristicIds.serialNumberId]
     
     var arrayString = [String]()
     

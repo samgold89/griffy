@@ -6,36 +6,6 @@
 //  Copyright © 2018 Sam Goldstein. All rights reserved.
 //
 
-public let ServiceDeviceId = "CD205203-029F-459B-B015-D93A554C035C"
-public let CharacteristicSerialnumberId = "21B8E697-AFA0-43A2-BF36-831285BFAB66"
-public let CharacteristicHardwareversionId = "AAAE5188-3AD3-43A3-A0B4-DEC44E7C4680"
-public let CharacteristicFirmwareversionId = "A7173297-3A7C-4937-A450-D405CD7EB2CE"
-public let CharacteristicLedpitchId = "E2784DBE-8020-4AF7-8AA7-E8A9BDCCEF13"
-public let ServiceStatusId = "53079CA5-1E15-4405-8DC3-052B3B4EC2E5"
-public let CharacteristicImu1Id = "C5AA4192-2B0C-4676-AE68-6A7E15F3B943"
-public let CharacteristicImu2Id = "D5EDC2C5-DD26-456B-A4E9-D692D48713CB"
-public let CharacteristicAlu1Id = "BA8C839A-5157-425C-B4BA-39865B18670B"
-public let CharacteristicAlu2Id = "427195F5-8ACC-48A0-A155-D045CC5C47CA"
-public let CharacteristicStatusId = "D8AFC950-E229-414B-BF30-3EC23264535E"
-public let CharacteristicWheelspeedId = "353A780E-468D-4A02-8F9A-3A7BC0C502D0"
-public let ServiceSettingsId = "3BBB8E76-5E5D-42AF-A7A0-858AC051B069"
-public let CharacteristicConnecttimeoutId = "84B749D2-AD90-47C1-A18E-BD3927AC80E1"
-public let ServiceDisplayId = "900D5F97-D291-4E05-9F6C-3B4537A71E9F"
-public let CharacteristicImageloadId = "B03EE9AE-F2EC-4829-812D-182EDD2F9C53"
-public let CharacteristicImageselectId = "FDC342B7-00E9-427F-9AF5-7A1CA5097468"
-public let CharacteristicImageeraseId = "BBCF9D7A-8A2F-4A2F-960A-8A583019D7E5"
-public let CharacteristicTestId = "68E78595-01E2-4F79-9BF3-552D0B63CC95"
-public let CharacteristicSpeedthresholdId = "77ADBD1E-D5B8-4392-9370-D0D8E1290682"
-public let CharacteristicBrightnessId = "29B73168-FE26-47B9-9811-6D90C4A45A2D"
-public let ServiceBatteryId = "46F575E3-B6A4-4708-BCDD-8C7DFD64EFB3"
-public let CharacteristicTemperatureId = "2BBF1805-F7A3-4694-8D48-F12F88E7CE81"
-public let CharacteristicInstantcurrentId = "C10B005E-94A3-4A9F-9693-2422B9A28DF8"
-public let CharacteristicAveragecurrentId = "E0AE6145-CA28-4FC1-AB08-100531027980"
-public let CharacteristicVoltageId = "15623E29-D7A2-4ABA-99B6-0A672329C33B"
-public let CharacteristicSecondsremainingId = "21E54027-36E5-4528-ABF1-2C02539DFEC0"
-public let CharacteristicPercentagechargeId = "A3584E8C-68F5-4FB9-801C-671A634333A1"
-public let CharacteristicMahremainingId = "5A241FE8-26B3-4504-A0E7-E6ECCCFD2892"
-
 struct PeripheralIds {
   static let griffy = "ACE9A76A-DF76-B541-5699-8341D9C853A8"
 }

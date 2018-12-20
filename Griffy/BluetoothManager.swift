@@ -193,7 +193,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
   
   func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
     NotificationCenter.default.post(name: .bluetoothStateChanged, object: GFBluetoothState(message: "Connected to Griffy!", color: UIColor.gfGreen))
-    peripheral.discoverServices([ServiceDeviceId.cbuuid(), ServiceStatusId.cbuuid(), ServiceSettingsId.cbuuid(), ServiceDisplayId.cbuuid(), ServiceBatteryId.cbuuid()])
+    peripheral.discoverServices([ServiceIds.deviceId.cbuuid(), ServiceIds.statusId.cbuuid(), ServiceIds.settingsId.cbuuid(), ServiceIds.displayId.cbuuid(), ServiceIds.batteryId.cbuuid()])
     peripheral.delegate = self
   }
   

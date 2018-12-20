@@ -104,7 +104,7 @@ class CharacteristicDetailViewController: UIViewController {
     
     var arr = [UInt8]()
     for num in text.split(separator: ",") {
-      if let iNum = Int(num), let uiNum = UInt8(num) {
+      if let uiNum = UInt8(num) {
         arr.append(uiNum)
       }
     }

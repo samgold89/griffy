@@ -132,7 +132,7 @@
                             <outlet property="delegate" destination="RbI-mr-VwE" id="ktA-iS-3ju"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Item" id="YVP-qk-s0c"/>
+                    <tabBarItem key="tabBarItem" title="Images" id="YVP-qk-s0c"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cA8-h0-9MB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

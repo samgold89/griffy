@@ -122,6 +122,11 @@ class CharacteristicDetailViewController: UIViewController {
 
 extension CharacteristicDetailViewController: UITextFieldDelegate {
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    if string == "\n" {
+      textField.resignFirstResponder()
+      return false
+    }
+    
     let newText = ((textField.text ?? "") as NSString).replacingCharacters(in: range, with: string)
     if let gfChar = GFCharacteristic.find(GFCharacteristic.self, byId: characteristicId ?? ""), let cbChar = BluetoothManager.shared.characteristicsById[gfChar.uuid] {
       

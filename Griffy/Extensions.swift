@@ -123,7 +123,6 @@ extension Int {
     
     if let dec = Int(decimal) {
       return dec
-      Data.init(from: 3.self)
     } else {
       assertionFailure("Failed to convert hex to decimal")
       return 0
@@ -210,9 +209,58 @@ extension NSObject {
   }
 }
 
+extension UIColor {
+  public static func hex(hex: String) -> UIColor {
+    var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+    
+    if (cString.hasPrefix("#")) {
+      cString.remove(at: cString.startIndex)
+    }
+    
+    if ((cString.count) != 6) {
+      return UIColor.gray
+    }
+    
+    var rgbValue:UInt32 = 0
+    Scanner(string: cString).scanHexInt32(&rgbValue)
+    
+    return UIColor(
+      red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+      green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+      blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+      alpha: CGFloat(1.0)
+    )
+  }
+  
+  public static var gfGreen: UIColor {
+    get {
+      return UIColor.hex(hex: "06D6A0")
+    }
+  }
+  
+  public static var gfYellow: UIColor {
+    get {
+      return UIColor.hex(hex: "FFD166")
+    }
+  }
+  
+  public static var gfRed: UIColor {
+    get {
+      return UIColor.hex(hex: "EF476F")
+    }
+  }
+  
+  public static var gfBlue: UIColor {
+    get {
+      return UIColor.hex(hex: "26547C")
+    }
+  }
+}
+
 extension Notification.Name {
   static let didUpdateCharacteristic = Notification.Name("didUpdateCharacteristic")
   static let didWriteToCharacteristic = Notification.Name("didWriteToCharacteristic")
+  static let bluetoothStateChanged = Notification.Name("bluetoothStateChanged")
 }
 
 extension UIButton {

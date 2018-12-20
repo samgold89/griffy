@@ -106,6 +106,10 @@ extension CBCharacteristic {
     return characteristicNameById[uuid.uuidString] ?? "Missing Name!"
   }
   
+  func griffyCharacteristic() -> GFCharacteristic? {
+    return GFCharacteristic.find(GFCharacteristic.self, byId: uuid.uuidString)
+  }
+  
   struct CharacteristicInputError {
     var success: Bool
     var error: String

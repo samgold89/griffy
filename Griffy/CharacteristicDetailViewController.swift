@@ -82,15 +82,15 @@ class CharacteristicDetailViewController: UIViewController {
     if note.characteristic.uuid.uuidString == characteristicId {
       updateScreenValues()
       if let e = note.error {
-        self.errorLabel.textColor = UIColor.red
+        self.errorLabel.textColor = UIColor.gfRed
         errorLabel.text = e
       } else {
         self.errorLabel.text = "✅ Value Updated"
-        self.errorLabel.textColor = UIColor.green
+        self.errorLabel.textColor = UIColor.gfGreen
       }
       delay(2) {
         self.errorLabel.text = ""
-        self.errorLabel.textColor = UIColor.red
+        self.errorLabel.textColor = UIColor.gfRed
       }
     }
   }
@@ -129,11 +129,11 @@ extension CharacteristicDetailViewController: UITextFieldDelegate {
       if inputValid.success {
         updateButton.isEnabled = true
         errorLabel.text = ""
-        textField.layer.borderColor = UIColor.green.cgColor
+        textField.layer.borderColor = UIColor.gfGreen.cgColor
       } else {
         updateButton.isEnabled = false
         errorLabel.text = inputValid.error
-        textField.layer.borderColor = UIColor.red.cgColor
+        textField.layer.borderColor = UIColor.gfRed.cgColor
       }
     }
     if newText.count == 0 {

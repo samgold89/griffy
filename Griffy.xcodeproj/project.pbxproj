@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		93412C539572DA15072FD06A /* Pods_Griffy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A2B5E1B83AB8992CCC3418C /* Pods_Griffy.framework */; };
+		A9270E6E21B9B56C007BD884 /* ImageChoiceCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9270E6D21B9B56C007BD884 /* ImageChoiceCollectionViewController.swift */; };
+		A9270E7021B9C6C4007BD884 /* GriffyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9270E6F21B9C6C4007BD884 /* GriffyTabBarController.swift */; };
+		A9270E7521B9CF89007BD884 /* martin1.png in Resources */ = {isa = PBXBuildFile; fileRef = A9270E7121B9CF88007BD884 /* martin1.png */; };
+		A9270E7621B9CF89007BD884 /* eli_bonaire.png in Resources */ = {isa = PBXBuildFile; fileRef = A9270E7221B9CF88007BD884 /* eli_bonaire.png */; };
+		A9270E7721B9CF89007BD884 /* sam.png in Resources */ = {isa = PBXBuildFile; fileRef = A9270E7321B9CF88007BD884 /* sam.png */; };
+		A9270E7821B9CF89007BD884 /* sorry.png in Resources */ = {isa = PBXBuildFile; fileRef = A9270E7421B9CF88007BD884 /* sorry.png */; };
 		A95B21D021A0D02B001E1F28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B21CF21A0D02B001E1F28 /* AppDelegate.swift */; };
 		A95B21D321A0D02B001E1F28 /* Griffy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A95B21D121A0D02B001E1F28 /* Griffy.xcdatamodeld */; };
 		A95B21D521A0D02B001E1F28 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B21D421A0D02B001E1F28 /* MasterViewController.swift */; };
@@ -20,8 +26,29 @@
 		A95B21EF21A0EF0B001E1F28 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B21EE21A0EF0B001E1F28 /* Extensions.swift */; };
 		A95C8A5521A2405F00387444 /* CharacteristicExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95C8A5421A2405F00387444 /* CharacteristicExtensions.swift */; };
 		A9A543EA21B5B9A600BF99FD /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A543E921B5B9A600BF99FD /* BaseTableViewController.swift */; };
-		A9A543ED21B5BE9400BF99FD /* bun.radial in Resources */ = {isa = PBXBuildFile; fileRef = A9A543EC21B5BE9400BF99FD /* bun.radial */; };
 		A9A543EF21B5C24B00BF99FD /* t.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9A543EE21B5C24B00BF99FD /* t.pdf */; };
+		A9A543F421B9AF6900BF99FD /* GriffyImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A543F321B9AF6900BF99FD /* GriffyImages.swift */; };
+		A9A5440E21B9B1B800BF99FD /* letters1.radial in Resources */ = {isa = PBXBuildFile; fileRef = A9A543F621B9B1B400BF99FD /* letters1.radial */; };
+		A9A5440F21B9B1B800BF99FD /* letters3.png in Resources */ = {isa = PBXBuildFile; fileRef = A9A543F721B9B1B400BF99FD /* letters3.png */; };
+		A9A5441021B9B1B800BF99FD /* testfile1.radial in Resources */ = {isa = PBXBuildFile; fileRef = A9A543F821B9B1B400BF99FD /* testfile1.radial */; };
+		A9A5441221B9B1B800BF99FD /* letters2.png in Resources */ = {isa = PBXBuildFile; fileRef = A9A543FA21B9B1B400BF99FD /* letters2.png */; };
+		A9A5441521B9B1B800BF99FD /* testfile2.png in Resources */ = {isa = PBXBuildFile; fileRef = A9A543FD21B9B1B500BF99FD /* testfile2.png */; };
+		A9A5441621B9B1B800BF99FD /* martin1.radial in Resources */ = {isa = PBXBuildFile; fileRef = A9A543FE21B9B1B500BF99FD /* martin1.radial */; };
+		A9A5441721B9B1B800BF99FD /* cocacola.radial in Resources */ = {isa = PBXBuildFile; fileRef = A9A543FF21B9B1B500BF99FD /* cocacola.radial */; };
+		A9A5441921B9B1B800BF99FD /* eli_bonaire.radial in Resources */ = {isa = PBXBuildFile; fileRef = A9A5440121B9B1B500BF99FD /* eli_bonaire.radial */; };
+		A9A5441A21B9B1B800BF99FD /* letters2.radial in Resources */ = {isa = PBXBuildFile; fileRef = A9A5440221B9B1B500BF99FD /* letters2.radial */; };
+		A9A5441B21B9B1B800BF99FD /* letters3.radial in Resources */ = {isa = PBXBuildFile; fileRef = A9A5440321B9B1B600BF99FD /* letters3.radial */; };
+		A9A5441C21B9B1B800BF99FD /* cocacola.png in Resources */ = {isa = PBXBuildFile; fileRef = A9A5440421B9B1B600BF99FD /* cocacola.png */; };
+		A9A5441D21B9B1B800BF99FD /* sorry.radial in Resources */ = {isa = PBXBuildFile; fileRef = A9A5440521B9B1B600BF99FD /* sorry.radial */; };
+		A9A5441E21B9B1B800BF99FD /* starbucks.radial in Resources */ = {isa = PBXBuildFile; fileRef = A9A5440621B9B1B600BF99FD /* starbucks.radial */; };
+		A9A5441F21B9B1B800BF99FD /* testfile1.png in Resources */ = {isa = PBXBuildFile; fileRef = A9A5440721B9B1B600BF99FD /* testfile1.png */; };
+		A9A5442021B9B1B800BF99FD /* testfile4.radial in Resources */ = {isa = PBXBuildFile; fileRef = A9A5440821B9B1B700BF99FD /* testfile4.radial */; };
+		A9A5442121B9B1B800BF99FD /* starbucks.png in Resources */ = {isa = PBXBuildFile; fileRef = A9A5440921B9B1B700BF99FD /* starbucks.png */; };
+		A9A5442221B9B1B800BF99FD /* testfile4.png in Resources */ = {isa = PBXBuildFile; fileRef = A9A5440A21B9B1B700BF99FD /* testfile4.png */; };
+		A9A5442321B9B1B800BF99FD /* letters1.png in Resources */ = {isa = PBXBuildFile; fileRef = A9A5440B21B9B1B700BF99FD /* letters1.png */; };
+		A9A5442421B9B1B800BF99FD /* sam.radial in Resources */ = {isa = PBXBuildFile; fileRef = A9A5440C21B9B1B700BF99FD /* sam.radial */; };
+		A9A5442521B9B1B800BF99FD /* testfile2.radial in Resources */ = {isa = PBXBuildFile; fileRef = A9A5440D21B9B1B800BF99FD /* testfile2.radial */; };
+		A9A5442721B9B41500BF99FD /* ImageChoiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5442621B9B41500BF99FD /* ImageChoiceCell.swift */; };
 		A9B966EC21ABC5EA0079EBB7 /* GriffyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966EB21ABC5EA0079EBB7 /* GriffyModel.swift */; };
 		A9B966EE21ABCBCE0079EBB7 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966ED21ABCBCE0079EBB7 /* SettingsTableViewController.swift */; };
 		A9B966F021ABD7E10079EBB7 /* RealmMigrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966EF21ABD7E10079EBB7 /* RealmMigrations.swift */; };
@@ -34,6 +61,12 @@
 /* Begin PBXFileReference section */
 		8A2B5E1B83AB8992CCC3418C /* Pods_Griffy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Griffy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F143CB311D88810991B4607 /* Pods-Griffy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Griffy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Griffy/Pods-Griffy.debug.xcconfig"; sourceTree = "<group>"; };
+		A9270E6D21B9B56C007BD884 /* ImageChoiceCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageChoiceCollectionViewController.swift; sourceTree = "<group>"; };
+		A9270E6F21B9C6C4007BD884 /* GriffyTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GriffyTabBarController.swift; sourceTree = "<group>"; };
+		A9270E7121B9CF88007BD884 /* martin1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = martin1.png; sourceTree = "<group>"; };
+		A9270E7221B9CF88007BD884 /* eli_bonaire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eli_bonaire.png; sourceTree = "<group>"; };
+		A9270E7321B9CF88007BD884 /* sam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sam.png; sourceTree = "<group>"; };
+		A9270E7421B9CF88007BD884 /* sorry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sorry.png; sourceTree = "<group>"; };
 		A95B21CC21A0D02B001E1F28 /* Griffy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Griffy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95B21CF21A0D02B001E1F28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A95B21D221A0D02B001E1F28 /* Griffy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Griffy.xcdatamodel; sourceTree = "<group>"; };
@@ -49,8 +82,29 @@
 		A95B21EE21A0EF0B001E1F28 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A95C8A5421A2405F00387444 /* CharacteristicExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacteristicExtensions.swift; sourceTree = "<group>"; };
 		A9A543E921B5B9A600BF99FD /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
-		A9A543EC21B5BE9400BF99FD /* bun.radial */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bun.radial; sourceTree = "<group>"; };
 		A9A543EE21B5C24B00BF99FD /* t.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = t.pdf; sourceTree = "<group>"; };
+		A9A543F321B9AF6900BF99FD /* GriffyImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GriffyImages.swift; sourceTree = "<group>"; };
+		A9A543F621B9B1B400BF99FD /* letters1.radial */ = {isa = PBXFileReference; lastKnownFileType = file; path = letters1.radial; sourceTree = "<group>"; };
+		A9A543F721B9B1B400BF99FD /* letters3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = letters3.png; sourceTree = "<group>"; };
+		A9A543F821B9B1B400BF99FD /* testfile1.radial */ = {isa = PBXFileReference; lastKnownFileType = file; path = testfile1.radial; sourceTree = "<group>"; };
+		A9A543FA21B9B1B400BF99FD /* letters2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = letters2.png; sourceTree = "<group>"; };
+		A9A543FD21B9B1B500BF99FD /* testfile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testfile2.png; sourceTree = "<group>"; };
+		A9A543FE21B9B1B500BF99FD /* martin1.radial */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = martin1.radial; sourceTree = "<group>"; };
+		A9A543FF21B9B1B500BF99FD /* cocacola.radial */ = {isa = PBXFileReference; lastKnownFileType = file; path = cocacola.radial; sourceTree = "<group>"; };
+		A9A5440121B9B1B500BF99FD /* eli_bonaire.radial */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = eli_bonaire.radial; sourceTree = "<group>"; };
+		A9A5440221B9B1B500BF99FD /* letters2.radial */ = {isa = PBXFileReference; lastKnownFileType = file; path = letters2.radial; sourceTree = "<group>"; };
+		A9A5440321B9B1B600BF99FD /* letters3.radial */ = {isa = PBXFileReference; lastKnownFileType = file; path = letters3.radial; sourceTree = "<group>"; };
+		A9A5440421B9B1B600BF99FD /* cocacola.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cocacola.png; sourceTree = "<group>"; };
+		A9A5440521B9B1B600BF99FD /* sorry.radial */ = {isa = PBXFileReference; lastKnownFileType = file; path = sorry.radial; sourceTree = "<group>"; };
+		A9A5440621B9B1B600BF99FD /* starbucks.radial */ = {isa = PBXFileReference; lastKnownFileType = file; path = starbucks.radial; sourceTree = "<group>"; };
+		A9A5440721B9B1B600BF99FD /* testfile1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testfile1.png; sourceTree = "<group>"; };
+		A9A5440821B9B1B700BF99FD /* testfile4.radial */ = {isa = PBXFileReference; lastKnownFileType = file; path = testfile4.radial; sourceTree = "<group>"; };
+		A9A5440921B9B1B700BF99FD /* starbucks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starbucks.png; sourceTree = "<group>"; };
+		A9A5440A21B9B1B700BF99FD /* testfile4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testfile4.png; sourceTree = "<group>"; };
+		A9A5440B21B9B1B700BF99FD /* letters1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = letters1.png; sourceTree = "<group>"; };
+		A9A5440C21B9B1B700BF99FD /* sam.radial */ = {isa = PBXFileReference; lastKnownFileType = file; path = sam.radial; sourceTree = "<group>"; };
+		A9A5440D21B9B1B800BF99FD /* testfile2.radial */ = {isa = PBXFileReference; lastKnownFileType = file; path = testfile2.radial; sourceTree = "<group>"; };
+		A9A5442621B9B41500BF99FD /* ImageChoiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageChoiceCell.swift; sourceTree = "<group>"; };
 		A9B966EB21ABC5EA0079EBB7 /* GriffyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GriffyModel.swift; sourceTree = "<group>"; };
 		A9B966ED21ABCBCE0079EBB7 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		A9B966EF21ABD7E10079EBB7 /* RealmMigrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMigrations.swift; sourceTree = "<group>"; };
@@ -95,6 +149,9 @@
 		A95B21CE21A0D02B001E1F28 /* Griffy */ = {
 			isa = PBXGroup;
 			children = (
+				A9270E6F21B9C6C4007BD884 /* GriffyTabBarController.swift */,
+				A9A5442621B9B41500BF99FD /* ImageChoiceCell.swift */,
+				A9270E6D21B9B56C007BD884 /* ImageChoiceCollectionViewController.swift */,
 				A9B966F721ABE18A0079EBB7 /* CharacteristicDetailViewController.swift */,
 				A9A543EB21B5BAB900BF99FD /* Table View Controllers */,
 				A9B966EF21ABD7E10079EBB7 /* RealmMigrations.swift */,
@@ -105,7 +162,8 @@
 				A95B21CF21A0D02B001E1F28 /* AppDelegate.swift */,
 				A95B21D421A0D02B001E1F28 /* MasterViewController.swift */,
 				A9A543EE21B5C24B00BF99FD /* t.pdf */,
-				A9A543EC21B5BE9400BF99FD /* bun.radial */,
+				A9A543F521B9B01E00BF99FD /* GriffyImages */,
+				A9A543F321B9AF6900BF99FD /* GriffyImages.swift */,
 				A95B21EC21A0DC88001E1F28 /* BluetoothManager.swift */,
 				A95B21EA21A0D8E8001E1F28 /* Constants.swift */,
 				A95B21D821A0D02B001E1F28 /* Main.storyboard */,
@@ -136,6 +194,37 @@
 				A9B966F521ABDE9A0079EBB7 /* AdminMainTableViewController.swift */,
 			);
 			path = "Table View Controllers";
+			sourceTree = "<group>";
+		};
+		A9A543F521B9B01E00BF99FD /* GriffyImages */ = {
+			isa = PBXGroup;
+			children = (
+				A9A5440421B9B1B600BF99FD /* cocacola.png */,
+				A9A543FF21B9B1B500BF99FD /* cocacola.radial */,
+				A9270E7221B9CF88007BD884 /* eli_bonaire.png */,
+				A9A5440121B9B1B500BF99FD /* eli_bonaire.radial */,
+				A9A5440B21B9B1B700BF99FD /* letters1.png */,
+				A9A543F621B9B1B400BF99FD /* letters1.radial */,
+				A9A543FA21B9B1B400BF99FD /* letters2.png */,
+				A9A5440221B9B1B500BF99FD /* letters2.radial */,
+				A9A543F721B9B1B400BF99FD /* letters3.png */,
+				A9A5440321B9B1B600BF99FD /* letters3.radial */,
+				A9270E7421B9CF88007BD884 /* sorry.png */,
+				A9A5440521B9B1B600BF99FD /* sorry.radial */,
+				A9270E7121B9CF88007BD884 /* martin1.png */,
+				A9A543FE21B9B1B500BF99FD /* martin1.radial */,
+				A9270E7321B9CF88007BD884 /* sam.png */,
+				A9A5440C21B9B1B700BF99FD /* sam.radial */,
+				A9A5440921B9B1B700BF99FD /* starbucks.png */,
+				A9A5440621B9B1B600BF99FD /* starbucks.radial */,
+				A9A5440721B9B1B600BF99FD /* testfile1.png */,
+				A9A543F821B9B1B400BF99FD /* testfile1.radial */,
+				A9A543FD21B9B1B500BF99FD /* testfile2.png */,
+				A9A5440D21B9B1B800BF99FD /* testfile2.radial */,
+				A9A5440A21B9B1B700BF99FD /* testfile4.png */,
+				A9A5440821B9B1B700BF99FD /* testfile4.radial */,
+			);
+			path = GriffyImages;
 			sourceTree = "<group>";
 		};
 		CD0C92496895C6A8DA24B47B /* Pods */ = {
@@ -219,10 +308,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				A95B21DF21A0D02B001E1F28 /* LaunchScreen.storyboard in Resources */,
+				A9A5441721B9B1B800BF99FD /* cocacola.radial in Resources */,
+				A9A5442121B9B1B800BF99FD /* starbucks.png in Resources */,
 				A95B21DC21A0D02B001E1F28 /* Assets.xcassets in Resources */,
+				A9A5442521B9B1B800BF99FD /* testfile2.radial in Resources */,
+				A9A5441021B9B1B800BF99FD /* testfile1.radial in Resources */,
+				A9A5442421B9B1B800BF99FD /* sam.radial in Resources */,
+				A9A5441921B9B1B800BF99FD /* eli_bonaire.radial in Resources */,
+				A9A5442321B9B1B800BF99FD /* letters1.png in Resources */,
+				A9270E7721B9CF89007BD884 /* sam.png in Resources */,
+				A9A5441621B9B1B800BF99FD /* martin1.radial in Resources */,
+				A9A5441C21B9B1B800BF99FD /* cocacola.png in Resources */,
+				A9A5442221B9B1B800BF99FD /* testfile4.png in Resources */,
+				A9270E7521B9CF89007BD884 /* martin1.png in Resources */,
+				A9A5440E21B9B1B800BF99FD /* letters1.radial in Resources */,
+				A9270E7621B9CF89007BD884 /* eli_bonaire.png in Resources */,
 				A9A543EF21B5C24B00BF99FD /* t.pdf in Resources */,
-				A9A543ED21B5BE9400BF99FD /* bun.radial in Resources */,
 				A95B21DA21A0D02B001E1F28 /* Main.storyboard in Resources */,
+				A9A5442021B9B1B800BF99FD /* testfile4.radial in Resources */,
+				A9A5441B21B9B1B800BF99FD /* letters3.radial in Resources */,
+				A9A5441D21B9B1B800BF99FD /* sorry.radial in Resources */,
+				A9A5440F21B9B1B800BF99FD /* letters3.png in Resources */,
+				A9A5441E21B9B1B800BF99FD /* starbucks.radial in Resources */,
+				A9270E7821B9CF89007BD884 /* sorry.png in Resources */,
+				A9A5441A21B9B1B800BF99FD /* letters2.radial in Resources */,
+				A9A5441F21B9B1B800BF99FD /* testfile1.png in Resources */,
+				A9A5441521B9B1B800BF99FD /* testfile2.png in Resources */,
+				A9A5441221B9B1B800BF99FD /* letters2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,13 +418,17 @@
 				A9B966F221ABDDED0079EBB7 /* StatusTableViewController.swift in Sources */,
 				A95C8A5521A2405F00387444 /* CharacteristicExtensions.swift in Sources */,
 				A95B21D021A0D02B001E1F28 /* AppDelegate.swift in Sources */,
+				A9A5442721B9B41500BF99FD /* ImageChoiceCell.swift in Sources */,
+				A9270E7021B9C6C4007BD884 /* GriffyTabBarController.swift in Sources */,
 				A95B21D521A0D02B001E1F28 /* MasterViewController.swift in Sources */,
 				A95B21ED21A0DC88001E1F28 /* BluetoothManager.swift in Sources */,
+				A9A543F421B9AF6900BF99FD /* GriffyImages.swift in Sources */,
 				A9B966F621ABDE9A0079EBB7 /* AdminMainTableViewController.swift in Sources */,
 				A9B966EC21ABC5EA0079EBB7 /* GriffyModel.swift in Sources */,
 				A9A543EA21B5B9A600BF99FD /* BaseTableViewController.swift in Sources */,
 				A95B21EF21A0EF0B001E1F28 /* Extensions.swift in Sources */,
 				A9B966EE21ABCBCE0079EBB7 /* SettingsTableViewController.swift in Sources */,
+				A9270E6E21B9B56C007BD884 /* ImageChoiceCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +582,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Team-Handstand.Griffy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -483,6 +600,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Team-Handstand.Griffy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

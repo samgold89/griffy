@@ -22,6 +22,7 @@ class BaseTableViewController: UITableViewController {
     
   override func viewDidLoad() {
     super.viewDidLoad()
+    tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -48,7 +49,6 @@ class BaseTableViewController: UITableViewController {
       }
       vc.characteristicId = char.id
     }
-    BluetoothManager.shared.writeImageToDevice()
   }
   
   override func numberOfSections(in tableView: UITableView) -> Int {

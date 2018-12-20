@@ -254,7 +254,7 @@ extension BluetoothManager: CBPeripheralDelegate {
 //    guard let characteristicData = characteristic.value else {return}
     //    SerialNumber(
     //    print(characteristicNameById[characteristic.uuid.uuidString]!, characteristicData.count)
-//    let vals = characteristic.griffyValue()
+//    let vals = characteristic.griffyDisplayValue()
 //    print(vals!)
 //    print("\(characteristicNameById[characteristic.uuid.uuidString]!) = \(vals ?? nil)")
   }

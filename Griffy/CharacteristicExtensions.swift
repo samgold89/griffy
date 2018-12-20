@@ -44,13 +44,15 @@ import CoreBluetooth
 //serial Number
 
 extension Data {
-  func griffyValue(characteristicId: String) -> [String]? {//Array<Any>? {
+  func griffyDisplayValue(characteristicId: String) -> String {
     let uiint16Ids = [CharacteristicAlu1Id,CharacteristicAlu2Id,CharacteristicWheelspeedId,CharacteristicConnecttimeoutId]
     let uiint16ArrayIds = [CharacteristicTemperatureId, CharacteristicInstantcurrentId, CharacteristicAveragecurrentId, CharacteristicVoltageId, CharacteristicSecondsremainingId, CharacteristicPercentagechargeId, CharacteristicMahremainingId]
     let uiint32Ids = [CharacteristicHardwareversionId, CharacteristicFirmwareversionId]
     let uiint8ids = [CharacteristicLedpitchId, CharacteristicImu1Id, CharacteristicImu2Id, CharacteristicStatusId, CharacteristicImageselectId, CharacteristicImageeraseId, CharacteristicTestId]
     let uiint8ArrayIds = [CharacteristicImageloadId, CharacteristicSpeedthresholdId, CharacteristicBrightnessId]
     let serialId = [CharacteristicSerialnumberId]
+    
+    var arrayString = [String]()
     
     if characteristicId == CharacteristicIds.imu1Id || characteristicId == CharacteristicIds.imu2Id {
       var array = [String]()
@@ -60,19 +62,19 @@ extension Data {
         array.append("\(Int(chunk1.uint16))")
         idx += 2
       }
-      return array
+      arrayString = array
     } else if uiint16Ids.contains(characteristicId) {
-      return ["\(Int(self.uint16))"]
+      arrayString = ["\(Int(self.uint16))"]
     } else if uiint32Ids.contains(characteristicId) {
-      return ["\(Int(self.uint32))"]
+      arrayString = ["\(Int(self.uint32))"]
     } else if uiint8ids.contains(characteristicId) {
-      return ["\(Int(self.uint8))"]
+      arrayString = ["\(Int(self.uint8))"]
     } else if uiint8ArrayIds.contains(characteristicId) {
       var array = [String]()
       self.forEach({ (int8byte) in
         array.append("\(Int(int8byte))")
       })
-      return array
+      arrayString = array
     } else if uiint16ArrayIds.contains(characteristicId) {
       var array = [String]()
       var idx = 0
@@ -81,7 +83,7 @@ extension Data {
         array.append("\(Int(chunk1.uint16))")
         idx += 2
       }
-      return array
+      arrayString = array
     } else if serialId.contains(characteristicId) {
       var array = [String]()
       self.forEach({ (int8byte) in
@@ -90,16 +92,24 @@ extension Data {
       })
       
       let joinedArray = [(array.compactMap { $0 == nil ? nil : String($0!) }).joined()]
-      return joinedArray
+      arrayString = joinedArray
     } else {
       assertionFailure("Not handling the parsing of some kind of thing.")
-      return [""]
+      arrayString = ["👎🏽"]
     }
+    
+    var string = ""
+    var i = 0
+    for element in arrayString {
+      string += (i == 0 ? element : ", \(element)")
+      i += 1
+    }
+    return string
   }
 }
 extension CBCharacteristic {
-  func griffyValue() -> [String]? {
-    return value?.griffyValue(characteristicId: uuid.uuidString) ?? [""]
+  func griffyDisplayValue() -> String {
+    return value?.griffyDisplayValue(characteristicId: uuid.uuidString) ?? "🤦‍♀️"
   }
   
   func griffyName() -> String {

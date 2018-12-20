@@ -67,14 +67,8 @@ class BaseTableViewController: UITableViewController {
     
     let char = observedCharacteristics[indexPath.row]
     cell.textLabel!.text = char.name
-    if let value = char.value?.griffyValue(characteristicId: char.uuid) {
-      var string = ""
-      var i = 0
-      for element in value {
-        string += (i == 0 ? element : ", \(element)")
-        i += 1
-      }
-      cell.detailTextLabel?.text = string
+    if let value = char.value?.griffyDisplayValue(characteristicId: char.uuid) {
+      cell.detailTextLabel?.text = value
     } else {
       cell.detailTextLabel?.text = "👎🏽"
     }

@@ -42,14 +42,8 @@ class CharacteristicDetailViewController: UIViewController {
   
   func updateScreenValues() {
     let char = GFCharacteristic.find(GFCharacteristic.self, byId: characteristicId ?? "")
-    if let val = char?.value?.griffyValue(characteristicId: characteristicId ?? "") {
-      var string = ""
-      var i = 0
-      for element in val {
-        string += (i == 0 ? element : ", \(element)")
-        i += 1
-      }
-      currentValueLabel.text = "Current Value\n\(string)"
+    if let val = char?.value?.griffyDisplayValue(characteristicId: characteristicId ?? "") {
+      currentValueLabel.text = "Current Value\n\(val)"
     } else {
       currentValueLabel.text = "Current Value\n*no value*"
     }

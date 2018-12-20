@@ -101,11 +101,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
       return
     }
     cell.textLabel!.text = characteristic.griffyName()
-    if let value = characteristic.griffyValue() {
-      cell.detailTextLabel?.text = "\(value)"
-    } else {
-      cell.detailTextLabel?.text = "👎🏽"
-    }
+    cell.detailTextLabel?.text = characteristic.griffyDisplayValue()
   }
   
   func getCharacteristic(forIndexPath indexPath: IndexPath) -> CBCharacteristic? {

@@ -1,3 +1,7 @@
 Podfile.lock
 Pods
 .DS_Store
+
+*.xcuserstate
+/Griffy.xcworkspace/xcuserdata/SammyG.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+/Griffy.xcworkspace/xcuserdata/SammyG.xcuserdatad/UserInterfaceState.xcuserstate

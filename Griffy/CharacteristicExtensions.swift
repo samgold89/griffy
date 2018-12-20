@@ -64,7 +64,14 @@ extension Data {
       }
       arrayString = array
     } else if uiint16Ids.contains(characteristicId) {
-      arrayString = ["\(Int(self.uint16))"]
+      let valueInt = Int(self.uint16)
+      
+      if characteristicId == CharacteristicIds.wheelSpeedId {
+        let rpsVal = Float(valueInt)/100.0
+        arrayString = [String(format: "%0.2f rps, %0.1f mph", rpsVal, 5.0*rpsVal)]
+      } else {
+        arrayString = ["\(valueInt)"]
+      }
     } else if uiint32Ids.contains(characteristicId) {
       arrayString = ["\(Int(self.uint32))"]
     } else if uiint8ids.contains(characteristicId) {

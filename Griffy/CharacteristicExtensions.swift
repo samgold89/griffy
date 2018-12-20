@@ -79,7 +79,13 @@ extension Data {
     } else if uiint8ArrayIds.contains(characteristicId) {
       var array = [String]()
       self.forEach({ (int8byte) in
-        array.append("\(Int(int8byte))")
+        let valueInt = Int(int8byte)
+        if characteristicId == CharacteristicIds.speedThresholdId {
+          let rpsVal = Float(valueInt)/100.0
+          array.append(String(format: "%0.2f", rpsVal))
+        } else {
+          array.append("\(valueInt)")
+        }
       })
       arrayString = array
     } else if uiint16ArrayIds.contains(characteristicId) {

@@ -18,6 +18,10 @@ struct ServiceIds {
   static let batteryId = "46F575E3-B6A4-4708-BCDD-8C7DFD64EFB3"
 }
 
+struct UserDefaultConstants {
+  static let activeClientName = "activeClientName"
+}
+
 struct CharacteristicIds {
   static let serialNumberId = "21B8E697-AFA0-43A2-BF36-831285BFAB66"
   static let hardwareVersionId = "AAAE5188-3AD3-43A3-A0B4-DEC44E7C4680"

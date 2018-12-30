@@ -15,6 +15,7 @@ class ImageChoiceCollectionViewController: UICollectionViewController {
     collectionView.backgroundColor = UIColor.lightText
     view.backgroundColor = UIColor.lightText
   }
+  
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageChoiceCell", for: indexPath) as? ImageChoiceCell else {
       assertionFailure("ImageChoiceCell not found")

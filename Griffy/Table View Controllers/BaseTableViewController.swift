@@ -41,15 +41,21 @@ class BaseTableViewController: UITableViewController {
     return cell
   }
   
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if let vc = segue.destination as? CharacteristicDetailViewController {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "CharacteristicDetailViewController") as? CharacteristicDetailViewController {
       let idx = tableView.indexPathForSelectedRow?.row ?? 0
       guard let char = observedCharacteristics?[idx] else {
         return
       }
       vc.characteristicId = char.id
+      navigationController?.pushViewController(vc, animated: true)
     }
   }
+//  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//    if let vc = segue.destination as? CharacteristicDetailViewController {
+//      
+//    }
+//  }
   
   override func numberOfSections(in tableView: UITableView) -> Int {
     return 1

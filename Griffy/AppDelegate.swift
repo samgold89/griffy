@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Fabric
 import Crashlytics
+import SwiftyDropbox
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -30,6 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     BluetoothManager.shared.startUpdateTimer()
     Fabric.with([Crashlytics.self])
     
+//    DropboxClientsManager.setupWithAppKey("t0phm00v4im3xah")
+//    secret: ae2heu8094z7juj
+//    key: t0phm00v4im3xah
+//    token: ZyAGRv-nREEAAAAAAACVRXmPf0uESzSfB9loGgPK7EYYAuc_ZDM3T7UlGTYKpwAm
+    
+    //full access app
+    DropboxClientsManager.setupWithAppKey("x6ej5ws9kbt0u8g")
+    
     crashlyticsSetupUser()
     
     return true
@@ -42,6 +51,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     Crashlytics.sharedInstance().setUserName("Test User")
   }
 
+  func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    if let authResult = DropboxClientsManager.handleRedirectURL(url) {
+      switch authResult {
+      case .success:
+        print("Success! User is logged into Dropbox.")
+      case .cancel:
+        print("Authorization flow was manually canceled by user!")
+      case .error(_, let description):
+        print("Error: \(description)")
+      }
+    }
+    return true
+  }
   
   func applicationWillResignActive(_ application: UIApplication) {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

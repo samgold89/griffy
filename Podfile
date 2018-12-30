@@ -10,5 +10,5 @@ target 'Griffy' do
   pod 'PureLayout'
   pod 'Fabric'
   pod 'Crashlytics'
-
+  pod 'SwiftyDropbox'
 end

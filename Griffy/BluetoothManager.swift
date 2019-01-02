@@ -66,44 +66,38 @@ final class BluetoothManager: NSObject {
     }
   }
   
-  func sendImageToDevice(withFileName fileName: String, index: Int, completion: @escaping ()->()) {
-    guard let filePath = Bundle.main.url(forResource: fileName, withExtension: "radial") else {
+  func sendImageToDevice(radialFilePath: String, index: Int, completion: @escaping ()->()) {
+    guard let data = FileManager.default.contents(atPath: radialFilePath) else {
+      assertionFailure("Not radial data at path: \(radialFilePath)")
       completion()
-      assertionFailure("Couldn't create bun.radial filepath")
       return
     }
     
-    do {
-      let data = try Data(contentsOf: filePath)
-      let maxLength = (griffyPeripheral?.maximumWriteValueLength(for: CBCharacteristicWriteType.withResponse) ?? minimumPacketSize) - griffyHeaderSize
-      let imageDataArray = getDataChunks(data: data, length: maxLength)
-      
-      guard let char = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.imageLoadId) else {
-        completion()
-        return
-      }
-      
-      var idx = 0
-      var offsetCounter = 0
-      
-      for el in imageDataArray {
-        if let data = el.first {
-          var prependedData = getOffsetData(imageId: index, offset: offsetCounter)
-          prependedData.append(data)
+    let maxLength = (griffyPeripheral?.maximumWriteValueLength(for: CBCharacteristicWriteType.withResponse) ?? minimumPacketSize) - griffyHeaderSize
+    let imageDataArray = getDataChunks(data: data, length: maxLength)
+    
+    guard let char = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.imageLoadId) else {
+      completion()
+      return
+    }
+    
+    var idx = 0
+    var offsetCounter = 0
+    
+    for el in imageDataArray {
+      if let data = el.first {
+        var prependedData = getOffsetData(imageId: index, offset: offsetCounter)
+        prependedData.append(data)
 //          print(Array(prependedData))
-          writeValue(data: prependedData, toCharacteristic: char)
-          
-          idx += 1
-          offsetCounter += data.count
-        } else {
-          assertionFailure("Didn't find data in the first element...")
-        }
+        writeValue(data: prependedData, toCharacteristic: char)
+        
+        idx += 1
+        offsetCounter += data.count
+      } else {
+        assertionFailure("Didn't find data in the first element...")
       }
-      delay(7) {
-        completion()
-      }
-    } catch {
-      print(error.localizedDescription)
+    }
+    delay(7) {
       completion()
     }
   }

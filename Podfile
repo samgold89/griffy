@@ -11,4 +11,5 @@ target 'Griffy' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'SwiftyDropbox'
+  pod 'SDWebImage'
 end

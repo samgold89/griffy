@@ -20,6 +20,7 @@ struct ServiceIds {
 
 struct UserDefaultConstants {
   static let activeClientName = "activeClientName"
+  static let lastSelectedImageIndex = "lastSelectedImageIndex"
 }
 
 struct CharacteristicIds {

@@ -107,6 +107,7 @@ extension UIViewController {
     self.present(alert, animated: false, completion: nil)
   }
 }
+
 extension Int {
   func toHex() -> String {
     return String(format:"%02X", self)
@@ -127,6 +128,41 @@ extension Int {
       assertionFailure("Failed to convert hex to decimal")
       return 0
     }
+  }
+  
+  fileprivate static let secondsInDay = 60*60*24
+  fileprivate static let secondsInHour = 60*60
+  fileprivate static let secondsInMinute = 60
+  
+  func toTimeString() -> String {
+    let hours = self.howManyHours(forceTwoDigits: true)
+    let minutes = self.howManyMinutes(forceTwoDigits: true)
+    let seconds = self.howManySeconds(forceTwoDigits: true)
+    
+    if self > 60*60 {
+      return "\(hours):\(minutes):\(seconds)"
+    } else {
+      return "\(minutes):\(seconds)"
+    }
+  }
+  
+  func howManyDays(forceTwoDigits: Bool) -> (String) {
+    return forceTwoDigits ? String(format: "%02d", self/Int.secondsInDay) : "\(self/Int.secondsInDay)"
+  }
+  
+  func howManyHours(forceTwoDigits: Bool) -> (String) {
+    return forceTwoDigits ? String(format: "%02d", self/Int.secondsInHour) : "\(self/Int.secondsInHour)"
+  }
+  
+  func howManyMinutes(forceTwoDigits: Bool) -> (String) {
+    let minuteSecondsRemaining = self-(self/Int.secondsInHour)*Int.secondsInHour
+    return forceTwoDigits ? String(format: "%02d", minuteSecondsRemaining/Int.secondsInMinute) : "\(minuteSecondsRemaining/Int.secondsInMinute)"
+  }
+  
+  func howManySeconds(forceTwoDigits: Bool) -> (String) {
+    let minuteSecondsRemaining = self-(self/Int.secondsInHour)*Int.secondsInHour
+    let secondSecondsRemaining = minuteSecondsRemaining-(minuteSecondsRemaining/Int.secondsInMinute)*Int.secondsInMinute
+    return forceTwoDigits ? String(format: "%02d", secondSecondsRemaining) : "\(secondSecondsRemaining)"
   }
 }
 
@@ -261,6 +297,8 @@ extension Notification.Name {
   static let didUpdateCharacteristic = Notification.Name("didUpdateCharacteristic")
   static let didWriteToCharacteristic = Notification.Name("didWriteToCharacteristic")
   static let bluetoothStateChanged = Notification.Name("bluetoothStateChanged")
+  
+  static let activeClientChanged = Notification.Name("activeClientChanged")
 }
 
 extension UIButton {

@@ -19,9 +19,9 @@ class ImageChoiceCell: UICollectionViewCell {
   
   func setupWithGriffy(griffy: GriffyImage) {
     griffyImage = griffy
-    let image = UIImage(named: griffy.fileName)
+    let image = UIImage(contentsOfFile: griffy.imageFilePath)
     griffyImageView.image = image
-    nameLabel.text = griffy.fileName
+    nameLabel.text = "\(griffy.imageFilePath.split(separator: "/").last ?? "Something")"
   }
   
   @IBAction func sendRadialButtonPressed(_ sender: Any) {
@@ -31,7 +31,7 @@ class ImageChoiceCell: UICollectionViewCell {
     }
     
     self.sendRadialButton.setLoaderVisible(visible: true, style: UIActivityIndicatorView.Style.gray)
-    BluetoothManager.shared.sendImageToDevice(withFileName: g.fileName, index: g.index) {
+    BluetoothManager.shared.sendImageToDevice(radialFilePath: g.radialFilePath, index: g.index) {
       self.sendRadialButton.setLoaderVisible(visible: false, style: UIActivityIndicatorView.Style.gray)
     }
   }

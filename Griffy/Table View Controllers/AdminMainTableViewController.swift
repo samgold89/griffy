@@ -15,9 +15,17 @@ class AdminMainTableViewController: BaseTableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    observedIds = [CharacteristicIds.imageSelectId, CharacteristicIds.wheelSpeedId, CharacteristicIds.percentageChargeId]
+    observedIds = [CharacteristicIds.imageSelectId, CharacteristicIds.wheelSpeedId, CharacteristicIds.percentageChargeId, "onoff"]
   }
   
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if indexPath.row+1 == observedIds.count {
+      //special case
+      return UITableViewCell()
+    } else {
+      return super.tableView(tableView, cellForRowAt: indexPath)
+    }
+  }
 //  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //  }
 }

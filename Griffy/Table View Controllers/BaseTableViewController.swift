@@ -36,7 +36,8 @@ class BaseTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+    let cell =
+      tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
     configureCell(cell, withIndexPath: indexPath)
     return cell
   }
@@ -77,6 +78,9 @@ class BaseTableViewController: UITableViewController {
       cell.detailTextLabel?.text = value
     } else {
       cell.detailTextLabel?.text = "👎🏽"
+    }
+    if char.uuid == CharacteristicIds.testId {
+      
     }
   }
 }

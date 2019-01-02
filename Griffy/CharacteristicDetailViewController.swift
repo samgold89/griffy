@@ -104,7 +104,9 @@ class CharacteristicDetailViewController: UIViewController {
     
     var arr = [UInt8]()
     for num in text.split(separator: ",") {
-      if let uiNum = UInt8(num) {
+      if char.uuid == CharacteristicIds.speedThresholdId {
+        arr.append(UInt8((Double(num) ?? 0)*100))
+      } else if let uiNum = UInt8(num) {
         arr.append(uiNum)
       }
     }

@@ -69,6 +69,10 @@ extension Data {
       if characteristicId == CharacteristicIds.wheelSpeedId {
         let rpsVal = Float(valueInt)/100.0
         arrayString = [String(format: "%0.2f rps, %0.1f mph", rpsVal, 5.0*rpsVal)]
+      } else if [CharacteristicIds.alu1Id,CharacteristicIds.alu2Id].contains(characteristicId) {
+        let baseValue = valueInt%4096
+        let exponent = (valueInt-baseValue)/4096
+        arrayString.append("\(baseValue) e\(exponent)")
       } else {
         arrayString = ["\(valueInt)"]
       }
@@ -103,8 +107,11 @@ extension Data {
       while idx < self.count-1 {
         let chunk1 = Data(bytes: [self[idx],self[idx+1]], count: 2)
         let intValue = Int(chunk1.uint16)
+        
         if [CharacteristicIds.temperatureId, CharacteristicIds.instantCurrentId, CharacteristicIds.averageCurrentId, CharacteristicIds.voltageId].contains(characteristicId) {
-          array.append(String(format: "%0.3f", Float(intValue)/1000.0))
+          array.append(String(format: CharacteristicIds.temperatureId == characteristicId ? "%0.1f" : "%0.3f", Float(intValue)/1000.0))
+        } else if [CharacteristicIds.secondsRemainingId].contains(characteristicId) {
+          array.append(intValue.toTimeString())
         } else {
           array.append("\(intValue)")
         }
@@ -176,13 +183,12 @@ extension CBCharacteristic {
     } else if myId == CharacteristicIds.speedThresholdId {
       let split = input.split(separator: ",")
       if split.count != 2 {
-        return CharacteristicInputError(success: false, error: "Must have 2 values, each >= 0, < 10, and < 3 digits")
+        return CharacteristicInputError(success: false, error: "Must have 2 values, each >= 0.00, <= 2.55")
       }
       var allGood = true
       for digit in split {
         let doubleValue = Double(digit) ?? -1.0
-        let format = "0.00"
-        if !(digit.count <= format.count && doubleValue < 10 && doubleValue >= 0) {
+        if doubleValue > 2.55 || doubleValue < 0 {
           allGood = false
         }
       }

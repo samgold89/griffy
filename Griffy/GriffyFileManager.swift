@@ -57,7 +57,9 @@ class GriffyFileManager {
     }
     
     //First we'll get all of the unique filenames
-    let sortedFolderContents = folderContents!.sorted { $0.lastPathComponent < $1.lastPathComponent }
+    let sortedFolderContents = folderContents!.sorted { (url1, url2) -> Bool in
+      return url1.lastPathComponent.split(separator: ".").first ?? "0" < url2.lastPathComponent.split(separator: ".").first ?? "0"
+    }
     var fileNames = Set<String>()
     for path in sortedFolderContents {
       if let name = path.lastPathComponent.split(separator: ".").first {

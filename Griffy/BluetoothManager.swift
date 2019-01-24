@@ -88,7 +88,7 @@ final class BluetoothManager: NSObject {
       if let data = el.first {
         var prependedData = getOffsetData(imageId: index, offset: offsetCounter)
         prependedData.append(data)
-//          print(Array(prependedData))
+//        print(Array(prependedData))
         writeValue(data: prependedData, toCharacteristic: char)
         
         idx += 1

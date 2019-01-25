@@ -124,7 +124,7 @@ extension CharacteristicDetailViewController: UITextFieldDelegate {
     }
     
     let newText = ((textField.text ?? "") as NSString).replacingCharacters(in: range, with: string)
-    if let gfChar = GFCharacteristic.find(GFCharacteristic.self, byId: characteristicId ?? ""), let cbChar = BluetoothManager.shared.characteristicsById[gfChar.uuid] {
+    if let gfChar = GFCharacteristic.find(GFCharacteristic.self, byId: characteristicId ?? ""), let cbChar = BluetoothManager.shared.cbCharacteristicsById[gfChar.uuid] {
       
       let inputValid = cbChar.isValidInput(input: newText)
       if inputValid.success {

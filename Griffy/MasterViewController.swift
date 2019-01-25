@@ -26,7 +26,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
   }
   
   @objc func updateAllValues() {
-    BluetoothManager.shared.updateAllValues()
+    BluetoothManager.shared.updateAllObservedValues()
   }
 
   // MARK: - Segues

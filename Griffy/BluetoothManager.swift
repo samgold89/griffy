@@ -26,13 +26,15 @@ final class BluetoothManager: NSObject {
   static let shared = BluetoothManager()
   var centralManager: CBCentralManager!
   var griffyPeripheral: CBPeripheral?
-  var characteristicsById = [String: CBCharacteristic]()
+  var cbCharacteristicsById = [String: CBCharacteristic]()
   
   let minimumPacketSize = 27
   let griffyHeaderSize = 7
   
   var pendingWriteRequestCount = 0
   var pendingWriteRequests = [GFYWriteRequest]()
+  
+  var visibleCharacteristics: [GFCharacteristic]?
   
   var hasDiscoveredGriffy: Bool {
     get {
@@ -51,16 +53,22 @@ final class BluetoothManager: NSObject {
   
   func startUpdateTimer() {
     Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { (timer) in
-      self.updateAllValues()
+      self.updateAllObservedValues()
     }
+    updateAllObservedValues()
   }
   
-  func updateAllValues() {
-    griffyPeripheral?.services?.forEach({ (service) in
-      service.characteristics?.forEach({ (char) in
+  func updateAllObservedValues() {
+    guard let visibleCharacteristics = visibleCharacteristics else {
+      return
+    }
+    
+    for characteristic in visibleCharacteristics {
+      if let char = cbCharacteristicsById[characteristic.id] {
         griffyPeripheral?.readValue(for: char)
-      })
-    })
+        print("reading \(characteristic.name)")
+      }
+    }
   }
   
   func setImageActive(index: Int, completion: @escaping ()->()) {
@@ -130,7 +138,7 @@ final class BluetoothManager: NSObject {
   }
   
   func writeValue(data: Data, toCharacteristic characteristic: GFCharacteristic) {
-    guard let char = characteristicsById[characteristic.uuid] else {
+    guard let char = cbCharacteristicsById[characteristic.uuid] else {
       assertionFailure("Couldn't find characteristic with that GFUUID: \(characteristic)")
       return
     }
@@ -240,7 +248,7 @@ extension BluetoothManager: CBPeripheralDelegate {
       print("Discovered: \(characteristicNameById[characteristic.uuid.uuidString] ?? "nil-zip-nada")")
       printCharacteristicValue(characteristic)
       let _ = GFCharacteristic.parse(GFCharacteristic.self, characteristic: characteristic)
-      characteristicsById[characteristic.uuid.uuidString] = characteristic
+      cbCharacteristicsById[characteristic.uuid.uuidString] = characteristic
       
       if characteristic.uuid.uuidString == CharacteristicIds.imageLoadId {
         print("we out here")
@@ -264,8 +272,8 @@ extension BluetoothManager: CBPeripheralDelegate {
   }
   
   func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-    let char = GFCharacteristic.parse(GFCharacteristic.self, characteristic: characteristic)
-    characteristicsById[characteristic.uuid.uuidString] = characteristic
+//    let char = GFCharacteristic.parse(GFCharacteristic.self, characteristic: characteristic)
+    cbCharacteristicsById[characteristic.uuid.uuidString] = characteristic
     NotificationCenter.default.post(name: .didUpdateCharacteristic, object: characteristic)
 //    if characteristic.uuid.uuidString == CharacteristicIds.instantCurrentId || characteristic.uuid.uuidString == CharacteristicIds.averageCurrentId {
 //      print("we here \(characteristic.uuid.uuidString)")

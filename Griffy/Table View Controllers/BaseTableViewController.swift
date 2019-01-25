@@ -28,6 +28,9 @@ class BaseTableViewController: UITableViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     token = observedCharacteristics?.GFObseveDataChanges(for: tableView, animateChanges: true)
+    if let observedCharacteristics = observedCharacteristics {
+      BluetoothManager.shared.visibleCharacteristics = Array(observedCharacteristics)
+    }
   }
   
   override func viewWillDisappear(_ animated: Bool) {

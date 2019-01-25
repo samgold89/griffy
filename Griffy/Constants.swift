@@ -21,6 +21,7 @@ struct ServiceIds {
 struct UserDefaultConstants {
   static let activeClientName = "activeClientName"
   static let lastSelectedImageIndex = "lastSelectedImageIndex"
+  static let maxOutgoingBLERequests = "maxOutgoingBLERequests"
 }
 
 struct CharacteristicIds {

@@ -37,6 +37,10 @@ class ImageChoiceCollectionViewController: UICollectionViewController {
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if indexPath.section == 1 {
       return collectionView.dequeueReusableCell(withReuseIdentifier: "SendAllImagesCell", for: indexPath)
+    } else if indexPath.section == 2 {
+      let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "MaxChunkLengthCell", for: indexPath) as! MaxChunkLengthCell
+      cell.setupCell()
+      return cell
     }
     
     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageChoiceCell", for: indexPath) as? ImageChoiceCell else {
@@ -51,11 +55,11 @@ class ImageChoiceCollectionViewController: UICollectionViewController {
   }
   
   override func numberOfSections(in collectionView: UICollectionView) -> Int {
-    return 2
+    return 3
   }
   
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    if section == 1 {
+    if section > 0 {
       return 1
     }
     
@@ -68,7 +72,7 @@ class ImageChoiceCollectionViewController: UICollectionViewController {
 
 extension ImageChoiceCollectionViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    if indexPath.section == 1 {
+    if indexPath.section > 0 {
       return CGSize(width: (collectionView.bounds.width-20), height: CGFloat(50))
     }
     
@@ -93,5 +97,22 @@ class SendAllImagesCell: UICollectionViewCell {
         })
       }
     }
+  }
+}
+
+class MaxChunkLengthCell: UICollectionViewCell, UITextFieldDelegate {
+  @IBOutlet weak var textField: UITextField!
+  func setupCell() {
+    textField.text = "\(UserDefaults.standard.integer(forKey: UserDefaultConstants.maxOutgoingBLERequests))"
+  }
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    if let int = Int(textField.text ?? "0") {
+      if int != 0 {
+        UserDefaults.standard.set(int, forKey: UserDefaultConstants.maxOutgoingBLERequests)
+      }
+    }
+    textField.resignFirstResponder()
+    return true
   }
 }

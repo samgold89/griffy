@@ -229,6 +229,36 @@
                                 </constraints>
                                 <size key="customSize" width="300" height="50"/>
                             </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MaxChunkLengthCell" id="1De-vv-2U5" customClass="MaxChunkLengthCell" customModule="Griffy" customModuleProvider="target">
+                                <rect key="frame" x="37.5" y="312" width="300" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Allowed number of unfinished, outgoing BLE reqs." textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Et0-6n-EXw">
+                                            <rect key="frame" x="20" y="10" width="260" height="30"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="1De-vv-2U5" id="uux-M2-34N"/>
+                                            </connections>
+                                        </textField>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Et0-6n-EXw" firstAttribute="top" secondItem="1De-vv-2U5" secondAttribute="top" constant="10" id="WWN-lQ-CoE"/>
+                                    <constraint firstItem="Et0-6n-EXw" firstAttribute="leading" secondItem="1De-vv-2U5" secondAttribute="leading" constant="20" id="aTx-6g-vSm"/>
+                                    <constraint firstAttribute="bottom" secondItem="Et0-6n-EXw" secondAttribute="bottom" constant="10" id="ovT-Q4-Wd8"/>
+                                    <constraint firstAttribute="trailing" secondItem="Et0-6n-EXw" secondAttribute="trailing" constant="20" id="vg7-nS-Qnk"/>
+                                </constraints>
+                                <size key="customSize" width="300" height="50"/>
+                                <connections>
+                                    <outlet property="textField" destination="Et0-6n-EXw" id="co4-U8-mdd"/>
+                                </connections>
+                            </collectionViewCell>
                         </cells>
                         <connections>
                             <outlet property="dataSource" destination="RbI-mr-VwE" id="wfv-6E-7da"/>
@@ -530,6 +560,7 @@ Some Value</string>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Dropbox" id="y0j-O9-AQL"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="mjh-zI-zLV">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <attributedString key="attributedTitle">
                             <fragment content="Syncing...">

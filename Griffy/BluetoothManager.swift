@@ -17,6 +17,11 @@ struct CharacterWriteResponse {
   var error: String?
 }
 
+struct GFYWriteRequest {
+  var data: Data
+  var characteristic: CBCharacteristic
+}
+
 final class BluetoothManager: NSObject {
   static let shared = BluetoothManager()
   var centralManager: CBCentralManager!
@@ -25,6 +30,9 @@ final class BluetoothManager: NSObject {
   
   let minimumPacketSize = 27
   let griffyHeaderSize = 7
+  
+  var pendingWriteRequestCount = 0
+  var pendingWriteRequests = [GFYWriteRequest]()
   
   var hasDiscoveredGriffy: Bool {
     get {
@@ -88,7 +96,6 @@ final class BluetoothManager: NSObject {
       if let data = el.first {
         var prependedData = getOffsetData(imageId: index, offset: offsetCounter)
         prependedData.append(data)
-//        print(Array(prependedData))
         writeValue(data: prependedData, toCharacteristic: char)
         
         idx += 1
@@ -127,7 +134,21 @@ final class BluetoothManager: NSObject {
       assertionFailure("Couldn't find characteristic with that GFUUID: \(characteristic)")
       return
     }
-    griffyPeripheral?.writeValue(data, for: char, type: CBCharacteristicWriteType.withResponse)
+    
+    pendingWriteRequests.append(GFYWriteRequest(data: data, characteristic: char))
+    checkSendPendingWriteRequests()
+  }
+  
+  func checkSendPendingWriteRequests() {
+    if pendingWriteRequestCount < UserDefaults.standard.integer(forKey: UserDefaultConstants.maxOutgoingBLERequests) {
+      print("skipping the write request due to volume reasons")
+      return
+    } else if let pend = pendingWriteRequests.first {
+      print("SENDING a request from the queue")
+      pendingWriteRequestCount += 1
+      griffyPeripheral?.writeValue(pend.data, for: pend.characteristic, type: CBCharacteristicWriteType.withResponse)
+      pendingWriteRequests.remove(at: 0)
+    }
   }
   
   func cancelGriffyConnection() {
@@ -228,6 +249,8 @@ extension BluetoothManager: CBPeripheralDelegate {
   }
   
   func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+    pendingWriteRequestCount -= 1
+    
     if let e = error {
       print("ERROR writing value: \(e)")
       assertionFailure("ERROR writing value: \(e)")
@@ -236,6 +259,8 @@ extension BluetoothManager: CBPeripheralDelegate {
       griffyPeripheral?.readValue(for: characteristic)
     }
     NotificationCenter.default.post(name: .didWriteToCharacteristic, object: CharacterWriteResponse(characteristic: characteristic, error: error?.localizedDescription))
+    
+    checkSendPendingWriteRequests()
   }
   
   func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {

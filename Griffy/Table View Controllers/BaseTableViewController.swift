@@ -36,6 +36,14 @@ class BaseTableViewController: UITableViewController {
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     token?.invalidate()
+    
+    //If we're moving to a non-base-tableview-page, we'll nil it out
+    //Else the updated values will be updated based on the new vc
+    if let observedCharacteristics = observedCharacteristics {
+      if BluetoothManager.shared.visibleCharacteristics == Array(observedCharacteristics) {
+        BluetoothManager.shared.visibleCharacteristics = nil
+      }
+    }
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

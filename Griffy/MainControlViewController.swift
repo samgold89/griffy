@@ -14,6 +14,19 @@ class MainControlViewController: UIViewController {
   @IBOutlet weak var onOffSwitch: UISwitch!
   @IBOutlet weak var testSwitch: UISwitch!
   @IBOutlet weak var activeImage: UIImageView!
+  @IBOutlet weak var versionLabel: UILabel!
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    let build = "\(Bundle.main.infoDictionary!["CFBundleVersion"]!)"
+    let version = "v. \(Bundle.main.infoDictionary!["CFBundleShortVersionString"]!)"
+    versionLabel.text = "\(version) (\(build))"
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    activeImage.image = GFStateManager.shared.activeImage
+  }
   
   @IBAction func onOffToggled(_ sender: Any) {
     guard let imageCharactersitic = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.imageSelectId) else {
@@ -38,10 +51,5 @@ class MainControlViewController: UIViewController {
     } else {
       BluetoothManager.shared.writeValue(data: UInt8(0).data, toCharacteristic: testChar)
     }
-  }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    activeImage.image = GFStateManager.shared.activeImage
   }
 }

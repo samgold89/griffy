@@ -46,7 +46,11 @@ class ImageChoiceCell: UICollectionViewCell {
     setActiveButton.setLoaderVisible(visible: true, style: UIActivityIndicatorView.Style.gray)
     BluetoothManager.shared.setImageActive(index: g.index) {
       UserDefaults.standard.set(g.index, forKey: UserDefaultConstants.lastSelectedImageIndex)
+      UserDefaults.standard.set(g.index, forKey: UserDefaultConstants.lastSelectedImageIndex)
       self.setActiveButton.setLoaderVisible(visible: false, style: nil)
+      
+      GFStateManager.shared.activeImage = self.griffyImageView.image
+      GFStateManager.shared.activeIndex = g.index
     }
   }
 }

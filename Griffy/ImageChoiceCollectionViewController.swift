@@ -77,7 +77,7 @@ extension ImageChoiceCollectionViewController: UICollectionViewDelegateFlowLayou
     }
     
     let yourWidth = (collectionView.bounds.width-20)/2.0
-    let yourHeight = CGFloat(230)
+    let yourHeight = CGFloat(300)
     
     return CGSize(width: yourWidth, height: yourHeight)
   }
@@ -116,3 +116,4 @@ class MaxChunkLengthCell: UICollectionViewCell, UITextFieldDelegate {
     return true
   }
 }
+

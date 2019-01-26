@@ -12,4 +12,5 @@ target 'Griffy' do
   pod 'Crashlytics'
   pod 'SwiftyDropbox'
   pod 'SDWebImage'
+  pod 'JGProgressHUD'
 end

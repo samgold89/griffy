@@ -74,6 +74,7 @@ final class BluetoothManager: NSObject {
   func setImageActive(index: Int, completion: @escaping ()->()) {
     guard let g = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.imageSelectId) else {
       assertionFailure("Missing image active charactersitic.")
+      completion()
       return
     }
     writeValue(data: Data(bytes: [UInt8(index)]), toCharacteristic: g)

@@ -371,3 +371,11 @@ extension UIButton {
     }
   }
 }
+
+extension UserDefaults {
+  func setValue(image: UIImage, forKey: String) {
+    if let data = image.jpegData(compressionQuality: 1.0) {
+      UserDefaults.standard.setValue(data, forKey: forKey)
+    }
+  }
+}

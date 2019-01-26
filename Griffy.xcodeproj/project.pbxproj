@@ -15,6 +15,7 @@
 		A9270E7621B9CF89007BD884 /* eli_bonaire.png in Resources */ = {isa = PBXBuildFile; fileRef = A9270E7221B9CF88007BD884 /* eli_bonaire.png */; };
 		A9270E7721B9CF89007BD884 /* sam.png in Resources */ = {isa = PBXBuildFile; fileRef = A9270E7321B9CF88007BD884 /* sam.png */; };
 		A9270E7821B9CF89007BD884 /* sorry.png in Resources */ = {isa = PBXBuildFile; fileRef = A9270E7421B9CF88007BD884 /* sorry.png */; };
+		A9416F3121FBCB400096824F /* GFStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9416F3021FBCB400096824F /* GFStateManager.swift */; };
 		A95B21D021A0D02B001E1F28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B21CF21A0D02B001E1F28 /* AppDelegate.swift */; };
 		A95B21D321A0D02B001E1F28 /* Griffy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A95B21D121A0D02B001E1F28 /* Griffy.xcdatamodeld */; };
 		A95B21D521A0D02B001E1F28 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B21D421A0D02B001E1F28 /* MasterViewController.swift */; };
@@ -72,6 +73,7 @@
 		A9270E7221B9CF88007BD884 /* eli_bonaire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eli_bonaire.png; sourceTree = "<group>"; };
 		A9270E7321B9CF88007BD884 /* sam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sam.png; sourceTree = "<group>"; };
 		A9270E7421B9CF88007BD884 /* sorry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sorry.png; sourceTree = "<group>"; };
+		A9416F3021FBCB400096824F /* GFStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFStateManager.swift; sourceTree = "<group>"; };
 		A95B21CC21A0D02B001E1F28 /* Griffy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Griffy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95B21CF21A0D02B001E1F28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A95B21D221A0D02B001E1F28 /* Griffy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Griffy.xcdatamodel; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 		A95B21CE21A0D02B001E1F28 /* Griffy */ = {
 			isa = PBXGroup;
 			children = (
+				A9416F3021FBCB400096824F /* GFStateManager.swift */,
 				A976F31F21DC724C00A00817 /* MainControlViewController.swift */,
 				A976F31D21D9771A00A00817 /* GriffyFileManager.swift */,
 				A97E67A221D6AF410031678A /* ClientChooserTableViewController.swift */,
@@ -438,6 +441,7 @@
 				A95B21D521A0D02B001E1F28 /* MasterViewController.swift in Sources */,
 				A97E67A321D6AF410031678A /* ClientChooserTableViewController.swift in Sources */,
 				A95B21ED21A0DC88001E1F28 /* BluetoothManager.swift in Sources */,
+				A9416F3121FBCB400096824F /* GFStateManager.swift in Sources */,
 				A9A543F421B9AF6900BF99FD /* GriffyImages.swift in Sources */,
 				A9B966F621ABDE9A0079EBB7 /* AdminMainTableViewController.swift in Sources */,
 				A9B966EC21ABC5EA0079EBB7 /* GriffyModel.swift in Sources */,

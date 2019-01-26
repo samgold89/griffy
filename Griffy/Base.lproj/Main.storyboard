@@ -163,29 +163,29 @@
                                     <rect key="frame" x="0.0" y="0.0" width="140" height="280"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PiX-J4-eCC">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PiX-J4-eCC">
                                             <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="PiX-J4-eCC" secondAttribute="height" multiplier="1:1" id="1ml-E4-eTG"/>
                                             </constraints>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="l5a-1a-K3X">
-                                            <rect key="frame" x="0.0" y="140" width="140" height="140"/>
+                                            <rect key="frame" x="0.0" y="157" width="140" height="123"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZF2-4C-Czg">
-                                                    <rect key="frame" x="0.0" y="0.0" width="140" height="35"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZF2-4C-Czg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="140" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="raP-WN-k0K">
-                                                    <rect key="frame" x="0.0" y="44" width="140" height="18"/>
+                                                    <rect key="frame" x="0.0" y="27" width="140" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ezf-gJ-8hY">
-                                                    <rect key="frame" x="0.0" y="71" width="140" height="30"/>
+                                                    <rect key="frame" x="0.0" y="54" width="140" height="30"/>
                                                     <color key="backgroundColor" red="0.14901960784313725" green="0.32941176470588235" blue="0.48627450980392156" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="Send Radial">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -195,7 +195,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rot-I4-8wm">
-                                                    <rect key="frame" x="0.0" y="110" width="140" height="30"/>
+                                                    <rect key="frame" x="0.0" y="93" width="140" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="TfW-7C-3VH"/>
                                                     </constraints>
@@ -215,7 +215,6 @@
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="l5a-1a-K3X" firstAttribute="top" secondItem="PiX-J4-eCC" secondAttribute="bottom" id="5qj-y9-3bI"/>
                                     <constraint firstItem="PiX-J4-eCC" firstAttribute="leading" secondItem="9gN-rd-PSv" secondAttribute="leading" id="RiL-Q6-6Hc"/>
                                     <constraint firstAttribute="trailing" secondItem="l5a-1a-K3X" secondAttribute="trailing" id="SwF-Wv-lCQ"/>
                                     <constraint firstAttribute="bottom" secondItem="l5a-1a-K3X" secondAttribute="bottom" id="TR3-X5-2cC"/>

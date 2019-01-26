@@ -14,6 +14,7 @@ class ImageChoiceCell: UICollectionViewCell {
   @IBOutlet weak var sendRadialButton: UIButton!
   @IBOutlet weak var setActiveButton: UIButton!
   @IBOutlet weak var nameLabel: UILabel!
+  @IBOutlet weak var indexLabel: UILabel!
   
   var griffyImage: GriffyImage?
   
@@ -22,6 +23,7 @@ class ImageChoiceCell: UICollectionViewCell {
     let image = UIImage(contentsOfFile: griffy.imageFilePath)
     griffyImageView.image = image
     nameLabel.text = "\(griffy.imageFilePath.split(separator: "/").last ?? "Something")"
+    indexLabel.text = "Index = \(griffy.index)"
   }
   
   @IBAction func sendRadialButtonPressed(_ sender: Any) {

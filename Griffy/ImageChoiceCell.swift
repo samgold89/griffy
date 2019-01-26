@@ -22,7 +22,11 @@ class ImageChoiceCell: UICollectionViewCell {
     griffyImage = griffy
     let image = UIImage(contentsOfFile: griffy.imageFilePath)
     griffyImageView.image = image
-    nameLabel.text = "\(griffy.imageFilePath.split(separator: "/").last ?? "Something")"
+    nameLabel.text = "Something"
+    if let nameWithExtension = griffy.imageFilePath.split(separator: "/").last {
+      nameLabel.text = "\(nameWithExtension.split(separator: ".").first ?? "Something")"
+    }
+    
     indexLabel.text = "Index = \(griffy.index)"
   }
   

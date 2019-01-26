@@ -149,12 +149,17 @@ final class BluetoothManager: NSObject {
   }
   
   func checkSendPendingWriteRequests() {
-    if pendingWriteRequestCount < UserDefaults.standard.integer(forKey: UserDefaultConstants.maxOutgoingBLERequests) {
-      print("skipping the write request due to volume reasons")
-      return
-    } else if let pend = pendingWriteRequests.first {
-      print("SENDING a request from the queue")
-      pendingWriteRequestCount += 1
+//    if pendingWriteRequestCount < UserDefaults.standard.integer(forKey: UserDefaultConstants.maxOutgoingBLERequests) {
+//      print("skipping the write request due to volume reasons")
+//      return
+//    } else if let pend = pendingWriteRequests.first {
+//      print("SENDING a request from the queue")
+//      pendingWriteRequestCount += 1
+//      griffyPeripheral?.writeValue(pend.data, for: pend.characteristic, type: CBCharacteristicWriteType.withResponse)
+//      pendingWriteRequests.remove(at: 0)
+//    }
+    while pendingWriteRequests.count > 0 {
+      let pend = pendingWriteRequests.first!
       griffyPeripheral?.writeValue(pend.data, for: pend.characteristic, type: CBCharacteristicWriteType.withResponse)
       pendingWriteRequests.remove(at: 0)
     }

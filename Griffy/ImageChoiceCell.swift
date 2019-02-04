@@ -8,6 +8,9 @@
 
 import Foundation
 import UIKit
+import JGProgressHUD
+
+import CoreBluetooth
 
 class ImageChoiceCell: UICollectionViewCell {
   @IBOutlet weak var griffyImageView: UIImageView!
@@ -17,6 +20,9 @@ class ImageChoiceCell: UICollectionViewCell {
   @IBOutlet weak var indexLabel: UILabel!
   
   var griffyImage: GriffyImage?
+  var hud: JGProgressHUD?
+  var totalDataSent = 0
+  var totalDataToSend = 0
   
   func setupWithGriffy(griffy: GriffyImage) {
     griffyImage = griffy
@@ -28,6 +34,7 @@ class ImageChoiceCell: UICollectionViewCell {
     }
     
     indexLabel.text = "Index = \(griffy.index)"
+    NotificationCenter.default.addObserver(self, selector: #selector(imageLoadUpdated(note:)), name: .didWriteToCharacteristic, object: nil)
   }
   
   @IBAction func sendRadialButtonPressed(_ sender: Any) {
@@ -35,10 +42,24 @@ class ImageChoiceCell: UICollectionViewCell {
       assertionFailure("Missing griffy image when setting active.")
       return
     }
+        
+    hud = JGProgressHUD(style: .dark)
+    hud!.textLabel.text = "Sending Data"
+    hud!.interactionType = JGProgressHUDInteractionType.blockAllTouches
+    hud!.show(in: UIApplication.shared.keyWindow!)
     
-    self.sendRadialButton.setLoaderVisible(visible: true, style: UIActivityIndicatorView.Style.gray)
-    BluetoothManager.shared.sendImageToDevice(radialFilePath: g.radialFilePath, index: g.index) {
-      self.sendRadialButton.setLoaderVisible(visible: false, style: UIActivityIndicatorView.Style.gray)
+    totalDataSent = 0
+    totalDataToSend = BluetoothManager.shared.sendImageToDevice(radialFilePath: g.radialFilePath, index: g.index)
+  }
+  
+  @objc func imageLoadUpdated(note: Notification) {
+    if let info = note.object as? CharacterWriteResponse {
+      let dataSent = info.dataLength
+      totalDataSent += dataSent
+      hud?.detailTextLabel.text = "Sent \(totalDataSent) / \(totalDataToSend)"
+      if totalDataSent >= totalDataToSend {
+        hud?.dismiss(animated: true)
+      }
     }
   }
   
@@ -48,6 +69,7 @@ class ImageChoiceCell: UICollectionViewCell {
       return
     }
     setActiveButton.setLoaderVisible(visible: true, style: UIActivityIndicatorView.Style.gray)
+    
     BluetoothManager.shared.setImageActive(index: g.index) {
       UserDefaults.standard.set(g.index, forKey: UserDefaultConstants.lastSelectedImageIndex)
       UserDefaults.standard.set(g.index, forKey: UserDefaultConstants.lastSelectedImageIndex)
@@ -56,5 +78,13 @@ class ImageChoiceCell: UICollectionViewCell {
       GFStateManager.shared.activeImage = self.griffyImageView.image
       GFStateManager.shared.activeIndex = g.index
     }
+  }
+  
+  override func prepareForReuse() {
+    NotificationCenter.default.removeObserver(self)
+  }
+  
+  deinit {
+    NotificationCenter.default.removeObserver(self)
   }
 }

@@ -92,9 +92,7 @@ class SendAllImagesCell: UICollectionViewCell {
       }
       
       GriffyFileManager.griffyImagesForClient(client: UserDefaults.standard.string(forKey: UserDefaultConstants.activeClientName) ?? "").forEach { (image) in
-        BluetoothManager.shared.sendImageToDevice(radialFilePath: image.radialFilePath, index: image.index, completion: {
-          print("completed one?")
-        })
+        let _ = BluetoothManager.shared.sendImageToDevice(radialFilePath: image.radialFilePath, index: image.index)
       }
     }
   }

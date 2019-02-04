@@ -19,7 +19,7 @@ class BaseTableViewController: UITableViewController {
       observedCharacteristics = realm.objects(GFCharacteristic.self).filter(NSPredicate(format: "id IN %@", observedIds))
     }
   }
-    
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)

@@ -301,6 +301,17 @@ extension Notification.Name {
   static let activeClientChanged = Notification.Name("activeClientChanged")
 }
 
+extension UILabel {
+  func animateTextTo(_ text: String) {
+    let animation = CATransition()
+    animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+    animation.type = CATransitionType.fade
+    animation.duration = 0.3
+    self.layer.add(animation, forKey: "Fading bad boy")
+    self.text = text
+  }
+}
+
 extension UIButton {
   func setLoaderVisible(visible: Bool, style: UIActivityIndicatorView.Style?) {
     /**********************************************

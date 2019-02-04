@@ -75,7 +75,9 @@ class GriffyTabBarController: UITabBarController {
     statusView?.alpha = 1
     statusView?.backgroundColor = bt.color
     if let label = statusView?.subviews.first as? UILabel {
-      label.text = bt.message
+      UIView.animate(withDuration: 0.3) {
+        label.text = bt.message
+      }
     }
   }
 }

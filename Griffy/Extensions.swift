@@ -177,6 +177,7 @@ extension Data {
   
   var uint8: UInt8 {
     get {
+      if count == 0 { return 0 }
       var number: UInt8 = 0
       self.copyBytes(to:&number, count: MemoryLayout<UInt8>.size)
       return number
@@ -185,6 +186,7 @@ extension Data {
   
   var uint16: UInt16 {
     get {
+      if count == 0 { return 0 }
       let i16array = self.withUnsafeBytes {
         UnsafeBufferPointer<UInt16>(start: $0, count: self.count/2).map(UInt16.init(littleEndian:))
       }
@@ -194,6 +196,7 @@ extension Data {
   
   var uint32: UInt32 {
     get {
+      if count == 0 { return 0 }
       let i32array = self.withUnsafeBytes {
         UnsafeBufferPointer<UInt32>(start: $0, count: self.count/2).map(UInt32.init(littleEndian:))
       }

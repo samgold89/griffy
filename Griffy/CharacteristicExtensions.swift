@@ -29,7 +29,7 @@ import CoreBluetooth
 //firmware Version
 
 //UIInt8
-//led Pitch
+//isReversed
 //imu1
 //imu2
 //status
@@ -48,7 +48,7 @@ extension Data {
     let uiint16Ids = [CharacteristicIds.alu1Id,CharacteristicIds.alu2Id,CharacteristicIds.wheelSpeedId,CharacteristicIds.connectTimeoutId]
     let uiint16ArrayIds = [CharacteristicIds.temperatureId, CharacteristicIds.instantCurrentId, CharacteristicIds.averageCurrentId, CharacteristicIds.voltageId, CharacteristicIds.secondsRemainingId, CharacteristicIds.percentageChargeId, CharacteristicIds.mahRemainingId]
     let uiint32Ids = [CharacteristicIds.hardwareVersionId, CharacteristicIds.firmwareVersionId]
-    let uiint8ids = [CharacteristicIds.ledPitchId, CharacteristicIds.imu1Id, CharacteristicIds.imu2Id, CharacteristicIds.statusId, CharacteristicIds.imageSelectId, CharacteristicIds.imageEraseId, CharacteristicIds.testId]
+    let uiint8ids = [CharacteristicIds.isReversedId, CharacteristicIds.imu1Id, CharacteristicIds.imu2Id, CharacteristicIds.statusId, CharacteristicIds.imageSelectId, CharacteristicIds.imageEraseId, CharacteristicIds.testId]
     let uiint8ArrayIds = [CharacteristicIds.imageLoadId, CharacteristicIds.speedThresholdId, CharacteristicIds.brightnessId]
     let serialId = [CharacteristicIds.serialNumberId]
     
@@ -177,9 +177,9 @@ extension CBCharacteristic {
         }
       }
       return CharacteristicInputError(success: allGood, error: "Must be >= 0 and <= 31")
-    } else if myId == CharacteristicIds.ledPitchId {
+    } else if myId == CharacteristicIds.isReversedId {
       let intValue = Int(input) ?? -1
-      return CharacteristicInputError(success: intValue == 3 || intValue == 4, error: "Must be 3 or 4")
+      return CharacteristicInputError(success: intValue == 0 || intValue == 1, error: "Must be 0 or 1")
     } else if myId == CharacteristicIds.speedThresholdId {
       let split = input.split(separator: ",")
       if split.count != 2 {

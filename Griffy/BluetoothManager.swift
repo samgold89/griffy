@@ -290,7 +290,7 @@ extension BluetoothManager: CBPeripheralDelegate {
   }
   
   func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-    let char = GFCharacteristic.parse(GFCharacteristic.self, characteristic: characteristic)
+    GFCharacteristic.parse(GFCharacteristic.self, characteristic: characteristic)
     cbCharacteristicsById[characteristic.uuid.uuidString] = characteristic
     NotificationCenter.default.post(name: .didUpdateCharacteristic, object: characteristic)
     
@@ -298,6 +298,7 @@ extension BluetoothManager: CBPeripheralDelegate {
     delay(0.5) {
       NotificationCenter.default.post(name: .bluetoothStateChanged, object: GFBluetoothState(message: "Connected to Griffy!", color: UIColor.gfGreen))
     }
+    print("we here \(characteristic.griffyName())")
 //    if characteristic.uuid.uuidString == CharacteristicIds.instantCurrentId || characteristic.uuid.uuidString == CharacteristicIds.averageCurrentId {
 //      print("we here \(characteristic.uuid.uuidString)")
 //    }

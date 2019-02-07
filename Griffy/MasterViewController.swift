@@ -16,7 +16,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
   var servicesById = [String: CBService]()
   
   let sections = ["Device","Status","Settings","Display","Battery"]
-  let rows = [["serial number","hardware version","firmware version","led pitch"], ["imu1","imu2","alu1","alu2","status","wheel speed"], ["connect timeout"], ["image Load","image Select","image Erase","test","speed threshold","brightness"], ["temperature","instant current","average current","voltage","seconds remaining","percentage charge","mah remaining"]]
+  let rows = [["serial number","hardware version","firmware version","is reversed"], ["imu1","imu2","alu1","alu2","status","wheel speed"], ["connect timeout"], ["image Load","image Select","image Erase","test","speed threshold","brightness"], ["temperature","instant current","average current","voltage","seconds remaining","percentage charge","mah remaining"]]
 
 
   override func viewDidLoad() {

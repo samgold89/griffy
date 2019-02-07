@@ -30,7 +30,7 @@ struct CharacteristicIds {
   static let serialNumberId = "21B8E697-AFA0-43A2-BF36-831285BFAB66"
   static let hardwareVersionId = "AAAE5188-3AD3-43A3-A0B4-DEC44E7C4680"
   static let firmwareVersionId = "A7173297-3A7C-4937-A450-D405CD7EB2CE"
-  static let ledPitchId = "E2784DBE-8020-4AF7-8AA7-E8A9BDCCEF13"
+  static let isReversedId = "E2784DBE-8020-4AF7-8AA7-E8A9BDCCEF13"
   static let imu1Id = "C5AA4192-2B0C-4676-AE68-6A7E15F3B943"
   static let imu2Id = "D5EDC2C5-DD26-456B-A4E9-D692D48713CB"
   static let alu1Id = "BA8C839A-5157-425C-B4BA-39865B18670B"
@@ -57,7 +57,7 @@ public let characteristicNameById: [String: String] = ["CD205203-029F-459B-B015-
                                  "21B8E697-AFA0-43A2-BF36-831285BFAB66":"serial Number",
                                  "AAAE5188-3AD3-43A3-A0B4-DEC44E7C4680":"hardware Version",
                                  "A7173297-3A7C-4937-A450-D405CD7EB2CE":"firmware Version",
-                                 "E2784DBE-8020-4AF7-8AA7-E8A9BDCCEF13":"led Pitch",
+                                 "E2784DBE-8020-4AF7-8AA7-E8A9BDCCEF13":"Is Reversed",
                                  "53079CA5-1E15-4405-8DC3-052B3B4EC2E5":"status",
                                  "C5AA4192-2B0C-4676-AE68-6A7E15F3B943":"imu1",
                                  "D5EDC2C5-DD26-456B-A4E9-D692D48713CB":"imu2",

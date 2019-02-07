@@ -14,6 +14,6 @@ class SettingsTableViewController: BaseTableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    observedIds = [CharacteristicIds.brightnessId, CharacteristicIds.ledPitchId, CharacteristicIds.speedThresholdId, CharacteristicIds.connectTimeoutId]
+    observedIds = [CharacteristicIds.brightnessId, CharacteristicIds.isReversedId, CharacteristicIds.speedThresholdId, CharacteristicIds.connectTimeoutId]
   }
 }

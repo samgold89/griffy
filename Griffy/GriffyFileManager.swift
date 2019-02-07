@@ -71,7 +71,8 @@ class GriffyFileManager {
     
     //Now we'll grab the radial and image pairs
     var idx = 0
-    for fileName in fileNames {
+    let sortedFileNames = fileNames.sorted(by: >)
+    for fileName in sortedFileNames {
       //Get the two file we want (radial & image)
       let files = sortedFolderContents.filter({ (url) -> Bool in
         return "\(url.lastPathComponent.split(separator: ".").first ?? "")" == fileName

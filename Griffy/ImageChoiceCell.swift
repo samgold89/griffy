@@ -26,8 +26,9 @@ class ImageChoiceCell: UICollectionViewCell {
   
   func setupWithGriffy(griffy: GriffyImage) {
     griffyImage = griffy
+    let gif = GriffyFileManager.gifDataAtGriffyPath(path: griffy.imageFilePath)
     let image = UIImage(contentsOfFile: griffy.imageFilePath)
-    griffyImageView.image = image
+    griffyImageView.image = gif ?? image
     nameLabel.text = "Something"
     if let nameWithExtension = griffy.imageFilePath.split(separator: "/").last {
       nameLabel.text = "\(nameWithExtension.split(separator: ".").first ?? "Something")"
@@ -49,7 +50,7 @@ class ImageChoiceCell: UICollectionViewCell {
     hud!.show(in: UIApplication.shared.keyWindow!)
     
     totalDataSent = 0
-    totalDataToSend = BluetoothManager.shared.sendImageToDevice(radialFilePath: g.radialFilePath, index: g.index)
+    totalDataToSend = BluetoothManager.shared.sendGriffyImageToDevice(griffy: g)
   }
   
   @objc func imageLoadUpdated(note: Notification) {

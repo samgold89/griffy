@@ -10,8 +10,16 @@ import Foundation
 
 struct GriffyImage {
   let imageFilePath: String
-  let radialFilePath: String
+  let radialFilePaths: [String]
   let index: Int
+  let frameDuration: Int
+  
+  init(imageFilePath: String, radialFilePaths: [String], index: Int, frameDuration: Int? = 0) {
+    self.imageFilePath = imageFilePath
+    self.radialFilePaths = radialFilePaths
+    self.index = index
+    self.frameDuration = frameDuration ?? 0
+  }
 }
 
 struct GriffyImageGetter {

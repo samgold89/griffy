@@ -56,7 +56,7 @@ class ClientChooserTableViewCell: UITableViewCell {
           }
           if res.name.lowercased().hasSuffix("radial") {
             radialCount += 1
-          } else if res.name.lowercased().hasSuffix("png") || res.name.lowercased().hasSuffix("jpg") {
+          } else if res.name.hasImageSuffix() {
             imageCount += 1
           }
         }

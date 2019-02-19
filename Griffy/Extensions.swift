@@ -52,6 +52,10 @@ extension String {
   func cbuuid() -> CBUUID {
     return CBUUID(string: self)
   }
+  
+  func hasImageSuffix() -> Bool {
+    return lowercased().hasSuffix("png") || lowercased().hasSuffix("jpg") || lowercased().hasSuffix("gif")
+  }
 }
 
 /******* Probably garbage stuff

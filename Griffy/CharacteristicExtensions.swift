@@ -48,7 +48,7 @@ extension Data {
     let uiint16Ids = [CharacteristicIds.alu1Id,CharacteristicIds.alu2Id,CharacteristicIds.wheelSpeedId,CharacteristicIds.connectTimeoutId]
     let uiint16ArrayIds = [CharacteristicIds.temperatureId, CharacteristicIds.instantCurrentId, CharacteristicIds.averageCurrentId, CharacteristicIds.voltageId, CharacteristicIds.secondsRemainingId, CharacteristicIds.percentageChargeId, CharacteristicIds.mahRemainingId]
     let uiint32Ids = [CharacteristicIds.hardwareVersionId, CharacteristicIds.firmwareVersionId]
-    let uiint8ids = [CharacteristicIds.isReversedId, CharacteristicIds.imu1Id, CharacteristicIds.imu2Id, CharacteristicIds.statusId, CharacteristicIds.imageSelectId, CharacteristicIds.imageEraseId, CharacteristicIds.testId]
+    let uiint8ids = [CharacteristicIds.isReversedId, CharacteristicIds.imu1Id, CharacteristicIds.imu2Id, CharacteristicIds.statusId, CharacteristicIds.imageSelectId, CharacteristicIds.imageEraseId, CharacteristicIds.testId, CharacteristicIds.animationId, CharacteristicIds.frameDurationId, CharacteristicIds.frameCountId]
     let uiint8ArrayIds = [CharacteristicIds.imageLoadId, CharacteristicIds.speedThresholdId, CharacteristicIds.brightnessId]
     let serialId = [CharacteristicIds.serialNumberId]
     

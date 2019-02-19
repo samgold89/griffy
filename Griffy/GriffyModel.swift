@@ -56,6 +56,24 @@ class GFCharacteristic: GFObject {
   @objc dynamic var name = ""
   @objc dynamic var uuid = ""
   @objc dynamic var value: Data? = nil
+  
+  public static var animation: GFCharacteristic? {
+    get {
+      return GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.animationId)
+    }
+  }
+  
+  public static var frameCount: GFCharacteristic? {
+    get {
+      return GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.frameCountId)
+    }
+  }
+  
+  public static var frameDuration: GFCharacteristic? {
+    get {
+      return GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.frameDurationId)
+    }
+  }
 }
 
 // Use them like regular Swift objects

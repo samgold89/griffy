@@ -24,6 +24,7 @@ struct UserDefaultConstants {
   static let maxOutgoingBLERequests = "maxOutgoingBLERequests"
   static let activeImageData = "activeImageData"
   static let activeIndex = "activeIndex"
+  static let lastBrightness = "lastBrightness"
 }
 
 struct CharacteristicIds {

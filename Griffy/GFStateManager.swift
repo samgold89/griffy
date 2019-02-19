@@ -26,6 +26,12 @@ final class GFStateManager: NSObject {
     }
   }
   
+  var brightness: Int = 0 {
+    didSet {
+      UserDefaults.standard.set(brightness, forKey: UserDefaultConstants.lastBrightness)
+    }
+  }
+  
   fileprivate override init() {
     super.init()
     loadPreviousValues()

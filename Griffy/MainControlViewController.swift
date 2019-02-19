@@ -12,20 +12,39 @@ import UIKit
 class MainControlViewController: UIViewController {
   
   @IBOutlet weak var onOffSwitch: UISwitch!
-  @IBOutlet weak var testSwitch: UISwitch!
   @IBOutlet weak var activeImage: UIImageView!
   @IBOutlet weak var versionLabel: UILabel!
+  @IBOutlet weak var brightnessLabel: UILabel!
+  @IBOutlet weak var slider: UISlider!
+  
+  let brightnessMax = Float(10.0)
   
   override func viewDidLoad() {
     super.viewDidLoad()
     let build = "\(Bundle.main.infoDictionary!["CFBundleVersion"]!)"
     let version = "v. \(Bundle.main.infoDictionary!["CFBundleShortVersionString"]!)"
     versionLabel.text = "\(version) (\(build))"
+    
+    let oldBrightness = GFStateManager.shared.brightness
+    slider.value = Float(oldBrightness)/brightnessMax
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     activeImage.image = GFStateManager.shared.activeImage
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    let oldBrightness = GFStateManager.shared.brightness
+    slider.value = Float(oldBrightness)/brightnessMax
+
+    guard let brightnessChar = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.brightnessId) else {
+      return
+    }
+    
+    BluetoothManager.shared.writeValue(data: Data(bytes: [UInt8(oldBrightness),UInt8(oldBrightness)]), toCharacteristic: brightnessChar)
   }
   
   @IBAction func onOffToggled(_ sender: Any) {
@@ -41,15 +60,23 @@ class MainControlViewController: UIViewController {
     }
   }
   
-  @IBAction func testToggled(_ sender: Any) {
-    guard let testChar = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.testId) else {
+  @IBAction func sliderSlid(_ sender: Any) {
+    let max = Float(10.0)
+    
+    let newBrightnessValue = Int(slider.value * max)
+    guard let brightnessChar = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.brightnessId) else {
       return
     }
     
-    if testSwitch.isOn {
-      BluetoothManager.shared.writeValue(data: UInt8(1).data, toCharacteristic: testChar)
-    } else {
-      BluetoothManager.shared.writeValue(data: UInt8(0).data, toCharacteristic: testChar)
+    let currentValue = GFStateManager.shared.brightness
+    
+    print("Current: \(Int(currentValue)), New: \(newBrightnessValue)")
+    if Int(currentValue) == newBrightnessValue {
+      return
     }
+    
+    BluetoothManager.shared.writeValue(data: Data(bytes: [UInt8(newBrightnessValue),UInt8(newBrightnessValue)]), toCharacteristic: brightnessChar)
+    brightnessLabel.text = "Brightness = \(newBrightnessValue)"
+    GFStateManager.shared.brightness = newBrightnessValue
   }
 }

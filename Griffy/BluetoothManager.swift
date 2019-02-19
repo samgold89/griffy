@@ -145,7 +145,8 @@ final class BluetoothManager: NSObject {
   
   func writeValue(data: Data, toCharacteristic characteristic: GFCharacteristic) {
     guard let char = cbCharacteristicsById[characteristic.uuid] else {
-      assertionFailure("Couldn't find characteristic with that GFUUID: \(characteristic)")
+      // If we try to set up values before connection is established, we crash (namely setting brightness on didappear in main vc
+//      assertionFailure("Couldn't find characteristic with that GFUUID: \(characteristic)")
       return
     }
     

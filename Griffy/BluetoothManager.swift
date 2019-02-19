@@ -89,7 +89,30 @@ final class BluetoothManager: NSObject {
     }
   }
   
-  func sendImageToDevice(radialFilePath: String, index: Int) -> Int {
+  func sendGriffyImageToDevice(griffy: GriffyImage) -> Int {
+    sendingImageData.removeAll()
+    
+    var idx = 0
+    var dataSize = 0
+    
+    guard let animation = GFCharacteristic.animation, let frameCount = GFCharacteristic.frameCount, let frameDuration = GFCharacteristic.frameDuration else {
+      assertionFailure("Can't find the animtion characteristic")
+      return 0
+    }
+    
+    writeValue(data: UInt8(griffy.radialFilePaths.count == 1 ? 0 : 1).data, toCharacteristic: animation)
+    writeValue(data: UInt8(griffy.radialFilePaths.count).data, toCharacteristic: frameCount)
+    writeValue(data: UInt8(griffy.frameDuration).data, toCharacteristic: frameDuration)
+    
+    for radial in griffy.radialFilePaths {
+      dataSize += sendImageToDevice(radialFilePath: radial, index: griffy.index+idx)
+      idx += 1
+    }
+    
+    return dataSize
+  }
+  
+  private func sendImageToDevice(radialFilePath: String, index: Int) -> Int {
     guard let data = FileManager.default.contents(atPath: radialFilePath) else {
       assertionFailure("Not radial data at path: \(radialFilePath)")
       return 0
@@ -105,7 +128,6 @@ final class BluetoothManager: NSObject {
     var idx = 0
     var offsetCounter = 0
     
-    sendingImageData.removeAll()
     for el in imageDataArray {
       if let data = el.first {
         var prependedData = getOffsetData(imageId: index, offset: offsetCounter)

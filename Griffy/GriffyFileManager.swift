@@ -7,8 +7,17 @@
 //
 
 import Foundation
+import UIKit
 
 class GriffyFileManager {
+  internal static func gifDataAtGriffyPath(path: String) -> UIImage? {
+    let fileManager = FileManager.default
+    if let data = fileManager.contents(atPath: path) {
+      return UIImage.gif(data: data) ?? nil
+    }
+    return nil
+  }
+  
   internal static func deleteClientFolderContents(name: String) {
     let fileManager = FileManager.default
     let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -60,8 +69,11 @@ class GriffyFileManager {
     let sortedFolderContents = folderContents!.sorted { (url1, url2) -> Bool in
       return url1.lastPathComponent.split(separator: ".").first ?? "0" < url2.lastPathComponent.split(separator: ".").first ?? "0"
     }
+    var fullFileNames = Set<String>()
+    
     var fileNames = Set<String>()
     for path in sortedFolderContents {
+      fullFileNames.update(with: path.lastPathComponent)
       if let name = path.lastPathComponent.split(separator: ".").first {
         fileNames.update(with: "\(name)")
       } else {
@@ -69,26 +81,28 @@ class GriffyFileManager {
       }
     }
     
-    //Now we'll grab the radial and image pairs
+    //xxx-000.radial, xxx-001.radial, xxx-002.radial
+    let radialFiles = fullFileNames.filter { (str) -> Bool in return str.hasSuffix("radial") }.sorted()
+    let imageFiles = fullFileNames.filter { (str) -> Bool in return str.hasImageSuffix() }.sorted()
+    let durationFiles = fullFileNames.filter { (str) -> Bool in return str.hasSuffix("duration") }.sorted()
+    
     var idx = 0
-    let sortedFileNames = fileNames.sorted(by: >)
-    for fileName in sortedFileNames {
-      //Get the two file we want (radial & image)
-      let files = sortedFolderContents.filter({ (url) -> Bool in
-        return "\(url.lastPathComponent.split(separator: ".").first ?? "")" == fileName
-      })
-      
-      if files.count == 2 {
-        if files.first!.lastPathComponent.hasSuffix("radial") {
-          images.append(GriffyImage(imageFilePath: files.last!.path, radialFilePath: files.first!.path, index: idx))
-        } else {
-          images.append(GriffyImage(imageFilePath: files.first!.path, radialFilePath: files.last!.path, index: idx))
+    for image in imageFiles {
+      var radialArray = [String]()
+
+      for radial in radialFiles {
+        if radial.contains(image.split(separator: ".").first ?? "") {
+          //'private' prefix vs. not ...
+          radialArray.append(destURL.appendingPathComponent(radial).path)
         }
-      } else {
-//          assertionFailure("Didn't find the two files we needed with name \(fileName)")
       }
+      let imagePath = destURL.appendingPathComponent(image).path
       
-      idx += 1
+      let durationString = durationFiles.filter { (str) -> Bool in return str.contains(image.split(separator: ".").first ?? "")}.first?.split(separator: ".").first?.split(separator: "-").last ?? "0"
+      let duration = Int(durationString) ?? 0
+      
+      images.append(GriffyImage(imageFilePath: imagePath, radialFilePaths: radialArray, index: idx, frameDuration: duration))
+      idx += radialArray.count
     }
     
     return images

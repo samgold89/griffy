@@ -52,9 +52,9 @@ struct CharacteristicIds {
   static let secondsRemainingId = "21E54027-36E5-4528-ABF1-2C02539DFEC0"
   static let percentageChargeId = "A3584E8C-68F5-4FB9-801C-671A634333A1"
   static let mahRemainingId = "5A241FE8-26B3-4504-A0E7-E6ECCCFD2892"
-  static let animationId = "todo"
-  static let frameCountId = "todo2"
-  static let frameDurationId = "todo3"
+  static let animationId = "57CBF2A3-5BFF-4DAB-8A35-940B3D63BDC0"
+  static let frameCountId = "823B1226-EBD0-4B78-BE04-19DD5234F7C8"
+  static let frameDurationId = "AD8A2930-F094-454C-99E8-618DF45D256C"
 }
 
 public let characteristicNameById: [String: String] = [ServiceIds.deviceId:"device",
@@ -87,4 +87,4 @@ public let characteristicNameById: [String: String] = [ServiceIds.deviceId:"devi
                                  CharacteristicIds.percentageChargeId:"Battery %",
                                  CharacteristicIds.mahRemainingId:"mah Remaining",
                                  CharacteristicIds.frameCountId: "Frame Count",
-                                 CharacteristicIds.frameDurationId: "Frame Duration"]
+                                 CharacteristicIds.frameDurationId: "Frame Duration",

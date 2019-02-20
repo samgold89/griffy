@@ -95,14 +95,11 @@ final class BluetoothManager: NSObject {
     var idx = 0
     var dataSize = 0
     
-    guard let animation = GFCharacteristic.animation, let frameCount = GFCharacteristic.frameCount, let frameDuration = GFCharacteristic.frameDuration else {
-      assertionFailure("Can't find the animtion characteristic")
-      return 0
+    if let animation = GFCharacteristic.animation, let frameCount = GFCharacteristic.frameCount, let frameDuration = GFCharacteristic.frameDuration {
+      writeValue(data: UInt8(griffy.radialFilePaths.count == 1 ? 0 : 1).data, toCharacteristic: animation)
+      writeValue(data: UInt8(griffy.radialFilePaths.count).data, toCharacteristic: frameCount)
+      writeValue(data: UInt8(griffy.frameDuration).data, toCharacteristic: frameDuration)
     }
-    
-    writeValue(data: UInt8(griffy.radialFilePaths.count == 1 ? 0 : 1).data, toCharacteristic: animation)
-    writeValue(data: UInt8(griffy.radialFilePaths.count).data, toCharacteristic: frameCount)
-    writeValue(data: UInt8(griffy.frameDuration).data, toCharacteristic: frameDuration)
     
     for radial in griffy.radialFilePaths {
       dataSize += sendImageToDevice(radialFilePath: radial, index: griffy.index+idx)

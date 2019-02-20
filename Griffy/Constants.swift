@@ -55,6 +55,13 @@ struct CharacteristicIds {
   static let animationId = "57CBF2A3-5BFF-4DAB-8A35-940B3D63BDC0"
   static let frameCountId = "823B1226-EBD0-4B78-BE04-19DD5234F7C8"
   static let frameDurationId = "AD8A2930-F094-454C-99E8-618DF45D256C"
+  static let dumTest1 = "9A681C49-919E-488E-9987-E821E91612B4"
+  static let dumTest2 = "668BAA75-3E1C-4E75-8926-9F8A5E7C438C"
+  static let dumTest3 = "E1BF8535-C930-4DD3-9AC6-8B53133E68A2"
+  static let dumTest4 = "F089C654-2E28-4B2D-A7A6-4A43808AA1D1"
+  static let dumTest5 = "59DE55B3-33F8-4DD4-9559-66C5BA1EAEAA"
+  static let dumTest6 = "8CF9B0D9-D0BE-4FF8-994C-6961FD022B15"
+  static let lastFramePlayCount = "88109ADB-EDFD-49DD-AA9A-7032ECC4EBD2"
 }
 
 public let characteristicNameById: [String: String] = [ServiceIds.deviceId:"device",
@@ -88,3 +95,11 @@ public let characteristicNameById: [String: String] = [ServiceIds.deviceId:"devi
                                  CharacteristicIds.mahRemainingId:"mah Remaining",
                                  CharacteristicIds.frameCountId: "Frame Count",
                                  CharacteristicIds.frameDurationId: "Frame Duration",
+                                 CharacteristicIds.dumTest1: "Test 1",
+                                 CharacteristicIds.dumTest2: "Test 2",
+                                 CharacteristicIds.dumTest3: "Test 3",
+                                 CharacteristicIds.dumTest4: "Test 4",
+                                 CharacteristicIds.dumTest5: "Test 5",
+                                 CharacteristicIds.dumTest6: "Test 6",
+                                 CharacteristicIds.lastFramePlayCount: "Last Frame Play Count"
+]

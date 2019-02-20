@@ -57,6 +57,7 @@ class GriffyTabBarController: UITabBarController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     NotificationCenter.default.addObserver(self, selector: #selector(bluetoothNotification(note:)), name: .bluetoothStateChanged, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(bluetoothNotification(note:)), name: .setBluetoothBanner, object: nil)
   }
   
   @objc func bannerTapped() {

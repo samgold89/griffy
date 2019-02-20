@@ -304,6 +304,7 @@ extension Notification.Name {
   static let didUpdateCharacteristic = Notification.Name("didUpdateCharacteristic")
   static let didWriteToCharacteristic = Notification.Name("didWriteToCharacteristic")
   static let bluetoothStateChanged = Notification.Name("bluetoothStateChanged")
+  static let setBluetoothBanner = Notification.Name("setBluetoothBanner")
   
   static let activeClientChanged = Notification.Name("activeClientChanged")
 }

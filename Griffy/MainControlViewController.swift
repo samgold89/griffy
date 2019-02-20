@@ -32,19 +32,22 @@ class MainControlViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     activeImage.image = GFStateManager.shared.activeImage
+    NotificationCenter.default.addObserver(self, selector: #selector(MainControlViewController.bluetoothDidConnect), name: .bluetoothStateChanged, object: nil)
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
+    setSliderToOldValue()
+  }
+  
+  @objc func bluetoothDidConnect() {
+    setSliderToOldValue()
+  }
+  
+  func setSliderToOldValue() {
     let oldBrightness = GFStateManager.shared.brightness
-    slider.value = Float(oldBrightness)/brightnessMax
-
-    guard let brightnessChar = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.brightnessId) else {
-      return
-    }
-    
-    BluetoothManager.shared.writeValue(data: Data(bytes: [UInt8(oldBrightness),UInt8(oldBrightness)]), toCharacteristic: brightnessChar)
+    setBrightnessValue(newBrightnessValue: oldBrightness, updateSlider: true)
   }
   
   @IBAction func onOffToggled(_ sender: Any) {
@@ -64,9 +67,6 @@ class MainControlViewController: UIViewController {
     let max = Float(10.0)
     
     let newBrightnessValue = Int(slider.value * max)
-    guard let brightnessChar = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.brightnessId) else {
-      return
-    }
     
     let currentValue = GFStateManager.shared.brightness
     
@@ -75,8 +75,29 @@ class MainControlViewController: UIViewController {
       return
     }
     
-    BluetoothManager.shared.writeValue(data: Data(bytes: [UInt8(newBrightnessValue),UInt8(newBrightnessValue)]), toCharacteristic: brightnessChar)
+    setBrightnessValue(newBrightnessValue: newBrightnessValue)
+  }
+  
+  func setBrightnessValue(newBrightnessValue: Int, updateSlider: Bool) {
+    if newBrightnessValue != GFStateManager.shared.brightness {
+      guard let brightnessChar = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.brightnessId) else {
+        return
+      }
+      
+      BluetoothManager.shared.writeValue(data: Data(bytes: [UInt8(newBrightnessValue),UInt8(newBrightnessValue)]), toCharacteristic: brightnessChar)
+      GFStateManager.shared.brightness = newBrightnessValue
+    }
+    
     brightnessLabel.text = "Brightness = \(newBrightnessValue)"
-    GFStateManager.shared.brightness = newBrightnessValue
+    
+    if updateSlider {
+      UIView.animate(withDuration: 0.3) {
+        self.slider.value = Float(newBrightnessValue)/self.brightnessMax
+      }
+    }
+  }
+  
+  func setBrightnessValue(newBrightnessValue: Int) {
+    setBrightnessValue(newBrightnessValue: newBrightnessValue, updateSlider: false)
   }
 }

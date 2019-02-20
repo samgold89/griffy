@@ -314,9 +314,9 @@ extension BluetoothManager: CBPeripheralDelegate {
     cbCharacteristicsById[characteristic.uuid.uuidString] = characteristic
     NotificationCenter.default.post(name: .didUpdateCharacteristic, object: characteristic)
     
-    NotificationCenter.default.post(name: .bluetoothStateChanged, object: GFBluetoothState(message: "Updated Values", color: UIColor.gfGreen))
+    NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Updated Values", color: UIColor.gfGreen))
     delay(0.5) {
-      NotificationCenter.default.post(name: .bluetoothStateChanged, object: GFBluetoothState(message: "Connected to Griffy!", color: UIColor.gfGreen))
+      NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Connected to Griffy!", color: UIColor.gfGreen))
     }
     print("we here \(characteristic.griffyName())")
 //    if characteristic.uuid.uuidString == CharacteristicIds.instantCurrentId || characteristic.uuid.uuidString == CharacteristicIds.averageCurrentId {

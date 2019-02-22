@@ -64,6 +64,34 @@ struct CharacteristicIds {
   static let lastFramePlayCount = "88109ADB-EDFD-49DD-AA9A-7032ECC4EBD2"
 }
 
+public let ReadableCharacterIds: [String] = [CharacteristicIds.serialNumberId,
+                                             CharacteristicIds.hardwareVersionId,
+                                             CharacteristicIds.firmwareVersionId,
+                                             CharacteristicIds.isReversedId,
+                                             CharacteristicIds.imu1Id,
+                                             CharacteristicIds.alu1Id,
+                                             CharacteristicIds.connectTimeoutId,
+                                             
+                                             CharacteristicIds.speedThresholdId,
+                                             CharacteristicIds.brightnessId,
+                                             CharacteristicIds.temperatureId,
+                                             CharacteristicIds.instantCurrentId,
+                                             CharacteristicIds.averageCurrentId,
+                                             CharacteristicIds.voltageId,
+                                             CharacteristicIds.secondsRemainingId,
+                                             CharacteristicIds.percentageChargeId,
+                                             CharacteristicIds.mahRemainingId,
+                                             CharacteristicIds.animationId,
+                                             CharacteristicIds.frameCountId,
+                                             CharacteristicIds.frameDurationId,
+                                             CharacteristicIds.dumTest2,
+                                             CharacteristicIds.dumTest3,
+                                             CharacteristicIds.dumTest4,
+                                             CharacteristicIds.dumTest5,
+                                             CharacteristicIds.dumTest6,
+                                             CharacteristicIds.lastFramePlayCount
+]
+
 public let characteristicNameById: [String: String] = [ServiceIds.deviceId:"device",
                                  CharacteristicIds.serialNumberId:"serial Number",
                                  CharacteristicIds.hardwareVersionId:"hardware Version",

@@ -90,8 +90,5 @@ class BaseTableViewController: UITableViewController {
     } else {
       cell.detailTextLabel?.text = "👎🏽"
     }
-    if char.uuid == CharacteristicIds.testId {
-      
-    }
   }
 }

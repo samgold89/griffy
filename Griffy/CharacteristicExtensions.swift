@@ -206,7 +206,8 @@ extension CBCharacteristic {
       return CharacteristicInputError(success: true, error: "Must have 6 values!")
     } else {
       //TODO: Add 'em all
-      return CharacteristicInputError(success: false, error: "Can't update this value (yet)...")
+//      return CharacteristicInputError(success: false, error: "Can't update this value (yet)...")
+      return CharacteristicInputError(success: true, error: "Not validating, but go for it")
     }
   }
 }

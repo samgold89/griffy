@@ -74,6 +74,10 @@ class GFCharacteristic: GFObject {
       return GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.frameDurationId)
     }
   }
+  
+  var isReadable: Bool {
+    return ReadableCharacterIds.contains(uuid)
+  }
 }
 
 // Use them like regular Swift objects

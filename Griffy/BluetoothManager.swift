@@ -185,6 +185,7 @@ final class BluetoothManager: NSObject {
 //    }
     while pendingWriteRequests.count > 0 {
       let pend = pendingWriteRequests.first!
+//      griffyPeripheral?.writeValue(pend.data, for: pend.characteristic, type: (pend.characteristic.griffyCharacteristic()?.isReadable ?? false) ? CBCharacteristicWriteType.withResponse : CBCharacteristicWriteType.withoutResponse)
       griffyPeripheral?.writeValue(pend.data, for: pend.characteristic, type: CBCharacteristicWriteType.withResponse)
       pendingWriteRequests.remove(at: 0)
     }
@@ -291,17 +292,24 @@ extension BluetoothManager: CBPeripheralDelegate {
     pendingWriteRequestCount -= 1
     
     if let e = error {
-      print("ERROR writing value: \(e)")
-      assertionFailure("ERROR writing value: \(e)")
+      let error = "\(e.localizedDescription) - \(characteristic.griffyName())"
+      print("\n\nERROR writing value:\n\(error)\n\n")
+//      assertionFailure("ERROR writing value: \(e)")
+      NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: error, color: UIColor.gfRed))
     } else {
       print("Wrote a value for \(characteristic.griffyCharacteristic()?.name ?? "NO NAME")")
-      griffyPeripheral?.readValue(for: characteristic)
+      NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Connected! (wrote \(characteristic.griffyName())", color: UIColor.gfGreen))
+      if characteristic.griffyCharacteristic()?.isReadable ?? false {
+        griffyPeripheral?.readValue(for: characteristic)
+      }
     }
     
     var length = 0
     if characteristic.uuid.uuidString == CharacteristicIds.imageLoadId {
       length = sendingImageData.first ?? 0
-      sendingImageData.removeFirst()
+      if sendingImageData.count > 0 {
+        sendingImageData.removeFirst()
+      }
     }
     
     NotificationCenter.default.post(name: .didWriteToCharacteristic, object: CharacterWriteResponse(characteristic: characteristic, error: error?.localizedDescription, dataLength: length))

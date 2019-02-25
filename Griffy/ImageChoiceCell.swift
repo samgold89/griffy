@@ -43,14 +43,17 @@ class ImageChoiceCell: UICollectionViewCell {
       assertionFailure("Missing griffy image when setting active.")
       return
     }
-        
+    totalDataToSend = BluetoothManager.shared.sendGriffyImageToDevice(griffy: g)
+    showProgressIndicator()
+  }
+  
+  func showProgressIndicator() {
     hud = JGProgressHUD(style: .dark)
     hud!.textLabel.text = "Sending Data"
-    hud!.interactionType = JGProgressHUDInteractionType.blockAllTouches
+    hud!.interactionType = JGProgressHUDInteractionType.blockNoTouches
     hud!.show(in: UIApplication.shared.keyWindow!)
     
     totalDataSent = 0
-    totalDataToSend = BluetoothManager.shared.sendGriffyImageToDevice(griffy: g)
   }
   
   @objc func imageLoadUpdated(note: Notification) {

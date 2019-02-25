@@ -49,6 +49,7 @@ class ClientChooserTableViewCell: UITableViewCell {
     var imageCount = 0
     //List folder contents
     dbxClient.files.listFolder(path: client.path).response(completionHandler: { (result, error) in
+      self.assetPaths.removeAll()
       if let entries = result?.entries {
         for res in entries {
           if let path = res.pathLower {

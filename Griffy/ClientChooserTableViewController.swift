@@ -27,6 +27,7 @@ class ClientChooserTableViewController: UITableViewController {
   func loadDropboxData() {
     if let cli = DropboxClientsManager.authorizedClient {
       cli.files.listFolder(path: dbxClientPath).response(completionHandler: { (result, error) in
+//        sort by name
         self.clientFolders = result
         self.tableView.reloadData()
         self.tableView.refreshControl?.endRefreshing()

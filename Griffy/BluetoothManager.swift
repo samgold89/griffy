@@ -32,7 +32,8 @@ final class BluetoothManager: NSObject {
   NOTE: this doesn't work when multiple, different, concurrent write requests are ongoing
   ****************************/
   var sendingImageData = [Int]()
- 
+
+  var statusUpdatedClosure: (()->())?
   
   let minimumPacketSize = 27
   let griffyHeaderSize = 7
@@ -131,20 +132,39 @@ final class BluetoothManager: NSObject {
     var idx = 0
     var offsetCounter = 0
     
-    for el in imageDataArray {
-      if let data = el.first {
-        var prependedData = getOffsetData(imageId: index, offset: offsetCounter)
-        prependedData.append(data)
-        sendingImageData.append(data.count)
-        writeValue(data: prependedData, toCharacteristic: char)
-        
-        idx += 1
-        offsetCounter += data.count
-      } else {
-        assertionFailure("Didn't find data in the first element...")
+//    let maxDelay = 5.0 //seconds
+    guard let statusGFChar = GFCharacteristic.status, let statusChar = cbCharacteristicsById[statusGFChar.uuid] else {
+      return 0
+    }
+    
+    statusUpdatedClosure = {
+      if Int(self.cbCharacteristicsById[statusGFChar.uuid]?.griffyDisplayValue() ?? "-1") != 0 {
+        self.delay(0.1, closure: {
+          self.griffyPeripheral?.readValue(for: statusChar)
+        })
+        return
+      }
+      
+      NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Sending Image Parts", color: UIColor.gfGreen), userInfo: nil)
+      self.statusUpdatedClosure = nil
+      
+      for el in imageDataArray {
+        if let data = el.first {
+          var prependedData = self.getOffsetData(imageId: index, offset: offsetCounter)
+          prependedData.append(data)
+          self.sendingImageData.append(data.count)
+          self.writeValue(data: prependedData, toCharacteristic: char)
+          
+          idx += 1
+          offsetCounter += data.count
+        } else {
+          assertionFailure("Didn't find data in the first element...")
+        }
       }
     }
-  
+    
+    griffyPeripheral?.readValue(for: statusChar)
+    NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Delaying image send...", color: UIColor.gfRed), userInfo: nil)
     return data.count
   }
   
@@ -333,6 +353,10 @@ extension BluetoothManager: CBPeripheralDelegate {
       NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Connected to Griffy!", color: UIColor.gfGreen))
     }
     print("we here \(characteristic.griffyName())")
+    
+    if let statusClosure = statusUpdatedClosure {
+      statusClosure()
+    }
 //    if characteristic.uuid.uuidString == CharacteristicIds.instantCurrentId || characteristic.uuid.uuidString == CharacteristicIds.averageCurrentId {
 //      print("we here \(characteristic.uuid.uuidString)")
 //    }

@@ -75,6 +75,12 @@ class GFCharacteristic: GFObject {
     }
   }
   
+  public static var status: GFCharacteristic? {
+    get {
+      return GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.statusId)
+    }
+  }
+  
   var isReadable: Bool {
     return ReadableCharacterIds.contains(uuid)
   }

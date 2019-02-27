@@ -77,15 +77,25 @@ final class BluetoothManager: NSObject {
     }
   }
   
-  func setImageActive(index: Int, completion: @escaping ()->()) {
+  func setImageActive(griffy: GriffyImage, completion: @escaping ()->()) {
     guard let g = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.imageSelectId) else {
       assertionFailure("Missing image active charactersitic.")
       completion()
       return
     }
-    writeValue(data: Data(bytes: [UInt8(index)]), toCharacteristic: g)
-    delay(2) {
+    
+    setAnimationValues(griffyImage: griffy)
+    writeValue(data: Data(bytes: [UInt8(griffy.index)]), toCharacteristic: g)
+    delay(1) {
       completion()
+    }
+  }
+  
+  func setAnimationValues(griffyImage: GriffyImage) {
+    if let animation = GFCharacteristic.animation, let frameCount = GFCharacteristic.frameCount, let frameDuration = GFCharacteristic.frameDuration {
+      writeValue(data: UInt8(griffyImage.radialFilePaths.count == 1 ? 0 : 1).data, toCharacteristic: animation)
+      writeValue(data: UInt8(griffyImage.radialFilePaths.count).data, toCharacteristic: frameCount)
+      writeValue(data: UInt16(griffyImage.frameDuration).data, toCharacteristic: frameDuration)
     }
   }
   
@@ -95,11 +105,7 @@ final class BluetoothManager: NSObject {
     var idx = 0
     var dataSize = 0
     
-    if let animation = GFCharacteristic.animation, let frameCount = GFCharacteristic.frameCount, let frameDuration = GFCharacteristic.frameDuration {
-      writeValue(data: UInt8(griffy.radialFilePaths.count == 1 ? 0 : 1).data, toCharacteristic: animation)
-      writeValue(data: UInt8(griffy.radialFilePaths.count).data, toCharacteristic: frameCount)
-      writeValue(data: UInt16(griffy.frameDuration).data, toCharacteristic: frameDuration)
-    }
+    setAnimationValues(griffyImage: griffy)
     
     for radial in griffy.radialFilePaths {
       dataSize += sendImageToDevice(radialFilePath: radial, index: griffy.index+idx)

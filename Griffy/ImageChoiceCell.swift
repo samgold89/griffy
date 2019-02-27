@@ -44,7 +44,15 @@ class ImageChoiceCell: UICollectionViewCell {
       return
     }
     totalDataToSend = BluetoothManager.shared.sendGriffyImageToDevice(griffy: g)
-    showProgressIndicator()
+    if totalDataToSend > 0 {
+      showProgressIndicator()
+    } else {
+      let text = sendRadialButton.titleLabel?.text
+      sendRadialButton.setTitle("Failed to send...", for: .normal)
+      delay(1) {
+        self.sendRadialButton.setTitle(text, for: .normal)
+      }
+    }
   }
   
   func showProgressIndicator() {

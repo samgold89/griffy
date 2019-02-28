@@ -109,10 +109,20 @@ final class BluetoothManager: NSObject {
     setAnimationValues(griffyImage: griffy)
     
     for radial in griffy.radialFilePaths {
-      dataSize += sendImageToDevice(radialFilePath: radial, index: griffy.index+idx)
+      let delay = CGFloat(idx * 4)
+      dataSize += sendImageToDevice(radialFilePath: radial, index: griffy.index+idx, withDelay: delay)
       idx += 1
     }
     
+    return dataSize
+  }
+  
+  private func sendImageToDevice(radialFilePath: String, index: Int, withDelay: CGFloat) -> Int {
+    let dataSize = FileManager.default.contents(atPath: radialFilePath)?.count ?? 0
+    
+    delay(Double(withDelay)) {
+      let _ = self.sendImageToDevice(radialFilePath: radialFilePath, index: index)
+    }
     return dataSize
   }
   
@@ -133,18 +143,18 @@ final class BluetoothManager: NSObject {
     var offsetCounter = 0
     
 //    let maxDelay = 5.0 //seconds
-    guard let statusGFChar = GFCharacteristic.status, let statusChar = cbCharacteristicsById[statusGFChar.uuid] else {
-      return 0
-    }
+//    guard let statusGFChar = GFCharacteristic.status, let statusChar = cbCharacteristicsById[statusGFChar.uuid] else {
+//      return 0
+//    }
     
-    statusUpdatedClosure = {
-      if Int(self.cbCharacteristicsById[statusGFChar.uuid]?.griffyDisplayValue() ?? "-1") != 0 {
-        self.delay(0.1, closure: {
-          self.griffyPeripheral?.readValue(for: statusChar)
-        })
-        return
-      }
-      
+//    statusUpdatedClosure = {
+//      if Int(self.cbCharacteristicsById[statusGFChar.uuid]?.griffyDisplayValue() ?? "-1") != 0 {
+//        self.delay(0.1, closure: {
+//          self.griffyPeripheral?.readValue(for: statusChar)
+//        })
+//        return
+//      }
+    
       NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Sending Image Parts", color: UIColor.gfGreen), userInfo: nil)
       self.statusUpdatedClosure = nil
       
@@ -161,9 +171,9 @@ final class BluetoothManager: NSObject {
           assertionFailure("Didn't find data in the first element...")
         }
       }
-    }
+//    }
     
-    griffyPeripheral?.readValue(for: statusChar)
+//    griffyPeripheral?.readValue(for: statusChar)
     NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Delaying image send...", color: UIColor.gfRed), userInfo: nil)
     return data.count
   }
@@ -191,7 +201,7 @@ final class BluetoothManager: NSObject {
   func writeValue(data: Data, toCharacteristic characteristic: GFCharacteristic) {
     guard let char = cbCharacteristicsById[characteristic.uuid] else {
       // If we try to set up values before connection is established, we crash (namely setting brightness on didappear in main vc
-//      assertionFailure("Couldn't find characteristic with that GFUUID: \(characteristic)")
+      assertionFailure("Couldn't find characteristic with that GFUUID: \(characteristic)")
       return
     }
     

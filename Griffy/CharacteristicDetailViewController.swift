@@ -103,6 +103,7 @@ class CharacteristicDetailViewController: UIViewController {
     }
     
     var arr = [UInt8]()
+  
     for num in text.split(separator: ",") {
       if char.uuid == CharacteristicIds.speedThresholdId {
         arr.append(UInt8((Double(num) ?? 0)*100))
@@ -110,7 +111,12 @@ class CharacteristicDetailViewController: UIViewController {
         arr.append(uiNum)
       }
     }
-    let data = Data(bytes: arr)
+    if char.uuid == CharacteristicIds.connectTimeoutId {
+      data = Data(bytes: arr, count: 2)
+    } else {
+      data = Data(bytes: arr)
+    }
+    
     BluetoothManager.shared.writeValue(data: data, toCharacteristic: char)
     updateButton.setLoaderVisible(visible: true, style: UIActivityIndicatorView.Style.whiteLarge)
   }

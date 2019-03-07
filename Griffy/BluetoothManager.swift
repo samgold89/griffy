@@ -120,9 +120,9 @@ final class BluetoothManager: NSObject {
   private func sendImageToDevice(radialFilePath: String, index: Int, withDelay: CGFloat) -> Int {
     let dataSize = FileManager.default.contents(atPath: radialFilePath)?.count ?? 0
     
-    delay(Double(withDelay)) {
+//    delay(Double(withDelay)) {
       let _ = self.sendImageToDevice(radialFilePath: radialFilePath, index: index)
-    }
+//    }
     return dataSize
   }
   

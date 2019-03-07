@@ -267,6 +267,9 @@
                                     <constraint firstAttribute="bottom" secondItem="fXf-iT-MAH" secondAttribute="bottom" id="mrQ-41-T2P"/>
                                 </constraints>
                                 <size key="customSize" width="300" height="50"/>
+                                <connections>
+                                    <outlet property="sendAllButton" destination="fXf-iT-MAH" id="SjU-NT-LmD"/>
+                                </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MaxChunkLengthCell" id="1De-vv-2U5" customClass="MaxChunkLengthCell" customModule="Griffy" customModuleProvider="target">
                                 <rect key="frame" x="37.5" y="370" width="300" height="50"/>

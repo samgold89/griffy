@@ -174,7 +174,7 @@ final class BluetoothManager: NSObject {
 //    }
     
 //    griffyPeripheral?.readValue(for: statusChar)
-    NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Delaying image send...", color: UIColor.gfRed), userInfo: nil)
+//    NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Delaying image send...", color: UIColor.gfRed), userInfo: nil)
     return data.count
   }
   

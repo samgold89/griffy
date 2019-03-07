@@ -84,6 +84,18 @@ class GFCharacteristic: GFObject {
   var isReadable: Bool {
     return ReadableCharacterIds.contains(uuid)
   }
+  
+  var isUInt8: Bool {
+    return uiint8ids.contains(id) || uiint8ArrayIds.contains(id)
+  }
+  
+  var isUInt16: Bool {
+    return uiint16Ids.contains(id) || uiint16ArrayIds.contains(id)
+  }
+  
+  var isUInt32: Bool {
+    return uiint32Ids.contains(id)
+  }
 }
 
 // Use them like regular Swift objects

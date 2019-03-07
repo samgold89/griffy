@@ -102,6 +102,7 @@ class CharacteristicDetailViewController: UIViewController {
       return
     }
     
+    var data: Data!
     var arr = [UInt8]()
   
     for num in text.split(separator: ",") {

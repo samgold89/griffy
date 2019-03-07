@@ -37,11 +37,11 @@ class ImageChoiceCollectionViewController: UICollectionViewController {
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if indexPath.section == 1 {
       return collectionView.dequeueReusableCell(withReuseIdentifier: "SendAllImagesCell", for: indexPath)
-    } else if indexPath.section == 2 {
+    }/* else if indexPath.section == 2 {
       let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "MaxChunkLengthCell", for: indexPath) as! MaxChunkLengthCell
       cell.setupCell()
       return cell
-    }
+    }*/
     
     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageChoiceCell", for: indexPath) as? ImageChoiceCell else {
       assertionFailure("ImageChoiceCell not found")
@@ -55,7 +55,7 @@ class ImageChoiceCollectionViewController: UICollectionViewController {
   }
   
   override func numberOfSections(in collectionView: UICollectionView) -> Int {
-    return 3
+    return 2
   }
   
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

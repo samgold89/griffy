@@ -45,7 +45,7 @@ class ImageChoiceCell: UICollectionViewCell {
     }
     totalDataToSend = BluetoothManager.shared.sendGriffyImageToDevice(griffy: g)
     if totalDataToSend > 0 {
-      showProgressIndicator()
+      showProgressIndicator(idx: g.index)
     } else {
       let text = sendRadialButton.titleLabel?.text
       sendRadialButton.setTitle("Failed to send...", for: .normal)
@@ -55,9 +55,9 @@ class ImageChoiceCell: UICollectionViewCell {
     }
   }
   
-  func showProgressIndicator() {
+  func showProgressIndicator(idx: Int) {
     hud = JGProgressHUD(style: .dark)
-    hud!.textLabel.text = "Sending Data"
+    hud!.textLabel.text = "Sending Img. Idx: \(idx)"
     hud!.interactionType = JGProgressHUDInteractionType.blockNoTouches
     hud!.show(in: UIApplication.shared.keyWindow!)
     

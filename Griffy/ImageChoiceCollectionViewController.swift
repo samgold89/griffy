@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 class ImageChoiceCollectionViewController: UICollectionViewController {
+  var totalDataSent = 0
+  var totalDataToSend = 0
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     collectionView.backgroundColor = UIColor.lightText
@@ -21,6 +24,7 @@ class ImageChoiceCollectionViewController: UICollectionViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     NotificationCenter.default.addObserver(self, selector: #selector(ImageChoiceCollectionViewController.clientDidChange), name: .activeClientChanged, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(ImageChoiceCollectionViewController.imageLoadUpdated(note:)), name: .didWriteToCharacteristic, object: nil)
     clientDidChange()
   }
   
@@ -68,6 +72,22 @@ class ImageChoiceCollectionViewController: UICollectionViewController {
     }
     return 0
   }
+  
+  @objc func imageLoadUpdated(note: Notification) {
+    if let info = note.object as? CharacterWriteResponse {
+      let dataSent = info.dataLength
+      totalDataSent += dataSent
+      if let cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 1)) as? SendAllImagesCell {
+        cell.sendAllButton.setTitle("Sent \(totalDataSent) / \(totalDataToSend)", for: .normal)
+        if totalDataSent >= totalDataToSend {
+          cell.sendAllButton.setTitle("DONE 🎊", for: .normal)
+          delay(1.5) {
+            cell.sendAllButton.setTitle("Send All Images", for: .normal)
+          }
+        }
+      }
+    }
+  }
 }
 
 extension ImageChoiceCollectionViewController: UICollectionViewDelegateFlowLayout {
@@ -84,16 +104,11 @@ extension ImageChoiceCollectionViewController: UICollectionViewDelegateFlowLayou
 }
 
 class SendAllImagesCell: UICollectionViewCell {
+  @IBOutlet weak var sendAllButton: UIButton!
   @IBAction func sendAllImagesPressed(_ sender: Any) {
-    if let sender = sender as? UIButton {
-      sender.setLoaderVisible(visible: true, style: .white)
-      delay(30) {
-        sender.setLoaderVisible(visible: false, style: nil)
-      }
-      
-      GriffyFileManager.griffyImagesForClient(client: UserDefaults.standard.string(forKey: UserDefaultConstants.activeClientName) ?? "").forEach { (image) in
-        let _ = BluetoothManager.shared.sendGriffyImageToDevice(griffy: image)
-      }
+    var dataSize = 0
+    GriffyFileManager.griffyImagesForClient(client: UserDefaults.standard.string(forKey: UserDefaultConstants.activeClientName) ?? "").forEach { (image) in
+      dataSize += BluetoothManager.shared.sendGriffyImageToDevice(griffy: image)
     }
   }
 }

@@ -61,6 +61,9 @@ struct CharacteristicIds {
   static let dumTest4 = "F089C654-2E28-4B2D-A7A6-4A43808AA1D1"
   static let dumTest5 = "59DE55B3-33F8-4DD4-9559-66C5BA1EAEAA"
   static let dumTest6 = "8CF9B0D9-D0BE-4FF8-994C-6961FD022B15"
+  static let dumTest7 = "4A0AB681-855E-4F7A-A6EB-45E9354B33E3"
+  static let dumTest8 = "ADB9655E-73F9-4F06-BB83-52098030E2D1"
+  static let dumTest9 = "D7F2298C-C357-4E9F-8546-3F9F3EC3941D"
   static let lastFramePlayCount = "88109ADB-EDFD-49DD-AA9A-7032ECC4EBD2"
 }
 
@@ -88,6 +91,9 @@ public let ReadableCharacterIds: [String] = [CharacteristicIds.serialNumberId,
                                              CharacteristicIds.dumTest4,
                                              CharacteristicIds.dumTest5,
                                              CharacteristicIds.dumTest6,
+                                             CharacteristicIds.dumTest7,
+                                             CharacteristicIds.dumTest8,
+                                             CharacteristicIds.dumTest9,
                                              CharacteristicIds.lastFramePlayCount
 ]
 
@@ -129,5 +135,8 @@ public let characteristicNameById: [String: String] = [ServiceIds.deviceId:"devi
                                  CharacteristicIds.dumTest4: "Test 4",
                                  CharacteristicIds.dumTest5: "Test 5",
                                  CharacteristicIds.dumTest6: "Test 6",
+                                 CharacteristicIds.dumTest7: "Test 6",
+                                 CharacteristicIds.dumTest8: "Test 6",
+                                 CharacteristicIds.dumTest9: "Test 6",
                                  CharacteristicIds.lastFramePlayCount: "Last Frame Play Count"
 ]

@@ -189,7 +189,7 @@ extension CBCharacteristic {
       return CharacteristicInputError(success: allGood, error: "Each number must be >= 0, < 10, and < 3 digits")
     } else if myId == CharacteristicIds.connectTimeoutId {
       let intValue = Int(input) ?? -1
-      return CharacteristicInputError(success: intValue >= 0 && intValue <= 999, error: "Must be >= 0 and <= 1000")
+      return CharacteristicInputError(success: intValue >= 0, error: "Must be >= 0")
     } else if myId == CharacteristicIds.imu1Id || myId == CharacteristicIds.imu2Id {
       let split = input.split(separator: ",")
       if split.count != 6 {

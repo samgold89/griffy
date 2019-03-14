@@ -142,8 +142,8 @@ public let characteristicNameById: [String: String] = [ServiceIds.deviceId:"devi
                                  CharacteristicIds.dumTest4: "Test 4",
                                  CharacteristicIds.dumTest5: "Test 5",
                                  CharacteristicIds.dumTest6: "Test 6",
-                                 CharacteristicIds.dumTest7: "Test 6",
-                                 CharacteristicIds.dumTest8: "Test 6",
-                                 CharacteristicIds.dumTest9: "Test 6",
+                                 CharacteristicIds.dumTest7: "Test 7",
+                                 CharacteristicIds.dumTest8: "Test 8",
+                                 CharacteristicIds.dumTest9: "Test 9",
                                  CharacteristicIds.lastFramePlayCount: "Last Frame Play Count"
 ]

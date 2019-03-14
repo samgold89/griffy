@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import PureLayout
+import JGProgressHUD
 
 extension Int {
   var data: Data {
@@ -103,12 +104,36 @@ extension String {
  ****/
 
 extension UIViewController {
+  static let progressTag = 2371898
+  
   func showAlertWithTitle(title: String?, body: String?, buttonTitles: [String]) {
     let alert = UIAlertController(title: title, message: body, preferredStyle: UIAlertController.Style.alert)
     for title in buttonTitles {
       alert.addAction(UIAlertAction(title: title, style: UIAlertAction.Style.default, handler: nil))
     }
     self.present(alert, animated: false, completion: nil)
+  }
+}
+
+extension UIView {
+  
+  func showLoadingView(initialMessage: String?) {
+    let hud = JGProgressHUD(style: .dark)
+    hud.textLabel.text = initialMessage
+    hud.interactionType = JGProgressHUDInteractionType.blockNoTouches
+    hud.show(in: UIApplication.shared.keyWindow!)
+    hud.tag = UIViewController.progressTag
+  }
+  
+  func hideLoadingView() {
+    loadingView?.dismiss(animated: true)
+  }
+  
+  var loadingView: JGProgressHUD? {
+    get {
+      let window = UIApplication.shared.keyWindow!
+      return window.viewWithTag(UIViewController.progressTag) as? JGProgressHUD
+    }
   }
 }
 

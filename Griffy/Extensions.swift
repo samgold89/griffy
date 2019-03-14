@@ -321,6 +321,15 @@ extension UILabel {
 }
 
 extension UIButton {
+  func setTitleWithOutAnimation(title: String?) {
+    UIView.setAnimationsEnabled(false)
+    
+    setTitle(title, for: .normal)
+    
+    layoutIfNeeded()
+    UIView.setAnimationsEnabled(true)
+  }
+  
   func setLoaderVisible(visible: Bool, style: UIActivityIndicatorView.Style?) {
     /**********************************************
      If you're using the disabled state, handle it.

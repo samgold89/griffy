@@ -43,11 +43,7 @@ class ImageChoiceCollectionViewController: UICollectionViewController {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SendAllImagesCell", for: indexPath) as! SendAllImagesCell
       cell.sendDelegate = self
       return cell
-    }/* else if indexPath.section == 2 {
-     let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "MaxChunkLengthCell", for: indexPath) as! MaxChunkLengthCell
-     cell.setupCell()
-     return cell
-     }*/
+    }
     
     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageChoiceCell", for: indexPath) as? ImageChoiceCell else {
       assertionFailure("ImageChoiceCell not found")

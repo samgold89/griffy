@@ -112,8 +112,10 @@ class CharacteristicDetailViewController: UIViewController {
         arr.append(uiNum)
       }
     }
-    if char.uuid == CharacteristicIds.connectTimeoutId {
-      data = Data(bytes: arr, count: 2)
+    
+    let firstNumber = "\(text.split(separator: ",").first ?? "z")"
+    if let timeout = Int(firstNumber), char.uuid == CharacteristicIds.connectTimeoutId {
+      data = UInt16(timeout).data
     } else {
       data = Data(bytes: arr)
     }

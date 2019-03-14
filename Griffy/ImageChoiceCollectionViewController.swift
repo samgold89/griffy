@@ -40,12 +40,14 @@ class ImageChoiceCollectionViewController: UICollectionViewController {
   
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if indexPath.section == 1 {
-      return collectionView.dequeueReusableCell(withReuseIdentifier: "SendAllImagesCell", for: indexPath)
-    }/* else if indexPath.section == 2 {
-      let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "MaxChunkLengthCell", for: indexPath) as! MaxChunkLengthCell
-      cell.setupCell()
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SendAllImagesCell", for: indexPath) as! SendAllImagesCell
+      cell.sendDelegate = self
       return cell
-    }*/
+    }/* else if indexPath.section == 2 {
+     let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "MaxChunkLengthCell", for: indexPath) as! MaxChunkLengthCell
+     cell.setupCell()
+     return cell
+     }*/
     
     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageChoiceCell", for: indexPath) as? ImageChoiceCell else {
       assertionFailure("ImageChoiceCell not found")
@@ -74,15 +76,18 @@ class ImageChoiceCollectionViewController: UICollectionViewController {
   }
   
   @objc func imageLoadUpdated(note: Notification) {
+    return()
     if let info = note.object as? CharacterWriteResponse {
       let dataSent = info.dataLength
       totalDataSent += dataSent
+      
       if let cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 1)) as? SendAllImagesCell {
-        cell.sendAllButton.setTitle("Sent \(totalDataSent) / \(totalDataToSend)", for: .normal)
+        cell.sendAllButton.setTitleWithOutAnimation(title: "Sent \(totalDataSent) / \(totalDataToSend)")
+        
         if totalDataSent >= totalDataToSend {
-          cell.sendAllButton.setTitle("DONE 🎊", for: .normal)
+          cell.sendAllButton.setTitleWithOutAnimation(title: "DONE 🎊")
           delay(1.5) {
-            cell.sendAllButton.setTitle("Send All Images", for: .normal)
+            cell.sendAllButton.setTitleWithOutAnimation(title: "Send All Images")
           }
         }
       }
@@ -103,13 +108,27 @@ extension ImageChoiceCollectionViewController: UICollectionViewDelegateFlowLayou
   }
 }
 
+extension ImageChoiceCollectionViewController: SendAllImagesDelegate {
+  func sendAllImages() {
+    totalDataToSend = 0
+    totalDataSent = 0
+    
+    GriffyFileManager.griffyImagesForClient(client: UserDefaults.standard.string(forKey: UserDefaultConstants.activeClientName) ?? "").forEach { (image) in
+      totalDataToSend += BluetoothManager.shared.sendGriffyImageToDevice(griffy: image)
+    }
+  }
+}
+
+protocol SendAllImagesDelegate: class {
+  func sendAllImages()
+}
+
 class SendAllImagesCell: UICollectionViewCell {
   @IBOutlet weak var sendAllButton: UIButton!
+  weak var sendDelegate: SendAllImagesDelegate?
+  
   @IBAction func sendAllImagesPressed(_ sender: Any) {
-    var dataSize = 0
-    GriffyFileManager.griffyImagesForClient(client: UserDefaults.standard.string(forKey: UserDefaultConstants.activeClientName) ?? "").forEach { (image) in
-      dataSize += BluetoothManager.shared.sendGriffyImageToDevice(griffy: image)
-    }
+    sendDelegate?.sendAllImages()
   }
 }
 

@@ -34,7 +34,7 @@ class ImageChoiceCell: UICollectionViewCell {
       nameLabel.text = "\(nameWithExtension.split(separator: ".").first ?? "Something")"
     }
     
-    indexLabel.text = "Index = \(griffy.index)"
+    indexLabel.text = "Index = \(griffy.index) (\(g.radialFilePaths.count))"
     NotificationCenter.default.addObserver(self, selector: #selector(imageLoadUpdated(note:)), name: .didWriteToCharacteristic, object: nil)
   }
   

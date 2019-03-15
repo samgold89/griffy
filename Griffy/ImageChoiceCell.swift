@@ -57,7 +57,7 @@ class ImageChoiceCell: UICollectionViewCell {
   
   func showProgressIndicator(idx: Int) {
     hud = JGProgressHUD(style: .dark)
-    hud!.textLabel.text = "Sending Img. Idx: \(idx)"
+    hud!.textLabel.text = "Sending Image: \(idx)"
     hud!.interactionType = JGProgressHUDInteractionType.blockNoTouches
     hud!.show(in: UIApplication.shared.keyWindow!)
     

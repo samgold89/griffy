@@ -72,10 +72,16 @@ class ImageChoiceCollectionViewController: UICollectionViewController {
   }
   
   @objc func imageLoadUpdated(note: Notification) {
-    return()
     if let info = note.object as? CharacterWriteResponse {
       let dataSent = info.dataLength
       totalDataSent += dataSent
+      
+      view.loadingView?.textLabel.text = "Sent \(totalDataSent) / \(totalDataToSend)"
+      if totalDataSent >= totalDataToSend {
+        view.hideLoadingView()
+      }
+      
+      return()
       
       if let cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 1)) as? SendAllImagesCell {
         cell.sendAllButton.setTitleWithOutAnimation(title: "Sent \(totalDataSent) / \(totalDataToSend)")
@@ -112,6 +118,7 @@ extension ImageChoiceCollectionViewController: SendAllImagesDelegate {
     GriffyFileManager.griffyImagesForClient(client: UserDefaults.standard.string(forKey: UserDefaultConstants.activeClientName) ?? "").forEach { (image) in
       totalDataToSend += BluetoothManager.shared.sendGriffyImageToDevice(griffy: image)
     }
+    view.showLoadingView(initialMessage: "Sending All Images")
   }
 }
 

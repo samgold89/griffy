@@ -354,11 +354,11 @@ extension BluetoothManager: CBPeripheralDelegate {
   }
   
   func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-    GFCharacteristic.parse(GFCharacteristic.self, characteristic: characteristic)
+    let _ = GFCharacteristic.parse(GFCharacteristic.self, characteristic: characteristic)
     cbCharacteristicsById[characteristic.uuid.uuidString] = characteristic
     NotificationCenter.default.post(name: .didUpdateCharacteristic, object: characteristic)
     
-    NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Updated Values", color: UIColor.gfGreen))
+//    NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Updated Values", color: UIColor.gfGreen))
     delay(0.5) {
       NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Connected to Griffy!", color: UIColor.gfGreen))
     }

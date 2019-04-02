@@ -34,7 +34,7 @@ class ImageChoiceCell: UICollectionViewCell {
       nameLabel.text = "\(nameWithExtension.split(separator: ".").first ?? "Something")"
     }
     
-    indexLabel.text = "Index = \(griffy.index) (\(griffy.radialFilePaths.count))"
+    indexLabel.text = "Index = \(griffy.index)\(griffy.radialFilePaths.count > 1 ? " (\(griffy.radialFilePaths.count))" : "")"
     NotificationCenter.default.addObserver(self, selector: #selector(imageLoadUpdated(note:)), name: .didWriteToCharacteristic, object: nil)
   }
   
@@ -68,7 +68,13 @@ class ImageChoiceCell: UICollectionViewCell {
     if let info = note.object as? CharacterWriteResponse {
       let dataSent = info.dataLength
       totalDataSent += dataSent
-      hud?.detailTextLabel.text = "Sent \(totalDataSent) / \(totalDataToSend)"
+      
+      let numberFormatter = NumberFormatter()
+      numberFormatter.numberStyle = .decimal
+      let totalSentString = numberFormatter.string(from: NSNumber(value: totalDataSent)) ?? ""
+      let totalToSendString = numberFormatter.string(from: NSNumber(value: totalDataToSend)) ?? ""
+      
+      hud?.detailTextLabel.text = "Sent \(totalSentString) / \(totalToSendString)"
       if totalDataSent >= totalDataToSend {
         hud?.dismiss(animated: true)
       }

@@ -76,22 +76,14 @@ class ImageChoiceCollectionViewController: UICollectionViewController {
       let dataSent = info.dataLength
       totalDataSent += dataSent
       
-      view.loadingView?.textLabel.text = "Sent \(totalDataSent) / \(totalDataToSend)"
+      let numberFormatter = NumberFormatter()
+      numberFormatter.numberStyle = .decimal
+      let totalSentString = numberFormatter.string(from: NSNumber(value: totalDataSent)) ?? ""
+      let totalToSendString = numberFormatter.string(from: NSNumber(value: totalDataToSend)) ?? ""
+      
+      view.loadingView?.textLabel.text = "Sent \(totalSentString) / \(totalToSendString)"
       if totalDataSent >= totalDataToSend {
         view.hideLoadingView()
-      }
-      
-      return()
-      
-      if let cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 1)) as? SendAllImagesCell {
-        cell.sendAllButton.setTitleWithOutAnimation(title: "Sent \(totalDataSent) / \(totalDataToSend)")
-        
-        if totalDataSent >= totalDataToSend {
-          cell.sendAllButton.setTitleWithOutAnimation(title: "DONE 🎊")
-          delay(1.5) {
-            cell.sendAllButton.setTitleWithOutAnimation(title: "Send All Images")
-          }
-        }
       }
     }
   }
@@ -104,7 +96,7 @@ extension ImageChoiceCollectionViewController: UICollectionViewDelegateFlowLayou
     }
     
     let yourWidth = (collectionView.bounds.width-20)/2.0
-    let yourHeight = CGFloat(300)
+    let yourHeight = CGFloat(270)
     
     return CGSize(width: yourWidth, height: yourHeight)
   }
@@ -116,7 +108,7 @@ extension ImageChoiceCollectionViewController: SendAllImagesDelegate {
     totalDataSent = 0
     
     GriffyFileManager.griffyImagesForClient(client: UserDefaults.standard.string(forKey: UserDefaultConstants.activeClientName) ?? "").forEach { (image) in
-      totalDataToSend += BluetoothManager.shared.sendGriffyImageToDevice(griffy: image)
+      totalDataToSend += BluetoothManager.shared.sendGriffyImageToDevice(griffy: image, resetDataTotal: false)
     }
     view.showLoadingView(initialMessage: "Sending All Images")
   }

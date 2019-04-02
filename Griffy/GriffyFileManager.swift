@@ -91,6 +91,8 @@ class GriffyFileManager {
       var radialArray = [String]()
 
       for radial in radialFiles {
+//        let radSplit = "\(radial.split(separator: ".").first!)"
+//        if radSplit == image.split(separator: ".").first ?? "" {
         if radial.contains(image.split(separator: ".").first ?? "") {
           //'private' prefix vs. not ...
           radialArray.append(destURL.appendingPathComponent(radial).path)

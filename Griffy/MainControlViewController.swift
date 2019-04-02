@@ -66,9 +66,7 @@ class MainControlViewController: UIViewController {
   }
   
   @IBAction func sliderSlid(_ sender: Any) {
-    let max = Float(10.0)
-    
-    let newBrightnessValue = Int(slider.value * max)
+    let newBrightnessValue = Int(slider.value * brightnessMax)
     
     let currentValue = GFStateManager.shared.brightness
     

@@ -101,7 +101,13 @@ final class BluetoothManager: NSObject {
   }
   
   func sendGriffyImageToDevice(griffy: GriffyImage) -> Int {
-    sendingImageData.removeAll()
+    return sendGriffyImageToDevice(griffy: griffy, resetDataTotal: true)
+  }
+  
+  func sendGriffyImageToDevice(griffy: GriffyImage, resetDataTotal: Bool) -> Int {
+    if resetDataTotal {
+      sendingImageData.removeAll()
+    }
     
     var idx = 0
     var dataSize = 0
@@ -120,9 +126,7 @@ final class BluetoothManager: NSObject {
   private func sendImageToDevice(radialFilePath: String, index: Int, withDelay: CGFloat) -> Int {
     let dataSize = FileManager.default.contents(atPath: radialFilePath)?.count ?? 0
     
-//    delay(Double(withDelay)) {
-      let _ = self.sendImageToDevice(radialFilePath: radialFilePath, index: index)
-//    }
+    let _ = self.sendImageToDevice(radialFilePath: radialFilePath, index: index)
     return dataSize
   }
   
@@ -334,7 +338,7 @@ extension BluetoothManager: CBPeripheralDelegate {
       NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: error, color: UIColor.gfRed))
     } else {
       print("Wrote a value for \(characteristic.griffyCharacteristic()?.name ?? "NO NAME")")
-      NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Connected! (wrote \(characteristic.griffyName())", color: UIColor.gfGreen))
+//      NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Connected! (wrote \(characteristic.griffyName())", color: UIColor.gfGreen))
       if characteristic.griffyCharacteristic()?.isReadable ?? false {
         griffyPeripheral?.readValue(for: characteristic)
       }

@@ -63,7 +63,7 @@ class ClientChooserTableViewController: UITableViewController {
       return UITableViewCell()
     }
     
-    let info = clientFolders.entries.sorted { $0.name.lowercased() > $1.name.lowercased() }[indexPath.row]
+    let info = clientFolders.entries.sorted { $0.name.lowercased() < $1.name.lowercased() }[indexPath.row]
     guard let pathLower = info.pathLower else {
       assertionFailure("missing path lower in client folders")
       return cell

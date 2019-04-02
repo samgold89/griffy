@@ -92,35 +92,38 @@ class ClientChooserTableViewCell: UITableViewCell {
       return
     }
     
-    var successCount = 0
-    var errorCount = 0
-    for path in assetPaths {
-      let destination: (URL, HTTPURLResponse) -> URL = { temporaryURL, response in
-        return destURL.appendingPathComponent(String(path.split(separator: "/").last ?? "somePath"))
-      }
-      dbxClient.files.download(path: path, overwrite: true, destination: destination)
-        .response { response, error in
-          if let e = error {
-            print(e)
-            self.fileCountLabel.textColor = UIColor.gfRed
-            self.fileCountLabel.text = "Couldn't download \(path). \(e)"
-            errorCount += 1
-          } else {
-            successCount += 1
-            print("Downloaded: \(response?.0.name ?? "NAME MISSING")")
-          }
-          if successCount == self.assetPaths.count {
-            // set active client
-            UserDefaults.standard.set(self.client?.clientName, forKey: UserDefaultConstants.activeClientName)
-            NotificationCenter.default.post(name: .activeClientChanged, object: nil)
-            self.downloadButton.setLoaderVisible(visible: false, style: nil)
-          } else if errorCount + successCount == self.assetPaths.count {
-            // show error
-            self.fileCountLabel.text = "Failed to download \(errorCount) files. Not setting active."
-            self.downloadButton.setLoaderVisible(visible: false, style: nil)
-          }
+    //Dropbox is doing something synchronous, blocking the loader from showing. This fixes that.
+    delay(0.01) {
+      var successCount = 0
+      var errorCount = 0
+      for path in self.assetPaths {
+        let destination: (URL, HTTPURLResponse) -> URL = { temporaryURL, response in
+          return destURL.appendingPathComponent(String(path.split(separator: "/").last ?? "somePath"))
         }
-        .progress { progressData in
+        dbxClient.files.download(path: path, overwrite: true, destination: destination)
+          .response { response, error in
+            if let e = error {
+              print(e)
+              self.fileCountLabel.textColor = UIColor.gfRed
+              self.fileCountLabel.text = "Couldn't download \(path). \(e)"
+              errorCount += 1
+            } else {
+              successCount += 1
+              print("Downloaded: \(response?.0.name ?? "NAME MISSING")")
+            }
+            if successCount == self.assetPaths.count {
+              // set active client
+              UserDefaults.standard.set(self.client?.clientName, forKey: UserDefaultConstants.activeClientName)
+              NotificationCenter.default.post(name: .activeClientChanged, object: nil)
+              self.downloadButton.setLoaderVisible(visible: false, style: nil)
+            } else if errorCount + successCount == self.assetPaths.count {
+              // show error
+              self.fileCountLabel.text = "Failed to download \(errorCount) files. Not setting active."
+              self.downloadButton.setLoaderVisible(visible: false, style: nil)
+            }
+          }
+          .progress { progressData in
+        }
       }
     }
   }

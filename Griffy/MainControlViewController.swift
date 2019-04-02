@@ -17,7 +17,7 @@ class MainControlViewController: UIViewController {
   @IBOutlet weak var brightnessLabel: UILabel!
   @IBOutlet weak var slider: UISlider!
   
-  let brightnessMax = Float(10.0)
+  let brightnessMax = Float(15.0)
   
   override func viewDidLoad() {
     super.viewDidLoad()

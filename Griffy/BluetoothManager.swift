@@ -86,7 +86,9 @@ final class BluetoothManager: NSObject {
     }
     
     setAnimationValues(griffyImage: griffy)
-    writeValue(data: UInt16(griffy.index).data, toCharacteristic: g)
+    //TODO UInt8Changes
+    writeValue(data: UInt8(griffy.index).data, toCharacteristic: g)
+//    writeValue(data: UInt16(griffy.index).data, toCharacteristic: g)
     delay(1) {
       completion()
     }

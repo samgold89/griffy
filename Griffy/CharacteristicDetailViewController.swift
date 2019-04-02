@@ -114,7 +114,7 @@ class CharacteristicDetailViewController: UIViewController {
     }
     
     let firstNumber = "\(text.split(separator: ",").first ?? "z")"
-    if let timeout = Int(firstNumber), char.uuid == CharacteristicIds.connectTimeoutId {
+    if let timeout = Int(firstNumber), uiint16Ids.contains(char.uuid) {
       data = UInt16(timeout).data
     } else {
       data = Data(bytes: arr)

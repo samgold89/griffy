@@ -104,11 +104,34 @@ extension ImageChoiceCollectionViewController: UICollectionViewDelegateFlowLayou
 
 extension ImageChoiceCollectionViewController: SendAllImagesDelegate {
   func sendAllImages() {
+    
+    let total = GriffyFileManager.griffyImagesForClient(client: UserDefaults.standard.string(forKey: UserDefaultConstants.activeClientName) ?? "").count
+    
+    let alert = UIAlertController(title: "Starting At", message: "Which image number do you want to start at? 0-\(total)", preferredStyle: UIAlertController.Style.alert)
+    alert.addTextField { (textField) in
+      textField.keyboardType = .numberPad
+    }
+    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    alert.addAction(UIAlertAction(title: "Go!", style: .default, handler: { (action) in
+      if let text = alert.textFields?.first?.text {
+        self.sendAllImages(startingAt: Int(text) ?? 0)
+      }
+    }))
+    present(alert, animated: true, completion: nil)
+  }
+  
+  func sendAllImages(startingAt: Int) {
     totalDataToSend = 0
     totalDataSent = 0
     
+    var idx = 0
+    
     GriffyFileManager.griffyImagesForClient(client: UserDefaults.standard.string(forKey: UserDefaultConstants.activeClientName) ?? "").forEach { (image) in
-      totalDataToSend += BluetoothManager.shared.sendGriffyImageToDevice(griffy: image, resetDataTotal: false)
+      
+      if idx >= startingAt {
+        totalDataToSend += BluetoothManager.shared.sendGriffyImageToDevice(griffy: image, resetDataTotal: false)
+      }
+      idx += 1
     }
     view.showLoadingView(initialMessage: "Sending All Images")
   }

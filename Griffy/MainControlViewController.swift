@@ -60,6 +60,8 @@ class MainControlViewController: UIViewController {
       BluetoothManager.shared.writeValue(data: UInt8(lastStored).data, toCharacteristic: imageCharactersitic)
     } else {
       BluetoothManager.shared.writeValue(data: UInt8(255).data, toCharacteristic: imageCharactersitic)
+      //TODO UInt8Changes
+//      BluetoothManager.shared.writeValue(data: UInt16(65535).data, toCharacteristic: imageCharactersitic)
     }
   }
   

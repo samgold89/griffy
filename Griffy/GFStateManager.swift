@@ -26,12 +26,21 @@ final class GFStateManager: NSObject {
     }
   }
   
-  var brightness: Int {
+  var leftBrightness: Int {
     set {
-      UserDefaults.standard.set(newValue, forKey: UserDefaultConstants.lastBrightness)
+      UserDefaults.standard.set(newValue, forKey: UserDefaultConstants.lastLeftBrightness)
     }
     get {
-      return UserDefaults.standard.integer(forKey: UserDefaultConstants.lastBrightness)
+      return UserDefaults.standard.integer(forKey: UserDefaultConstants.lastLeftBrightness)
+    }
+  }
+  
+  var rightBrightness: Int {
+    set {
+      UserDefaults.standard.set(newValue, forKey: UserDefaultConstants.lastRightBrightness)
+    }
+    get {
+      return UserDefaults.standard.integer(forKey: UserDefaultConstants.lastRightBrightness)
     }
   }
   

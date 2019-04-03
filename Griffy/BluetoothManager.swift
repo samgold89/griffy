@@ -87,8 +87,8 @@ final class BluetoothManager: NSObject {
     
     setAnimationValues(griffyImage: griffy)
     //TODO UInt8Changes
-    writeValue(data: UInt8(griffy.index).data, toCharacteristic: g)
-//    writeValue(data: UInt16(griffy.index).data, toCharacteristic: g)
+//    writeValue(data: UInt8(griffy.index).data, toCharacteristic: g)
+    writeValue(data: UInt16(griffy.index).data, toCharacteristic: g)
     delay(1) {
       completion()
     }
@@ -193,9 +193,9 @@ final class BluetoothManager: NSObject {
     let byteOne = (remainder - byteZero)/256
     let byteTwo = (offset - remainder)/65536
     
-    let data = Data(bytes: [UInt8(imageId), UInt8(byteZero), UInt8(byteOne), UInt8(byteTwo)])
+//    let data = Data(bytes: [UInt8(imageId), UInt8(byteZero), UInt8(byteOne), UInt8(byteTwo)])
     //TODO UInt8Changes
-//    let data = Data(bytes: [UInt8(imageIdByteZero), UInt8(imageIdByteOne), UInt8(byteZero), UInt8(byteOne), UInt8(byteTwo), UInt8(0)])
+    let data = Data(bytes: [UInt8(imageIdByteZero), UInt8(imageIdByteOne), UInt8(byteZero), UInt8(byteOne), UInt8(byteTwo), UInt8(0)])
     
     return data
   }

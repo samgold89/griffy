@@ -63,7 +63,9 @@ class MainControlViewController: UIViewController {
     
     let lastStored = UserDefaults.standard.integer(forKey: UserDefaultConstants.lastSelectedImageIndex) 
     if onOffSwitch.isOn {
-      BluetoothManager.shared.writeValue(data: UInt8(lastStored).data, toCharacteristic: imageCharactersitic)
+//      BluetoothManager.shared.writeValue(data: UInt8(lastStored).data, toCharacteristic: imageCharactersitic)
+      //TODO UInt8Changes
+      BluetoothManager.shared.writeValue(data: UInt16(lastStored).data, toCharacteristic: imageCharactersitic)
     } else {
 //      BluetoothManager.shared.writeValue(data: UInt8(255).data, toCharacteristic: imageCharactersitic)
       //TODO UInt8Changes

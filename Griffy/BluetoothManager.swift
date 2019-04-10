@@ -36,7 +36,7 @@ final class BluetoothManager: NSObject {
   var statusUpdatedClosure: (()->())?
   
   let minimumPacketSize = 27
-  let griffyHeaderSize = 7
+  let griffyHeaderSize = 11 //Change from 7-->11 on 4/10 due to reported but of it going over 512
   
   var pendingWriteRequestCount = 0
   var pendingWriteRequests = [GFYWriteRequest]()
@@ -138,7 +138,7 @@ final class BluetoothManager: NSObject {
       return 0
     }
     
-    let maxLength = (griffyPeripheral?.maximumWriteValueLength(for: CBCharacteristicWriteType.withResponse) ?? minimumPacketSize) - griffyHeaderSize
+    let maxLength = min((griffyPeripheral?.maximumWriteValueLength(for: CBCharacteristicWriteType.withResponse) ?? minimumPacketSize), 512) - griffyHeaderSize
     let imageDataArray = getDataChunks(data: data, length: maxLength)
     
     guard let char = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.imageLoadId) else {

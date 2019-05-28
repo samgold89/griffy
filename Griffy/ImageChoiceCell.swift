@@ -24,18 +24,28 @@ class ImageChoiceCell: UICollectionViewCell {
   var totalDataSent = 0
   var totalDataToSend = 0
   
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    NotificationCenter.default.addObserver(self, selector: #selector(imageLoadUpdated(note:)), name: .didWriteToCharacteristic, object: nil)
+  }
+  
   func setupWithGriffy(griffy: GriffyImage) {
     griffyImage = griffy
-    let gif = GriffyFileManager.gifDataAtGriffyPath(path: griffy.imageFilePath)
-    let image = UIImage(contentsOfFile: griffy.imageFilePath)
-    griffyImageView.image = gif ?? image
+    DispatchQueue.global().async {
+      let gif = GriffyFileManager.gifDataAtGriffyPath(path: griffy.imageFilePath)
+//      let image = UIImage(contentsOfFile: griffy.imageFilePath)
+      DispatchQueue.main.async {
+        if self.griffyImage?.index == griffy.index {
+          self.griffyImageView.image = gif
+        }
+      }
+    }
     nameLabel.text = "Something"
     if let nameWithExtension = griffy.imageFilePath.split(separator: "/").last {
       nameLabel.text = "\(nameWithExtension.split(separator: ".").first ?? "Something")"
     }
     
     indexLabel.text = "Index = \(griffy.index)\(griffy.radialFilePaths.count > 1 ? " (\(griffy.radialFilePaths.count))" : "")"
-    NotificationCenter.default.addObserver(self, selector: #selector(imageLoadUpdated(note:)), name: .didWriteToCharacteristic, object: nil)
   }
   
   @IBAction func sendRadialButtonPressed(_ sender: Any) {
@@ -96,10 +106,6 @@ class ImageChoiceCell: UICollectionViewCell {
       GFStateManager.shared.activeImage = self.griffyImageView.image
       GFStateManager.shared.activeIndex = g.index
     }
-  }
-  
-  override func prepareForReuse() {
-    NotificationCenter.default.removeObserver(self)
   }
   
   deinit {

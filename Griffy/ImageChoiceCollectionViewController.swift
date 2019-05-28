@@ -12,6 +12,7 @@ import UIKit
 class ImageChoiceCollectionViewController: UICollectionViewController {
   var totalDataSent = 0
   var totalDataToSend = 0
+  var imagesForClient = [GriffyImage]()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -36,6 +37,10 @@ class ImageChoiceCollectionViewController: UICollectionViewController {
   @objc func clientDidChange() {
     collectionView.reloadData()
     navigationItem.title = UserDefaults.standard.string(forKey: UserDefaultConstants.activeClientName)
+    
+    if let activeClient = UserDefaults.standard.string(forKey: UserDefaultConstants.activeClientName) {
+      imagesForClient = GriffyFileManager.griffyImagesForClient(client: activeClient)
+    }
   }
   
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -50,9 +55,10 @@ class ImageChoiceCollectionViewController: UICollectionViewController {
       return UICollectionViewCell()
     }
     
-    if let activeClient = UserDefaults.standard.string(forKey: UserDefaultConstants.activeClientName) {
-      cell.setupWithGriffy(griffy: GriffyFileManager.griffyImagesForClient(client: activeClient)[indexPath.row])
+    if imagesForClient.count > indexPath.row {
+      cell.setupWithGriffy(griffy: imagesForClient[indexPath.row])
     }
+    
     return cell
   }
   

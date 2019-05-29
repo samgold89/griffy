@@ -13,7 +13,11 @@ class GriffyFileManager {
   internal static func gifDataAtGriffyPath(path: String) -> UIImage? {
     let fileManager = FileManager.default
     if let data = fileManager.contents(atPath: path) {
-      return UIImage.gif(data: data) ?? nil
+      if let gif = UIImage.gif(data: data) {
+        return gif
+      } else {
+        return UIImage(data: data) ?? nil
+      }
     }
     return nil
   }

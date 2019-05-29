@@ -359,7 +359,7 @@ extension UIButton {
     UIView.setAnimationsEnabled(true)
   }
   
-  func setLoaderVisible(visible: Bool, style: UIActivityIndicatorView.Style?) {
+  func setLoaderVisible(visible: Bool, style: UIActivityIndicatorView.Style?) { 
     /**********************************************
      If you're using the disabled state, handle it.
      currently it'll show an empty title label

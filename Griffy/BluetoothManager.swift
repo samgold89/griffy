@@ -186,7 +186,7 @@ final class BluetoothManager: NSObject {
   
   func getOffsetData(imageId: Int, offset: Int) -> Data {
     let imageIdByteZero = imageId % 256
-    let imageIdByteOne = imageId - imageIdByteZero
+    let imageIdByteOne = (imageId - imageIdByteZero) / 256
     
     let remainder = offset % 65536
     let byteZero = remainder % 256

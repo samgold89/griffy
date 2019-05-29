@@ -68,7 +68,7 @@ class ClientChooserTableViewCell: UITableViewCell {
   }
   
   @IBAction func downloadButtonPressed(_ sender: Any) {
-    downloadButton.setLoaderVisible(visible: true, style: .white)
+    downloadButton.setLoaderVisible(visible: true, style: .white, disabledTitle: "connecting to dropbox...")
     
     guard let clientName = client?.clientName else {
       assertionFailure("Missing client name. Can't download.")
@@ -100,6 +100,7 @@ class ClientChooserTableViewCell: UITableViewCell {
         let destination: (URL, HTTPURLResponse) -> URL = { temporaryURL, response in
           return destURL.appendingPathComponent(String(path.split(separator: "/").last ?? "somePath"))
         }
+        
         dbxClient.files.download(path: path, overwrite: true, destination: destination)
           .response { response, error in
             if let e = error {
@@ -111,6 +112,7 @@ class ClientChooserTableViewCell: UITableViewCell {
               successCount += 1
               print("Downloaded: \(response?.0.name ?? "NAME MISSING")")
             }
+            self.downloadButton.setTitleWithOutAnimation(title: "successes: (\(successCount))    –        failures: (\(errorCount))", for: .disabled)
             if successCount == self.assetPaths.count {
               // set active client
               UserDefaults.standard.set(self.client?.clientName, forKey: UserDefaultConstants.activeClientName)

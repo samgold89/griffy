@@ -347,9 +347,13 @@ extension UILabel {
 
 extension UIButton {
   func setTitleWithOutAnimation(title: String?) {
+    setTitle(title, for: .normal)
+  }
+  
+  func setTitleWithOutAnimation(title: String?, for theState: UIButton.State) {
     UIView.setAnimationsEnabled(false)
     
-    setTitle(title, for: .normal)
+    setTitle(title, for: theState)
     
     layoutIfNeeded()
     UIView.setAnimationsEnabled(true)

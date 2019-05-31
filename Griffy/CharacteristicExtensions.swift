@@ -110,6 +110,11 @@ extension Data {
         }
         idx += 2
       }
+      
+//      if characteristicId == CharacteristicIds.instantCurrentId {
+//        array.append(GFCharacteristic.watts)
+//      }
+      
       arrayString = array
     } else if serialId.contains(characteristicId) {
       var array = [String]()

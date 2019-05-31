@@ -81,6 +81,24 @@ class GFCharacteristic: GFObject {
     }
   }
   
+//  public static var watts: String {
+//    get {
+//      let myWatts = 0
+//      guard let combinedCurrent = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.instantCurrentId)?.griffyDisplayValue(), let combinedVoltagee =  GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.voltageId)?.griffyDisplayValue() else {
+//        return "noVal"
+//      }
+//
+  //      let currents = combinedCurrent.split(separator: ",").map({Float($0)})
+//      let voltages = combinedVoltagee.split(separator: ",").map({Float($0)})
+////      guard let currents =
+//      return "(\(myWatts))"
+//    }
+//  }
+//
+//  func griffyDisplayValue() -> String? {
+//    return value?.griffyDisplayValue(characteristicId: id)
+//  }
+  
   var isReadable: Bool {
     return ReadableCharacterIds.contains(uuid)
   }

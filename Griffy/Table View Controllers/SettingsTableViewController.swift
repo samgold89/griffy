@@ -14,6 +14,6 @@ class SettingsTableViewController: BaseTableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    observedIds = [CharacteristicIds.isReversedId, CharacteristicIds.speedThresholdId, CharacteristicIds.connectTimeoutId, CharacteristicIds.dumTest1, CharacteristicIds.dumTest2, CharacteristicIds.dumTest3, CharacteristicIds.dumTest4, CharacteristicIds.dumTest5, CharacteristicIds.dumTest6, CharacteristicIds.dumTest7, CharacteristicIds.dumTest8, CharacteristicIds.dumTest9, CharacteristicIds.dumTest10, CharacteristicIds.dumTest11, CharacteristicIds.dumTest12, CharacteristicIds.dumTest13, CharacteristicIds.animationId, CharacteristicIds.frameCountId, CharacteristicIds.frameDurationId, CharacteristicIds.lastFramePlayCount]
+    observedIds = [CharacteristicIds.isReversedId, CharacteristicIds.speedThresholdId, CharacteristicIds.connectTimeoutId, CharacteristicIds.dumTest1, CharacteristicIds.dumTest2, CharacteristicIds.dumTest3, CharacteristicIds.dumTest4, CharacteristicIds.dumTest5, CharacteristicIds.dumTest6, CharacteristicIds.dumTest7, CharacteristicIds.dumTest8, CharacteristicIds.dumTest9, CharacteristicIds.dumTest10, CharacteristicIds.dumTest11, CharacteristicIds.dumTest12, CharacteristicIds.dumTest13, CharacteristicIds.dumTest14, CharacteristicIds.dumTest15, CharacteristicIds.dumTest16, CharacteristicIds.dumTest17, CharacteristicIds.animationId, CharacteristicIds.frameCountId, CharacteristicIds.frameDurationId, CharacteristicIds.lastFramePlayCount]
   }
 }

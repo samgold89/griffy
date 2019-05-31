@@ -68,7 +68,7 @@ class ClientChooserTableViewCell: UITableViewCell {
   }
   
   @IBAction func downloadButtonPressed(_ sender: Any) {
-    downloadButton.setLoaderVisible(visible: true, style: .white, disabledTitle: "connecting to dropbox...")
+    downloadButton.setLoaderVisible(visible: true, style: .white)
     
     guard let clientName = client?.clientName else {
       assertionFailure("Missing client name. Can't download.")

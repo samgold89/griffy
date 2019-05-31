@@ -38,6 +38,10 @@ class CharacteristicDetailViewController: UIViewController {
     super.viewWillAppear(animated)
     NotificationCenter.default.addObserver(self, selector: #selector(CharacteristicDetailViewController.characteristicWritten(notification:)), name: .didWriteToCharacteristic, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(CharacteristicDetailViewController.characteristicUpdated(notification:)), name: .didUpdateCharacteristic, object: nil)
+    
+    if let characteristicId = characteristicId, let char = GFCharacteristic.find(GFCharacteristic.self, byId: characteristicId) {
+      BluetoothManager.shared.visibleCharacteristics = [char]
+    }
   }
   
   func updateScreenValues() {

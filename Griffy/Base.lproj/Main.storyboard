@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eSk-fi-EbP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eSk-fi-EbP">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -68,9 +68,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="PRb-Ih-umr">
-                                <rect key="frame" x="127" y="290.5" width="234" height="31"/>
+                                <rect key="frame" x="147" y="290.5" width="214" height="31"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="230" id="4rY-YB-Z9e"/>
+                                    <constraint firstAttribute="width" constant="210" id="4rY-YB-Z9e"/>
                                 </constraints>
                                 <connections>
                                     <action selector="leftSliderSlid:" destination="bLP-MT-v4M" eventType="valueChanged" id="Eap-cU-MBE"/>
@@ -83,10 +83,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="kMR-EW-S5B">
-                                <rect key="frame" x="127" y="331" width="234" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="230" id="SND-DC-Ftq"/>
-                                </constraints>
+                                <rect key="frame" x="147" y="331" width="214" height="31"/>
                                 <connections>
                                     <action selector="rightSliderSlid:" destination="bLP-MT-v4M" eventType="valueChanged" id="fCT-Ir-yiJ"/>
                                 </connections>

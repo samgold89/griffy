@@ -61,7 +61,11 @@ class GriffyTabBarController: UITabBarController {
   }
   
   @objc func bannerTapped() {
-    BluetoothManager.shared.scanForPeripherals()
+    if BluetoothManager.shared.hasDiscoveredGriffy {
+      BluetoothManager.shared.updateAllObservedValues()
+    } else {
+      BluetoothManager.shared.scanForPeripherals()
+    }
   }
   
   override func viewWillDisappear(_ animated: Bool) {

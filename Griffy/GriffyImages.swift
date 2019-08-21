@@ -10,17 +10,20 @@ import Foundation
 
 struct GriffyImage {
   let imageFilePath: String
-  let radialFilePaths: [String]
-  let index: Int
+  let stdRadialFilePaths: [String]?
+  let hiResRadialFilePaths: [String]?
+  let startingIndex: Int
   let frameDuration: Int
-  let isHighRes: Bool = false
   
-  init(imageFilePath: String, radialFilePaths: [String], index: Int, frameDuration: Int? = 0, isHighRes: Bool) {
+  init(imageFilePath: String, stdRadialFilePaths: [String]?, hiResRadialFilePaths: [String]?, startingIndex: Int, frameDuration: Int? = 0) {
+    
+    assert(stdRadialFilePaths != nil || hiResRadialFilePaths != nil)
+    
     self.imageFilePath = imageFilePath
-    self.radialFilePaths = radialFilePaths
-    self.index = index
+    self.stdRadialFilePaths = stdRadialFilePaths
+    self.hiResRadialFilePaths = hiResRadialFilePaths
+    self.startingIndex = startingIndex
     self.frameDuration = frameDuration ?? 0
-    self.isHighRes = isHighRes
   }
 }
 

@@ -198,15 +198,39 @@
                                                 <constraint firstAttribute="width" secondItem="PiX-J4-eCC" secondAttribute="height" multiplier="1:1" id="1ml-E4-eTG"/>
                                             </constraints>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rot-I4-8wm">
-                                            <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
-                                            <state key="normal">
-                                                <color key="titleColor" red="0.14901960784313725" green="0.32941176470588235" blue="0.48627450980392156" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="setActiveButtonPressed:" destination="9gN-rd-PSv" eventType="touchUpInside" id="C09-Wg-zqx"/>
-                                            </connections>
-                                        </button>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lAb-lb-YRf">
+                                            <rect key="frame" x="0.0" y="80" width="140" height="60"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nLw-xA-mnZ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="60"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.65000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="Std">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="setStdActiveButtonPressed:" destination="9gN-rd-PSv" eventType="touchUpInside" id="AIM-9C-Y85"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w4w-SR-e6h">
+                                                    <rect key="frame" x="70" y="0.0" width="70" height="60"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.45000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="HiRes">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="setHighResActiveButtonPressed:" destination="9gN-rd-PSv" eventType="touchUpInside" id="K3e-r1-7k2"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="60" id="2VB-eH-8gl"/>
+                                                <constraint firstItem="w4w-SR-e6h" firstAttribute="top" secondItem="lAb-lb-YRf" secondAttribute="top" id="IcM-kK-Bav"/>
+                                                <constraint firstAttribute="bottom" secondItem="w4w-SR-e6h" secondAttribute="bottom" id="b62-Wd-yf7"/>
+                                                <constraint firstAttribute="bottom" secondItem="nLw-xA-mnZ" secondAttribute="bottom" id="hhT-Jd-nUN"/>
+                                                <constraint firstItem="nLw-xA-mnZ" firstAttribute="top" secondItem="lAb-lb-YRf" secondAttribute="top" id="wOh-Hy-WkM"/>
+                                            </constraints>
+                                        </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="l5a-1a-K3X">
                                             <rect key="frame" x="0.0" y="166" width="140" height="84"/>
                                             <subviews>
@@ -238,23 +262,24 @@
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Rot-I4-8wm" secondAttribute="trailing" id="4WP-yZ-44v"/>
-                                    <constraint firstItem="Rot-I4-8wm" firstAttribute="bottom" secondItem="PiX-J4-eCC" secondAttribute="bottom" id="Lys-Gm-Ge3"/>
-                                    <constraint firstItem="Rot-I4-8wm" firstAttribute="top" secondItem="9gN-rd-PSv" secondAttribute="top" id="Nwu-cB-Gi9"/>
                                     <constraint firstItem="PiX-J4-eCC" firstAttribute="leading" secondItem="9gN-rd-PSv" secondAttribute="leading" id="RiL-Q6-6Hc"/>
                                     <constraint firstAttribute="trailing" secondItem="l5a-1a-K3X" secondAttribute="trailing" id="SwF-Wv-lCQ"/>
                                     <constraint firstAttribute="bottom" secondItem="l5a-1a-K3X" secondAttribute="bottom" id="TR3-X5-2cC"/>
                                     <constraint firstItem="PiX-J4-eCC" firstAttribute="top" secondItem="9gN-rd-PSv" secondAttribute="top" id="UFN-uF-Tjc"/>
-                                    <constraint firstItem="Rot-I4-8wm" firstAttribute="leading" secondItem="9gN-rd-PSv" secondAttribute="leading" id="ZVj-7b-1H1"/>
+                                    <constraint firstAttribute="trailing" secondItem="lAb-lb-YRf" secondAttribute="trailing" id="ca1-sS-Cgf"/>
+                                    <constraint firstItem="lAb-lb-YRf" firstAttribute="leading" secondItem="9gN-rd-PSv" secondAttribute="leading" id="eGK-Bg-Hz5"/>
+                                    <constraint firstItem="lAb-lb-YRf" firstAttribute="bottom" secondItem="PiX-J4-eCC" secondAttribute="bottom" id="rhw-Hz-QcZ"/>
                                     <constraint firstAttribute="trailing" secondItem="PiX-J4-eCC" secondAttribute="trailing" id="saO-NZ-baZ"/>
                                     <constraint firstItem="l5a-1a-K3X" firstAttribute="leading" secondItem="9gN-rd-PSv" secondAttribute="leading" id="yyU-yr-suP"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="buttonStackView" destination="lAb-lb-YRf" id="guq-LT-kwp"/>
                                     <outlet property="griffyImageView" destination="PiX-J4-eCC" id="ye4-pc-5zR"/>
                                     <outlet property="indexLabel" destination="raP-WN-k0K" id="ot7-ja-b4m"/>
                                     <outlet property="nameLabel" destination="ZF2-4C-Czg" id="lbD-RE-5Sm"/>
                                     <outlet property="sendRadialButton" destination="Ezf-gJ-8hY" id="Wa0-1j-C1I"/>
-                                    <outlet property="setActiveButton" destination="Rot-I4-8wm" id="APx-0h-Wk7"/>
+                                    <outlet property="setHiResActiveButton" destination="w4w-SR-e6h" id="mPG-lw-RRV"/>
+                                    <outlet property="setStdActiveButton" destination="nLw-xA-mnZ" id="WGZ-e0-pA0"/>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SendAllImagesCell" id="qT3-rx-KeZ" customClass="SendAllImagesCell" customModule="Griffy" customModuleProvider="target">

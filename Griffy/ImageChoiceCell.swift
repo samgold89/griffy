@@ -15,7 +15,11 @@ import CoreBluetooth
 class ImageChoiceCell: UICollectionViewCell {
   @IBOutlet weak var griffyImageView: UIImageView!
   @IBOutlet weak var sendRadialButton: UIButton!
-  @IBOutlet weak var setActiveButton: UIButton!
+  
+  @IBOutlet weak var buttonStackView: UIStackView!
+  @IBOutlet weak var setStdActiveButton: UIButton!
+  @IBOutlet weak var setHiResActiveButton: UIButton!
+  
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var indexLabel: UILabel!
   
@@ -35,17 +39,32 @@ class ImageChoiceCell: UICollectionViewCell {
       let gif = GriffyFileManager.gifDataAtGriffyPath(path: griffy.imageFilePath)
 //      let image = UIImage(contentsOfFile: griffy.imageFilePath)
       DispatchQueue.main.async {
-        if self.griffyImage?.index == griffy.index {
+        if self.griffyImage?.startingIndex == griffy.startingIndex {
           self.griffyImageView.image = gif
         }
       }
     }
+    
     nameLabel.text = "Something"
+    buttonStackView.arrangedSubviews.forEach({
+      buttonStackView.removeArrangedSubview($0)
+      $0.alpha = 0
+    })
+    
     if let nameWithExtension = griffy.imageFilePath.split(separator: "/").last {
       nameLabel.text = "\(nameWithExtension.split(separator: ".").first ?? "Something")"
     }
     
-    indexLabel.text = "Index = \(griffy.index)\(griffy.radialFilePaths.count > 1 ? " (\(griffy.radialFilePaths.count))" : "")"
+    if let stds = griffy.stdRadialFilePaths, stds.count > 0 {
+      buttonStackView.addArrangedSubview(setStdActiveButton)
+      setStdActiveButton.alpha = 1
+    }
+    if let hiRes = griffy.hiResRadialFilePaths, hiRes.count > 0 {
+      buttonStackView.addArrangedSubview(setHiResActiveButton)
+      setHiResActiveButton.alpha = 1
+    }
+    
+    indexLabel.text = "Index = \(griffy.startingIndex)\(griffy.stdRadialFilePaths?.count ?? 0 > 1 ? " (\(griffy.stdRadialFilePaths!.count))" : griffy.hiResRadialFilePaths?.count ?? 0 > 1 ? " (\(griffy.hiResRadialFilePaths!.count))" : "")"
   }
   
   @IBAction func sendRadialButtonPressed(_ sender: Any) {
@@ -55,7 +74,7 @@ class ImageChoiceCell: UICollectionViewCell {
     }
     totalDataToSend = BluetoothManager.shared.sendGriffyImageToDevice(griffy: g)
     if totalDataToSend > 0 {
-      showProgressIndicator(idx: g.index)
+      showProgressIndicator(idx: g.startingIndex)
     } else {
       let text = sendRadialButton.titleLabel?.text
       sendRadialButton.setTitle("Failed to send...", for: .normal)
@@ -91,20 +110,37 @@ class ImageChoiceCell: UICollectionViewCell {
     }
   }
   
-  @IBAction func setActiveButtonPressed(_ sender: Any) {
+  @IBAction func setStdActiveButtonPressed(_ sender: Any) {
     guard let g = griffyImage else {
       assertionFailure("Missing griffy image when setting active.")
       return
     }
-    setActiveButton.setLoaderVisible(visible: true, style: UIActivityIndicatorView.Style.gray)
+    setStdActiveButton.setLoaderVisible(visible: true, style: UIActivityIndicatorView.Style.gray)
     
-    BluetoothManager.shared.setImageActive(griffy: g) {
-      UserDefaults.standard.set(g.index, forKey: UserDefaultConstants.lastSelectedImageIndex)
-      UserDefaults.standard.set(g.index, forKey: UserDefaultConstants.lastSelectedImageIndex)
-      self.setActiveButton.setLoaderVisible(visible: false, style: nil)
+    BluetoothManager.shared.setImageActive(griffy: g, useHighRes: false) {
+      UserDefaults.standard.set(g.startingIndex, forKey: UserDefaultConstants.lastSelectedImageIndex)
+      UserDefaults.standard.set(g.startingIndex, forKey: UserDefaultConstants.lastSelectedImageIndex)
+      self.setStdActiveButton.setLoaderVisible(visible: false, style: nil)
       
       GFStateManager.shared.activeImage = self.griffyImageView.image
-      GFStateManager.shared.activeIndex = g.index
+      GFStateManager.shared.activeIndex = g.startingIndex
+    }
+  }
+  
+  @IBAction func setHighResActiveButtonPressed(_ sender: Any) {
+    guard let g = griffyImage else {
+      assertionFailure("Missing griffy image when setting active.")
+      return
+    }
+    setHiResActiveButton.setLoaderVisible(visible: true, style: UIActivityIndicatorView.Style.gray)
+    
+    BluetoothManager.shared.setImageActive(griffy: g, useHighRes: true) {
+      UserDefaults.standard.set(g.startingIndex, forKey: UserDefaultConstants.lastSelectedImageIndex)
+      UserDefaults.standard.set(g.startingIndex, forKey: UserDefaultConstants.lastSelectedImageIndex)
+      self.setHiResActiveButton.setLoaderVisible(visible: false, style: nil)
+      
+      GFStateManager.shared.activeImage = self.griffyImageView.image
+      GFStateManager.shared.activeIndex = g.startingIndex
     }
   }
   

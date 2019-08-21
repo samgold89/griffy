@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 class GriffyFileManager {
+  static let standardResolutionExtension = ".std"
+  static let highResolutionExtension = ".hr"
+  
   internal static func gifDataAtGriffyPath(path: String) -> UIImage? {
     let fileManager = FileManager.default
     if let data = fileManager.contents(atPath: path) {
@@ -85,31 +88,30 @@ class GriffyFileManager {
       }
     }
     
-    //xxx-000.radial, xxx-001.radial, xxx-002.radial
-    let radialFiles = fullFileNames.filter { (str) -> Bool in return str.hasSuffix("radial") }.sorted()
-    let imageFiles = fullFileNames.filter { (str) -> Bool in return str.hasImageSuffix() }.sorted()
-    let durationFiles = fullFileNames.filter { (str) -> Bool in return str.hasSuffix("duration") }.sorted()
+    let allHiResAndStandardRadialFiles = fullFileNames.filter { $0.hasSuffix("rad") }.sorted()
+    let imageFiles = fullFileNames.filter { $0.hasImageSuffix() }.sorted()
+    let durationFiles = fullFileNames.filter { $0.hasSuffix("dur") }.sorted()
     
     var idx = 0
     for image in imageFiles {
-      var radialArray = [String]()
-
-      for radial in radialFiles {
-//        let radSplit = "\(radial.split(separator: ".").first!)"
-//        if radSplit == image.split(separator: ".").first ?? "" {
-        if radial.contains(image.split(separator: ".").first ?? "") {
-          //'private' prefix vs. not ...
-          radialArray.append(destURL.appendingPathComponent(radial).path)
-        }
-      }
+      guard let imagePrefix = image.split(separator: ".").first else { continue }
+      let stdRadialArray = allHiResAndStandardRadialFiles
+                            .filter({ $0.contains(imagePrefix) && $0.contains(GriffyFileManager.standardResolutionExtension) })
+                            .compactMap({ destURL.appendingPathComponent($0).path })
+      
+      let hiResRadialArray = allHiResAndStandardRadialFiles
+                              .filter({ $0.contains(imagePrefix) && $0.contains(GriffyFileManager.highResolutionExtension) })
+                              .compactMap({ destURL.appendingPathComponent($0).path })
+      
       let imagePath = destURL.appendingPathComponent(image).path
       
-      let durationString = durationFiles.filter { (str) -> Bool in return str.contains(image.split(separator: ".").first ?? "")}.first?.split(separator: ".").first?.split(separator: "-").last ?? "0"
-      let duration = Int(durationString) ?? 0
+      var duration = 0
+      if let splitDurationString = durationFiles.filter({ $0.contains(imagePrefix) }).first?.split(separator: ".").map({ "\($0)" }) {
+        duration = Int(splitDurationString[splitDurationString.count - 2]) ?? duration
+      }
       
-      let isHighRes = false
-      images.append(GriffyImage(imageFilePath: imagePath, radialFilePaths: radialArray, index: idx, frameDuration: duration, isHighRes: isHighRes))
-      idx += radialArray.count
+      images.append(GriffyImage(imageFilePath: imagePath, stdRadialFilePaths: stdRadialArray.count > 0 ? stdRadialArray : nil, hiResRadialFilePaths: hiResRadialArray.count > 0 ? hiResRadialArray : nil, startingIndex: idx, frameDuration: duration))
+      idx += (stdRadialArray.count + hiResRadialArray.count)
     }
     
     return images

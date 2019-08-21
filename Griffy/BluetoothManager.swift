@@ -78,31 +78,41 @@ final class BluetoothManager: NSObject {
     }
   }
   
-  func setImageActive(griffy: GriffyImage, completion: @escaping ()->()) {
+  func setImageActive(griffy: GriffyImage, useHighRes: Bool, completion: @escaping ()->()) {
     guard let g = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.imageSelectId) else {
-      assertionFailure("Missing image active charactersitic.")
+//      assertionFailure("Missing image active charactersitic.")
       completion()
       return
     }
     
-    setMetaDataValues(griffyImage: griffy)
-    //TODO UInt8Changes
-//    writeValue(data: UInt8(griffy.index).data, toCharacteristic: g)
-    writeValue(data: UInt16(griffy.index).data, toCharacteristic: g)
+    assert((useHighRes && griffy.hiResRadialFilePaths != nil) || (!useHighRes && griffy.stdRadialFilePaths != nil), "Must have hi res images if hi res, and std images if standard")
+    
+    setMetaDataValues(griffyImage: griffy, useHighRes: useHighRes)
+    
+    var index = griffy.startingIndex
+    if let stds = griffy.stdRadialFilePaths, useHighRes {
+      index += stds.count
+    }
+    writeValue(data: UInt16(index).data, toCharacteristic: g)
     delay(1) {
       completion()
     }
   }
   
-  func setMetaDataValues(griffyImage: GriffyImage) {
-    if let animation = GFCharacteristic.animation, let frameCount = GFCharacteristic.frameCount, let frameDuration = GFCharacteristic.frameDuration {
-      writeValue(data: UInt8(griffyImage.radialFilePaths.count == 1 ? 0 : 1).data, toCharacteristic: animation)
-      writeValue(data: UInt8(griffyImage.radialFilePaths.count).data, toCharacteristic: frameCount)
+  func setMetaDataValues(griffyImage: GriffyImage, useHighRes: Bool) {
+    if let animation = GFCharacteristic.animation, let frameCountChar = GFCharacteristic.frameCount, let frameDuration = GFCharacteristic.frameDuration {
+      
+      let isAnimation = griffyImage.stdRadialFilePaths?.count ?? 0 > 1 || griffyImage.hiResRadialFilePaths?.count ?? 0 > 1
+      writeValue(data: UInt8(isAnimation ? 0 : 1).data, toCharacteristic: animation)
+      
+      let imgFrameCount = useHighRes ? griffyImage.hiResRadialFilePaths?.count ?? 1 : griffyImage.stdRadialFilePaths?.count ?? 1
+      writeValue(data: UInt8(imgFrameCount).data, toCharacteristic: frameCountChar)
+      
       writeValue(data: UInt16(griffyImage.frameDuration).data, toCharacteristic: frameDuration)
     }
     
     if let highRes = GFCharacteristic.isHighRes {
-      writeValue(data: UInt8(griffyImage.isHighRes ? 1 : 0).data, toCharacteristic: highRes)
+      writeValue(data: UInt8(useHighRes ? 1 : 0).data, toCharacteristic: highRes)
     }
   }
   
@@ -118,25 +128,29 @@ final class BluetoothManager: NSObject {
     var idx = 0
     var dataSize = 0
     
-    setMetaDataValues(griffyImage: griffy)
+//    setMetaDataValues(griffyImage: griffy)
+
+    assertionFailure("PUt this bac kin")
+    if let stds = griffy.stdRadialFilePaths {
+      for radial in stds {
+        dataSize += sendImageToDevice(radialFilePath: radial, index: griffy.startingIndex+idx)
+        idx += 1
+      }
+    }
     
-    for radial in griffy.radialFilePaths {
-      let delay = CGFloat(idx * 4)
-      dataSize += sendImageToDevice(radialFilePath: radial, index: griffy.index+idx, withDelay: delay)
-      idx += 1
+    if let hiRes = griffy.hiResRadialFilePaths {
+      for radial in hiRes {
+        dataSize += sendImageToDevice(radialFilePath: radial, index: griffy.startingIndex+idx)
+        idx += 1
+      }
     }
     
     return dataSize
   }
   
-  private func sendImageToDevice(radialFilePath: String, index: Int, withDelay: CGFloat) -> Int {
+  private func sendImageToDevice(radialFilePath: String, index: Int) -> Int {
     let dataSize = FileManager.default.contents(atPath: radialFilePath)?.count ?? 0
     
-    let _ = self.sendImageToDevice(radialFilePath: radialFilePath, index: index)
-    return dataSize
-  }
-  
-  private func sendImageToDevice(radialFilePath: String, index: Int) -> Int {
     guard let data = FileManager.default.contents(atPath: radialFilePath) else {
       assertionFailure("Not radial data at path: \(radialFilePath)")
       return 0
@@ -151,41 +165,25 @@ final class BluetoothManager: NSObject {
     
     var idx = 0
     var offsetCounter = 0
+
+    NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Sending Image Parts", color: UIColor.gfGreen), userInfo: nil)
+    self.statusUpdatedClosure = nil
     
-//    let maxDelay = 5.0 //seconds
-//    guard let statusGFChar = GFCharacteristic.status, let statusChar = cbCharacteristicsById[statusGFChar.uuid] else {
-//      return 0
-//    }
-    
-//    statusUpdatedClosure = {
-//      if Int(self.cbCharacteristicsById[statusGFChar.uuid]?.griffyDisplayValue() ?? "-1") != 0 {
-//        self.delay(0.1, closure: {
-//          self.griffyPeripheral?.readValue(for: statusChar)
-//        })
-//        return
-//      }
-    
-      NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Sending Image Parts", color: UIColor.gfGreen), userInfo: nil)
-      self.statusUpdatedClosure = nil
-      
-      for el in imageDataArray {
-        if let data = el.first {
-          var prependedData = self.getOffsetData(imageId: index, offset: offsetCounter)
-          prependedData.append(data)
-          self.sendingImageData.append(data.count)
-          self.writeValue(data: prependedData, toCharacteristic: char)
-          
-          idx += 1
-          offsetCounter += data.count
-        } else {
-          assertionFailure("Didn't find data in the first element...")
-        }
+    for el in imageDataArray {
+      if let data = el.first {
+        var prependedData = self.getOffsetData(imageId: index, offset: offsetCounter)
+        prependedData.append(data)
+        self.sendingImageData.append(data.count)
+        self.writeValue(data: prependedData, toCharacteristic: char)
+        
+        idx += 1
+        offsetCounter += data.count
+      } else {
+        assertionFailure("Didn't find data in the first element...")
       }
-//    }
+    }
     
-//    griffyPeripheral?.readValue(for: statusChar)
-//    NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Delaying image send...", color: UIColor.gfRed), userInfo: nil)
-    return data.count
+    return dataSize
   }
   
   func getOffsetData(imageId: Int, offset: Int) -> Data {

@@ -56,6 +56,7 @@ struct CharacteristicIds {
   static let animationId = "57CBF2A3-5BFF-4DAB-8A35-940B3D63BDC0"
   static let frameCountId = "823B1226-EBD0-4B78-BE04-19DD5234F7C8"
   static let frameDurationId = "AD8A2930-F094-454C-99E8-618DF45D256C"
+  static let isHighResolutionId = "7F88536D-2F3C-4EC3-B47E-AF162D19F89A"
   
   static let dumTest1 = "9A681C49-919E-488E-9987-E821E91612B4"
   static let dumTest2 = "668BAA75-3E1C-4E75-8926-9F8A5E7C438C"
@@ -66,6 +67,7 @@ struct CharacteristicIds {
   static let dumTest7 = "4A0AB681-855E-4F7A-A6EB-45E9354B33E3"
   static let dumTest8 = "ADB9655E-73F9-4F06-BB83-52098030E2D1"
   static let dumTest9 = "D7F2298C-C357-4E9F-8546-3F9F3EC3941D"
+  
   //These tests are UInt 16
   static let dumTest10 = "1793715A-8823-4F89-809A-DFC801836EB0"
   static let dumTest11 = "7E31DDFB-2057-4F1D-A8C3-BA69E9C761BC"
@@ -81,7 +83,7 @@ struct CharacteristicIds {
 let uiint16Ids = [CharacteristicIds.alu1Id,CharacteristicIds.alu2Id,CharacteristicIds.wheelSpeedId,CharacteristicIds.connectTimeoutId, CharacteristicIds.frameDurationId, CharacteristicIds.dumTest10, CharacteristicIds.dumTest11, CharacteristicIds.dumTest12, CharacteristicIds.dumTest13, CharacteristicIds.dumTest14, CharacteristicIds.dumTest15, CharacteristicIds.dumTest16, CharacteristicIds.dumTest17, CharacteristicIds.imageSelectId, CharacteristicIds.imageEraseId] //TODO UInt8Changes
 let uiint16ArrayIds = [CharacteristicIds.temperatureId, CharacteristicIds.instantCurrentId, CharacteristicIds.averageCurrentId, CharacteristicIds.voltageId, CharacteristicIds.secondsRemainingId, CharacteristicIds.percentageChargeId, CharacteristicIds.mahRemainingId]
 let uiint32Ids = [CharacteristicIds.hardwareVersionId, CharacteristicIds.firmwareVersionId]
-let uiint8ids = [CharacteristicIds.isReversedId, CharacteristicIds.imu1Id, CharacteristicIds.imu2Id, CharacteristicIds.statusId, CharacteristicIds.testId, CharacteristicIds.animationId, CharacteristicIds.frameCountId, CharacteristicIds.dumTest1, CharacteristicIds.dumTest2, CharacteristicIds.dumTest3, CharacteristicIds.dumTest4, CharacteristicIds.dumTest5, CharacteristicIds.dumTest6, CharacteristicIds.dumTest7, CharacteristicIds.dumTest8,CharacteristicIds.dumTest9, CharacteristicIds.lastFramePlayCount]//, CharacteristicIds.imageSelectId, CharacteristicIds.imageEraseId] //TODO UInt8Changes
+let uiint8ids = [CharacteristicIds.isReversedId, CharacteristicIds.imu1Id, CharacteristicIds.imu2Id, CharacteristicIds.statusId, CharacteristicIds.testId, CharacteristicIds.animationId, CharacteristicIds.frameCountId, CharacteristicIds.dumTest1, CharacteristicIds.dumTest2, CharacteristicIds.dumTest3, CharacteristicIds.dumTest4, CharacteristicIds.dumTest5, CharacteristicIds.dumTest6, CharacteristicIds.dumTest7, CharacteristicIds.dumTest8,CharacteristicIds.dumTest9, CharacteristicIds.lastFramePlayCount, CharacteristicIds.isHighResolutionId]//, CharacteristicIds.imageSelectId, CharacteristicIds.imageEraseId] //TODO UInt8Changes
 let uiint8ArrayIds = [CharacteristicIds.imageLoadId, CharacteristicIds.speedThresholdId, CharacteristicIds.brightnessId]
 let serialId = [CharacteristicIds.serialNumberId]
 
@@ -120,7 +122,8 @@ public let ReadableCharacterIds: [String] = [CharacteristicIds.serialNumberId,
                                              CharacteristicIds.dumTest15,
                                              CharacteristicIds.dumTest16,
                                              CharacteristicIds.dumTest17,
-                                             CharacteristicIds.lastFramePlayCount
+                                             CharacteristicIds.lastFramePlayCount,
+                                             CharacteristicIds.isHighResolutionId
 ]
 
 public let characteristicNameById: [String: String] = [ServiceIds.deviceId:"device",
@@ -172,5 +175,6 @@ public let characteristicNameById: [String: String] = [ServiceIds.deviceId:"devi
                                  CharacteristicIds.dumTest15: "Test16f",
                                  CharacteristicIds.dumTest16: "Test16g",
                                  CharacteristicIds.dumTest17: "Test16h",
-                                 CharacteristicIds.lastFramePlayCount: "Last Frame Play Count"
+                                 CharacteristicIds.lastFramePlayCount: "Last Frame Play Count",
+                                 CharacteristicIds.isHighResolutionId: "High Resolution"
 ]

@@ -57,6 +57,12 @@ class GFCharacteristic: GFObject {
   @objc dynamic var uuid = ""
   @objc dynamic var value: Data? = nil
   
+  public static var isHighRes: GFCharacteristic? {
+    get {
+      return GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.isHighResolutionId)
+    }
+  }
+  
   public static var animation: GFCharacteristic? {
     get {
       return GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.animationId)

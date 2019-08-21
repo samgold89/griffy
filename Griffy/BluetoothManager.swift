@@ -85,7 +85,7 @@ final class BluetoothManager: NSObject {
       return
     }
     
-    setAnimationValues(griffyImage: griffy)
+    setMetaDataValues(griffyImage: griffy)
     //TODO UInt8Changes
 //    writeValue(data: UInt8(griffy.index).data, toCharacteristic: g)
     writeValue(data: UInt16(griffy.index).data, toCharacteristic: g)
@@ -94,11 +94,15 @@ final class BluetoothManager: NSObject {
     }
   }
   
-  func setAnimationValues(griffyImage: GriffyImage) {
+  func setMetaDataValues(griffyImage: GriffyImage) {
     if let animation = GFCharacteristic.animation, let frameCount = GFCharacteristic.frameCount, let frameDuration = GFCharacteristic.frameDuration {
       writeValue(data: UInt8(griffyImage.radialFilePaths.count == 1 ? 0 : 1).data, toCharacteristic: animation)
       writeValue(data: UInt8(griffyImage.radialFilePaths.count).data, toCharacteristic: frameCount)
       writeValue(data: UInt16(griffyImage.frameDuration).data, toCharacteristic: frameDuration)
+    }
+    
+    if let highRes = GFCharacteristic.isHighRes {
+      writeValue(data: UInt8(griffyImage.isHighRes ? 1 : 0).data, toCharacteristic: highRes)
     }
   }
   
@@ -114,7 +118,7 @@ final class BluetoothManager: NSObject {
     var idx = 0
     var dataSize = 0
     
-    setAnimationValues(griffyImage: griffy)
+    setMetaDataValues(griffyImage: griffy)
     
     for radial in griffy.radialFilePaths {
       let delay = CGFloat(idx * 4)

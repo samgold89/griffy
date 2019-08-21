@@ -107,7 +107,8 @@ class GriffyFileManager {
       let durationString = durationFiles.filter { (str) -> Bool in return str.contains(image.split(separator: ".").first ?? "")}.first?.split(separator: ".").first?.split(separator: "-").last ?? "0"
       let duration = Int(durationString) ?? 0
       
-      images.append(GriffyImage(imageFilePath: imagePath, radialFilePaths: radialArray, index: idx, frameDuration: duration))
+      let isHighRes = false
+      images.append(GriffyImage(imageFilePath: imagePath, radialFilePaths: radialArray, index: idx, frameDuration: duration, isHighRes: isHighRes))
       idx += radialArray.count
     }
     

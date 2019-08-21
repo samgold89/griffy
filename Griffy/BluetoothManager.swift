@@ -59,7 +59,7 @@ final class BluetoothManager: NSObject {
   }
   
   func startUpdateTimer() {
-    Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { (timer) in
+    Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { (timer) in
       self.updateAllObservedValues()
     }
     updateAllObservedValues()

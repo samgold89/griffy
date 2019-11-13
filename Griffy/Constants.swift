@@ -46,17 +46,13 @@ struct CharacteristicIds {
   static let testId = "68E78595-01E2-4F79-9BF3-552D0B63CC95"
   static let speedThresholdId = "77ADBD1E-D5B8-4392-9370-D0D8E1290682"
   static let brightnessId = "29B73168-FE26-47B9-9811-6D90C4A45A2D"
-  static let temperatureId = "2BBF1805-F7A3-4694-8D48-F12F88E7CE81"
-  static let instantCurrentId = "C10B005E-94A3-4A9F-9693-2422B9A28DF8"
-  static let averageCurrentId = "E0AE6145-CA28-4FC1-AB08-100531027980"
   static let voltageId = "15623E29-D7A2-4ABA-99B6-0A672329C33B"
-  static let secondsRemainingId = "21E54027-36E5-4528-ABF1-2C02539DFEC0"
-  static let percentageChargeId = "A3584E8C-68F5-4FB9-801C-671A634333A1"
-  static let mahRemainingId = "5A241FE8-26B3-4504-A0E7-E6ECCCFD2892"
   static let animationId = "57CBF2A3-5BFF-4DAB-8A35-940B3D63BDC0"
   static let frameCountId = "823B1226-EBD0-4B78-BE04-19DD5234F7C8"
   static let frameDurationId = "AD8A2930-F094-454C-99E8-618DF45D256C"
   static let isHighResolutionId = "7F88536D-2F3C-4EC3-B47E-AF162D19F89A"
+  static let evBattery = "B1F9E355-87FF-4FBE-9F62-A7C2E7A249F0"
+  static let evVoltage = "CFBDDB18-ECCB-4F26-9A0D-53D01B4366E5"
   
   static let dumTest1 = "9A681C49-919E-488E-9987-E821E91612B4"
   static let dumTest2 = "668BAA75-3E1C-4E75-8926-9F8A5E7C438C"
@@ -80,10 +76,10 @@ struct CharacteristicIds {
   static let lastFramePlayCount = "88109ADB-EDFD-49DD-AA9A-7032ECC4EBD2"
 }
 
-let uiint16Ids = [CharacteristicIds.alu1Id,CharacteristicIds.alu2Id,CharacteristicIds.wheelSpeedId,CharacteristicIds.connectTimeoutId, CharacteristicIds.frameDurationId, CharacteristicIds.dumTest10, CharacteristicIds.dumTest11, CharacteristicIds.dumTest12, CharacteristicIds.dumTest13, CharacteristicIds.dumTest14, CharacteristicIds.dumTest15, CharacteristicIds.dumTest16, CharacteristicIds.dumTest17, CharacteristicIds.imageSelectId, CharacteristicIds.imageEraseId] //TODO UInt8Changes
-let uiint16ArrayIds = [CharacteristicIds.temperatureId, CharacteristicIds.instantCurrentId, CharacteristicIds.averageCurrentId, CharacteristicIds.voltageId, CharacteristicIds.secondsRemainingId, CharacteristicIds.percentageChargeId, CharacteristicIds.mahRemainingId]
+let uiint16Ids = [CharacteristicIds.alu1Id,CharacteristicIds.alu2Id,CharacteristicIds.wheelSpeedId,CharacteristicIds.connectTimeoutId, CharacteristicIds.frameDurationId, CharacteristicIds.dumTest10, CharacteristicIds.dumTest11, CharacteristicIds.dumTest12, CharacteristicIds.dumTest13, CharacteristicIds.dumTest14, CharacteristicIds.dumTest15, CharacteristicIds.dumTest16, CharacteristicIds.dumTest17, CharacteristicIds.imageSelectId, CharacteristicIds.imageEraseId, CharacteristicIds.evVoltage] //TODO UInt8Changes
+let uiint16ArrayIds = [CharacteristicIds.voltageId]
 let uiint32Ids = [CharacteristicIds.hardwareVersionId, CharacteristicIds.firmwareVersionId]
-let uiint8ids = [CharacteristicIds.isReversedId, CharacteristicIds.imu1Id, CharacteristicIds.imu2Id, CharacteristicIds.statusId, CharacteristicIds.testId, CharacteristicIds.animationId, CharacteristicIds.frameCountId, CharacteristicIds.dumTest1, CharacteristicIds.dumTest2, CharacteristicIds.dumTest3, CharacteristicIds.dumTest4, CharacteristicIds.dumTest5, CharacteristicIds.dumTest6, CharacteristicIds.dumTest7, CharacteristicIds.dumTest8,CharacteristicIds.dumTest9, CharacteristicIds.lastFramePlayCount, CharacteristicIds.isHighResolutionId]//, CharacteristicIds.imageSelectId, CharacteristicIds.imageEraseId] //TODO UInt8Changes
+let uiint8ids = [CharacteristicIds.isReversedId, CharacteristicIds.imu1Id, CharacteristicIds.imu2Id, CharacteristicIds.statusId, CharacteristicIds.testId, CharacteristicIds.animationId, CharacteristicIds.frameCountId, CharacteristicIds.dumTest1, CharacteristicIds.dumTest2, CharacteristicIds.dumTest3, CharacteristicIds.dumTest4, CharacteristicIds.dumTest5, CharacteristicIds.dumTest6, CharacteristicIds.dumTest7, CharacteristicIds.dumTest8,CharacteristicIds.dumTest9, CharacteristicIds.lastFramePlayCount, CharacteristicIds.isHighResolutionId, CharacteristicIds.evBattery]//, CharacteristicIds.imageSelectId, CharacteristicIds.imageEraseId] //TODO UInt8Changes
 let uiint8ArrayIds = [CharacteristicIds.imageLoadId, CharacteristicIds.speedThresholdId, CharacteristicIds.brightnessId]
 let serialId = [CharacteristicIds.serialNumberId]
 
@@ -96,16 +92,12 @@ public let ReadableCharacterIds: [String] = [CharacteristicIds.serialNumberId,
                                              CharacteristicIds.connectTimeoutId,
                                              CharacteristicIds.speedThresholdId,
                                              CharacteristicIds.brightnessId,
-                                             CharacteristicIds.temperatureId,
-                                             CharacteristicIds.instantCurrentId,
-                                             CharacteristicIds.averageCurrentId,
                                              CharacteristicIds.voltageId,
-                                             CharacteristicIds.secondsRemainingId,
-                                             CharacteristicIds.percentageChargeId,
-                                             CharacteristicIds.mahRemainingId,
                                              CharacteristicIds.animationId,
                                              CharacteristicIds.frameCountId,
                                              CharacteristicIds.frameDurationId,
+                                             CharacteristicIds.evBattery,
+                                             CharacteristicIds.evVoltage,
                                              CharacteristicIds.dumTest2,
                                              CharacteristicIds.dumTest3,
                                              CharacteristicIds.dumTest4,
@@ -147,17 +139,12 @@ public let characteristicNameById: [String: String] = [ServiceIds.deviceId:"devi
                                  CharacteristicIds.testId:"test",
                                  CharacteristicIds.speedThresholdId:"Threshold",
                                  CharacteristicIds.brightnessId:"brightness",
-                                 ServiceIds.batteryId:"battery",
-                                 CharacteristicIds.temperatureId:"Temperature (C)",
-                                 CharacteristicIds.instantCurrentId:"Instant current (A)",
-                                 CharacteristicIds.averageCurrentId:"Average current (A)",
                                  CharacteristicIds.voltageId:"Voltage (V)",
-                                 CharacteristicIds.secondsRemainingId:"Time remaining",
-                                 CharacteristicIds.percentageChargeId:"Battery %",
-                                 CharacteristicIds.mahRemainingId:"mah Remaining",
                                  CharacteristicIds.animationId: "Is Animated",
                                  CharacteristicIds.frameCountId: "Frame Count",
                                  CharacteristicIds.frameDurationId: "Frame Duration",
+                                 CharacteristicIds.evVoltage: "EV Voltage",
+                                 CharacteristicIds.evBattery: "EV Battery",
                                  CharacteristicIds.dumTest1: "Test 1",
                                  CharacteristicIds.dumTest2: "Test 2",
                                  CharacteristicIds.dumTest3: "Test 3",

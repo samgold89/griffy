@@ -64,7 +64,8 @@ class ImageChoiceCell: UICollectionViewCell {
       setHiResActiveButton.alpha = 1
     }
     
-    indexLabel.text = "Index = \(griffy.startingIndex)\(griffy.stdRadialFilePaths?.count ?? 0 > 1 ? " (\(griffy.stdRadialFilePaths!.count))" : griffy.hiResRadialFilePaths?.count ?? 0 > 1 ? " (\(griffy.hiResRadialFilePaths!.count))" : "")"
+    indexLabel.text = "#\(griffy.startingIndex)\(griffy.stdRadialFilePaths?.count ?? 0 > 1 ? " (\(griffy.stdRadialFilePaths!.count))" : "")"
+
   }
   
   @IBAction func sendRadialButtonPressed(_ sender: Any) {

@@ -85,7 +85,7 @@ final class BluetoothManager: NSObject {
       return
     }
     
-    assert((useHighRes && griffy.hiResRadialFilePaths != nil) || (!useHighRes && griffy.stdRadialFilePaths != nil), "Must have hi res images if hi res, and std images if standard")
+    assert(((useHighRes && griffy.hiResRadialFilePaths != nil) || (!useHighRes && griffy.stdRadialFilePaths != nil)), "Must have hi res images if hi res, and std images if standard")
     
     setMetaDataValues(griffyImage: griffy, useHighRes: useHighRes)
     
@@ -130,7 +130,6 @@ final class BluetoothManager: NSObject {
     
 //    setMetaDataValues(griffyImage: griffy)
 
-    assertionFailure("PUt this bac kin")
     if let stds = griffy.stdRadialFilePaths {
       for radial in stds {
         dataSize += sendImageToDevice(radialFilePath: radial, index: griffy.startingIndex+idx)
@@ -299,12 +298,15 @@ extension BluetoothManager: CBCentralManagerDelegate {
   
   func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
     NotificationCenter.default.post(name: .bluetoothStateChanged, object: GFBluetoothState(message: "Connected to Griffy!", color: UIColor.gfGreen))
-    peripheral.discoverServices([ServiceIds.deviceId.cbuuid(), ServiceIds.statusId.cbuuid(), ServiceIds.settingsId.cbuuid(), ServiceIds.displayId.cbuuid(), ServiceIds.batteryId.cbuuid()])
+    peripheral.discoverServices([ServiceIds.deviceId.cbuuid(), ServiceIds.statusId.cbuuid(), ServiceIds.settingsId.cbuuid(), ServiceIds.displayId.cbuuid()])
     peripheral.delegate = self
   }
   
   func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
     NotificationCenter.default.post(name: .bluetoothStateChanged, object: GFBluetoothState(message: "Disconnected from Griffy 🤦‍♀️. Tap to scan again. Error: \(error?.localizedDescription ?? "~ no error description ~")", color: UIColor.gfRed))
+    if peripheral == griffyPeripheral {
+      griffyPeripheral = nil
+    }
   }
   
   func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {

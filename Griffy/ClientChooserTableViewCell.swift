@@ -55,14 +55,14 @@ class ClientChooserTableViewCell: UITableViewCell {
           if let path = res.pathLower {
             self.assetPaths.append(path)
           }
-          if res.name.lowercased().hasSuffix("radial") {
+          if res.name.lowercased().hasSuffix("rad") {
             radialCount += 1
           } else if res.name.hasImageSuffix() {
             imageCount += 1
           }
         }
       }
-      self.fileCountLabel.text = "\(radialCount) radial files | \(imageCount) image files"
+      self.fileCountLabel.text = "\(imageCount) images (\(radialCount)) rads"
       self.downloadButton.isEnabled = true
     })
   }

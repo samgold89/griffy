@@ -101,9 +101,9 @@ extension Data {
         let chunk1 = Data(bytes: [self[idx],self[idx+1]], count: 2)
         let intValue = Int(chunk1.uint16)
         
-        if [CharacteristicIds.temperatureId, CharacteristicIds.instantCurrentId, CharacteristicIds.averageCurrentId, CharacteristicIds.voltageId].contains(characteristicId) {
+        if [CharacteristicIds.voltageId, CharacteristicIds.evVoltage].contains(characteristicId) {
           array.append(String(format: "%0.1f", Float(intValue)/1000.0))
-        } else if [CharacteristicIds.secondsRemainingId].contains(characteristicId) {
+        } else if [].contains(characteristicId) {
           array.append(intValue.toTimeString())
         } else {
           array.append("\(intValue)")

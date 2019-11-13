@@ -15,7 +15,7 @@ class AdminMainTableViewController: BaseTableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    observedIds = [CharacteristicIds.imageSelectId,CharacteristicIds.animationId,CharacteristicIds.frameCountId,CharacteristicIds.frameDurationId, CharacteristicIds.wheelSpeedId, CharacteristicIds.percentageChargeId]
+    observedIds = [CharacteristicIds.imageSelectId, CharacteristicIds.animationId, CharacteristicIds.frameCountId, CharacteristicIds.frameDurationId, CharacteristicIds.wheelSpeedId]
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

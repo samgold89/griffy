@@ -102,9 +102,10 @@ final class BluetoothManager: NSObject {
   func setMetaDataValues(griffyImage: GriffyImage, useHighRes: Bool) {
     if let animation = GFCharacteristic.animation, let frameCountChar = GFCharacteristic.frameCount, let frameDuration = GFCharacteristic.frameDuration {
       
-      let isAnimation = griffyImage.stdRadialFilePaths?.count ?? 0 > 1 || griffyImage.hiResRadialFilePaths?.count ?? 0 > 1
-      writeValue(data: UInt8(isAnimation ? 0 : 1).data, toCharacteristic: animation)
+      let isAnimation = griffyImage.frameCount > 1
+      writeValue(data: UInt8(isAnimation ? 1 : 0).data, toCharacteristic: animation)
       
+      writeValue(data: UInt8(griffyImage.frameCount).data, toCharacteristic: frameCountChar)
       
       writeValue(data: UInt16(griffyImage.frameDuration).data, toCharacteristic: frameDuration)
     }
@@ -329,7 +330,7 @@ extension BluetoothManager: CBPeripheralDelegate {
     
     for characteristic in characteristics {
       print("Discovered: \(characteristicNameById[characteristic.uuid.uuidString] ?? "nil-zip-nada")")
-      printCharacteristicValue(characteristic)
+//      printCharacteristicValue(characteristic)
       let _ = GFCharacteristic.parse(GFCharacteristic.self, characteristic: characteristic)
       cbCharacteristicsById[characteristic.uuid.uuidString] = characteristic
       

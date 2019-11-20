@@ -105,8 +105,6 @@ final class BluetoothManager: NSObject {
       let isAnimation = griffyImage.stdRadialFilePaths?.count ?? 0 > 1 || griffyImage.hiResRadialFilePaths?.count ?? 0 > 1
       writeValue(data: UInt8(isAnimation ? 0 : 1).data, toCharacteristic: animation)
       
-      let imgFrameCount = useHighRes ? griffyImage.hiResRadialFilePaths?.count ?? 1 : griffyImage.stdRadialFilePaths?.count ?? 1
-      writeValue(data: UInt8(imgFrameCount).data, toCharacteristic: frameCountChar)
       
       writeValue(data: UInt16(griffyImage.frameDuration).data, toCharacteristic: frameDuration)
     }

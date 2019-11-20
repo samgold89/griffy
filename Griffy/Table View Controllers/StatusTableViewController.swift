@@ -15,7 +15,7 @@ class StatusTableViewController: BaseTableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    observedIds = [CharacteristicIds.firmwareVersionId, CharacteristicIds.serialNumberId, CharacteristicIds.voltageId, CharacteristicIds.evBattery, CharacteristicIds.evVoltage, CharacteristicIds.alu1Id, CharacteristicIds.alu2Id]
+    observedIds = [CharacteristicIds.firmwareVersionId, CharacteristicIds.serialNumberId, CharacteristicIds.evBattery, CharacteristicIds.evVoltage, CharacteristicIds.voltageId, CharacteristicIds.alu1Id, CharacteristicIds.alu2Id]
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

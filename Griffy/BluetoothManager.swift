@@ -272,7 +272,6 @@ extension BluetoothManager: CBCentralManagerDelegate {
     case .poweredOn:
       NotificationCenter.default.post(name: .bluetoothStateChanged, object: GFBluetoothState(message: "Looking for Griffy...", color: UIColor.gfYellow))
       
-//      centralManager.scanForPeripherals(withServices: [ServiceIds.batteryId.cbuuid(), ServiceIds.deviceId.cbuuid(), ServiceIds.displayId.cbuuid(), ServiceIds.settingsId.cbuuid(), ServiceIds.statusId.cbuuid()], options: nil)
       centralManager.scanForPeripherals(withServices: nil, options: nil)
 //      let periphs = centralManager.retrievePeripherals(withIdentifiers: [UUID(uuidString: PeripheralIds.griffy) ?? UUID()])
 //      if periphs.count != 1 {
@@ -297,7 +296,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
   
   func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
     NotificationCenter.default.post(name: .bluetoothStateChanged, object: GFBluetoothState(message: "Connected to Griffy!", color: UIColor.gfGreen))
-    peripheral.discoverServices([ServiceIds.deviceId.cbuuid(), ServiceIds.statusId.cbuuid(), ServiceIds.settingsId.cbuuid(), ServiceIds.displayId.cbuuid(), ServiceIds.batteryId.cbuuid()])
+    peripheral.discoverServices(ServiceIds.allIds)
     peripheral.delegate = self
   }
   

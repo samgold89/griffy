@@ -11,6 +11,8 @@ struct PeripheralIds {
 }
 
 struct ServiceIds {
+  static let allIds = [ServiceIds.deviceId.cbuuid(), ServiceIds.statusId.cbuuid(), ServiceIds.settingsId.cbuuid(), ServiceIds.displayId.cbuuid(), ServiceIds.batteryId.cbuuid()]
+  
   static let deviceId = "CD205203-029F-459B-B015-D93A554C035C"
   static let statusId = "53079CA5-1E15-4405-8DC3-052B3B4EC2E5"
   static let settingsId = "3BBB8E76-5E5D-42AF-A7A0-858AC051B069"

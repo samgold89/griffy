@@ -51,6 +51,8 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>We use bluetooth to connect to your wheel!</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>

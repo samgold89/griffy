@@ -136,7 +136,6 @@ class ImageChoiceCell: UICollectionViewCell {
     
     BluetoothManager.shared.setImageActive(griffy: g, useHighRes: true) {
       UserDefaults.standard.set(g.startingIndex, forKey: UserDefaultConstants.lastSelectedImageIndex)
-      UserDefaults.standard.set(g.startingIndex, forKey: UserDefaultConstants.lastSelectedImageIndex)
       self.setHiResActiveButton.setLoaderVisible(visible: false, style: nil)
       
       GFStateManager.shared.activeImage = self.griffyImageView.image

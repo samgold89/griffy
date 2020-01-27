@@ -59,7 +59,7 @@ final class BluetoothManager: NSObject {
   }
   
   func startUpdateTimer() {
-    Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { (timer) in
+    Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { (timer) in
       self.updateAllObservedValues()
     }
     updateAllObservedValues()
@@ -95,6 +95,7 @@ final class BluetoothManager: NSObject {
     }
     writeValue(data: UInt16(index).data, toCharacteristic: g)
     delay(1) {
+      GriffyImageState(griffyImage: griffy, setHighRes: useHighRes).saveInfo()
       completion()
     }
   }
@@ -193,8 +194,6 @@ final class BluetoothManager: NSObject {
     let byteOne = (remainder - byteZero)/256
     let byteTwo = (offset - remainder)/65536
     
-//    let data = Data(bytes: [UInt8(imageId), UInt8(byteZero), UInt8(byteOne), UInt8(byteTwo)])
-    //TODO UInt8Changes
     let data = Data(bytes: [UInt8(imageIdByteZero), UInt8(imageIdByteOne), UInt8(byteZero), UInt8(byteOne), UInt8(byteTwo), UInt8(0)])
     
     return data

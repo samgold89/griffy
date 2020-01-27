@@ -61,14 +61,11 @@ class MainControlViewController: UIViewController {
       return
     }
     
-    let lastStored = UserDefaults.standard.integer(forKey: UserDefaultConstants.lastSelectedImageIndex) 
     if onOffSwitch.isOn {
-//      BluetoothManager.shared.writeValue(data: UInt8(lastStored).data, toCharacteristic: imageCharactersitic)
-      //TODO UInt8Changes
-      BluetoothManager.shared.writeValue(data: UInt16(lastStored).data, toCharacteristic: imageCharactersitic)
+      if let lastStored = GriffyImageState.lastSetImage {
+        BluetoothManager.shared.setImageActive(griffy: lastStored.griffyImage, useHighRes: lastStored.setHighRes) { }
+      }
     } else {
-//      BluetoothManager.shared.writeValue(data: UInt8(255).data, toCharacteristic: imageCharactersitic)
-      //TODO UInt8Changes
       BluetoothManager.shared.writeValue(data: UInt16(65535).data, toCharacteristic: imageCharactersitic)
     }
   }

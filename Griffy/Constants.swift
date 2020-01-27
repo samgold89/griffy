@@ -28,6 +28,7 @@ struct UserDefaultConstants {
   static let activeIndex = "activeIndex"
   static let lastLeftBrightness = "lastLeftBrightness"
   static let lastRightBrightness = "lastRightBrightness"
+  static let lastGriffyImage = "lastGriffyImage"
 }
 
 struct CharacteristicIds {
@@ -55,6 +56,7 @@ struct CharacteristicIds {
   static let isHighResolutionId = "7F88536D-2F3C-4EC3-B47E-AF162D19F89A"
   static let evBattery = "B1F9E355-87FF-4FBE-9F62-A7C2E7A249F0"
   static let evVoltage = "CFBDDB18-ECCB-4F26-9A0D-53D01B4366E5"
+  static let orientation = "D6782FCF-9D36-42C4-B533-854337C12BEB"
   
   static let dumTest1 = "9A681C49-919E-488E-9987-E821E91612B4"
   static let dumTest2 = "668BAA75-3E1C-4E75-8926-9F8A5E7C438C"
@@ -65,6 +67,7 @@ struct CharacteristicIds {
   static let dumTest7 = "4A0AB681-855E-4F7A-A6EB-45E9354B33E3"
   static let dumTest8 = "ADB9655E-73F9-4F06-BB83-52098030E2D1"
   static let dumTest9 = "D7F2298C-C357-4E9F-8546-3F9F3EC3941D"
+  static let dumTest10int8 = "90E45C3E-54B1-4087-9D40-59D2259315B2"
   
   //These tests are UInt 16
   static let dumTest10 = "1793715A-8823-4F89-809A-DFC801836EB0"
@@ -78,10 +81,10 @@ struct CharacteristicIds {
   static let lastFramePlayCount = "88109ADB-EDFD-49DD-AA9A-7032ECC4EBD2"
 }
 
-let uiint16Ids = [CharacteristicIds.alu1Id,CharacteristicIds.alu2Id,CharacteristicIds.wheelSpeedId,CharacteristicIds.connectTimeoutId, CharacteristicIds.frameDurationId, CharacteristicIds.dumTest10, CharacteristicIds.dumTest11, CharacteristicIds.dumTest12, CharacteristicIds.dumTest13, CharacteristicIds.dumTest14, CharacteristicIds.dumTest15, CharacteristicIds.dumTest16, CharacteristicIds.dumTest17, CharacteristicIds.imageSelectId, CharacteristicIds.imageEraseId, CharacteristicIds.evVoltage] //TODO UInt8Changes
+let uiint16Ids = [CharacteristicIds.alu1Id,CharacteristicIds.alu2Id,CharacteristicIds.wheelSpeedId,CharacteristicIds.connectTimeoutId, CharacteristicIds.frameDurationId, CharacteristicIds.dumTest10, CharacteristicIds.dumTest11, CharacteristicIds.dumTest12, CharacteristicIds.dumTest13, CharacteristicIds.dumTest14, CharacteristicIds.dumTest15, CharacteristicIds.dumTest16, CharacteristicIds.dumTest17, CharacteristicIds.imageSelectId, CharacteristicIds.imageEraseId, CharacteristicIds.evVoltage, CharacteristicIds.orientation]
 let uiint16ArrayIds = [CharacteristicIds.voltageId]
 let uiint32Ids = [CharacteristicIds.hardwareVersionId, CharacteristicIds.firmwareVersionId]
-let uiint8ids = [CharacteristicIds.isReversedId, CharacteristicIds.imu1Id, CharacteristicIds.imu2Id, CharacteristicIds.statusId, CharacteristicIds.testId, CharacteristicIds.animationId, CharacteristicIds.frameCountId, CharacteristicIds.dumTest1, CharacteristicIds.dumTest2, CharacteristicIds.dumTest3, CharacteristicIds.dumTest4, CharacteristicIds.dumTest5, CharacteristicIds.dumTest6, CharacteristicIds.dumTest7, CharacteristicIds.dumTest8,CharacteristicIds.dumTest9, CharacteristicIds.lastFramePlayCount, CharacteristicIds.isHighResolutionId, CharacteristicIds.evBattery]//, CharacteristicIds.imageSelectId, CharacteristicIds.imageEraseId] //TODO UInt8Changes
+let uiint8ids = [CharacteristicIds.isReversedId, CharacteristicIds.imu1Id, CharacteristicIds.imu2Id, CharacteristicIds.statusId, CharacteristicIds.testId, CharacteristicIds.animationId, CharacteristicIds.frameCountId, CharacteristicIds.dumTest1, CharacteristicIds.dumTest2, CharacteristicIds.dumTest3, CharacteristicIds.dumTest4, CharacteristicIds.dumTest5, CharacteristicIds.dumTest6, CharacteristicIds.dumTest7, CharacteristicIds.dumTest8,CharacteristicIds.dumTest9, CharacteristicIds.dumTest10int8, CharacteristicIds.lastFramePlayCount, CharacteristicIds.isHighResolutionId, CharacteristicIds.evBattery]
 let uiint8ArrayIds = [CharacteristicIds.imageLoadId, CharacteristicIds.speedThresholdId, CharacteristicIds.brightnessId]
 let serialId = [CharacteristicIds.serialNumberId]
 
@@ -100,6 +103,7 @@ public let ReadableCharacterIds: [String] = [CharacteristicIds.serialNumberId,
                                              CharacteristicIds.frameDurationId,
                                              CharacteristicIds.evBattery,
                                              CharacteristicIds.evVoltage,
+                                             CharacteristicIds.orientation,
                                              CharacteristicIds.dumTest2,
                                              CharacteristicIds.dumTest3,
                                              CharacteristicIds.dumTest4,
@@ -149,6 +153,7 @@ public let characteristicNameById: [String: String] = [
   CharacteristicIds.frameDurationId: "Frame Duration",
   CharacteristicIds.evVoltage: "EV Voltage",
   CharacteristicIds.evBattery: "EV Battery",
+  CharacteristicIds.orientation: "Orientation",
   CharacteristicIds.dumTest1: "Test 1",
   CharacteristicIds.dumTest2: "Test 2",
   CharacteristicIds.dumTest3: "Test 3",
@@ -158,6 +163,7 @@ public let characteristicNameById: [String: String] = [
   CharacteristicIds.dumTest7: "Test 7",
   CharacteristicIds.dumTest8: "Test 8",
   CharacteristicIds.dumTest9: "Test 9",
+  CharacteristicIds.dumTest10int8: "Test 10",
   CharacteristicIds.dumTest10: "Test16a",
   CharacteristicIds.dumTest11: "Test16b",
   CharacteristicIds.dumTest12: "Test16c",

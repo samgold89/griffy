@@ -13,6 +13,7 @@ import RealmSwift
 class ImagesTableViewController: BaseTableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
+  
     observedIds = [CharacteristicIds.imageLoadId]
   }
 }

@@ -39,7 +39,7 @@ class GFObject: Object {
     var modified: T?
     try! realm.write {
       let dict = ["id": characteristic.uuid.uuidString, "uuid": characteristic.uuid.uuidString, "updatedAt": Date(), "name": characteristic.griffyName(), "value": characteristic.value ?? Data()] as [String : Any]
-      modified = realm.create(T.self, value: dict, update: true)
+      modified = realm.create(T.self, value: dict, update: .all)
       if let m = modified as? GFObject {
         if m.deletedAt != nil {
           realm.delete(modified!)

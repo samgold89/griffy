@@ -13,4 +13,6 @@ target 'Griffy' do
   pod 'SwiftyDropbox'
   pod 'SDWebImage'
   pod 'JGProgressHUD'
+  pod 'Alamofire'
+  pod 'ReachabilitySwift'
 end

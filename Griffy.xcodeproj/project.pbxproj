@@ -23,13 +23,17 @@
 		A95B21DC21A0D02B001E1F28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A95B21DB21A0D02B001E1F28 /* Assets.xcassets */; };
 		A95B21DF21A0D02B001E1F28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95B21DD21A0D02B001E1F28 /* LaunchScreen.storyboard */; };
 		A95B21E921A0D05A001E1F28 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95B21E821A0D05A001E1F28 /* CoreBluetooth.framework */; };
-		A95B21EB21A0D8E8001E1F28 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B21EA21A0D8E8001E1F28 /* Constants.swift */; };
+		A95B21EB21A0D8E8001E1F28 /* BLEConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B21EA21A0D8E8001E1F28 /* BLEConstants.swift */; };
 		A95B21ED21A0DC88001E1F28 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B21EC21A0DC88001E1F28 /* BluetoothManager.swift */; };
 		A95B21EF21A0EF0B001E1F28 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B21EE21A0EF0B001E1F28 /* Extensions.swift */; };
 		A95C8A5521A2405F00387444 /* CharacteristicExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95C8A5421A2405F00387444 /* CharacteristicExtensions.swift */; };
 		A976F31E21D9771A00A00817 /* GriffyFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A976F31D21D9771A00A00817 /* GriffyFileManager.swift */; };
 		A976F32021DC724D00A00817 /* MainControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A976F31F21DC724C00A00817 /* MainControlViewController.swift */; };
 		A97E67A321D6AF410031678A /* ClientChooserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E67A221D6AF410031678A /* ClientChooserTableViewController.swift */; };
+		A981195723DFA64500E2387D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A981195623DFA64500E2387D /* NetworkManager.swift */; };
+		A981195923DFA8CD00E2387D /* ErrorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A981195823DFA8CD00E2387D /* ErrorConstants.swift */; };
+		A981195C23DFA96900E2387D /* UserDefaultConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A981195B23DFA96900E2387D /* UserDefaultConstants.swift */; };
+		A981195E23DFA98C00E2387D /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A981195D23DFA98C00E2387D /* APIConstants.swift */; };
 		A9A543EA21B5B9A600BF99FD /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A543E921B5B9A600BF99FD /* BaseTableViewController.swift */; };
 		A9A543EF21B5C24B00BF99FD /* t.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9A543EE21B5C24B00BF99FD /* t.pdf */; };
 		A9A543F421B9AF6900BF99FD /* GriffyImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A543F321B9AF6900BF99FD /* GriffyImages.swift */; };
@@ -85,13 +89,17 @@
 		A95B21E021A0D02B001E1F28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A95B21E621A0D045001E1F28 /* Griffy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Griffy.entitlements; sourceTree = "<group>"; };
 		A95B21E821A0D05A001E1F28 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		A95B21EA21A0D8E8001E1F28 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A95B21EA21A0D8E8001E1F28 /* BLEConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEConstants.swift; sourceTree = "<group>"; };
 		A95B21EC21A0DC88001E1F28 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		A95B21EE21A0EF0B001E1F28 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A95C8A5421A2405F00387444 /* CharacteristicExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacteristicExtensions.swift; sourceTree = "<group>"; };
 		A976F31D21D9771A00A00817 /* GriffyFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GriffyFileManager.swift; sourceTree = "<group>"; };
 		A976F31F21DC724C00A00817 /* MainControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControlViewController.swift; sourceTree = "<group>"; };
 		A97E67A221D6AF410031678A /* ClientChooserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientChooserTableViewController.swift; sourceTree = "<group>"; };
+		A981195623DFA64500E2387D /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		A981195823DFA8CD00E2387D /* ErrorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorConstants.swift; sourceTree = "<group>"; };
+		A981195B23DFA96900E2387D /* UserDefaultConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultConstants.swift; sourceTree = "<group>"; };
+		A981195D23DFA98C00E2387D /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		A9A543E921B5B9A600BF99FD /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		A9A543EE21B5C24B00BF99FD /* t.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = t.pdf; sourceTree = "<group>"; };
 		A9A543F321B9AF6900BF99FD /* GriffyImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GriffyImages.swift; sourceTree = "<group>"; };
@@ -168,6 +176,8 @@
 				A97E67A221D6AF410031678A /* ClientChooserTableViewController.swift */,
 				A90925A121D963B700D7648E /* ClientChooserTableViewCell.swift */,
 				A9270E6F21B9C6C4007BD884 /* GriffyTabBarController.swift */,
+				A981195A23DFA8E400E2387D /* Constants */,
+				A981195523DFA63D00E2387D /* API */,
 				A9A5442621B9B41500BF99FD /* ImageChoiceCell.swift */,
 				A9270E6D21B9B56C007BD884 /* ImageChoiceCollectionViewController.swift */,
 				A9B966F721ABE18A0079EBB7 /* CharacteristicDetailViewController.swift */,
@@ -183,7 +193,6 @@
 				A9A543F521B9B01E00BF99FD /* GriffyImages */,
 				A9A543F321B9AF6900BF99FD /* GriffyImages.swift */,
 				A95B21EC21A0DC88001E1F28 /* BluetoothManager.swift */,
-				A95B21EA21A0D8E8001E1F28 /* Constants.swift */,
 				A95B21D821A0D02B001E1F28 /* Main.storyboard */,
 				A95B21DB21A0D02B001E1F28 /* Assets.xcassets */,
 				A95B21DD21A0D02B001E1F28 /* LaunchScreen.storyboard */,
@@ -200,6 +209,25 @@
 				8A2B5E1B83AB8992CCC3418C /* Pods_Griffy.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A981195523DFA63D00E2387D /* API */ = {
+			isa = PBXGroup;
+			children = (
+				A981195623DFA64500E2387D /* NetworkManager.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		A981195A23DFA8E400E2387D /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				A95B21EA21A0D8E8001E1F28 /* BLEConstants.swift */,
+				A981195B23DFA96900E2387D /* UserDefaultConstants.swift */,
+				A981195823DFA8CD00E2387D /* ErrorConstants.swift */,
+				A981195D23DFA98C00E2387D /* APIConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		A9A543EB21B5BAB900BF99FD /* Table View Controllers */ = {
@@ -368,6 +396,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -378,6 +407,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -433,19 +463,23 @@
 				A9B966F821ABE18A0079EBB7 /* CharacteristicDetailViewController.swift in Sources */,
 				A9B966F021ABD7E10079EBB7 /* RealmMigrations.swift in Sources */,
 				A976F32021DC724D00A00817 /* MainControlViewController.swift in Sources */,
-				A95B21EB21A0D8E8001E1F28 /* Constants.swift in Sources */,
+				A95B21EB21A0D8E8001E1F28 /* BLEConstants.swift in Sources */,
 				A95B21D321A0D02B001E1F28 /* Griffy.xcdatamodeld in Sources */,
 				A9A665EF221CAE0300D0FABD /* UIImage+GIF.swift in Sources */,
 				A9B966F421ABDE840079EBB7 /* ImagesTableViewController.swift in Sources */,
+				A981195E23DFA98C00E2387D /* APIConstants.swift in Sources */,
 				A9B966F221ABDDED0079EBB7 /* StatusTableViewController.swift in Sources */,
 				A95C8A5521A2405F00387444 /* CharacteristicExtensions.swift in Sources */,
 				A95B21D021A0D02B001E1F28 /* AppDelegate.swift in Sources */,
+				A981195C23DFA96900E2387D /* UserDefaultConstants.swift in Sources */,
 				A976F31E21D9771A00A00817 /* GriffyFileManager.swift in Sources */,
 				A9A5442721B9B41500BF99FD /* ImageChoiceCell.swift in Sources */,
 				A90925A221D963B700D7648E /* ClientChooserTableViewCell.swift in Sources */,
 				A9270E7021B9C6C4007BD884 /* GriffyTabBarController.swift in Sources */,
 				A95B21D521A0D02B001E1F28 /* MasterViewController.swift in Sources */,
 				A97E67A321D6AF410031678A /* ClientChooserTableViewController.swift in Sources */,
+				A981195923DFA8CD00E2387D /* ErrorConstants.swift in Sources */,
+				A981195723DFA64500E2387D /* NetworkManager.swift in Sources */,
 				A95B21ED21A0DC88001E1F28 /* BluetoothManager.swift in Sources */,
 				A9416F3121FBCB400096824F /* GFStateManager.swift in Sources */,
 				A9A543F421B9AF6900BF99FD /* GriffyImages.swift in Sources */,

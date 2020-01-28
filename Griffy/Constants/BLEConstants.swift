@@ -20,17 +20,6 @@ struct ServiceIds {
   static let batteryId = "46F575E3-B6A4-4708-BCDD-8C7DFD64EFB3"
 }
 
-struct UserDefaultConstants {
-  static let activeClientName = "activeClientName"
-  static let lastSelectedImageIndex = "lastSelectedImageIndex"
-  static let maxOutgoingBLERequests = "maxOutgoingBLERequests"
-  static let activeImageData = "activeImageData"
-  static let activeIndex = "activeIndex"
-  static let lastLeftBrightness = "lastLeftBrightness"
-  static let lastRightBrightness = "lastRightBrightness"
-  static let lastGriffyImage = "lastGriffyImage"
-}
-
 struct CharacteristicIds {
   static let serialNumberId = "21B8E697-AFA0-43A2-BF36-831285BFAB66"
   static let hardwareVersionId = "AAAE5188-3AD3-43A3-A0B4-DEC44E7C4680"

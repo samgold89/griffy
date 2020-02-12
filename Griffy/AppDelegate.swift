@@ -35,6 +35,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     RealmMigrations().handle()
     BluetoothManager.shared.startUpdateTimer()
     Fabric.with([Crashlytics.self])
+//    UIFont.printAllBundledFonts()
+    
+    if let _ = BetaUser.me {
+      RootRouter().showBetaLoggedInScreen()
+    } else {
+      RootRouter().showBetaLaunchScreen()
+    }
     
 //    DropboxClientsManager.setupWithAppKey("t0phm00v4im3xah")
 //    secret: ae2heu8094z7juj

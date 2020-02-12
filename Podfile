@@ -15,4 +15,9 @@ target 'Griffy' do
   pod 'JGProgressHUD'
   pod 'Alamofire'
   pod 'ReachabilitySwift'
+  pod 'lottie-ios'
+  pod 'ReachabilitySwift'
+  pod 'SwiftDate'
+  pod 'SnapKit'
+  pod 'SSSpinnerButton'
 end

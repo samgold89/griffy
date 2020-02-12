@@ -53,6 +53,27 @@
 	<true/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>We use bluetooth to connect to your wheel!</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Montserrat-Black.otf</string>
+		<string>Montserrat-BlackItalic.otf</string>
+		<string>Montserrat-Bold.otf</string>
+		<string>Montserrat-BoldItalic.otf</string>
+		<string>Montserrat-ExtraBold.otf</string>
+		<string>Montserrat-ExtraBoldItalic.otf</string>
+		<string>Montserrat-ExtraLight.otf</string>
+		<string>Montserrat-ExtraLightItalic.otf</string>
+		<string>Montserrat-Italic.otf</string>
+		<string>Montserrat-Light.otf</string>
+		<string>Montserrat-LightItalic.otf</string>
+		<string>Montserrat-Medium.otf</string>
+		<string>Montserrat-MediumItalic.otf</string>
+		<string>Montserrat-Regular.otf</string>
+		<string>Montserrat-SemiBold.otf</string>
+		<string>Montserrat-SemiBoldItalic.otf</string>
+		<string>Montserrat-Thin.otf</string>
+		<string>Montserrat-ThinItalic.otf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>

@@ -17,4 +17,7 @@ struct UserDefaultConstants {
   static let lastLeftBrightness = "lastLeftBrightness"
   static let lastRightBrightness = "lastRightBrightness"
   static let lastGriffyImage = "lastGriffyImage"
+  
+  // Beta Variables
+  static let betaUserId = "betaUserId"
 }

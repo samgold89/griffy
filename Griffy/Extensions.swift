@@ -314,13 +314,13 @@ extension UIColor {
   
   public static var gfRed: UIColor {
     get {
-      return UIColor.hex(hex: "EF476F")
+      return UIColor.hex(hex: "D8320D")
     }
   }
   
   public static var gfBlue: UIColor {
     get {
-      return UIColor.hex(hex: "26547C")
+      return UIColor.hex(hex: "00C2D8")
     }
   }
 }

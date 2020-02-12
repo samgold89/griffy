@@ -152,6 +152,8 @@ class SendAllImagesCell: UICollectionViewCell {
   weak var sendDelegate: SendAllImagesDelegate?
   
   @IBAction func sendAllImagesPressed(_ sender: Any) {
+    NetworkManager.shared.sendLocations()
+    return()
     sendDelegate?.sendAllImages()
   }
 }

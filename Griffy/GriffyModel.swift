@@ -246,28 +246,80 @@ class Location: Object {
   @objc dynamic var course: Double = 0.0
   @objc dynamic var nickname: String!
   @objc dynamic var timestamp: Date!
+  @objc dynamic var sentToServer: Bool = false
   
   @discardableResult
   public static func create(withLocation location: CLLocation) -> String {
     let realm = try! Realm()
-    var id = ""
+    var clientUuid = ""
     try! realm.write {
       let l = realm.create(Location.self)
       l.latitude = location.coordinate.latitude
       l.longitude = location.coordinate.longitude
       l.horizontalAccuracy = location.horizontalAccuracy
       l.clientUuid = UUID().uuidString
-      id = l.clientUuid
+      clientUuid = l.clientUuid
       l.speed = location.speed
       l.course = location.course
       l.nickname = BetaUser.me?.betaCode ?? "**MISSING**"
       l.timestamp = location.timestamp
     }
-    return id
+    print(clientUuid)
+    return clientUuid
   }
   
   public static func find(byId id: String) -> Location? {
     let realm = try! Realm()
-    return realm.objects(Location.self).filter(NSPredicate(format: "id = %@",id)).first
+    return realm.objects(Location.self).filter(NSPredicate(format: "clientUuid = %@",id)).first
+  }
+  
+  public static var lastLocation: Location? {
+    let realm = try! Realm()
+    return realm.objects(Location.self).sorted(byKeyPath: "timestamp", ascending: true).last
+  }
+  
+  public static func lastLocationAfter(date: Date) -> Location? {
+    let realm = try! Realm()
+    return realm.objects(Location.self).filter(NSPredicate(format: "timestamp > %@", argumentArray: [date])).sorted(byKeyPath: "timestamp", ascending: true).last
+  }
+  
+  public static var unsentLocations: [Location]? {
+    let realm = try! Realm()
+    return Array(realm.objects(Location.self).filter(NSPredicate(format: "sentToServer = false")).sorted(byKeyPath: "timestamp", ascending: true))
+  }
+}
+
+class Shift: Object {
+  @objc dynamic var startDate: Date!
+  @objc dynamic var endDate: Date?
+  
+  var duration: Int {
+    if let end = endDate {
+      return Int(abs(end.timeIntervalSince(startDate)))
+    } else {
+      return Int(abs(Date().timeIntervalSince(startDate)))
+    }
+  }
+  
+  public static var currentShift: Shift? {
+    let realm = try! Realm()
+    let now = Date()
+    return realm.objects(Shift.self).filter(NSPredicate(format: "startDate < %@ AND endDate = nil", argumentArray: [now])).first
+  }
+  
+  public static func endCurrentShift() {
+    guard let currentShift = currentShift else { return }
+    let realm = try! Realm()
+    try! realm.write {
+      currentShift.endDate = Date()
+    }
+  }
+  
+  public static func beginNewShift() {
+    let realm = try! Realm()
+    try! realm.write {
+      let s = realm.create(Shift.self)
+      s.startDate = Date()
+    }
   }
 }

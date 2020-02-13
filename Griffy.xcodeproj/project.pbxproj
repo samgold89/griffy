@@ -41,7 +41,12 @@
 		A981195923DFA8CD00E2387D /* ErrorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A981195823DFA8CD00E2387D /* ErrorConstants.swift */; };
 		A981195C23DFA96900E2387D /* UserDefaultConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A981195B23DFA96900E2387D /* UserDefaultConstants.swift */; };
 		A981195E23DFA98C00E2387D /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A981195D23DFA98C00E2387D /* APIConstants.swift */; };
+		A983F6A723F544D100DD44B3 /* BetaHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A983F6A623F544D100DD44B3 /* BetaHistoryVC.swift */; };
+		A983F6A923F5450300DD44B3 /* BetaHistoryTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A983F6A823F5450300DD44B3 /* BetaHistoryTableVC.swift */; };
 		A9877E4423F4BF3B008F8F44 /* LottieFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9877E4323F4BF3B008F8F44 /* LottieFiles.swift */; };
+		A9877E4623F53464008F8F44 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9877E4523F53464008F8F44 /* ViewControllerExtensions.swift */; };
+		A9877E4823F5381B008F8F44 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9877E4723F5381B008F8F44 /* StringExtensions.swift */; };
+		A9877E4E23F53E27008F8F44 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9877E4D23F53E27008F8F44 /* Formatters.swift */; };
 		A9A543EA21B5B9A600BF99FD /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A543E921B5B9A600BF99FD /* BaseTableViewController.swift */; };
 		A9A543EF21B5C24B00BF99FD /* t.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9A543EE21B5C24B00BF99FD /* t.pdf */; };
 		A9A543F421B9AF6900BF99FD /* GriffyImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A543F321B9AF6900BF99FD /* GriffyImages.swift */; };
@@ -143,7 +148,12 @@
 		A981195823DFA8CD00E2387D /* ErrorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorConstants.swift; sourceTree = "<group>"; };
 		A981195B23DFA96900E2387D /* UserDefaultConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultConstants.swift; sourceTree = "<group>"; };
 		A981195D23DFA98C00E2387D /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		A983F6A623F544D100DD44B3 /* BetaHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaHistoryVC.swift; sourceTree = "<group>"; };
+		A983F6A823F5450300DD44B3 /* BetaHistoryTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaHistoryTableVC.swift; sourceTree = "<group>"; };
 		A9877E4323F4BF3B008F8F44 /* LottieFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieFiles.swift; sourceTree = "<group>"; };
+		A9877E4523F53464008F8F44 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
+		A9877E4723F5381B008F8F44 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		A9877E4D23F53E27008F8F44 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		A9A543E921B5B9A600BF99FD /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		A9A543EE21B5C24B00BF99FD /* t.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = t.pdf; sourceTree = "<group>"; };
 		A9A543F321B9AF6900BF99FD /* GriffyImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GriffyImages.swift; sourceTree = "<group>"; };
@@ -241,6 +251,7 @@
 		A95B21CE21A0D02B001E1F28 /* Griffy */ = {
 			isa = PBXGroup;
 			children = (
+				A9877E4D23F53E27008F8F44 /* Formatters.swift */,
 				A9D74F1823F4BB4C00E54136 /* BaseViewController.swift */,
 				A9D74F1723F4BA6B00E54136 /* Location */,
 				A9BBC2DA23F3B57100B9B60C /* RootRouter.swift */,
@@ -382,6 +393,8 @@
 		A9BBC2CE23F3A73E00B9B60C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A9877E4723F5381B008F8F44 /* StringExtensions.swift */,
+				A9877E4523F53464008F8F44 /* ViewControllerExtensions.swift */,
 				A95AE18923F3C9A400E15EA1 /* DateExtensions.swift */,
 				A9BBC2CC23F3A73700B9B60C /* FontExtensions.swift */,
 				A95AE18523F3B90B00E15EA1 /* StoryboardExtensions.swift */,
@@ -401,6 +414,8 @@
 		A9BBC2D623F3AF7600B9B60C /* Beta Screens */ = {
 			isa = PBXGroup;
 			children = (
+				A983F6A623F544D100DD44B3 /* BetaHistoryVC.swift */,
+				A983F6A823F5450300DD44B3 /* BetaHistoryTableVC.swift */,
 				A9BBC2DC23F3B63B00B9B60C /* BetaWelcomeVC.swift */,
 				A95AE17F23F3B7B700E15EA1 /* BetaSetupVC.swift */,
 				A95AE18123F3B7B900E15EA1 /* BetaInstructionsVC.swift */,
@@ -650,6 +665,7 @@
 				A95AE18223F3B7BA00E15EA1 /* BetaInstructionsVC.swift in Sources */,
 				A95AE18623F3B90B00E15EA1 /* StoryboardExtensions.swift in Sources */,
 				A9877E4423F4BF3B008F8F44 /* LottieFiles.swift in Sources */,
+				A9877E4E23F53E27008F8F44 /* Formatters.swift in Sources */,
 				A9BBC2DD23F3B63B00B9B60C /* BetaWelcomeVC.swift in Sources */,
 				A9BBC2CD23F3A73700B9B60C /* FontExtensions.swift in Sources */,
 				A95AE18823F3BA0900E15EA1 /* BetaTabBarVC.swift in Sources */,
@@ -657,6 +673,7 @@
 				A95B21EB21A0D8E8001E1F28 /* BLEConstants.swift in Sources */,
 				A95B21D321A0D02B001E1F28 /* Griffy.xcdatamodeld in Sources */,
 				A9BBC2D523F3AF7300B9B60C /* BetaNavigationVC.swift in Sources */,
+				A9877E4823F5381B008F8F44 /* StringExtensions.swift in Sources */,
 				A9A665EF221CAE0300D0FABD /* UIImage+GIF.swift in Sources */,
 				A9BBC2DB23F3B57100B9B60C /* RootRouter.swift in Sources */,
 				A9B966F421ABDE840079EBB7 /* ImagesTableViewController.swift in Sources */,
@@ -664,6 +681,7 @@
 				A9D74F1923F4BB4C00E54136 /* BaseViewController.swift in Sources */,
 				A9B966F221ABDDED0079EBB7 /* StatusTableViewController.swift in Sources */,
 				A9BBC2D023F3AA6C00B9B60C /* ViewExtensions.swift in Sources */,
+				A983F6A723F544D100DD44B3 /* BetaHistoryVC.swift in Sources */,
 				A95C8A5521A2405F00387444 /* CharacteristicExtensions.swift in Sources */,
 				A95B21D021A0D02B001E1F28 /* AppDelegate.swift in Sources */,
 				A981195C23DFA96900E2387D /* UserDefaultConstants.swift in Sources */,
@@ -673,6 +691,7 @@
 				A9270E7021B9C6C4007BD884 /* GriffyTabBarController.swift in Sources */,
 				A95AE18A23F3C9A400E15EA1 /* DateExtensions.swift in Sources */,
 				A95B21D521A0D02B001E1F28 /* MasterViewController.swift in Sources */,
+				A983F6A923F5450300DD44B3 /* BetaHistoryTableVC.swift in Sources */,
 				A97E67A321D6AF410031678A /* ClientChooserTableViewController.swift in Sources */,
 				A981195923DFA8CD00E2387D /* ErrorConstants.swift in Sources */,
 				A981195723DFA64500E2387D /* NetworkManager.swift in Sources */,
@@ -688,6 +707,7 @@
 				A95AE18C23F3CF6300E15EA1 /* LocationManager.swift in Sources */,
 				A95B21EF21A0EF0B001E1F28 /* Extensions.swift in Sources */,
 				A9B966EE21ABCBCE0079EBB7 /* SettingsTableViewController.swift in Sources */,
+				A9877E4623F53464008F8F44 /* ViewControllerExtensions.swift in Sources */,
 				A9270E6E21B9B56C007BD884 /* ImageChoiceCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

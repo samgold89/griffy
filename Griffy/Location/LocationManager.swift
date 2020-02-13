@@ -12,6 +12,7 @@ import CoreLocation
 enum GFLocationPermissions {
   case enabled
   case disabled
+  case denied
   case unknown
 }
 
@@ -73,10 +74,22 @@ class LocationManager: NSObject {
     switch status {
     case .notDetermined:
       return .unknown
-    case .denied, .restricted:
+    case .restricted:
       return .disabled
+    case .denied:
+      return .denied
     default:
       return .enabled
+    }
+  }
+  
+  var secondsWorkedToday: Int {
+    return 0
+  }
+  
+  func checkUploadLocations() {
+    if let locs = Location.unsentLocations {//, locs.count > 100 {
+      NetworkManager.shared.sendLocations(locations: locs)
     }
   }
 }
@@ -96,12 +109,13 @@ extension LocationManager: CLLocationManagerDelegate {
   }
   
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    locations.filter({ $0.horizontalAccuracy <= 20 }).forEach { (loc) in
+    locations.filter({ $0.horizontalAccuracy <= 100 }).forEach { (loc) in
       let id = Location.create(withLocation: loc)
       if let location = Location.find(byId: id) {
         delegate?.locationSaved(location: location)
       }
     }
+    checkUploadLocations()
   }
   
   func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

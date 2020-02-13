@@ -478,8 +478,9 @@ First Name</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KEc-yU-5x3"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="TODAY" selectedImage="tab-bar-today" id="MRe-rM-aoj"/>
+                    <tabBarItem key="tabBarItem" title="TODAY" image="tab-bar-today" selectedImage="tab-bar-today" id="MRe-rM-aoj"/>
                     <connections>
+                        <outlet property="codeLabel" destination="bXe-fh-5Sc" id="IhP-sA-Xt6"/>
                         <outlet property="startRidingButton" destination="gjO-VC-Lcx" id="4dX-hu-iiI"/>
                         <outlet property="welcomeLabel" destination="yaP-y5-tGJ" id="oRs-dk-4D3"/>
                         <outlet property="workingTimeLabel" destination="ETP-mO-tT5" id="TnJ-oV-vSh"/>
@@ -488,6 +489,197 @@ First Name</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FXT-am-3J9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="503" y="777"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="Mrf-lV-Ll0">
+            <objects>
+                <viewController id="BIT-CI-chh" customClass="BetaHistoryVC" customModule="Griffy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="drs-ZJ-ikl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2HS-nM-MVl">
+                                <rect key="frame" x="0.0" y="212" width="414" height="475"/>
+                                <connections>
+                                    <segue destination="XDz-Sw-KJZ" kind="embed" id="RBv-Cr-ge8"/>
+                                </connections>
+                            </containerView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dYS-xN-yT3" userLabel="Header Stack">
+                                <rect key="frame" x="-15" y="58.666666666666664" width="444" height="127.66666666666669"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good Morning, Manuel!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="22" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8eD-jj-zYf">
+                                        <rect key="frame" x="61.333333333333343" y="0.0" width="321.33333333333326" height="97.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="40"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Code: #GFC3893" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OOo-xa-wmx">
+                                        <rect key="frame" x="149" y="105.66666666666669" width="146.33333333333337" height="22"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-ExtraLight" family="Montserrat" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="dYS-xN-yT3" firstAttribute="top" secondItem="wnT-Q6-uf0" secondAttribute="top" constant="58.5" id="0f5-ls-MJ7"/>
+                            <constraint firstItem="dYS-xN-yT3" firstAttribute="trailing" secondItem="wnT-Q6-uf0" secondAttribute="trailing" constant="15" id="BPd-b1-0EF"/>
+                            <constraint firstItem="2HS-nM-MVl" firstAttribute="leading" secondItem="wnT-Q6-uf0" secondAttribute="leading" id="QR4-n5-HyH"/>
+                            <constraint firstItem="wnT-Q6-uf0" firstAttribute="leading" secondItem="dYS-xN-yT3" secondAttribute="leading" constant="15" id="W8x-v3-YRL"/>
+                            <constraint firstItem="wnT-Q6-uf0" firstAttribute="bottom" secondItem="2HS-nM-MVl" secondAttribute="bottom" id="uf7-z4-E36"/>
+                            <constraint firstItem="wnT-Q6-uf0" firstAttribute="trailing" secondItem="2HS-nM-MVl" secondAttribute="trailing" id="uyk-ow-U5m"/>
+                            <constraint firstItem="2HS-nM-MVl" firstAttribute="top" secondItem="dYS-xN-yT3" secondAttribute="bottom" constant="25.666666666666657" id="zFP-Sl-32X"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wnT-Q6-uf0"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" image="tab-bar-history" selectedImage="tab-bar-history" id="v3o-a1-rjL"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lQq-pY-RpY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1169.5652173913045" y="776.9021739130435"/>
+        </scene>
+        <!--Beta History TableVC-->
+        <scene sceneID="GYP-x7-bK3">
+            <objects>
+                <tableViewController id="XDz-Sw-KJZ" customClass="BetaHistoryTableVC" customModule="Griffy" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="56" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Z8I-FG-krU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="475"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BetaHistoryCell" id="nhY-8I-ee9" customClass="BetaHistoryCell" customModule="Griffy" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="56"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nhY-8I-ee9" id="mHE-wl-fyg">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="–/–/––" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZb-Ft-lp3">
+                                            <rect key="frame" x="19.999999999999996" y="15.666666666666666" width="53.666666666666657" height="24.666666666666671"/>
+                                            <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="9mu-DZ-DDY">
+                                            <rect key="frame" x="175.66666666666666" y="7.6666666666666679" width="63" height="40.666666666666657"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-h --m" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQm-ab-2cf">
+                                                    <rect key="frame" x="0.0" y="0.0" width="63" height="24.666666666666668"/>
+                                                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-h --m" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9m-xM-KmY">
+                                                    <rect key="frame" x="0.0" y="24.666666666666671" width="63" height="16"/>
+                                                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="13"/>
+                                                    <color key="textColor" red="0.84705882352941175" green="0.19607843137254902" blue="0.050980392156862744" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="4Cx-U2-dwt">
+                                            <rect key="frame" x="343" y="22" width="51" height="12"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="💸" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5a-y6-40P">
+                                                    <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
+                                                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="9"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4b-U0-dRy">
+                                                    <rect key="frame" x="13" y="0.0" width="12" height="12"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.76078431369999999" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="12" id="VIr-RV-bbn"/>
+                                                        <constraint firstAttribute="width" constant="12" id="YiH-u9-Fj0"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="6"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" red="0.0" green="0.76078431369999999" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v8t-1g-GGk">
+                                                    <rect key="frame" x="26" y="0.0" width="12" height="12"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.76078431369999999" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="12" id="cKW-oc-meI"/>
+                                                        <constraint firstAttribute="width" constant="12" id="dMo-Ro-Eoi"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="6"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" red="0.0" green="0.76078431369999999" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LPl-hx-eKR">
+                                                    <rect key="frame" x="39" y="0.0" width="12" height="12"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.76078431369999999" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="12" id="7UR-b0-C88"/>
+                                                        <constraint firstAttribute="width" constant="12" id="9pp-Fy-zYe"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="6"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" red="0.0" green="0.76078431369999999" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="12" id="N89-fo-1Ft"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="9mu-DZ-DDY" firstAttribute="centerX" secondItem="mHE-wl-fyg" secondAttribute="centerX" id="NrW-m8-7fA"/>
+                                        <constraint firstItem="hZb-Ft-lp3" firstAttribute="leading" secondItem="mHE-wl-fyg" secondAttribute="leading" constant="20" id="Qht-B1-qQ2"/>
+                                        <constraint firstItem="hZb-Ft-lp3" firstAttribute="centerY" secondItem="mHE-wl-fyg" secondAttribute="centerY" id="Rz0-DU-tHC"/>
+                                        <constraint firstAttribute="trailing" secondItem="4Cx-U2-dwt" secondAttribute="trailing" constant="20" id="X02-zr-zze"/>
+                                        <constraint firstItem="9mu-DZ-DDY" firstAttribute="centerY" secondItem="mHE-wl-fyg" secondAttribute="centerY" id="abD-RX-V3s"/>
+                                        <constraint firstItem="4Cx-U2-dwt" firstAttribute="centerY" secondItem="mHE-wl-fyg" secondAttribute="centerY" id="lFz-xK-rog"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="datelabel" destination="hZb-Ft-lp3" id="gsf-Uh-hWc"/>
+                                    <outlet property="failureLabel" destination="b9m-xM-KmY" id="dg2-wj-esn"/>
+                                    <outlet property="leftDot" destination="k4b-U0-dRy" id="cpG-fG-1Ur"/>
+                                    <outlet property="middleDot" destination="v8t-1g-GGk" id="JBb-C3-2IN"/>
+                                    <outlet property="moneyLabel" destination="l5a-y6-40P" id="qkg-BA-Hy3"/>
+                                    <outlet property="rightDot" destination="LPl-hx-eKR" id="YNT-W4-1KW"/>
+                                    <outlet property="workingTimeLabel" destination="fQm-ab-2cf" id="Eha-F1-yTP"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="XDz-Sw-KJZ" id="mbZ-et-8lm"/>
+                            <outlet property="delegate" destination="XDz-Sw-KJZ" id="Ps1-cv-CzS"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RMQ-bb-Mlh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1922" y="777"/>
         </scene>
         <!--Beta Tab BarVC-->
         <scene sceneID="dSE-Hx-tDG">
@@ -502,6 +694,7 @@ First Name</string>
                     </tabBar>
                     <connections>
                         <segue destination="xI0-M3-jL7" kind="relationship" relationship="viewControllers" id="bXO-fm-3rh"/>
+                        <segue destination="BIT-CI-chh" kind="relationship" relationship="viewControllers" id="lzp-Os-IaC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wJ4-Cq-i9u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -510,6 +703,7 @@ First Name</string>
         </scene>
     </scenes>
     <resources>
+        <image name="tab-bar-history" width="29" height="30"/>
         <image name="tab-bar-today" width="29" height="30"/>
     </resources>
 </document>

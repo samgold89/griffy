@@ -76,7 +76,7 @@ final class NetworkManager {
     
     let head = customHeaders as! HTTPHeaders
     
-//    let newEndpoint = endpoint.replacingOccurrences(of: "+", with: "%2B")
+    //    let newEndpoint = endpoint.replacingOccurrences(of: "+", with: "%2B")
     
     session.request(endpoint, method: method, parameters: params, encoding: JSONEncoding.default, headers: head).responseJSON { (response) in
       
@@ -132,22 +132,30 @@ final class NetworkManager {
     return NetworkFailClosure(error: error, errorTitle: title, statusCode: 0)
   }
   
-  func sendLocations() {
-    
-    //
-    
+  func sendLocations(locations: [Location]) {
     let endpoint = APIConstants.makeEndpoint(withPath: "locations")
-    let params = [
-      "locations":
-        [["latitude": Double(37.771102),
-         "longitude": Double(-122.432589),
-         "client_uuid": "88eb7cc2-112d-412b-bdd5-2ae79e525754",
-         "horizontal_accuracy": Double(1234.1),
-         "speed": Double(23.1),
-         "course": Double(98.123456),
-         "nickname": "Miguel Enriquez", 
-         "timestamp": "2020-01-27 12:34:56"]]
-      ] as [String : Any]
+    
+    let locParams = locations.map { (loc) -> [String: Any] in
+      ["latitude": loc.latitude,
+      "longitude": loc.longitude,
+      "client_uuid": loc.clientUuid ?? "",
+      "horizontal_accuracy": loc.horizontalAccuracy,
+//      "speed": loc.speed,
+//      "course": loc.course,
+      "nickname": BetaUser.me?.betaCode ?? "**MISSING CODE**",
+      "timestamp":  Formatters.locationDate.string(from: loc.timestamp)]
+    }
+    let params = ["locations": locParams]
+    //      "locations":
+    //        [["latitude": Double(37.771102),
+    //         "longitude": Double(-122.432589),
+    //         "client_uuid": "88eb7cc2-112d-412b-bdd5-2ae79e525754",
+    //         "horizontal_accuracy": Double(1234.1),
+    //         "speed": Double(23.1),
+    //         "course": Double(98.123456),
+    //         "nickname": "Miguel Enriquez",
+    //         "timestamp": "2020-01-27 12:34:56"]]
+    //      ] as [String : Any]
     
     makeRequestOfType(.post, endpoint: endpoint, params: params, extraHeaders: nil, success: { (response) in
       print("We out here")

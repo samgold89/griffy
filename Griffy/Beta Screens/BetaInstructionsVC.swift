@@ -21,7 +21,7 @@ class BetaInstructionsVC: UIViewController {
   }
   
   @IBAction func nextButtonPressed(_ sender: Any) {
-    if isBeingPresented {
+    if presentingViewController?.isKind(of: BetaTabBarVC.self) ?? false {
       dismiss(animated: true, completion: nil)
     } else {
       RootRouter().showBetaLoggedInScreen()

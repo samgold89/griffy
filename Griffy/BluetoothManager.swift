@@ -28,6 +28,7 @@ final class BluetoothManager: NSObject {
   var centralManager: CBCentralManager!
   var griffyPeripheral: CBPeripheral?
   var cbCharacteristicsById = [String: CBCharacteristic]()
+  var timer: Timer?
   /****************************
   NOTE: this doesn't work when multiple, different, concurrent write requests are ongoing
   ****************************/
@@ -59,10 +60,12 @@ final class BluetoothManager: NSObject {
   }
   
   func startUpdateTimer() {
-    Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { (timer) in
-      self.updateAllObservedValues()
+    if timer == nil {
+      timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { (timer) in
+        self.updateAllObservedValues()
+      }
+      updateAllObservedValues()
     }
-    updateAllObservedValues()
   }
   
   func updateAllObservedValues() {

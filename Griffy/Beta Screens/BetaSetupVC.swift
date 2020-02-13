@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SSSpinnerButton // https://github.com/simformsolutions/SSSpinnerButton
 
-class BetaSetupVC: UIViewController {
+class BetaSetupVC: BaseViewController {
   @IBOutlet weak var spinnerButton: SSSpinnerButton!
   @IBOutlet weak var firstNameField: PaddedTextField!
   @IBOutlet weak var betaCodeField: PaddedTextField!
@@ -54,6 +54,22 @@ class BetaSetupVC: UIViewController {
       self.spinnerButton.stopAnimatingWithCompletionType(completionType: .success) {
         self.present(UIStoryboard.betaVC(betaType: .instructions), animated: true, completion: nil)
       }
+    }
+  }
+  
+  override func keyboardWillShow(_ info: BaseViewController.KeyboardInfo) {
+    if info.keyboardSize.height <= betaCodeField.frame.maxY {
+      UIView.animate(withDuration: info.duration) {
+        let overlap = self.betaCodeField.frame.maxY - info.keyboardSize.height
+        let buffer = CGFloat(20)
+        self.view.transform = CGAffineTransform(translationX: 0, y: -(overlap+buffer))
+      }
+    }
+  }
+  
+  override func keyboardWillHide(_ info: BaseViewController.KeyboardInfo) {
+    UIView.animate(withDuration: info.duration) {
+      self.view.transform = .identity
     }
   }
   

@@ -9,6 +9,7 @@
 import Foundation
 import RealmSwift
 import CoreBluetooth
+import CoreLocation
 
 class GFObject: Object {
   @objc dynamic var updatedAt: Date? = nil
@@ -233,5 +234,40 @@ class BetaUser: Object {
       UserDefaults.standard.set(u.id, forKey: UserDefaultConstants.betaUserId)
     }
     return realm.objects(BetaUser.self).filter(NSPredicate(format: "id = %@",myId)).first!
+  }
+}
+
+class Location: Object {
+  @objc dynamic var latitude: Double = 0.0
+  @objc dynamic var longitude: Double = 0.0
+  @objc dynamic var clientUuid: String!
+  @objc dynamic var horizontalAccuracy: Double = 0.0
+  @objc dynamic var speed: Double = 0.0
+  @objc dynamic var course: Double = 0.0
+  @objc dynamic var nickname: String!
+  @objc dynamic var timestamp: Date!
+  
+  @discardableResult
+  public static func create(withLocation location: CLLocation) -> String {
+    let realm = try! Realm()
+    var id = ""
+    try! realm.write {
+      let l = realm.create(Location.self)
+      l.latitude = location.coordinate.latitude
+      l.longitude = location.coordinate.longitude
+      l.horizontalAccuracy = location.horizontalAccuracy
+      l.clientUuid = UUID().uuidString
+      id = l.clientUuid
+      l.speed = location.speed
+      l.course = location.course
+      l.nickname = BetaUser.me?.betaCode ?? "**MISSING**"
+      l.timestamp = location.timestamp
+    }
+    return id
+  }
+  
+  public static func find(byId id: String) -> Location? {
+    let realm = try! Realm()
+    return realm.objects(Location.self).filter(NSPredicate(format: "id = %@",id)).first
   }
 }

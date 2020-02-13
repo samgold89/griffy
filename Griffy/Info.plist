@@ -51,8 +51,16 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NFCReaderUsageDescription</key>
+	<string>We use bluetooth to connect to your wheel!</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>We use bluetooth to connect to your wheel!</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>We use bluetooth to connect to your wheel!</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We'll use your location to determine your total 'moving time' on the bike, as well as courier hot spots.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We'll use your location to determine your total 'moving time' on the bike, as well as courier hot spots.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Montserrat-Black.otf</string>
@@ -78,6 +86,7 @@
 	<array>
 		<string>bluetooth-central</string>
 		<string>bluetooth-peripheral</string>
+		<string>location</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

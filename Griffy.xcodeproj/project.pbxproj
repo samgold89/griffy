@@ -41,6 +41,7 @@
 		A981195923DFA8CD00E2387D /* ErrorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A981195823DFA8CD00E2387D /* ErrorConstants.swift */; };
 		A981195C23DFA96900E2387D /* UserDefaultConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A981195B23DFA96900E2387D /* UserDefaultConstants.swift */; };
 		A981195E23DFA98C00E2387D /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A981195D23DFA98C00E2387D /* APIConstants.swift */; };
+		A9877E4423F4BF3B008F8F44 /* LottieFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9877E4323F4BF3B008F8F44 /* LottieFiles.swift */; };
 		A9A543EA21B5B9A600BF99FD /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A543E921B5B9A600BF99FD /* BaseTableViewController.swift */; };
 		A9A543EF21B5C24B00BF99FD /* t.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9A543EE21B5C24B00BF99FD /* t.pdf */; };
 		A9A543F421B9AF6900BF99FD /* GriffyImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A543F321B9AF6900BF99FD /* GriffyImages.swift */; };
@@ -99,6 +100,8 @@
 		A9BBC2D923F3AFB300B9B60C /* bicycle-delivery.json in Resources */ = {isa = PBXBuildFile; fileRef = A9BBC2D823F3AFB300B9B60C /* bicycle-delivery.json */; };
 		A9BBC2DB23F3B57100B9B60C /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BBC2DA23F3B57100B9B60C /* RootRouter.swift */; };
 		A9BBC2DD23F3B63B00B9B60C /* BetaWelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BBC2DC23F3B63B00B9B60C /* BetaWelcomeVC.swift */; };
+		A9D74F1023F4B6CD00E54136 /* location-services.json in Resources */ = {isa = PBXBuildFile; fileRef = A9D74F0F23F4B6CD00E54136 /* location-services.json */; };
+		A9D74F1923F4BB4C00E54136 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D74F1823F4BB4C00E54136 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,7 +121,7 @@
 		A95AE18523F3B90B00E15EA1 /* StoryboardExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardExtensions.swift; sourceTree = "<group>"; };
 		A95AE18723F3BA0900E15EA1 /* BetaTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaTabBarVC.swift; sourceTree = "<group>"; };
 		A95AE18923F3C9A400E15EA1 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
-		A95AE18B23F3CF6300E15EA1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationManager.swift; path = Griffy/LocationManager.swift; sourceTree = "<group>"; };
+		A95AE18B23F3CF6300E15EA1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		A95B21CC21A0D02B001E1F28 /* Griffy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Griffy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95B21CF21A0D02B001E1F28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A95B21D221A0D02B001E1F28 /* Griffy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Griffy.xcdatamodel; sourceTree = "<group>"; };
@@ -140,6 +143,7 @@
 		A981195823DFA8CD00E2387D /* ErrorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorConstants.swift; sourceTree = "<group>"; };
 		A981195B23DFA96900E2387D /* UserDefaultConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultConstants.swift; sourceTree = "<group>"; };
 		A981195D23DFA98C00E2387D /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		A9877E4323F4BF3B008F8F44 /* LottieFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieFiles.swift; sourceTree = "<group>"; };
 		A9A543E921B5B9A600BF99FD /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		A9A543EE21B5C24B00BF99FD /* t.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = t.pdf; sourceTree = "<group>"; };
 		A9A543F321B9AF6900BF99FD /* GriffyImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GriffyImages.swift; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 		A9BBC2D823F3AFB300B9B60C /* bicycle-delivery.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bicycle-delivery.json"; sourceTree = "<group>"; };
 		A9BBC2DA23F3B57100B9B60C /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		A9BBC2DC23F3B63B00B9B60C /* BetaWelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaWelcomeVC.swift; sourceTree = "<group>"; };
+		A9D74F0F23F4B6CD00E54136 /* location-services.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "location-services.json"; sourceTree = "<group>"; };
+		A9D74F1823F4BB4C00E54136 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C7627662C0CC93BB4C7CEC23 /* Pods-Griffy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Griffy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Griffy/Pods-Griffy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -217,7 +223,6 @@
 		A95B21C321A0D02B001E1F28 = {
 			isa = PBXGroup;
 			children = (
-				A95AE18B23F3CF6300E15EA1 /* LocationManager.swift */,
 				A95B21CE21A0D02B001E1F28 /* Griffy */,
 				A95B21CD21A0D02B001E1F28 /* Products */,
 				A95B21E721A0D05A001E1F28 /* Frameworks */,
@@ -236,6 +241,8 @@
 		A95B21CE21A0D02B001E1F28 /* Griffy */ = {
 			isa = PBXGroup;
 			children = (
+				A9D74F1823F4BB4C00E54136 /* BaseViewController.swift */,
+				A9D74F1723F4BA6B00E54136 /* Location */,
 				A9BBC2DA23F3B57100B9B60C /* RootRouter.swift */,
 				A9BBC2D723F3AF9D00B9B60C /* Lottie Files */,
 				A9BBC2D623F3AF7600B9B60C /* Beta Screens */,
@@ -407,9 +414,19 @@
 		A9BBC2D723F3AF9D00B9B60C /* Lottie Files */ = {
 			isa = PBXGroup;
 			children = (
+				A9877E4323F4BF3B008F8F44 /* LottieFiles.swift */,
+				A9D74F0F23F4B6CD00E54136 /* location-services.json */,
 				A9BBC2D823F3AFB300B9B60C /* bicycle-delivery.json */,
 			);
 			path = "Lottie Files";
+			sourceTree = "<group>";
+		};
+		A9D74F1723F4BA6B00E54136 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				A95AE18B23F3CF6300E15EA1 /* LocationManager.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 		CD0C92496895C6A8DA24B47B /* Pods */ = {
@@ -503,6 +520,7 @@
 				A9BBC2D923F3AFB300B9B60C /* bicycle-delivery.json in Resources */,
 				A9A5442521B9B1B800BF99FD /* testfile2.radial in Resources */,
 				A9BBC2BA23F3A6A100B9B60C /* Montserrat-Bold.otf in Resources */,
+				A9D74F1023F4B6CD00E54136 /* location-services.json in Resources */,
 				A9A5441021B9B1B800BF99FD /* testfile1.radial in Resources */,
 				A9A5442421B9B1B800BF99FD /* sam.radial in Resources */,
 				A9BBC2BE23F3A6A100B9B60C /* Montserrat-Italic.otf in Resources */,
@@ -631,6 +649,7 @@
 				A9B966F021ABD7E10079EBB7 /* RealmMigrations.swift in Sources */,
 				A95AE18223F3B7BA00E15EA1 /* BetaInstructionsVC.swift in Sources */,
 				A95AE18623F3B90B00E15EA1 /* StoryboardExtensions.swift in Sources */,
+				A9877E4423F4BF3B008F8F44 /* LottieFiles.swift in Sources */,
 				A9BBC2DD23F3B63B00B9B60C /* BetaWelcomeVC.swift in Sources */,
 				A9BBC2CD23F3A73700B9B60C /* FontExtensions.swift in Sources */,
 				A95AE18823F3BA0900E15EA1 /* BetaTabBarVC.swift in Sources */,
@@ -642,6 +661,7 @@
 				A9BBC2DB23F3B57100B9B60C /* RootRouter.swift in Sources */,
 				A9B966F421ABDE840079EBB7 /* ImagesTableViewController.swift in Sources */,
 				A981195E23DFA98C00E2387D /* APIConstants.swift in Sources */,
+				A9D74F1923F4BB4C00E54136 /* BaseViewController.swift in Sources */,
 				A9B966F221ABDDED0079EBB7 /* StatusTableViewController.swift in Sources */,
 				A9BBC2D023F3AA6C00B9B60C /* ViewExtensions.swift in Sources */,
 				A95C8A5521A2405F00387444 /* CharacteristicExtensions.swift in Sources */,

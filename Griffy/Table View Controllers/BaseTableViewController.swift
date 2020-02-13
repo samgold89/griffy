@@ -22,6 +22,7 @@ class BaseTableViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    BluetoothManager.shared.startUpdateTimer()
     tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
   }
   

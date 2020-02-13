@@ -151,7 +151,7 @@ no extra effort.</string>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="anQ-I3-uzn" customClass="PaddedTextField" customModule="Griffy" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="30"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" textContentType="name"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="leftTextInset">
                                                         <real key="value" value="10"/>
@@ -176,7 +176,7 @@ no extra effort.</string>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Beta Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YRM-bn-HFX" customClass="PaddedTextField" customModule="Griffy" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="30"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="go"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="leftTextInset">
                                                         <real key="value" value="10"/>
@@ -424,7 +424,7 @@ First Name</string>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjO-VC-Lcx">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjO-VC-Lcx" customClass="SSSpinnerButton" customModule="SSSpinnerButton">
                                 <rect key="frame" x="79.666666666666686" y="554" width="255" height="62"/>
                                 <color key="backgroundColor" red="0.0" green="0.76078431369999999" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>

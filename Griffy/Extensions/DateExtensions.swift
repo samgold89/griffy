@@ -18,12 +18,12 @@ extension Date {
   
   var isAfternoon: Bool {
     let localDate = self.convertTo(region: Region.current)
-    return localDate.hour > 11 && hour < 5
+    return localDate.hour > 11 && localDate.hour < 17
   }
   
   var isEvening: Bool {
     let localDate = self.convertTo(region: Region.current)
-    return localDate.hour >= 5
+    return localDate.hour >= 17
   }
   
   var timeOfDayDescriptor: String {

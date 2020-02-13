@@ -12,12 +12,6 @@ import Fabric
 import Crashlytics
 import SwiftyDropbox
 
-func print(_ items: Any..., separator: String = " ", terminator: String = "\n") {
-  #if DEBUG
-  Swift.print(items[0], separator:separator, terminator: terminator)
-  #endif
-}
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
@@ -33,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 //    let masterNavigationController = splitViewController.viewControllers[0] as! UINavigationController
 //    let controller = masterNavigationController.topViewController as! MasterViewController
     RealmMigrations().handle()
-    BluetoothManager.shared.startUpdateTimer()
     Fabric.with([Crashlytics.self])
 //    UIFont.printAllBundledFonts()
     

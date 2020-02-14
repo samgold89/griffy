@@ -38,4 +38,15 @@ extension Date {
       return "Day"
     }
   }
+  
+  func isSameDay(date: Date) -> Bool {
+    let d1 = date.dateAtStartOf(.day)
+    let d2 = self.dateAtStartOf(.day)
+    let diff = Calendar.current.dateComponents([.day], from: d2, to: d1)
+    if diff.day == 0 {
+      return true
+    } else {
+      return false
+    }
+  }
 }

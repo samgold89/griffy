@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Bold.ttf">
+            <string>Montserrat-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="BetaHistoryHeaderCell" customModule="Griffy" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uSl-LG-yif">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DATE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEi-s6-EGq">
+                    <rect key="frame" x="20" y="445.5" width="35" height="15"/>
+                    <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WORKING TIME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pz3-B6-Hfk">
+                    <rect key="frame" x="157.5" y="445.5" width="99" height="15"/>
+                    <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DAYS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vpv-Hf-qk9">
+                    <rect key="frame" x="359" y="445.5" width="35" height="15"/>
+                    <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="uSl-LG-yif" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="0DE-yP-S15"/>
+                <constraint firstItem="Pz3-B6-Hfk" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="178-Le-ckm"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="uSl-LG-yif" secondAttribute="top" id="C6T-x1-gPv"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Vpv-Hf-qk9" secondAttribute="trailing" constant="20" id="f8p-MU-Pq7"/>
+                <constraint firstItem="Pz3-B6-Hfk" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="h5L-BQ-Bk6"/>
+                <constraint firstItem="xEi-s6-EGq" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="ljm-Tv-d31"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="uSl-LG-yif" secondAttribute="trailing" id="nXT-m1-0PO"/>
+                <constraint firstItem="Vpv-Hf-qk9" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="pyE-Wn-N2z"/>
+                <constraint firstItem="xEi-s6-EGq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="sLk-Um-hZQ"/>
+                <constraint firstItem="uSl-LG-yif" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="vDk-RE-tUy"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
+        </view>
+    </objects>
+</document>

@@ -11,8 +11,19 @@ import UIKit
 
 class BetaHistoryVC: UIViewController {
   
-}
-
-class BetaHistoryTableVC: UIViewController {
+  @IBOutlet weak var greetingLabel: UILabel!
+  @IBOutlet weak var codeLabel: UILabel!
   
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    codeLabel.text = BetaUser.me?.betaCode ?? "MISSING"
+    updateWelcomeLabel()
+  }
+  
+  fileprivate func updateWelcomeLabel() {
+    guard let me = BetaUser.me else { return }
+    
+    let date = Date()
+    greetingLabel.text = "Good \(date.timeOfDayDescriptor), \(me.firstName)!"
+  }
 }

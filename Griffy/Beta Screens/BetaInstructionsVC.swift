@@ -29,6 +29,7 @@ class BetaInstructionsVC: UIViewController {
   }
   
   @IBAction func seePolicyPressed(_ sender: Any) {
-    
+    let v = GriffyWebViewController(url: "https://www.bikepump.com")
+    present(v, animated: true, completion: nil)
   }
 }

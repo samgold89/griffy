@@ -13,7 +13,7 @@ struct APIConstants {
   #if Staging
     static let apiUrl: String = "https://staging.instructrr.com/api/v2"
   #else
-    static let apiUrl: String = "https://testapp-api.bikepump.com/poc"
+    static let apiUrl: String = "https://8gr68l5g90.execute-api.us-east-1.amazonaws.com/poc"// "https://testapp-api.bikepump.com/poc"
   #endif
   
   // api.v1.bikepum.com

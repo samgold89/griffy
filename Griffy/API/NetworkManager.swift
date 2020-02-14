@@ -26,6 +26,7 @@ final class NetworkManager {
   static let shared = NetworkManager()
   var sessionManager: SessionManager?
   let reachability = try! Reachability()
+  var sendingLocations = false
   
   private init() {
     setupSessionManager()
@@ -64,11 +65,11 @@ final class NetworkManager {
   }
   
   //MARK: Base Methods
-  func makeRequestOfType(_ method: HTTPMethod, endpoint: String, params: [String: Any]?, extraHeaders: [String: Any]?, success: @escaping (AnyObject)->(), failure: @escaping (NetworkFailClosure)->()) {
+  func makeRequestOfType(_ method: HTTPMethod, endpoint: String, params: [String: Any]?, extraHeaders: [String: Any]?, printParams: Bool = true, success: @escaping (AnyObject)->(), failure: @escaping (NetworkFailClosure)->()) {
     
     guard let session = sessionManager else { return }
     
-    let requestSummary = "API Call - \(method) - \(endpoint)\n\(params ?? ["no":"params"])"
+    let requestSummary = "API Call - \(method) - \(endpoint)\n\(printParams ? (params ?? ["no":"params"]) : [String: Any]())"
     print("\n\n\(requestSummary)")
     
     var customHeaders = getSessionHeaders()
@@ -133,6 +134,9 @@ final class NetworkManager {
   }
   
   func sendLocations(locations: [Location]) {
+    if sendingLocations { return }
+    sendingLocations = true
+    
     let endpoint = APIConstants.makeEndpoint(withPath: "locations")
     
     let locParams = locations.map { (loc) -> [String: Any] in
@@ -140,27 +144,20 @@ final class NetworkManager {
       "longitude": loc.longitude,
       "client_uuid": loc.clientUuid ?? "",
       "horizontal_accuracy": loc.horizontalAccuracy,
-//      "speed": loc.speed,
-//      "course": loc.course,
+      "speed": loc.speed,
+      "course": loc.course,
       "nickname": BetaUser.me?.betaCode ?? "**MISSING CODE**",
       "timestamp":  Formatters.locationDate.string(from: loc.timestamp)]
     }
-    let params = ["locations": locParams]
-    //      "locations":
-    //        [["latitude": Double(37.771102),
-    //         "longitude": Double(-122.432589),
-    //         "client_uuid": "88eb7cc2-112d-412b-bdd5-2ae79e525754",
-    //         "horizontal_accuracy": Double(1234.1),
-    //         "speed": Double(23.1),
-    //         "course": Double(98.123456),
-    //         "nickname": "Miguel Enriquez",
-    //         "timestamp": "2020-01-27 12:34:56"]]
-    //      ] as [String : Any]
     
-    makeRequestOfType(.post, endpoint: endpoint, params: params, extraHeaders: nil, success: { (response) in
-      print("We out here")
+    let params = ["locations": locParams]
+    print("🗺 Sending \(locations.count) locations")
+    makeRequestOfType(.post, endpoint: endpoint, params: params, extraHeaders: nil, printParams: false, success: { (response) in
+      locations.forEach({ $0.markSent() })
+      self.sendingLocations = false
     }) { (error) in
       print(error)
+      self.sendingLocations = false
     }
   }
 }

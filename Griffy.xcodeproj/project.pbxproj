@@ -34,6 +34,10 @@
 		A95B21ED21A0DC88001E1F28 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B21EC21A0DC88001E1F28 /* BluetoothManager.swift */; };
 		A95B21EF21A0EF0B001E1F28 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B21EE21A0EF0B001E1F28 /* Extensions.swift */; };
 		A95C8A5521A2405F00387444 /* CharacteristicExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95C8A5421A2405F00387444 /* CharacteristicExtensions.swift */; };
+		A96AB51223F6218A0078C352 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96AB51123F6218A0078C352 /* ArrayExtensions.swift */; };
+		A96AB51823F622220078C352 /* NumberExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96AB51723F622220078C352 /* NumberExtensions.swift */; };
+		A96AB51A23F62EB00078C352 /* GriffyWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96AB51923F62EB00078C352 /* GriffyWebViewController.swift */; };
+		A96AB51C23F62ECE0078C352 /* GriffyWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96AB51B23F62ECE0078C352 /* GriffyWebView.swift */; };
 		A976F31E21D9771A00A00817 /* GriffyFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A976F31D21D9771A00A00817 /* GriffyFileManager.swift */; };
 		A976F32021DC724D00A00817 /* MainControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A976F31F21DC724C00A00817 /* MainControlViewController.swift */; };
 		A97E67A321D6AF410031678A /* ClientChooserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E67A221D6AF410031678A /* ClientChooserTableViewController.swift */; };
@@ -43,6 +47,8 @@
 		A981195E23DFA98C00E2387D /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A981195D23DFA98C00E2387D /* APIConstants.swift */; };
 		A983F6A723F544D100DD44B3 /* BetaHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A983F6A623F544D100DD44B3 /* BetaHistoryVC.swift */; };
 		A983F6A923F5450300DD44B3 /* BetaHistoryTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A983F6A823F5450300DD44B3 /* BetaHistoryTableVC.swift */; };
+		A983F6AB23F5E62C00DD44B3 /* BetaConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A983F6AA23F5E62C00DD44B3 /* BetaConstants.swift */; };
+		A983F6AD23F5EA6500DD44B3 /* BetaHistoryHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A983F6AC23F5EA6500DD44B3 /* BetaHistoryHeaderCell.xib */; };
 		A9877E4423F4BF3B008F8F44 /* LottieFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9877E4323F4BF3B008F8F44 /* LottieFiles.swift */; };
 		A9877E4623F53464008F8F44 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9877E4523F53464008F8F44 /* ViewControllerExtensions.swift */; };
 		A9877E4823F5381B008F8F44 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9877E4723F5381B008F8F44 /* StringExtensions.swift */; };
@@ -141,6 +147,10 @@
 		A95B21EC21A0DC88001E1F28 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		A95B21EE21A0EF0B001E1F28 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A95C8A5421A2405F00387444 /* CharacteristicExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacteristicExtensions.swift; sourceTree = "<group>"; };
+		A96AB51123F6218A0078C352 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		A96AB51723F622220078C352 /* NumberExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberExtensions.swift; sourceTree = "<group>"; };
+		A96AB51923F62EB00078C352 /* GriffyWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GriffyWebViewController.swift; sourceTree = "<group>"; };
+		A96AB51B23F62ECE0078C352 /* GriffyWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GriffyWebView.swift; sourceTree = "<group>"; };
 		A976F31D21D9771A00A00817 /* GriffyFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GriffyFileManager.swift; sourceTree = "<group>"; };
 		A976F31F21DC724C00A00817 /* MainControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControlViewController.swift; sourceTree = "<group>"; };
 		A97E67A221D6AF410031678A /* ClientChooserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientChooserTableViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +160,8 @@
 		A981195D23DFA98C00E2387D /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		A983F6A623F544D100DD44B3 /* BetaHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaHistoryVC.swift; sourceTree = "<group>"; };
 		A983F6A823F5450300DD44B3 /* BetaHistoryTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaHistoryTableVC.swift; sourceTree = "<group>"; };
+		A983F6AA23F5E62C00DD44B3 /* BetaConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaConstants.swift; sourceTree = "<group>"; };
+		A983F6AC23F5EA6500DD44B3 /* BetaHistoryHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BetaHistoryHeaderCell.xib; sourceTree = "<group>"; };
 		A9877E4323F4BF3B008F8F44 /* LottieFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieFiles.swift; sourceTree = "<group>"; };
 		A9877E4523F53464008F8F44 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		A9877E4723F5381B008F8F44 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
@@ -251,6 +263,8 @@
 		A95B21CE21A0D02B001E1F28 /* Griffy */ = {
 			isa = PBXGroup;
 			children = (
+				A96AB51923F62EB00078C352 /* GriffyWebViewController.swift */,
+				A96AB51B23F62ECE0078C352 /* GriffyWebView.swift */,
 				A9877E4D23F53E27008F8F44 /* Formatters.swift */,
 				A9D74F1823F4BB4C00E54136 /* BaseViewController.swift */,
 				A9D74F1723F4BA6B00E54136 /* Location */,
@@ -393,6 +407,8 @@
 		A9BBC2CE23F3A73E00B9B60C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A96AB51123F6218A0078C352 /* ArrayExtensions.swift */,
+				A96AB51723F622220078C352 /* NumberExtensions.swift */,
 				A9877E4723F5381B008F8F44 /* StringExtensions.swift */,
 				A9877E4523F53464008F8F44 /* ViewControllerExtensions.swift */,
 				A95AE18923F3C9A400E15EA1 /* DateExtensions.swift */,
@@ -414,6 +430,8 @@
 		A9BBC2D623F3AF7600B9B60C /* Beta Screens */ = {
 			isa = PBXGroup;
 			children = (
+				A983F6AC23F5EA6500DD44B3 /* BetaHistoryHeaderCell.xib */,
+				A983F6AA23F5E62C00DD44B3 /* BetaConstants.swift */,
 				A983F6A623F544D100DD44B3 /* BetaHistoryVC.swift */,
 				A983F6A823F5450300DD44B3 /* BetaHistoryTableVC.swift */,
 				A9BBC2DC23F3B63B00B9B60C /* BetaWelcomeVC.swift */,
@@ -528,6 +546,7 @@
 				A9BBC2CA23F3A6A100B9B60C /* Montserrat-ExtraLightItalic.otf in Resources */,
 				A9A5441721B9B1B800BF99FD /* cocacola.radial in Resources */,
 				A9A5442121B9B1B800BF99FD /* starbucks.png in Resources */,
+				A983F6AD23F5EA6500DD44B3 /* BetaHistoryHeaderCell.xib in Resources */,
 				A9BBC2C323F3A6A100B9B60C /* Montserrat-SemiBoldItalic.otf in Resources */,
 				A9BBC2C623F3A6A100B9B60C /* Montserrat-Regular.otf in Resources */,
 				A95B21DC21A0D02B001E1F28 /* Assets.xcassets in Resources */,
@@ -661,6 +680,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9B966F821ABE18A0079EBB7 /* CharacteristicDetailViewController.swift in Sources */,
+				A96AB51A23F62EB00078C352 /* GriffyWebViewController.swift in Sources */,
 				A9B966F021ABD7E10079EBB7 /* RealmMigrations.swift in Sources */,
 				A95AE18223F3B7BA00E15EA1 /* BetaInstructionsVC.swift in Sources */,
 				A95AE18623F3B90B00E15EA1 /* StoryboardExtensions.swift in Sources */,
@@ -675,6 +695,7 @@
 				A9BBC2D523F3AF7300B9B60C /* BetaNavigationVC.swift in Sources */,
 				A9877E4823F5381B008F8F44 /* StringExtensions.swift in Sources */,
 				A9A665EF221CAE0300D0FABD /* UIImage+GIF.swift in Sources */,
+				A96AB51C23F62ECE0078C352 /* GriffyWebView.swift in Sources */,
 				A9BBC2DB23F3B57100B9B60C /* RootRouter.swift in Sources */,
 				A9B966F421ABDE840079EBB7 /* ImagesTableViewController.swift in Sources */,
 				A981195E23DFA98C00E2387D /* APIConstants.swift in Sources */,
@@ -687,6 +708,8 @@
 				A981195C23DFA96900E2387D /* UserDefaultConstants.swift in Sources */,
 				A976F31E21D9771A00A00817 /* GriffyFileManager.swift in Sources */,
 				A9A5442721B9B41500BF99FD /* ImageChoiceCell.swift in Sources */,
+				A983F6AB23F5E62C00DD44B3 /* BetaConstants.swift in Sources */,
+				A96AB51223F6218A0078C352 /* ArrayExtensions.swift in Sources */,
 				A90925A221D963B700D7648E /* ClientChooserTableViewCell.swift in Sources */,
 				A9270E7021B9C6C4007BD884 /* GriffyTabBarController.swift in Sources */,
 				A95AE18A23F3C9A400E15EA1 /* DateExtensions.swift in Sources */,
@@ -705,6 +728,7 @@
 				A9BBC2D223F3ABA700B9B60C /* PaddedTextField.swift in Sources */,
 				A9A543EA21B5B9A600BF99FD /* BaseTableViewController.swift in Sources */,
 				A95AE18C23F3CF6300E15EA1 /* LocationManager.swift in Sources */,
+				A96AB51823F622220078C352 /* NumberExtensions.swift in Sources */,
 				A95B21EF21A0EF0B001E1F28 /* Extensions.swift in Sources */,
 				A9B966EE21ABCBCE0079EBB7 /* SettingsTableViewController.swift in Sources */,
 				A9877E4623F53464008F8F44 /* ViewControllerExtensions.swift in Sources */,
@@ -856,7 +880,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Griffy/Griffy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Q43VC9K527;
 				INFOPLIST_FILE = Griffy/Info.plist;
@@ -877,7 +901,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Griffy/Griffy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = Q43VC9K527;
 				INFOPLIST_FILE = Griffy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

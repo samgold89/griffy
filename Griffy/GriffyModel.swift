@@ -264,8 +264,14 @@ class Location: Object {
       l.nickname = BetaUser.me?.betaCode ?? "**MISSING**"
       l.timestamp = location.timestamp
     }
-    print(clientUuid)
     return clientUuid
+  }
+  
+  func markSent() {
+    let realm = try! Realm()
+    try! realm.write {
+      realm.objects(Location.self).filter({ $0.clientUuid == self.clientUuid}).forEach({ $0.sentToServer = true })
+    }
   }
   
   public static func find(byId id: String) -> Location? {
@@ -307,15 +313,21 @@ class Shift: Object {
     return realm.objects(Shift.self).filter(NSPredicate(format: "startDate < %@ AND endDate = nil", argumentArray: [now])).first
   }
   
-  public static func endCurrentShift() {
+  
+  /// Ends current shift with the time provided, or pulls from the last location recorded
+  /// - Parameter usingTime: The time used to mark the end of the shift with. If nil, will use the last stored location
+  public static func endCurrentShift(usingTime: Date?) {
     guard let currentShift = currentShift else { return }
     let realm = try! Realm()
     try! realm.write {
-      currentShift.endDate = Date()
+      currentShift.endDate = usingTime ?? Location.lastLocationAfter(date: currentShift.startDate)?.timestamp ?? Date()
     }
   }
   
   public static func beginNewShift() {
+    assert(currentShift == nil)
+    endCurrentShift(usingTime: nil) // failsafe
+    
     let realm = try! Realm()
     try! realm.write {
       let s = realm.create(Shift.self)

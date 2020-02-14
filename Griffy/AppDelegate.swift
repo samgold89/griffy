@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     
     if let _ = BetaUser.me {
       RootRouter().showBetaLoggedInScreen()
-      Shift.endCurrentShift() // Just in case
+      Shift.endCurrentShift(usingTime: nil) // Just in case the app crashed or something
     } else {
       RootRouter().showBetaLaunchScreen()
     }

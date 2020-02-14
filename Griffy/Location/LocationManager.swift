@@ -27,6 +27,7 @@ class LocationManager: NSObject {
   static let shared = LocationManager()
   weak var delegate: GFLocationProtocol?
   private var currentlyUpdatingLocation: Bool = false
+  let locationBatchSize = 100
   
   lazy var locationManager: CLLocationManager = {
     let locationManager = CLLocationManager()
@@ -55,7 +56,7 @@ class LocationManager: NSObject {
   
 //  MARK: Location Start & Stop Methods
   func requestLocationPermission() {
-    locationManager.requestAlwaysAuthorization()
+    locationManager.requestWhenInUseAuthorization()
   }
   
   func startUpdatingLocation() {
@@ -88,8 +89,10 @@ class LocationManager: NSObject {
   }
   
   func checkUploadLocations() {
-    if let locs = Location.unsentLocations {//, locs.count > 100 {
+    if let locs = Location.unsentLocations, locs.count > locationBatchSize {
       NetworkManager.shared.sendLocations(locations: locs)
+    } else {
+      print("Not sending locations. Only \(Location.unsentLocations?.count ?? 0)")
     }
   }
 }

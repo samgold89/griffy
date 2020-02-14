@@ -21,7 +21,7 @@ class BetaTodayVC: BaseViewController {
     cyclist.loopMode = .loop
     view.addSubview(cyclist)
     cyclist.autoSetDimensions(to: CGSize(width: 172.0, height: 152.0))
-    cyclist.autoPinEdge(.bottom, to: .top, of: workingTimeLabel, withOffset: -50.0)
+    cyclist.autoPinEdge(.bottom, to: .top, of: workingTimeLabel, withOffset: -20.0)
     cyclist.autoAlignAxis(.vertical, toSameAxisOf: view)
     return cyclist
   }()
@@ -31,17 +31,14 @@ class BetaTodayVC: BaseViewController {
   @IBOutlet weak var welcomeLabel: UILabel!
   @IBOutlet weak var codeLabel: UILabel!
   
-  var completedShifts: Results<Shift>?
+  var completedShiftsToday: Results<Shift>?
   var updateTimer: Timer?
+  @IBOutlet weak var startRidingPrompt: UILabel!
+  @IBOutlet weak var submitReportView: UIView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     codeLabel.text = BetaUser.me?.betaCode ?? "MISSING"
-    
-    updateWelcomeLabel()
-    updateActionButton()
-    updateLottieView()
-    updateWorkingTime()
     
     LocationManager.shared.delegate = self
   }
@@ -49,8 +46,11 @@ class BetaTodayVC: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     NotificationCenter.default.addObserver(self, selector: #selector(appBecameActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+    
     updateWelcomeLabel()
     updateActionButton()
+    updateLottieView()
+    updateWorkingTime()
   }
   
   @objc fileprivate func appBecameActive() {
@@ -92,6 +92,7 @@ class BetaTodayVC: BaseViewController {
   
   //MARK: Shift Management
   fileprivate func beginTimer() {
+    updateWorkingTime()
     updateTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
       self.updateWorkingTime()
     }
@@ -103,7 +104,7 @@ class BetaTodayVC: BaseViewController {
   }
   
   fileprivate func updateWorkingTime() {
-    let loggedTime = completedShifts?.compactMap({ $0.duration }).reduce(0, +) ?? 0
+    let loggedTime = completedShiftsToday?.compactMap({ $0.duration }).reduce(0, +) ?? 0
     let newTime = Shift.currentShift?.duration ?? 0
     workingTimeLabel.text = String.hourMinSecFromSeconds(time: loggedTime + newTime)
   }
@@ -111,23 +112,36 @@ class BetaTodayVC: BaseViewController {
   fileprivate func startShift() {
     LocationManager.shared.startUpdatingLocation()
     bicyclistLottie.play()
-    Shift.endCurrentShift() // IN case we're coming back from a dead or crashed app
     
     let realm = try! Realm()
-    completedShifts = realm.objects(Shift.self).filter(NSPredicate(format: "endDate != nil AND startDate >= %@", argumentArray: [Date().dateAtStartOf(Calendar.Component.day)]))
+    completedShiftsToday = realm.objects(Shift.self).filter(NSPredicate(format: "endDate != nil AND startDate >= %@", argumentArray: [Date().dateAtStartOf(Calendar.Component.day)]))
     
     Shift.beginNewShift()
     beginTimer()
+    setSubmitReportViews(hidden: true)
   }
   
   fileprivate func stopShift() {
     LocationManager.shared.stopUpdatingLocation()
     bicyclistLottie.stop()
-    Shift.endCurrentShift()
+    Shift.endCurrentShift(usingTime: Date())
     endTimer()
+    setSubmitReportViews(hidden: false)
+    
+    updateWorkingTime()
   }
   
+  fileprivate func  setSubmitReportViews(hidden: Bool) {
+    let shouldShow = (completedShiftsToday?.count ?? 0) > 0 ? 1 : 0
+    UIView.animate(withDuration: 0.3) {
+      self.submitReportView.alpha = CGFloat(hidden ? 0 : shouldShow)
+    }
+  }
   
+  @IBAction func submitReportPressed(_ sender: Any) {
+    let v = GriffyWebViewController(url: BetaConstants.riderDaySurveyUrl)
+    present(v, animated: true, completion: nil)
+  }
   
   fileprivate func updateActionButton() {
     if LocationManager.shared.permissionStatus == .enabled {
@@ -153,7 +167,10 @@ class BetaTodayVC: BaseViewController {
 
 extension BetaTodayVC: GFLocationProtocol {
   func locationSaved(location: Location) {
-    
+    guard let current = Shift.currentShift else { return }
+    if !location.timestamp.isSameDay(date: current.startDate) && location.timestamp.hour > 3 {
+      stopShift()
+    }
   }
   
   func locationTrackingChanged(isPaused: Bool) {

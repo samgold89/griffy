@@ -34,6 +34,7 @@
 		A95B21ED21A0DC88001E1F28 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B21EC21A0DC88001E1F28 /* BluetoothManager.swift */; };
 		A95B21EF21A0EF0B001E1F28 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B21EE21A0EF0B001E1F28 /* Extensions.swift */; };
 		A95C8A5521A2405F00387444 /* CharacteristicExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95C8A5421A2405F00387444 /* CharacteristicExtensions.swift */; };
+		A95FEF6E23F89E82008F21C5 /* BetaHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95FEF6D23F89E82008F21C5 /* BetaHistoryCell.swift */; };
 		A96AB51223F6218A0078C352 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96AB51123F6218A0078C352 /* ArrayExtensions.swift */; };
 		A96AB51823F622220078C352 /* NumberExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96AB51723F622220078C352 /* NumberExtensions.swift */; };
 		A96AB51A23F62EB00078C352 /* GriffyWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96AB51923F62EB00078C352 /* GriffyWebViewController.swift */; };
@@ -147,6 +148,7 @@
 		A95B21EC21A0DC88001E1F28 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		A95B21EE21A0EF0B001E1F28 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A95C8A5421A2405F00387444 /* CharacteristicExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacteristicExtensions.swift; sourceTree = "<group>"; };
+		A95FEF6D23F89E82008F21C5 /* BetaHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaHistoryCell.swift; sourceTree = "<group>"; };
 		A96AB51123F6218A0078C352 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		A96AB51723F622220078C352 /* NumberExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberExtensions.swift; sourceTree = "<group>"; };
 		A96AB51923F62EB00078C352 /* GriffyWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GriffyWebViewController.swift; sourceTree = "<group>"; };
@@ -317,6 +319,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A95FEF6A23F89E5A008F21C5 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				A983F6A823F5450300DD44B3 /* BetaHistoryTableVC.swift */,
+				A95FEF6D23F89E82008F21C5 /* BetaHistoryCell.swift */,
+				A983F6A623F544D100DD44B3 /* BetaHistoryVC.swift */,
+				A983F6AC23F5EA6500DD44B3 /* BetaHistoryHeaderCell.xib */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		A95FEF6B23F89E6B008F21C5 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				A95AE18323F3B8BA00E15EA1 /* BetaTodayVC.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		A95FEF6C23F89E72008F21C5 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				A9BBC2DC23F3B63B00B9B60C /* BetaWelcomeVC.swift */,
+				A95AE18123F3B7B900E15EA1 /* BetaInstructionsVC.swift */,
+				A95AE17F23F3B7B700E15EA1 /* BetaSetupVC.swift */,
+			);
+			path = Intro;
+			sourceTree = "<group>";
+		};
 		A981195523DFA63D00E2387D /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -430,14 +461,10 @@
 		A9BBC2D623F3AF7600B9B60C /* Beta Screens */ = {
 			isa = PBXGroup;
 			children = (
-				A983F6AC23F5EA6500DD44B3 /* BetaHistoryHeaderCell.xib */,
+				A95FEF6A23F89E5A008F21C5 /* History */,
 				A983F6AA23F5E62C00DD44B3 /* BetaConstants.swift */,
-				A983F6A623F544D100DD44B3 /* BetaHistoryVC.swift */,
-				A983F6A823F5450300DD44B3 /* BetaHistoryTableVC.swift */,
-				A9BBC2DC23F3B63B00B9B60C /* BetaWelcomeVC.swift */,
-				A95AE17F23F3B7B700E15EA1 /* BetaSetupVC.swift */,
-				A95AE18123F3B7B900E15EA1 /* BetaInstructionsVC.swift */,
-				A95AE18323F3B8BA00E15EA1 /* BetaTodayVC.swift */,
+				A95FEF6B23F89E6B008F21C5 /* Today */,
+				A95FEF6C23F89E72008F21C5 /* Intro */,
 				A95AE18723F3BA0900E15EA1 /* BetaTabBarVC.swift */,
 				A9BBC2D423F3AF7300B9B60C /* BetaNavigationVC.swift */,
 			);
@@ -723,6 +750,7 @@
 				A95AE18423F3B8BA00E15EA1 /* BetaTodayVC.swift in Sources */,
 				A9A543F421B9AF6900BF99FD /* GriffyImages.swift in Sources */,
 				A95AE18023F3B7B700E15EA1 /* BetaSetupVC.swift in Sources */,
+				A95FEF6E23F89E82008F21C5 /* BetaHistoryCell.swift in Sources */,
 				A9B966F621ABDE9A0079EBB7 /* AdminMainTableViewController.swift in Sources */,
 				A9B966EC21ABC5EA0079EBB7 /* GriffyModel.swift in Sources */,
 				A9BBC2D223F3ABA700B9B60C /* PaddedTextField.swift in Sources */,
@@ -880,7 +908,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Griffy/Griffy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Q43VC9K527;
 				INFOPLIST_FILE = Griffy/Info.plist;
@@ -901,7 +929,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Griffy/Griffy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = Q43VC9K527;
 				INFOPLIST_FILE = Griffy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

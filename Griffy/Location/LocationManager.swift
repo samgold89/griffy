@@ -112,7 +112,7 @@ extension LocationManager: CLLocationManagerDelegate {
   }
   
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    locations.filter({ $0.horizontalAccuracy <= 100 }).forEach { (loc) in
+    locations.filter({ $0.horizontalAccuracy <= BetaConstants.minimumHorizontalAccuracy }).forEach { (loc) in
       let id = Location.create(withLocation: loc)
       if let location = Location.find(byId: id) {
         delegate?.locationSaved(location: location)

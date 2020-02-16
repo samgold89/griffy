@@ -142,7 +142,7 @@ final class NetworkManager {
     let locParams = locations.map { (loc) -> [String: Any] in
       ["latitude": loc.latitude,
       "longitude": loc.longitude,
-      "client_uuid": loc.clientUuid ?? "",
+      "client_uuid": BetaUser.me?.id ?? "*MISSING-ID*",
       "horizontal_accuracy": loc.horizontalAccuracy,
       "speed": loc.speed,
       "course": loc.course,

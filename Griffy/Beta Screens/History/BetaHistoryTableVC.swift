@@ -15,7 +15,8 @@ struct PastRides {
   var duration: Int
   var payCount: Int
 }
-class BetaHistoryTableVC: UITableViewController {
+
+class BetaHistoryTableVC: UITableViewController { 
   var groupedShifts = [[Shift]]()
   var paymentIndices = [Int]()
   
@@ -30,7 +31,6 @@ class BetaHistoryTableVC: UITableViewController {
   }
   
   fileprivate func createFakeData(realm: Realm) {
-    return()
     let durationInHours = [5.0, 8.5, 9.5, 2.3, 15.9, 16.4, 3.5, 4.3, 20.2,5.0, 8.5, 9.5, 2.3, 15.9, 16.4, 3.5, 4.3, 20.2]
     
     try! realm.write {
@@ -48,7 +48,6 @@ class BetaHistoryTableVC: UITableViewController {
     paymentIndices.removeAll()
     
     let realm = try! Realm()
-//    createFakeData(realm: realm)
     let shifts = realm.objects(Shift.self).sorted(byKeyPath: "startDate", ascending: false)
     guard shifts.count > 0 else { return }
     var idx = 0

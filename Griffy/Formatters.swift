@@ -11,6 +11,8 @@ import Foundation
 struct Formatters {
   static let locationDate: DateFormatter = {
     let dateFormatter = DateFormatter()
+    dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+//    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     return dateFormatter
   }()

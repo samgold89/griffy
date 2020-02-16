@@ -131,7 +131,7 @@ class BetaTodayVC: BaseViewController {
     updateWorkingTime()
   }
   
-  fileprivate func  setSubmitReportViews(hidden: Bool) {
+  fileprivate func setSubmitReportViews(hidden: Bool) {
     let shouldShow = (completedShiftsToday?.count ?? 0) > 0 ? 1 : 0
     UIView.animate(withDuration: 0.3) {
       self.submitReportView.alpha = CGFloat(hidden ? 0 : shouldShow)

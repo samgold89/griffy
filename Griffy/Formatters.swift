@@ -11,8 +11,13 @@ import Foundation
 struct Formatters {
   static let locationDate: DateFormatter = {
     let dateFormatter = DateFormatter()
-    dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-//    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+    
+    // ensures for beta we use locatl time, since we already released with that.
+    // for production, we'll format correctly
+    if APIConstants.apiUrl != "https://8gr68l5g90.execute-api.us-east-1.amazonaws.com/poc" {
+      dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+    }
+    
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     return dateFormatter
   }()

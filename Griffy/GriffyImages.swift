@@ -35,6 +35,7 @@ struct GriffyImage: Codable {
   let hiResRadialFilePaths: [String]?
   let startingIndex: Int
   let frameDuration: Int
+  
   var frameCount: Int {
     if stdRadialFilePaths?.count ?? 0 > 0 {
       return stdRadialFilePaths?.count ?? 0

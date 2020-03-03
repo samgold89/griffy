@@ -79,6 +79,10 @@
 		A9A5442521B9B1B800BF99FD /* testfile2.radial in Resources */ = {isa = PBXBuildFile; fileRef = A9A5440D21B9B1B800BF99FD /* testfile2.radial */; };
 		A9A5442721B9B41500BF99FD /* ImageChoiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5442621B9B41500BF99FD /* ImageChoiceCell.swift */; };
 		A9A665EF221CAE0300D0FABD /* UIImage+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A665EE221CAE0300D0FABD /* UIImage+GIF.swift */; };
+		A9AFB0A7240EE7060022CB2F /* ModelLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AFB0A6240EE7060022CB2F /* ModelLocation.swift */; };
+		A9AFB0A9240EE7100022CB2F /* ModelBetaUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AFB0A8240EE7100022CB2F /* ModelBetaUser.swift */; };
+		A9AFB0AB240EE7190022CB2F /* ModelShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AFB0AA240EE7190022CB2F /* ModelShift.swift */; };
+		A9AFB0AD240EE7490022CB2F /* ModelCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AFB0AC240EE7490022CB2F /* ModelCharacteristic.swift */; };
 		A9B966EC21ABC5EA0079EBB7 /* GriffyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966EB21ABC5EA0079EBB7 /* GriffyModel.swift */; };
 		A9B966EE21ABCBCE0079EBB7 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966ED21ABCBCE0079EBB7 /* SettingsTableViewController.swift */; };
 		A9B966F021ABD7E10079EBB7 /* RealmMigrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966EF21ABD7E10079EBB7 /* RealmMigrations.swift */; };
@@ -193,6 +197,10 @@
 		A9A5440D21B9B1B800BF99FD /* testfile2.radial */ = {isa = PBXFileReference; lastKnownFileType = file; path = testfile2.radial; sourceTree = "<group>"; };
 		A9A5442621B9B41500BF99FD /* ImageChoiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageChoiceCell.swift; sourceTree = "<group>"; };
 		A9A665EE221CAE0300D0FABD /* UIImage+GIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+GIF.swift"; sourceTree = "<group>"; };
+		A9AFB0A6240EE7060022CB2F /* ModelLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLocation.swift; sourceTree = "<group>"; };
+		A9AFB0A8240EE7100022CB2F /* ModelBetaUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelBetaUser.swift; sourceTree = "<group>"; };
+		A9AFB0AA240EE7190022CB2F /* ModelShift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelShift.swift; sourceTree = "<group>"; };
+		A9AFB0AC240EE7490022CB2F /* ModelCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCharacteristic.swift; sourceTree = "<group>"; };
 		A9B966EB21ABC5EA0079EBB7 /* GriffyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GriffyModel.swift; sourceTree = "<group>"; };
 		A9B966ED21ABCBCE0079EBB7 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		A9B966EF21ABD7E10079EBB7 /* RealmMigrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMigrations.swift; sourceTree = "<group>"; };
@@ -291,7 +299,7 @@
 				A9B966F721ABE18A0079EBB7 /* CharacteristicDetailViewController.swift */,
 				A9A543EB21B5BAB900BF99FD /* Table View Controllers */,
 				A9B966EF21ABD7E10079EBB7 /* RealmMigrations.swift */,
-				A9B966EB21ABC5EA0079EBB7 /* GriffyModel.swift */,
+				A9AFB0A5240EE6F90022CB2F /* Model */,
 				A95B21EE21A0EF0B001E1F28 /* Extensions.swift */,
 				A95C8A5421A2405F00387444 /* CharacteristicExtensions.swift */,
 				A95B21E621A0D045001E1F28 /* Griffy.entitlements */,
@@ -408,6 +416,18 @@
 				A9A5440821B9B1B700BF99FD /* testfile4.radial */,
 			);
 			path = GriffyImages;
+			sourceTree = "<group>";
+		};
+		A9AFB0A5240EE6F90022CB2F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A9B966EB21ABC5EA0079EBB7 /* GriffyModel.swift */,
+				A9AFB0A6240EE7060022CB2F /* ModelLocation.swift */,
+				A9AFB0A8240EE7100022CB2F /* ModelBetaUser.swift */,
+				A9AFB0AC240EE7490022CB2F /* ModelCharacteristic.swift */,
+				A9AFB0AA240EE7190022CB2F /* ModelShift.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		A9BBC2A723F3A68700B9B60C /* Fonts */ = {
@@ -737,12 +757,14 @@
 				A9A5442721B9B41500BF99FD /* ImageChoiceCell.swift in Sources */,
 				A983F6AB23F5E62C00DD44B3 /* BetaConstants.swift in Sources */,
 				A96AB51223F6218A0078C352 /* ArrayExtensions.swift in Sources */,
+				A9AFB0AD240EE7490022CB2F /* ModelCharacteristic.swift in Sources */,
 				A90925A221D963B700D7648E /* ClientChooserTableViewCell.swift in Sources */,
 				A9270E7021B9C6C4007BD884 /* GriffyTabBarController.swift in Sources */,
 				A95AE18A23F3C9A400E15EA1 /* DateExtensions.swift in Sources */,
 				A95B21D521A0D02B001E1F28 /* MasterViewController.swift in Sources */,
 				A983F6A923F5450300DD44B3 /* BetaHistoryTableVC.swift in Sources */,
 				A97E67A321D6AF410031678A /* ClientChooserTableViewController.swift in Sources */,
+				A9AFB0A9240EE7100022CB2F /* ModelBetaUser.swift in Sources */,
 				A981195923DFA8CD00E2387D /* ErrorConstants.swift in Sources */,
 				A981195723DFA64500E2387D /* NetworkManager.swift in Sources */,
 				A95B21ED21A0DC88001E1F28 /* BluetoothManager.swift in Sources */,
@@ -751,9 +773,11 @@
 				A9A543F421B9AF6900BF99FD /* GriffyImages.swift in Sources */,
 				A95AE18023F3B7B700E15EA1 /* BetaSetupVC.swift in Sources */,
 				A95FEF6E23F89E82008F21C5 /* BetaHistoryCell.swift in Sources */,
+				A9AFB0AB240EE7190022CB2F /* ModelShift.swift in Sources */,
 				A9B966F621ABDE9A0079EBB7 /* AdminMainTableViewController.swift in Sources */,
 				A9B966EC21ABC5EA0079EBB7 /* GriffyModel.swift in Sources */,
 				A9BBC2D223F3ABA700B9B60C /* PaddedTextField.swift in Sources */,
+				A9AFB0A7240EE7060022CB2F /* ModelLocation.swift in Sources */,
 				A9A543EA21B5B9A600BF99FD /* BaseTableViewController.swift in Sources */,
 				A95AE18C23F3CF6300E15EA1 /* LocationManager.swift in Sources */,
 				A96AB51823F622220078C352 /* NumberExtensions.swift in Sources */,

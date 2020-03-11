@@ -34,8 +34,13 @@ class LocationManager: NSObject {
     locationManager.allowsBackgroundLocationUpdates = true
     locationManager.pausesLocationUpdatesAutomatically = false
     locationManager.distanceFilter = kCLDistanceFilterNone
+   
+    assertionFailure("implement deferring updates functionality")
+//    if !deferringUpdates
+//    locationManager.allowDeferredLocationUpdates(untilTraveled: <#T##CLLocationDistance#>, timeout: <#T##TimeInterval#>)
+    
     locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    locationManager.activityType = .fitness
+    locationManager.activityType = .other //.fitness
     locationManager.delegate = self
     return locationManager
   }()

@@ -14,7 +14,7 @@ class GriffyTabBarController: UITabBarController {
   
   override func viewDidLoad() {
     statusView = UIView()
-    statusView!.alpha = 0
+    statusView!.alpha = 1
     statusView!.translatesAutoresizingMaskIntoConstraints = false
     statusView!.backgroundColor = UIColor.gfRed
     
@@ -77,7 +77,6 @@ class GriffyTabBarController: UITabBarController {
     guard let bt = note.object as? GFBluetoothState else {
       return
     }
-    statusView?.alpha = 1
     statusView?.backgroundColor = bt.color
     if let label = statusView?.subviews.first as? UILabel {
       UIView.animate(withDuration: 0.3) {

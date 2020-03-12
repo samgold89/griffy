@@ -79,11 +79,11 @@
 		A9A5442521B9B1B800BF99FD /* testfile2.radial in Resources */ = {isa = PBXBuildFile; fileRef = A9A5440D21B9B1B800BF99FD /* testfile2.radial */; };
 		A9A5442721B9B41500BF99FD /* ImageChoiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5442621B9B41500BF99FD /* ImageChoiceCell.swift */; };
 		A9A665EF221CAE0300D0FABD /* UIImage+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A665EE221CAE0300D0FABD /* UIImage+GIF.swift */; };
-		A9AFB0A7240EE7060022CB2F /* ModelLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AFB0A6240EE7060022CB2F /* ModelLocation.swift */; };
-		A9AFB0A9240EE7100022CB2F /* ModelBetaUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AFB0A8240EE7100022CB2F /* ModelBetaUser.swift */; };
-		A9AFB0AB240EE7190022CB2F /* ModelShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AFB0AA240EE7190022CB2F /* ModelShift.swift */; };
-		A9AFB0AD240EE7490022CB2F /* ModelCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AFB0AC240EE7490022CB2F /* ModelCharacteristic.swift */; };
-		A9B966EC21ABC5EA0079EBB7 /* GriffyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966EB21ABC5EA0079EBB7 /* GriffyModel.swift */; };
+		A9AFB0A7240EE7060022CB2F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AFB0A6240EE7060022CB2F /* Location.swift */; };
+		A9AFB0A9240EE7100022CB2F /* BetaUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AFB0A8240EE7100022CB2F /* BetaUser.swift */; };
+		A9AFB0AB240EE7190022CB2F /* Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AFB0AA240EE7190022CB2F /* Shift.swift */; };
+		A9AFB0AD240EE7490022CB2F /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AFB0AC240EE7490022CB2F /* Characteristic.swift */; };
+		A9B966EC21ABC5EA0079EBB7 /* BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966EB21ABC5EA0079EBB7 /* BaseObject.swift */; };
 		A9B966EE21ABCBCE0079EBB7 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966ED21ABCBCE0079EBB7 /* SettingsTableViewController.swift */; };
 		A9B966F021ABD7E10079EBB7 /* RealmMigrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966EF21ABD7E10079EBB7 /* RealmMigrations.swift */; };
 		A9B966F221ABDDED0079EBB7 /* StatusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966F121ABDDED0079EBB7 /* StatusTableViewController.swift */; };
@@ -118,6 +118,8 @@
 		A9BBC2DD23F3B63B00B9B60C /* BetaWelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BBC2DC23F3B63B00B9B60C /* BetaWelcomeVC.swift */; };
 		A9D74F1023F4B6CD00E54136 /* location-services.json in Resources */ = {isa = PBXBuildFile; fileRef = A9D74F0F23F4B6CD00E54136 /* location-services.json */; };
 		A9D74F1923F4BB4C00E54136 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D74F1823F4BB4C00E54136 /* BaseViewController.swift */; };
+		A9D9A1D92419B8BF00BB8142 /* TestAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1D82419B8BF00BB8142 /* TestAd.swift */; };
+		A9D9A1DF2419BC1400BB8142 /* StaticCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1DE2419BC1400BB8142 /* StaticCells.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -197,11 +199,11 @@
 		A9A5440D21B9B1B800BF99FD /* testfile2.radial */ = {isa = PBXFileReference; lastKnownFileType = file; path = testfile2.radial; sourceTree = "<group>"; };
 		A9A5442621B9B41500BF99FD /* ImageChoiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageChoiceCell.swift; sourceTree = "<group>"; };
 		A9A665EE221CAE0300D0FABD /* UIImage+GIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+GIF.swift"; sourceTree = "<group>"; };
-		A9AFB0A6240EE7060022CB2F /* ModelLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLocation.swift; sourceTree = "<group>"; };
-		A9AFB0A8240EE7100022CB2F /* ModelBetaUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelBetaUser.swift; sourceTree = "<group>"; };
-		A9AFB0AA240EE7190022CB2F /* ModelShift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelShift.swift; sourceTree = "<group>"; };
-		A9AFB0AC240EE7490022CB2F /* ModelCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCharacteristic.swift; sourceTree = "<group>"; };
-		A9B966EB21ABC5EA0079EBB7 /* GriffyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GriffyModel.swift; sourceTree = "<group>"; };
+		A9AFB0A6240EE7060022CB2F /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		A9AFB0A8240EE7100022CB2F /* BetaUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaUser.swift; sourceTree = "<group>"; };
+		A9AFB0AA240EE7190022CB2F /* Shift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shift.swift; sourceTree = "<group>"; };
+		A9AFB0AC240EE7490022CB2F /* Characteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characteristic.swift; sourceTree = "<group>"; };
+		A9B966EB21ABC5EA0079EBB7 /* BaseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseObject.swift; sourceTree = "<group>"; };
 		A9B966ED21ABCBCE0079EBB7 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		A9B966EF21ABD7E10079EBB7 /* RealmMigrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMigrations.swift; sourceTree = "<group>"; };
 		A9B966F121ABDDED0079EBB7 /* StatusTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewController.swift; sourceTree = "<group>"; };
@@ -236,6 +238,8 @@
 		A9BBC2DC23F3B63B00B9B60C /* BetaWelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaWelcomeVC.swift; sourceTree = "<group>"; };
 		A9D74F0F23F4B6CD00E54136 /* location-services.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "location-services.json"; sourceTree = "<group>"; };
 		A9D74F1823F4BB4C00E54136 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		A9D9A1D82419B8BF00BB8142 /* TestAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAd.swift; sourceTree = "<group>"; };
+		A9D9A1DE2419BC1400BB8142 /* StaticCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StaticCells.swift; path = Griffy/StaticCells.swift; sourceTree = SOURCE_ROOT; };
 		C7627662C0CC93BB4C7CEC23 /* Pods-Griffy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Griffy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Griffy/Pods-Griffy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -421,11 +425,12 @@
 		A9AFB0A5240EE6F90022CB2F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A9B966EB21ABC5EA0079EBB7 /* GriffyModel.swift */,
-				A9AFB0A6240EE7060022CB2F /* ModelLocation.swift */,
-				A9AFB0A8240EE7100022CB2F /* ModelBetaUser.swift */,
-				A9AFB0AC240EE7490022CB2F /* ModelCharacteristic.swift */,
-				A9AFB0AA240EE7190022CB2F /* ModelShift.swift */,
+				A9B966EB21ABC5EA0079EBB7 /* BaseObject.swift */,
+				A9D9A1D82419B8BF00BB8142 /* TestAd.swift */,
+				A9AFB0A6240EE7060022CB2F /* Location.swift */,
+				A9AFB0A8240EE7100022CB2F /* BetaUser.swift */,
+				A9AFB0AC240EE7490022CB2F /* Characteristic.swift */,
+				A9AFB0AA240EE7190022CB2F /* Shift.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -451,6 +456,7 @@
 				A9BBC2B123F3A6A100B9B60C /* Montserrat-SemiBoldItalic.otf */,
 				A9BBC2AF23F3A6A100B9B60C /* Montserrat-Thin.otf */,
 				A9BBC2A923F3A6A000B9B60C /* Montserrat-ThinItalic.otf */,
+				A9D9A1DE2419BC1400BB8142 /* StaticCells.swift */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -726,6 +732,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9D9A1D92419B8BF00BB8142 /* TestAd.swift in Sources */,
 				A9B966F821ABE18A0079EBB7 /* CharacteristicDetailViewController.swift in Sources */,
 				A96AB51A23F62EB00078C352 /* GriffyWebViewController.swift in Sources */,
 				A9B966F021ABD7E10079EBB7 /* RealmMigrations.swift in Sources */,
@@ -737,6 +744,7 @@
 				A9BBC2CD23F3A73700B9B60C /* FontExtensions.swift in Sources */,
 				A95AE18823F3BA0900E15EA1 /* BetaTabBarVC.swift in Sources */,
 				A976F32021DC724D00A00817 /* MainControlViewController.swift in Sources */,
+				A9D9A1DF2419BC1400BB8142 /* StaticCells.swift in Sources */,
 				A95B21EB21A0D8E8001E1F28 /* BLEConstants.swift in Sources */,
 				A95B21D321A0D02B001E1F28 /* Griffy.xcdatamodeld in Sources */,
 				A9BBC2D523F3AF7300B9B60C /* BetaNavigationVC.swift in Sources */,
@@ -757,14 +765,14 @@
 				A9A5442721B9B41500BF99FD /* ImageChoiceCell.swift in Sources */,
 				A983F6AB23F5E62C00DD44B3 /* BetaConstants.swift in Sources */,
 				A96AB51223F6218A0078C352 /* ArrayExtensions.swift in Sources */,
-				A9AFB0AD240EE7490022CB2F /* ModelCharacteristic.swift in Sources */,
+				A9AFB0AD240EE7490022CB2F /* Characteristic.swift in Sources */,
 				A90925A221D963B700D7648E /* ClientChooserTableViewCell.swift in Sources */,
 				A9270E7021B9C6C4007BD884 /* GriffyTabBarController.swift in Sources */,
 				A95AE18A23F3C9A400E15EA1 /* DateExtensions.swift in Sources */,
 				A95B21D521A0D02B001E1F28 /* MasterViewController.swift in Sources */,
 				A983F6A923F5450300DD44B3 /* BetaHistoryTableVC.swift in Sources */,
 				A97E67A321D6AF410031678A /* ClientChooserTableViewController.swift in Sources */,
-				A9AFB0A9240EE7100022CB2F /* ModelBetaUser.swift in Sources */,
+				A9AFB0A9240EE7100022CB2F /* BetaUser.swift in Sources */,
 				A981195923DFA8CD00E2387D /* ErrorConstants.swift in Sources */,
 				A981195723DFA64500E2387D /* NetworkManager.swift in Sources */,
 				A95B21ED21A0DC88001E1F28 /* BluetoothManager.swift in Sources */,
@@ -773,11 +781,11 @@
 				A9A543F421B9AF6900BF99FD /* GriffyImages.swift in Sources */,
 				A95AE18023F3B7B700E15EA1 /* BetaSetupVC.swift in Sources */,
 				A95FEF6E23F89E82008F21C5 /* BetaHistoryCell.swift in Sources */,
-				A9AFB0AB240EE7190022CB2F /* ModelShift.swift in Sources */,
+				A9AFB0AB240EE7190022CB2F /* Shift.swift in Sources */,
 				A9B966F621ABDE9A0079EBB7 /* AdminMainTableViewController.swift in Sources */,
-				A9B966EC21ABC5EA0079EBB7 /* GriffyModel.swift in Sources */,
+				A9B966EC21ABC5EA0079EBB7 /* BaseObject.swift in Sources */,
 				A9BBC2D223F3ABA700B9B60C /* PaddedTextField.swift in Sources */,
-				A9AFB0A7240EE7060022CB2F /* ModelLocation.swift in Sources */,
+				A9AFB0A7240EE7060022CB2F /* Location.swift in Sources */,
 				A9A543EA21B5B9A600BF99FD /* BaseTableViewController.swift in Sources */,
 				A95AE18C23F3CF6300E15EA1 /* LocationManager.swift in Sources */,
 				A96AB51823F622220078C352 /* NumberExtensions.swift in Sources */,

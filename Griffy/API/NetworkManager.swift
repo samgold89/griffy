@@ -160,4 +160,19 @@ final class NetworkManager {
       self.sendingLocations = false
     }
   }
+  
+  func getTestAds(completion: @escaping (NetworkFailClosure?)->()) {
+    let displayType = "A78"
+    let userId = "123"
+    let endpoint = APIConstants.makeEndpoint(withPath: "test_ads?display_format=\(displayType)&user_id=\(userId)")
+    makeRequestOfType(.get, endpoint: endpoint, params: nil, extraHeaders: nil, success: { (resp) in
+      guard let resp = resp as? [String: Any], let ads = resp["ads"] as? [[String: Any]] else { return }
+      ads.forEach { (ad) in
+        TestAd.parse(TestAd.self, dictionary: ad)
+      }
+      completion(nil)
+    }) { (error) in
+      completion(NetworkFailClosure(error: error.error, errorTitle: error.errorTitle, statusCode: error.statusCode))
+    }
+  }
 }

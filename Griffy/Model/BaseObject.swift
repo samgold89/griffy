@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import CoreBluetooth
 
-class GFObject: Object {
+class BaseObject: Object {
   @objc dynamic var updatedAt: Date? = nil
   @objc dynamic var deletedAt: Date? = nil
   @objc dynamic var id = ""
@@ -32,7 +32,21 @@ class GFObject: Object {
     }
     return allThings
   }
+  
+  @discardableResult
+  public static func parse<T: Object>(_ type: T.Type, dictionary: [String: Any?], update: Bool = true) -> T? {
+    let realm = try! Realm()
+    
+    var modified: T?
+    try! realm.write {
+      modified = realm.create(T.self, value: dictionary, update: Realm.UpdatePolicy.modified)
+    }
+    
+    return modified
+  }
+}
 
+class GFObject: BaseObject {
   public static func parse<T: Object>(_ type: T.Type, characteristic: CBCharacteristic) -> T? {
     let realm = try! Realm()
     

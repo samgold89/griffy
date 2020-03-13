@@ -8,27 +8,6 @@
 
 import Foundation
 
-struct GriffyImageState: Codable {
-  let griffyImage: GriffyImage
-  let setHighRes: Bool
-  
-  public static var lastSetImage: GriffyImageState? {
-    if let data = UserDefaults.standard.value(forKey: UserDefaultConstants.lastGriffyImage) as? Data {
-      return try? PropertyListDecoder().decode(GriffyImageState.self, from: data)
-    }
-    return nil
-  }
-  
-  func saveInfo() {
-    guard let data = try? PropertyListEncoder().encode(self) else {
-      assertionFailure("Couldn't encode the branch info to UserDefaults")
-      return
-    }
-    UserDefaults.standard.set(data, forKey: UserDefaultConstants.lastGriffyImage)
-    UserDefaults.standard.synchronize()
-  }
-}
-
 struct GriffyImage: Codable {
   let imageFilePath: String
   let stdRadialFilePaths: [String]?

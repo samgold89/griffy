@@ -298,7 +298,6 @@
 				A9416F3021FBCB400096824F /* BLEStateManager.swift */,
 				A976F31F21DC724C00A00817 /* MainControlViewController.swift */,
 				A9BBC2A723F3A68700B9B60C /* Fonts */,
-				A9D9A1E4241AEE6F00BB8142 /* File Managers */,
 				A97E67A221D6AF410031678A /* ClientChooserTableViewController.swift */,
 				A90925A121D963B700D7648E /* ClientChooserTableViewCell.swift */,
 				A9270E6F21B9C6C4007BD884 /* GriffyTabBarController.swift */,
@@ -316,9 +315,10 @@
 				A95B21CF21A0D02B001E1F28 /* AppDelegate.swift */,
 				A95B21D421A0D02B001E1F28 /* MasterViewController.swift */,
 				A9A543EE21B5C24B00BF99FD /* t.pdf */,
-				A9A543F521B9B01E00BF99FD /* GriffyImages */,
 				A9A543F321B9AF6900BF99FD /* GriffyImages.swift */,
 				A95B21EC21A0DC88001E1F28 /* BluetoothManager.swift */,
+				A9A543F521B9B01E00BF99FD /* Dummy Data */,
+				A9D9A1E4241AEE6F00BB8142 /* File Managers */,
 				A95B21D821A0D02B001E1F28 /* Main.storyboard */,
 				A95B21DB21A0D02B001E1F28 /* Assets.xcassets */,
 				A95B21DD21A0D02B001E1F28 /* LaunchScreen.storyboard */,
@@ -398,7 +398,7 @@
 			path = "Table View Controllers";
 			sourceTree = "<group>";
 		};
-		A9A543F521B9B01E00BF99FD /* GriffyImages */ = {
+		A9A543F521B9B01E00BF99FD /* Dummy Data */ = {
 			isa = PBXGroup;
 			children = (
 				A9A5440421B9B1B600BF99FD /* cocacola.png */,
@@ -426,7 +426,7 @@
 				A9A5440A21B9B1B700BF99FD /* testfile4.png */,
 				A9A5440821B9B1B700BF99FD /* testfile4.radial */,
 			);
-			path = GriffyImages;
+			path = "Dummy Data";
 			sourceTree = "<group>";
 		};
 		A9AFB0A5240EE6F90022CB2F /* Model */ = {

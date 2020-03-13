@@ -15,7 +15,7 @@
 		A9270E7621B9CF89007BD884 /* eli_bonaire.png in Resources */ = {isa = PBXBuildFile; fileRef = A9270E7221B9CF88007BD884 /* eli_bonaire.png */; };
 		A9270E7721B9CF89007BD884 /* sam.png in Resources */ = {isa = PBXBuildFile; fileRef = A9270E7321B9CF88007BD884 /* sam.png */; };
 		A9270E7821B9CF89007BD884 /* sorry.png in Resources */ = {isa = PBXBuildFile; fileRef = A9270E7421B9CF88007BD884 /* sorry.png */; };
-		A9416F3121FBCB400096824F /* GFStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9416F3021FBCB400096824F /* GFStateManager.swift */; };
+		A9416F3121FBCB400096824F /* BLEStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9416F3021FBCB400096824F /* BLEStateManager.swift */; };
 		A95AE18023F3B7B700E15EA1 /* BetaSetupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AE17F23F3B7B700E15EA1 /* BetaSetupVC.swift */; };
 		A95AE18223F3B7BA00E15EA1 /* BetaInstructionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AE18123F3B7B900E15EA1 /* BetaInstructionsVC.swift */; };
 		A95AE18423F3B8BA00E15EA1 /* BetaTodayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AE18323F3B8BA00E15EA1 /* BetaTodayVC.swift */; };
@@ -135,7 +135,7 @@
 		A9270E7221B9CF88007BD884 /* eli_bonaire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eli_bonaire.png; sourceTree = "<group>"; };
 		A9270E7321B9CF88007BD884 /* sam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sam.png; sourceTree = "<group>"; };
 		A9270E7421B9CF88007BD884 /* sorry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sorry.png; sourceTree = "<group>"; };
-		A9416F3021FBCB400096824F /* GFStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFStateManager.swift; sourceTree = "<group>"; };
+		A9416F3021FBCB400096824F /* BLEStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEStateManager.swift; sourceTree = "<group>"; };
 		A95AE17F23F3B7B700E15EA1 /* BetaSetupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaSetupVC.swift; sourceTree = "<group>"; };
 		A95AE18123F3B7B900E15EA1 /* BetaInstructionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaInstructionsVC.swift; sourceTree = "<group>"; };
 		A95AE18323F3B8BA00E15EA1 /* BetaTodayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaTodayVC.swift; sourceTree = "<group>"; };
@@ -295,7 +295,7 @@
 				A9BBC2CE23F3A73E00B9B60C /* Extensions */,
 				A9BBC2A123F3A61B00B9B60C /* Beta.storyboard */,
 				A9A665EE221CAE0300D0FABD /* UIImage+GIF.swift */,
-				A9416F3021FBCB400096824F /* GFStateManager.swift */,
+				A9416F3021FBCB400096824F /* BLEStateManager.swift */,
 				A976F31F21DC724C00A00817 /* MainControlViewController.swift */,
 				A9BBC2A723F3A68700B9B60C /* Fonts */,
 				A9D9A1E4241AEE6F00BB8142 /* File Managers */,
@@ -795,7 +795,7 @@
 				A981195923DFA8CD00E2387D /* ErrorConstants.swift in Sources */,
 				A981195723DFA64500E2387D /* NetworkManager.swift in Sources */,
 				A95B21ED21A0DC88001E1F28 /* BluetoothManager.swift in Sources */,
-				A9416F3121FBCB400096824F /* GFStateManager.swift in Sources */,
+				A9416F3121FBCB400096824F /* BLEStateManager.swift in Sources */,
 				A95AE18423F3B8BA00E15EA1 /* BetaTodayVC.swift in Sources */,
 				A9A543F421B9AF6900BF99FD /* GriffyImages.swift in Sources */,
 				A95AE18023F3B7B700E15EA1 /* BetaSetupVC.swift in Sources */,

@@ -85,7 +85,7 @@ class ClientChooserTableViewCell: UITableViewCell {
     let destURL = directoryURL.appendingPathComponent("clientAssets").appendingPathComponent(client?.clientName ?? "")
     
     GriffyFileManager.deleteClientFolderContents(name: clientName)
-    GriffyFileManager.createClientFolder(name: clientName)
+    GriffyFileManager.createAdFolder(name: clientName)
     
     guard let dbxClient = DropboxClientsManager.authorizedClient else {
       assertionFailure("Shouldn't be downloading if there's no authorized dropbox client")

@@ -41,7 +41,7 @@ class GriffyFileManager {
     }
   }
   
-  internal static func createClientFolder(name: String) {
+  internal static func createAdFolder(name: String) {
     let fileManager = FileManager.default
     let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
     let assetUrl = directoryURL.appendingPathComponent("clientAssets")

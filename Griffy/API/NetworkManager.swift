@@ -164,11 +164,14 @@ final class NetworkManager {
   func getTestAds(completion: @escaping (NetworkFailClosure?)->()) {
     let displayType = "A78"
     let userId = "123"
-    let endpoint = APIConstants.makeEndpoint(withPath: "test_ads?display_format=\(displayType)&user_id=\(userId)")
+    let endpoint = APIConstants.makeEndpoint(withPath: "testAds?displayFormat=\(displayType)&userId=\(userId)")
     makeRequestOfType(.get, endpoint: endpoint, params: nil, extraHeaders: nil, success: { (resp) in
-      guard let resp = resp as? [String: Any], let ads = resp["ads"] as? [[String: Any]] else { return }
+      guard let resp = resp as? [String: Any], let ads = resp["testAds"] as? [[String: Any]] else { return }
       ads.forEach { (ad) in
-        TestAd.parse(TestAd.self, dictionary: ad)
+        guard let ad = TestAd.parse(TestAd.self, dictionary: ad) else { return }
+        if ad.shouldDownloadRadials {
+          ad.downloadRadials()
+        }
       }
       completion(nil)
     }) { (error) in

@@ -120,6 +120,9 @@
 		A9D74F1923F4BB4C00E54136 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D74F1823F4BB4C00E54136 /* BaseViewController.swift */; };
 		A9D9A1D92419B8BF00BB8142 /* TestAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1D82419B8BF00BB8142 /* TestAd.swift */; };
 		A9D9A1DF2419BC1400BB8142 /* StaticCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1DE2419BC1400BB8142 /* StaticCells.swift */; };
+		A9D9A1E12419CA1C00BB8142 /* FileNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1E02419CA1C00BB8142 /* FileNetworkManager.swift */; };
+		A9D9A1E3241AD4C500BB8142 /* RadFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1E2241AD4C500BB8142 /* RadFrame.swift */; };
+		A9D9A1E6241AEE7E00BB8142 /* AdFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1E5241AEE7E00BB8142 /* AdFileManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -240,6 +243,9 @@
 		A9D74F1823F4BB4C00E54136 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A9D9A1D82419B8BF00BB8142 /* TestAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAd.swift; sourceTree = "<group>"; };
 		A9D9A1DE2419BC1400BB8142 /* StaticCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StaticCells.swift; path = Griffy/StaticCells.swift; sourceTree = SOURCE_ROOT; };
+		A9D9A1E02419CA1C00BB8142 /* FileNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNetworkManager.swift; sourceTree = "<group>"; };
+		A9D9A1E2241AD4C500BB8142 /* RadFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadFrame.swift; sourceTree = "<group>"; };
+		A9D9A1E5241AEE7E00BB8142 /* AdFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdFileManager.swift; sourceTree = "<group>"; };
 		C7627662C0CC93BB4C7CEC23 /* Pods-Griffy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Griffy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Griffy/Pods-Griffy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -292,7 +298,7 @@
 				A9416F3021FBCB400096824F /* GFStateManager.swift */,
 				A976F31F21DC724C00A00817 /* MainControlViewController.swift */,
 				A9BBC2A723F3A68700B9B60C /* Fonts */,
-				A976F31D21D9771A00A00817 /* GriffyFileManager.swift */,
+				A9D9A1E4241AEE6F00BB8142 /* File Managers */,
 				A97E67A221D6AF410031678A /* ClientChooserTableViewController.swift */,
 				A90925A121D963B700D7648E /* ClientChooserTableViewCell.swift */,
 				A9270E6F21B9C6C4007BD884 /* GriffyTabBarController.swift */,
@@ -364,6 +370,7 @@
 			isa = PBXGroup;
 			children = (
 				A981195623DFA64500E2387D /* NetworkManager.swift */,
+				A9D9A1E02419CA1C00BB8142 /* FileNetworkManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -427,6 +434,7 @@
 			children = (
 				A9B966EB21ABC5EA0079EBB7 /* BaseObject.swift */,
 				A9D9A1D82419B8BF00BB8142 /* TestAd.swift */,
+				A9D9A1E2241AD4C500BB8142 /* RadFrame.swift */,
 				A9AFB0A6240EE7060022CB2F /* Location.swift */,
 				A9AFB0A8240EE7100022CB2F /* BetaUser.swift */,
 				A9AFB0AC240EE7490022CB2F /* Characteristic.swift */,
@@ -513,6 +521,15 @@
 				A95AE18B23F3CF6300E15EA1 /* LocationManager.swift */,
 			);
 			path = Location;
+			sourceTree = "<group>";
+		};
+		A9D9A1E4241AEE6F00BB8142 /* File Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A976F31D21D9771A00A00817 /* GriffyFileManager.swift */,
+				A9D9A1E5241AEE7E00BB8142 /* AdFileManager.swift */,
+			);
+			path = "File Managers";
 			sourceTree = "<group>";
 		};
 		CD0C92496895C6A8DA24B47B /* Pods */ = {
@@ -732,6 +749,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9D9A1E12419CA1C00BB8142 /* FileNetworkManager.swift in Sources */,
 				A9D9A1D92419B8BF00BB8142 /* TestAd.swift in Sources */,
 				A9B966F821ABE18A0079EBB7 /* CharacteristicDetailViewController.swift in Sources */,
 				A96AB51A23F62EB00078C352 /* GriffyWebViewController.swift in Sources */,
@@ -745,6 +763,7 @@
 				A95AE18823F3BA0900E15EA1 /* BetaTabBarVC.swift in Sources */,
 				A976F32021DC724D00A00817 /* MainControlViewController.swift in Sources */,
 				A9D9A1DF2419BC1400BB8142 /* StaticCells.swift in Sources */,
+				A9D9A1E6241AEE7E00BB8142 /* AdFileManager.swift in Sources */,
 				A95B21EB21A0D8E8001E1F28 /* BLEConstants.swift in Sources */,
 				A95B21D321A0D02B001E1F28 /* Griffy.xcdatamodeld in Sources */,
 				A9BBC2D523F3AF7300B9B60C /* BetaNavigationVC.swift in Sources */,
@@ -789,6 +808,7 @@
 				A9A543EA21B5B9A600BF99FD /* BaseTableViewController.swift in Sources */,
 				A95AE18C23F3CF6300E15EA1 /* LocationManager.swift in Sources */,
 				A96AB51823F622220078C352 /* NumberExtensions.swift in Sources */,
+				A9D9A1E3241AD4C500BB8142 /* RadFrame.swift in Sources */,
 				A95B21EF21A0EF0B001E1F28 /* Extensions.swift in Sources */,
 				A9B966EE21ABCBCE0079EBB7 /* SettingsTableViewController.swift in Sources */,
 				A9877E4623F53464008F8F44 /* ViewControllerExtensions.swift in Sources */,

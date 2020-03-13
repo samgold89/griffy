@@ -27,16 +27,16 @@ class MainControlViewController: UIViewController {
     let version = "v. \(Bundle.main.infoDictionary!["CFBundleShortVersionString"]!)"
     versionLabel.text = "\(version) (\(build))"
     
-    let oldLeftBrightness = GFStateManager.shared.leftBrightness
+    let oldLeftBrightness = BLEStateManager.shared.leftBrightness
     leftSlider.value = Float(oldLeftBrightness)/brightnessMax
     
-    let oldRightBrightness = GFStateManager.shared.rightBrightness
+    let oldRightBrightness = BLEStateManager.shared.rightBrightness
     rightSlider.value = Float(oldRightBrightness)/brightnessMax
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    activeImage.image = GFStateManager.shared.activeImage
+    activeImage.image = BLEStateManager.shared.activeImage
     NotificationCenter.default.addObserver(self, selector: #selector(MainControlViewController.bluetoothDidConnect), name: .bluetoothStateChanged, object: nil)
   }
   
@@ -51,8 +51,8 @@ class MainControlViewController: UIViewController {
   }
   
   func setSliderToOldValue() {
-    let leftOldBrightness = GFStateManager.shared.leftBrightness
-    let rightOldBrightness = GFStateManager.shared.rightBrightness
+    let leftOldBrightness = BLEStateManager.shared.leftBrightness
+    let rightOldBrightness = BLEStateManager.shared.rightBrightness
     setBrightnessValue(newLeftBrightnessValue: leftOldBrightness, newRightBrightnessValue: rightOldBrightness, updateSlider: true)
   }
   
@@ -73,7 +73,7 @@ class MainControlViewController: UIViewController {
   @IBAction func leftSliderSlid(_ sender: Any) {
     let newBrightnessValue = Int(leftSlider.value * brightnessMax)
     
-    let currentValue = GFStateManager.shared.leftBrightness
+    let currentValue = BLEStateManager.shared.leftBrightness
     
     print("CurrentL: \(Int(currentValue)), NewL: \(newBrightnessValue)")
     if Int(currentValue) == newBrightnessValue {
@@ -86,7 +86,7 @@ class MainControlViewController: UIViewController {
   @IBAction func rightSliderSlid(_ sender: Any) {
     let newBrightnessValue = Int(rightSlider.value * brightnessMax)
     
-    let currentValue = GFStateManager.shared.rightBrightness
+    let currentValue = BLEStateManager.shared.rightBrightness
     
     print("CurrentR: \(Int(currentValue)), NewR: \(newBrightnessValue)")
     if Int(currentValue) == newBrightnessValue {
@@ -97,15 +97,15 @@ class MainControlViewController: UIViewController {
   }
   
   func setBrightnessValue(newLeftBrightnessValue: Int?, newRightBrightnessValue: Int?, updateSlider: Bool) {
-    if newLeftBrightnessValue != GFStateManager.shared.leftBrightness {
+    if newLeftBrightnessValue != BLEStateManager.shared.leftBrightness {
       guard let brightnessChar = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.brightnessId) else {
         return
       }
       
-      BluetoothManager.shared.writeValue(data: Data(bytes: [UInt8(newLeftBrightnessValue ?? GFStateManager.shared.leftBrightness),UInt8(newRightBrightnessValue ?? GFStateManager.shared.rightBrightness)]), toCharacteristic: brightnessChar)
+      BluetoothManager.shared.writeValue(data: Data(bytes: [UInt8(newLeftBrightnessValue ?? BLEStateManager.shared.leftBrightness),UInt8(newRightBrightnessValue ?? BLEStateManager.shared.rightBrightness)]), toCharacteristic: brightnessChar)
       
       if let left = newLeftBrightnessValue {
-        GFStateManager.shared.leftBrightness = left
+        BLEStateManager.shared.leftBrightness = left
         leftBrightnessLabel.text = "L-Brightness = \(left)"
         if updateSlider {
           UIView.animate(withDuration: 0.3) { self.leftSlider.value = Float(left)/self.brightnessMax }
@@ -113,15 +113,15 @@ class MainControlViewController: UIViewController {
       }
     }
     
-    if newRightBrightnessValue != GFStateManager.shared.rightBrightness {
+    if newRightBrightnessValue != BLEStateManager.shared.rightBrightness {
       guard let brightnessChar = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.brightnessId) else {
         return
       }
       
-      BluetoothManager.shared.writeValue(data: Data(bytes: [UInt8(newLeftBrightnessValue ?? GFStateManager.shared.leftBrightness),UInt8(newRightBrightnessValue ?? GFStateManager.shared.rightBrightness)]), toCharacteristic: brightnessChar)
+      BluetoothManager.shared.writeValue(data: Data(bytes: [UInt8(newLeftBrightnessValue ?? BLEStateManager.shared.leftBrightness),UInt8(newRightBrightnessValue ?? BLEStateManager.shared.rightBrightness)]), toCharacteristic: brightnessChar)
       
       if let right = newRightBrightnessValue {
-        GFStateManager.shared.rightBrightness = right
+        BLEStateManager.shared.rightBrightness = right
         rightBrightnessLabel.text = "R-Brightness = \(right)"
         if updateSlider {
           UIView.animate(withDuration: 0.3) { self.rightSlider.value = Float(right)/self.brightnessMax }
@@ -129,6 +129,6 @@ class MainControlViewController: UIViewController {
       }
     }
     
-    print("Sending BT Update: L:\(GFStateManager.shared.leftBrightness), R:\(GFStateManager.shared.rightBrightness)")
+    print("Sending BT Update: L:\(BLEStateManager.shared.leftBrightness), R:\(BLEStateManager.shared.rightBrightness)")
   }
 }

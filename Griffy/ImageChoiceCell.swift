@@ -121,8 +121,8 @@ class ImageChoiceCell: UICollectionViewCell {
     BluetoothManager.shared.setImageActive(griffy: g, useHighRes: false) {
       self.setStdActiveButton.setLoaderVisible(visible: false, style: nil)
       
-      GFStateManager.shared.activeImage = self.griffyImageView.image
-      GFStateManager.shared.activeIndex = g.startingIndex
+      BLEStateManager.shared.activeImage = self.griffyImageView.image
+      BLEStateManager.shared.activeIndex = g.startingIndex
     }
   }
   
@@ -136,8 +136,8 @@ class ImageChoiceCell: UICollectionViewCell {
     BluetoothManager.shared.setImageActive(griffy: g, useHighRes: true) {
       self.setHiResActiveButton.setLoaderVisible(visible: false, style: nil)
       
-      GFStateManager.shared.activeImage = self.griffyImageView.image
-      GFStateManager.shared.activeIndex = g.startingIndex
+      BLEStateManager.shared.activeImage = self.griffyImageView.image
+      BLEStateManager.shared.activeIndex = g.startingIndex
     }
   }
   

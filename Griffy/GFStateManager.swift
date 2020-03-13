@@ -1,5 +1,5 @@
 //
-//  GFStateManager.swift
+//  BLEStateManager.swift
 //  Griffy
 //
 //  Created by Sam Goldstein on 1/25/19.
@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-final class GFStateManager: NSObject {
-  static let shared = GFStateManager()
+final class BLEStateManager: NSObject {
+  static let shared = BLEStateManager()
   
   var activeImage: UIImage? {
     didSet {

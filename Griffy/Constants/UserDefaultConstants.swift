@@ -10,7 +10,6 @@ import Foundation
 
 struct UserDefaultConstants {
   static let activeClientName = "activeClientName"
-  static let lastSelectedImageIndex = "lastSelectedImageIndex"
   static let maxOutgoingBLERequests = "maxOutgoingBLERequests"
   static let activeImageData = "activeImageData"
   static let activeIndex = "activeIndex"

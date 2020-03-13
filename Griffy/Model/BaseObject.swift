@@ -34,7 +34,7 @@ class BaseObject: Object {
   }
   
   @discardableResult
-  public static func parse<T: Object>(_ type: T.Type, dictionary: [String: Any?], update: Bool = true) -> T? {
+  class func parse<T: Object>(_ type: T.Type, dictionary: [String: Any?], update: Bool = true) -> T? {
     let realm = try! Realm()
     
     var modified: T?

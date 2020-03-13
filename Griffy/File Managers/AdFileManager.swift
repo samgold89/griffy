@@ -32,7 +32,7 @@ struct AdFileManager {
     
     ad.stdRadUrls.forEach { (std) in
       guard let url = URL(string: std.url) else { return }
-      let newPath = self.hrRadFolderUrl.appendingPathComponent("std-\(std.order + 100).rad") // + 100 for string sorting 1, 10, 2, 20, etc
+      let newPath = self.stdRadFolderUrl.appendingPathComponent("std-\(std.order + 100).rad") // + 100 for string sorting 1, 10, 2, 20, etc
       
       f.downloadFile(fromUrl: url, toUrl: newPath) { (comp) in
         if let error = comp.error {

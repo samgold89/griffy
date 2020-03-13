@@ -168,10 +168,7 @@ final class NetworkManager {
     makeRequestOfType(.get, endpoint: endpoint, params: nil, extraHeaders: nil, success: { (resp) in
       guard let resp = resp as? [String: Any], let ads = resp["testAds"] as? [[String: Any]] else { return }
       ads.forEach { (ad) in
-        guard let ad = TestAd.parse(TestAd.self, dictionary: ad) else { return }
-        if ad.shouldDownloadRadials {
-          ad.downloadRadials()
-        }
+        TestAd.parse(TestAd.self, dictionary: ad) else { return }
       }
       completion(nil)
     }) { (error) in

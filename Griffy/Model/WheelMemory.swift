@@ -50,7 +50,6 @@ class AdMemoryMap: Object {
     return totalMemorySlots - memoryItems.map({$0.length}).reduce(0, +)
   }
   
-  
 //  MARK: Get ads from wheel
   struct WheelMemoryPlacement {
     var stdResStartIndex: Int

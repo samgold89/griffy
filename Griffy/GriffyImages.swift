@@ -9,11 +9,20 @@
 import Foundation
 
 struct GriffyImage: Codable {
+//  let adId: String
   let imageFilePath: String
   let stdRadialFilePaths: [String]?
   let hiResRadialFilePaths: [String]?
   let startingIndex: Int
   let frameDuration: Int
+  
+//  var ad: TestAd {
+//    guard let ad = TestAd.find(TestAd.self, byId: adId) {
+//      assertionFailure("Should have ad with id: \(adId)")
+//      return TestAd()
+//    }
+//    return ad
+//  }
   
   var frameCount: Int {
     if stdRadialFilePaths?.count ?? 0 > 0 {
@@ -32,12 +41,5 @@ struct GriffyImage: Codable {
     self.hiResRadialFilePaths = hiResRadialFilePaths
     self.startingIndex = startingIndex
     self.frameDuration = frameDuration ?? 0
-  }
-}
-
-struct GriffyImageGetter {
-  internal static func getAllImages(forClient client: String) -> [GriffyImage] {
-    var images = [GriffyImage]()
-    return images
   }
 }

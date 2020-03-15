@@ -35,6 +35,25 @@ class TestAd: BaseObject {
     return baseKey.replacingOccurrences(of: "/", with: "-")
   }
   
+  var stdStartIndexOnWheel: Int? {
+    guard let wheel = Wheel.activeWheel, let memory = wheel.adMemoryMap else { return nil }
+    return memory.existingStartIndex(forAd: self)?.stdResStartIndex
+  }
+  
+  var hrStartIndexOnWheel: Int? {
+    guard let wheel = Wheel.activeWheel, let memory = wheel.adMemoryMap else { return nil }
+    return memory.existingStartIndex(forAd: self)?.hrResStartIndex
+  }
+  
+  struct AdSendCompletion {
+    var error: String?
+    var memoryMap: AdMemoryMap.WheelMemoryPlacement?
+  }
+  
+  func sendToWheel(completion: AdSendCompletion) {
+    
+  }
+  
   var hrRadFilePaths: [String]? {
     let ad = AdFileManager(ad: self)
     do {

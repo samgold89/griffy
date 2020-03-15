@@ -54,6 +54,7 @@
 		A9877E4623F53464008F8F44 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9877E4523F53464008F8F44 /* ViewControllerExtensions.swift */; };
 		A9877E4823F5381B008F8F44 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9877E4723F5381B008F8F44 /* StringExtensions.swift */; };
 		A9877E4E23F53E27008F8F44 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9877E4D23F53E27008F8F44 /* Formatters.swift */; };
+		A998F719241ECDBE00706978 /* DataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A998F718241ECDBE00706978 /* DataExtensions.swift */; };
 		A9A543EA21B5B9A600BF99FD /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A543E921B5B9A600BF99FD /* BaseTableViewController.swift */; };
 		A9A543EF21B5C24B00BF99FD /* t.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9A543EE21B5C24B00BF99FD /* t.pdf */; };
 		A9A543F421B9AF6900BF99FD /* GriffyImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A543F321B9AF6900BF99FD /* GriffyImages.swift */; };
@@ -123,6 +124,8 @@
 		A9D9A1E12419CA1C00BB8142 /* FileNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1E02419CA1C00BB8142 /* FileNetworkManager.swift */; };
 		A9D9A1E3241AD4C500BB8142 /* RadFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1E2241AD4C500BB8142 /* RadFrame.swift */; };
 		A9D9A1E6241AEE7E00BB8142 /* AdFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1E5241AEE7E00BB8142 /* AdFileManager.swift */; };
+		A9D9A1E8241C430900BB8142 /* WheelMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1E7241C430900BB8142 /* WheelMemory.swift */; };
+		A9D9A1EA241C433500BB8142 /* Wheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1E9241C433500BB8142 /* Wheel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -177,6 +180,7 @@
 		A9877E4523F53464008F8F44 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		A9877E4723F5381B008F8F44 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		A9877E4D23F53E27008F8F44 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
+		A998F718241ECDBE00706978 /* DataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtensions.swift; sourceTree = "<group>"; };
 		A9A543E921B5B9A600BF99FD /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		A9A543EE21B5C24B00BF99FD /* t.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = t.pdf; sourceTree = "<group>"; };
 		A9A543F321B9AF6900BF99FD /* GriffyImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GriffyImages.swift; sourceTree = "<group>"; };
@@ -246,6 +250,8 @@
 		A9D9A1E02419CA1C00BB8142 /* FileNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNetworkManager.swift; sourceTree = "<group>"; };
 		A9D9A1E2241AD4C500BB8142 /* RadFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadFrame.swift; sourceTree = "<group>"; };
 		A9D9A1E5241AEE7E00BB8142 /* AdFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdFileManager.swift; sourceTree = "<group>"; };
+		A9D9A1E7241C430900BB8142 /* WheelMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelMemory.swift; sourceTree = "<group>"; };
+		A9D9A1E9241C433500BB8142 /* Wheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wheel.swift; sourceTree = "<group>"; };
 		C7627662C0CC93BB4C7CEC23 /* Pods-Griffy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Griffy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Griffy/Pods-Griffy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -296,17 +302,11 @@
 				A9BBC2A123F3A61B00B9B60C /* Beta.storyboard */,
 				A9A665EE221CAE0300D0FABD /* UIImage+GIF.swift */,
 				A9416F3021FBCB400096824F /* BLEStateManager.swift */,
-				A976F31F21DC724C00A00817 /* MainControlViewController.swift */,
 				A9BBC2A723F3A68700B9B60C /* Fonts */,
-				A97E67A221D6AF410031678A /* ClientChooserTableViewController.swift */,
-				A90925A121D963B700D7648E /* ClientChooserTableViewCell.swift */,
 				A9270E6F21B9C6C4007BD884 /* GriffyTabBarController.swift */,
 				A981195A23DFA8E400E2387D /* Constants */,
 				A981195523DFA63D00E2387D /* API */,
-				A9A5442621B9B41500BF99FD /* ImageChoiceCell.swift */,
-				A9270E6D21B9B56C007BD884 /* ImageChoiceCollectionViewController.swift */,
-				A9B966F721ABE18A0079EBB7 /* CharacteristicDetailViewController.swift */,
-				A9A543EB21B5BAB900BF99FD /* Table View Controllers */,
+				A9A543EB21B5BAB900BF99FD /* Admin */,
 				A9B966EF21ABD7E10079EBB7 /* RealmMigrations.swift */,
 				A9AFB0A5240EE6F90022CB2F /* Model */,
 				A95B21EE21A0EF0B001E1F28 /* Extensions.swift */,
@@ -386,16 +386,15 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
-		A9A543EB21B5BAB900BF99FD /* Table View Controllers */ = {
+		A9A543EB21B5BAB900BF99FD /* Admin */ = {
 			isa = PBXGroup;
 			children = (
-				A9A543E921B5B9A600BF99FD /* BaseTableViewController.swift */,
-				A9B966F121ABDDED0079EBB7 /* StatusTableViewController.swift */,
-				A9B966F321ABDE840079EBB7 /* ImagesTableViewController.swift */,
-				A9B966ED21ABCBCE0079EBB7 /* SettingsTableViewController.swift */,
-				A9B966F521ABDE9A0079EBB7 /* AdminMainTableViewController.swift */,
+				A976F31F21DC724C00A00817 /* MainControlViewController.swift */,
+				A9D9A1EC241C443D00BB8142 /* Dropbox VCs */,
+				A9D9A1ED241C444500BB8142 /* Image Selection */,
+				A9D9A1EB241C441500BB8142 /* TableViewControllers */,
 			);
-			path = "Table View Controllers";
+			path = Admin;
 			sourceTree = "<group>";
 		};
 		A9A543F521B9B01E00BF99FD /* Dummy Data */ = {
@@ -433,6 +432,8 @@
 			isa = PBXGroup;
 			children = (
 				A9B966EB21ABC5EA0079EBB7 /* BaseObject.swift */,
+				A9D9A1E7241C430900BB8142 /* WheelMemory.swift */,
+				A9D9A1E9241C433500BB8142 /* Wheel.swift */,
 				A9D9A1D82419B8BF00BB8142 /* TestAd.swift */,
 				A9D9A1E2241AD4C500BB8142 /* RadFrame.swift */,
 				A9AFB0A6240EE7060022CB2F /* Location.swift */,
@@ -477,6 +478,7 @@
 				A9877E4723F5381B008F8F44 /* StringExtensions.swift */,
 				A9877E4523F53464008F8F44 /* ViewControllerExtensions.swift */,
 				A95AE18923F3C9A400E15EA1 /* DateExtensions.swift */,
+				A998F718241ECDBE00706978 /* DataExtensions.swift */,
 				A9BBC2CC23F3A73700B9B60C /* FontExtensions.swift */,
 				A95AE18523F3B90B00E15EA1 /* StoryboardExtensions.swift */,
 				A9BBC2CF23F3AA6C00B9B60C /* ViewExtensions.swift */,
@@ -530,6 +532,37 @@
 				A9D9A1E5241AEE7E00BB8142 /* AdFileManager.swift */,
 			);
 			path = "File Managers";
+			sourceTree = "<group>";
+		};
+		A9D9A1EB241C441500BB8142 /* TableViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A9B966F721ABE18A0079EBB7 /* CharacteristicDetailViewController.swift */,
+				A9A543E921B5B9A600BF99FD /* BaseTableViewController.swift */,
+				A9B966F121ABDDED0079EBB7 /* StatusTableViewController.swift */,
+				A9B966F321ABDE840079EBB7 /* ImagesTableViewController.swift */,
+				A9B966ED21ABCBCE0079EBB7 /* SettingsTableViewController.swift */,
+				A9B966F521ABDE9A0079EBB7 /* AdminMainTableViewController.swift */,
+			);
+			path = TableViewControllers;
+			sourceTree = "<group>";
+		};
+		A9D9A1EC241C443D00BB8142 /* Dropbox VCs */ = {
+			isa = PBXGroup;
+			children = (
+				A97E67A221D6AF410031678A /* ClientChooserTableViewController.swift */,
+				A90925A121D963B700D7648E /* ClientChooserTableViewCell.swift */,
+			);
+			path = "Dropbox VCs";
+			sourceTree = "<group>";
+		};
+		A9D9A1ED241C444500BB8142 /* Image Selection */ = {
+			isa = PBXGroup;
+			children = (
+				A9A5442621B9B41500BF99FD /* ImageChoiceCell.swift */,
+				A9270E6D21B9B56C007BD884 /* ImageChoiceCollectionViewController.swift */,
+			);
+			path = "Image Selection";
 			sourceTree = "<group>";
 		};
 		CD0C92496895C6A8DA24B47B /* Pods */ = {
@@ -749,6 +782,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A998F719241ECDBE00706978 /* DataExtensions.swift in Sources */,
 				A9D9A1E12419CA1C00BB8142 /* FileNetworkManager.swift in Sources */,
 				A9D9A1D92419B8BF00BB8142 /* TestAd.swift in Sources */,
 				A9B966F821ABE18A0079EBB7 /* CharacteristicDetailViewController.swift in Sources */,
@@ -776,6 +810,7 @@
 				A9D74F1923F4BB4C00E54136 /* BaseViewController.swift in Sources */,
 				A9B966F221ABDDED0079EBB7 /* StatusTableViewController.swift in Sources */,
 				A9BBC2D023F3AA6C00B9B60C /* ViewExtensions.swift in Sources */,
+				A9D9A1EA241C433500BB8142 /* Wheel.swift in Sources */,
 				A983F6A723F544D100DD44B3 /* BetaHistoryVC.swift in Sources */,
 				A95C8A5521A2405F00387444 /* CharacteristicExtensions.swift in Sources */,
 				A95B21D021A0D02B001E1F28 /* AppDelegate.swift in Sources */,
@@ -812,6 +847,7 @@
 				A95B21EF21A0EF0B001E1F28 /* Extensions.swift in Sources */,
 				A9B966EE21ABCBCE0079EBB7 /* SettingsTableViewController.swift in Sources */,
 				A9877E4623F53464008F8F44 /* ViewControllerExtensions.swift in Sources */,
+				A9D9A1E8241C430900BB8142 /* WheelMemory.swift in Sources */,
 				A9270E6E21B9B56C007BD884 /* ImageChoiceCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

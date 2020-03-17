@@ -55,6 +55,7 @@
 		A9877E4823F5381B008F8F44 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9877E4723F5381B008F8F44 /* StringExtensions.swift */; };
 		A9877E4E23F53E27008F8F44 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9877E4D23F53E27008F8F44 /* Formatters.swift */; };
 		A998F719241ECDBE00706978 /* DataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A998F718241ECDBE00706978 /* DataExtensions.swift */; };
+		A998F71B2420617300706978 /* AdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A998F71A2420617300706978 /* AdTableViewController.swift */; };
 		A9A543EA21B5B9A600BF99FD /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A543E921B5B9A600BF99FD /* BaseTableViewController.swift */; };
 		A9A543EF21B5C24B00BF99FD /* t.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A9A543EE21B5C24B00BF99FD /* t.pdf */; };
 		A9A543F421B9AF6900BF99FD /* GriffyImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A543F321B9AF6900BF99FD /* GriffyImages.swift */; };
@@ -181,6 +182,7 @@
 		A9877E4723F5381B008F8F44 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		A9877E4D23F53E27008F8F44 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		A998F718241ECDBE00706978 /* DataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtensions.swift; sourceTree = "<group>"; };
+		A998F71A2420617300706978 /* AdTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdTableViewController.swift; sourceTree = "<group>"; };
 		A9A543E921B5B9A600BF99FD /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		A9A543EE21B5C24B00BF99FD /* t.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = t.pdf; sourceTree = "<group>"; };
 		A9A543F321B9AF6900BF99FD /* GriffyImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GriffyImages.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 			isa = PBXGroup;
 			children = (
 				A976F31F21DC724C00A00817 /* MainControlViewController.swift */,
+				A998F71A2420617300706978 /* AdTableViewController.swift */,
 				A9D9A1EC241C443D00BB8142 /* Dropbox VCs */,
 				A9D9A1ED241C444500BB8142 /* Image Selection */,
 				A9D9A1EB241C441500BB8142 /* TableViewControllers */,
@@ -784,6 +787,7 @@
 			files = (
 				A998F719241ECDBE00706978 /* DataExtensions.swift in Sources */,
 				A9D9A1E12419CA1C00BB8142 /* FileNetworkManager.swift in Sources */,
+				A998F71B2420617300706978 /* AdTableViewController.swift in Sources */,
 				A9D9A1D92419B8BF00BB8142 /* TestAd.swift in Sources */,
 				A9B966F821ABE18A0079EBB7 /* CharacteristicDetailViewController.swift in Sources */,
 				A96AB51A23F62EB00078C352 /* GriffyWebViewController.swift in Sources */,

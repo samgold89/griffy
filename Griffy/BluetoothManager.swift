@@ -30,33 +30,30 @@ final class BluetoothManager: NSObject {
   var cbCharacteristicsById = [String: CBCharacteristic]()
   var timer: Timer?
   /****************************
-  NOTE: this doesn't work when multiple, different, concurrent write requests are ongoing
-  ****************************/
+   NOTE: this doesn't work when multiple, different, concurrent write requests are ongoing
+   ****************************/
   var sendingImageData = [Int]()
-
+  
   var statusUpdatedClosure: (()->())?
   
   let minimumPacketSize = 27
   let griffyHeaderSize = 11 //Change from 7-->11 on 4/10 due to reported but of it going over 512
   
-  var pendingWriteRequestCount = 0
   var pendingWriteRequests = [GFYWriteRequest]()
   
   var visibleCharacteristics: [GFCharacteristic]?
   
   var hasDiscoveredGriffy: Bool {
-    get {
-      return griffyPeripheral != nil
-    }
+    return griffyPeripheral != nil
   }
   
   fileprivate override init() {
     super.init()
     centralManager = CBCentralManager(delegate: self, queue: nil)
-  }
-  
-  func getAll() {
-    //Placeholder just so the init() gets called
+    //    centralManager.state = CBManagerState.poweredOn // I think we need this, eh?
+    //    if centralManager.state <= CBManagerState.poweredOff {
+    //      // refetch all peripherals - everything has been cleared out
+    //    }
   }
   
   func startUpdateTimer() {
@@ -83,7 +80,7 @@ final class BluetoothManager: NSObject {
   
   func setImageActive(griffy: GriffyImage, useHighRes: Bool, completion: @escaping ()->()) {
     guard let g = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.imageSelectId) else {
-//      assertionFailure("Missing image active charactersitic.")
+      //      assertionFailure("Missing image active charactersitic.")
       completion()
       return
     }
@@ -119,6 +116,7 @@ final class BluetoothManager: NSObject {
     }
   }
   
+  /*vvv*********************vvv*******Old Dropbox Methods - Delete******************************/
   func sendGriffyImageToDevice(griffy: GriffyImage) -> Int {
     return sendGriffyImageToDevice(griffy: griffy, resetDataTotal: true)
   }
@@ -131,8 +129,6 @@ final class BluetoothManager: NSObject {
     var idx = 0
     var dataSize = 0
     
-//    setMetaDataValues(griffyImage: griffy)
-
     if let stds = griffy.stdRadialFilePaths {
       for radial in stds {
         dataSize += sendImageToDevice(radialFilePath: radial, index: griffy.startingIndex+idx)
@@ -148,6 +144,30 @@ final class BluetoothManager: NSObject {
     }
     
     return dataSize
+  }
+  
+  /*^^^*********************^^^*******Old Dropbox Methods - Delete******************************/
+  
+  func sendAdToDevice(ad: TestAd, withWheelInfo wheelInfo: AdMemoryMap.WheelMemoryPlacement) {
+    var idx = 0
+    var dataSize = 0
+    
+    if let stdStart = wheelInfo.stdResStartIndex, let stds = ad.stdRadFilePaths {
+      for radial in stds {
+        dataSize += sendImageToDevice(radialFilePath: radial, index: stdStart + idx)
+        idx += 1
+      }
+    }
+    
+    idx = 0
+    
+    if let hiRes = ad.hrRadFilePaths, let hrIdx = wheelInfo.hrResStartIndex {
+      for radial in hiRes {
+        dataSize += sendImageToDevice(radialFilePath: radial, index: hrIdx + idx)
+        idx += 1
+      }
+    }
+//    return dataSize
   }
   
   private func sendImageToDevice(radialFilePath: String, index: Int) -> Int {
@@ -167,7 +187,7 @@ final class BluetoothManager: NSObject {
     
     var idx = 0
     var offsetCounter = 0
-
+    
     NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Sending Image Parts", color: UIColor.gfGreen), userInfo: nil)
     self.statusUpdatedClosure = nil
     
@@ -201,7 +221,7 @@ final class BluetoothManager: NSObject {
     
     return data
   }
-
+  
   func getDataChunks(data: Data, length: Int) -> [[Data]] {
     var idx = 0
     var chunks = [[Data]]()
@@ -225,18 +245,18 @@ final class BluetoothManager: NSObject {
   }
   
   func checkSendPendingWriteRequests() {
-//    if pendingWriteRequestCount < UserDefaults.standard.integer(forKey: UserDefaultConstants.maxOutgoingBLERequests) {
-//      print("skipping the write request due to volume reasons")
-//      return
-//    } else if let pend = pendingWriteRequests.first {
-//      print("SENDING a request from the queue")
-//      pendingWriteRequestCount += 1
-//      griffyPeripheral?.writeValue(pend.data, for: pend.characteristic, type: CBCharacteristicWriteType.withResponse)
-//      pendingWriteRequests.remove(at: 0)
-//    }
+    //    if pendingWriteRequestCount < UserDefaults.standard.integer(forKey: UserDefaultConstants.maxOutgoingBLERequests) {
+    //      print("skipping the write request due to volume reasons")
+    //      return
+    //    } else if let pend = pendingWriteRequests.first {
+    //      print("SENDING a request from the queue")
+    //      pendingWriteRequestCount += 1
+    //      griffyPeripheral?.writeValue(pend.data, for: pend.characteristic, type: CBCharacteristicWriteType.withResponse)
+    //      pendingWriteRequests.remove(at: 0)
+    //    }
     while pendingWriteRequests.count > 0 {
       let pend = pendingWriteRequests.first!
-//      griffyPeripheral?.writeValue(pend.data, for: pend.characteristic, type: (pend.characteristic.griffyCharacteristic()?.isReadable ?? false) ? CBCharacteristicWriteType.withResponse : CBCharacteristicWriteType.withoutResponse)
+      //      griffyPeripheral?.writeValue(pend.data, for: pend.characteristic, type: (pend.characteristic.griffyCharacteristic?.isReadable ?? false) ? CBCharacteristicWriteType.withResponse : CBCharacteristicWriteType.withoutResponse)
       griffyPeripheral?.writeValue(pend.data, for: pend.characteristic, type: CBCharacteristicWriteType.withResponse)
       pendingWriteRequests.remove(at: 0)
     }
@@ -275,15 +295,15 @@ extension BluetoothManager: CBCentralManagerDelegate {
       NotificationCenter.default.post(name: .bluetoothStateChanged, object: GFBluetoothState(message: "Looking for Griffy...", color: UIColor.gfYellow))
       
       centralManager.scanForPeripherals(withServices: nil, options: nil)
-//      let periphs = centralManager.retrievePeripherals(withIdentifiers: [UUID(uuidString: PeripheralIds.griffy) ?? UUID()])
-//      if periphs.count != 1 {
-////        assertionFailure("Should find at least one peripheral")
-//        print("Should find at least one peripheral")
-//      } else {
-//        griffyPeripheral = periphs.first
-//        centralManager.connect(griffyPeripheral!, options: nil)
-//        griffyPeripheral?.delegate = self
-//      }
+      //      let periphs = centralManager.retrievePeripherals(withIdentifiers: [UUID(uuidString: PeripheralIds.griffy) ?? UUID()])
+      //      if periphs.count != 1 {
+      ////        assertionFailure("Should find at least one peripheral")
+      //        print("Should find at least one peripheral")
+      //      } else {
+      //        griffyPeripheral = periphs.first
+      //        centralManager.connect(griffyPeripheral!, options: nil)
+      //        griffyPeripheral?.delegate = self
+      //      }
     }
   }
   
@@ -331,7 +351,7 @@ extension BluetoothManager: CBPeripheralDelegate {
     
     for characteristic in characteristics {
       print("Discovered: \(characteristicNameById[characteristic.uuid.uuidString] ?? "nil-zip-nada")")
-//      printCharacteristicValue(characteristic)
+      //      printCharacteristicValue(characteristic)
       let _ = GFCharacteristic.parse(GFCharacteristic.self, characteristic: characteristic)
       cbCharacteristicsById[characteristic.uuid.uuidString] = characteristic
       
@@ -341,18 +361,16 @@ extension BluetoothManager: CBPeripheralDelegate {
     }
   }
   
-  func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-    pendingWriteRequestCount -= 1
-    
+  func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {    
     if let e = error {
       let error = "\(e.localizedDescription) - \(characteristic.griffyName())"
       print("\n\nERROR writing value:\n\(error)\n\n")
-//      assertionFailure("ERROR writing value: \(e)")
+      //      assertionFailure("ERROR writing value: \(e)")
       NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: error, color: UIColor.gfRed))
     } else {
-      print("Wrote a value for \(characteristic.griffyCharacteristic()?.name ?? "NO NAME")")
-//      NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Connected! (wrote \(characteristic.griffyName())", color: UIColor.gfGreen))
-      if characteristic.griffyCharacteristic()?.isReadable ?? false {
+      print("Wrote a value for \(characteristic.griffyCharacteristic?.name ?? "NO NAME")")
+      //      NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Connected! (wrote \(characteristic.griffyName())", color: UIColor.gfGreen))
+      if characteristic.griffyCharacteristic?.isReadable ?? false {
         griffyPeripheral?.readValue(for: characteristic)
       }
     }
@@ -375,7 +393,7 @@ extension BluetoothManager: CBPeripheralDelegate {
     cbCharacteristicsById[characteristic.uuid.uuidString] = characteristic
     NotificationCenter.default.post(name: .didUpdateCharacteristic, object: characteristic)
     
-//    NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Updated Values", color: UIColor.gfGreen))
+    //    NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Updated Values", color: UIColor.gfGreen))
     delay(0.5) {
       NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Connected to Griffy!", color: UIColor.gfGreen))
     }
@@ -384,17 +402,17 @@ extension BluetoothManager: CBPeripheralDelegate {
     if let statusClosure = statusUpdatedClosure {
       statusClosure()
     }
-//    if characteristic.uuid.uuidString == CharacteristicIds.instantCurrentId || characteristic.uuid.uuidString == CharacteristicIds.averageCurrentId {
-//      print("we here \(characteristic.uuid.uuidString)")
-//    }
+    //    if characteristic.uuid.uuidString == CharacteristicIds.instantCurrentId || characteristic.uuid.uuidString == CharacteristicIds.averageCurrentId {
+    //      print("we here \(characteristic.uuid.uuidString)")
+    //    }
   }
   
   private func printCharacteristicValue(_ characteristic: CBCharacteristic) {
-//    guard let characteristicData = characteristic.value else {return}
+    //    guard let characteristicData = characteristic.value else {return}
     //    SerialNumber(
     //    print(characteristicNameById[characteristic.uuid.uuidString]!, characteristicData.count)
-//    let vals = characteristic.griffyDisplayValue()
-//    print(vals!)
-//    print("\(characteristicNameById[characteristic.uuid.uuidString]!) = \(vals ?? nil)")
+    //    let vals = characteristic.griffyDisplayValue()
+    //    print(vals!)
+    //    print("\(characteristicNameById[characteristic.uuid.uuidString]!) = \(vals ?? nil)")
   }
 }

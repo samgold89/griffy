@@ -681,10 +681,10 @@ Some Value</string>
             </objects>
             <point key="canvasLocation" x="-1471" y="584"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Test Buttons Table View Controller-->
         <scene sceneID="IKN-Mz-Ueb">
             <objects>
-                <tableViewController id="kNU-C9-aJP" sceneMemberID="viewController">
+                <tableViewController id="kNU-C9-aJP" customClass="TestButtonsTableViewController" customModule="Griffy" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Ki-Ck-wpf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -714,7 +714,7 @@ Some Value</string>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="buttonPressed" destination="FB8-0K-OIp" eventType="touchUpInside" id="A3f-a4-1Ov"/>
+                                                        <action selector="buttonPressedWithButton:" destination="kNU-C9-aJP" eventType="touchUpInside" id="APc-2F-MwB"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gets all test ads." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CIG-H5-Px5">
@@ -744,6 +744,9 @@ Some Value</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="w00-Pc-BGu"/>
+                    <connections>
+                        <outlet property="getAdsButton" destination="53g-5i-9iy" id="2OV-ei-h62"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mre-JJ-ujb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1140,7 +1143,7 @@ Some Value</string>
                             <fragment content="Syncing...">
                                 <attributes>
                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <font key="NSFont" metaFont="message" size="11"/>
+                                    <font key="NSFont" metaFont="label" size="11"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>

@@ -248,7 +248,7 @@
 		A9D74F0F23F4B6CD00E54136 /* location-services.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "location-services.json"; sourceTree = "<group>"; };
 		A9D74F1823F4BB4C00E54136 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A9D9A1D82419B8BF00BB8142 /* TestAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAd.swift; sourceTree = "<group>"; };
-		A9D9A1DE2419BC1400BB8142 /* StaticCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StaticCells.swift; path = Griffy/StaticCells.swift; sourceTree = SOURCE_ROOT; };
+		A9D9A1DE2419BC1400BB8142 /* StaticCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StaticCells.swift; path = Griffy/Admin/StaticCells.swift; sourceTree = SOURCE_ROOT; };
 		A9D9A1E02419CA1C00BB8142 /* FileNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNetworkManager.swift; sourceTree = "<group>"; };
 		A9D9A1E2241AD4C500BB8142 /* RadFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadFrame.swift; sourceTree = "<group>"; };
 		A9D9A1E5241AEE7E00BB8142 /* AdFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdFileManager.swift; sourceTree = "<group>"; };
@@ -388,11 +388,20 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		A998F7202421711800706978 /* Test Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				A9D9A1DE2419BC1400BB8142 /* StaticCells.swift */,
+			);
+			name = "Test Buttons";
+			sourceTree = "<group>";
+		};
 		A9A543EB21B5BAB900BF99FD /* Admin */ = {
 			isa = PBXGroup;
 			children = (
 				A976F31F21DC724C00A00817 /* MainControlViewController.swift */,
 				A998F71A2420617300706978 /* AdTableViewController.swift */,
+				A998F7202421711800706978 /* Test Buttons */,
 				A9D9A1EC241C443D00BB8142 /* Dropbox VCs */,
 				A9D9A1ED241C444500BB8142 /* Image Selection */,
 				A9D9A1EB241C441500BB8142 /* TableViewControllers */,
@@ -468,7 +477,6 @@
 				A9BBC2B123F3A6A100B9B60C /* Montserrat-SemiBoldItalic.otf */,
 				A9BBC2AF23F3A6A100B9B60C /* Montserrat-Thin.otf */,
 				A9BBC2A923F3A6A000B9B60C /* Montserrat-ThinItalic.otf */,
-				A9D9A1DE2419BC1400BB8142 /* StaticCells.swift */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";

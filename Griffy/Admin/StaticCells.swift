@@ -9,9 +9,12 @@
 import Foundation
 import UIKit
 
-class GetAdsCell: UITableViewCell {
-  @IBAction func buttonPressed() {
+class TestButtonsTableViewController: UITableViewController {
+  @IBOutlet weak var getAdsButton: UIButton!
+  @IBAction func buttonPressed(button: UIButton) {
+    getAdsButton.setLoaderVisible(visible: true, style: .white)
     NetworkManager.shared.getTestAds { (error) in
+      self.getAdsButton.setLoaderVisible(visible: false, style: nil)
       if let e = error {
         print(e.error)
       } else {

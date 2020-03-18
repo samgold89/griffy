@@ -915,10 +915,10 @@ Some Value</string>
             </objects>
             <point key="canvasLocation" x="582.60869565217399" y="746.65178571428567"/>
         </scene>
-        <!--View Controller-->
+        <!--Fields Update View Controller-->
         <scene sceneID="nGX-JR-4gk">
             <objects>
-                <viewController id="IwG-lO-Rsf" sceneMemberID="viewController">
+                <viewController id="IwG-lO-Rsf" customClass="FieldsUpdateViewController" customModule="Griffy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8mM-ET-WI0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -929,7 +929,10 @@ Some Value</string>
                                     <constraint firstAttribute="width" constant="272" id="rHJ-FV-iI0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="IwG-lO-Rsf" id="5pL-m4-Oba"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User ID" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E28-iL-6lU">
                                 <rect key="frame" x="71" y="133" width="48" height="17"/>
@@ -943,7 +946,10 @@ Some Value</string>
                                     <constraint firstAttribute="width" constant="272" id="q78-vT-P3L"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="IwG-lO-Rsf" id="we0-Wf-Tf2"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Serial Number" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRd-Yw-ya6">
                                 <rect key="frame" x="71" y="219" width="92" height="17"/>
@@ -957,7 +963,10 @@ Some Value</string>
                                     <constraint firstAttribute="width" constant="272" id="lna-SN-bQQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="IwG-lO-Rsf" id="rEQ-ei-QmH"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hardware Version" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8O-9n-TrT">
                                 <rect key="frame" x="71" y="305" width="114.5" height="17"/>
@@ -971,6 +980,9 @@ Some Value</string>
                                     <segment title="A78"/>
                                     <segment title="A85"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentChanged:" destination="IwG-lO-Rsf" eventType="valueChanged" id="KAB-nB-9CB"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display Format" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smk-gP-cc9">
                                 <rect key="frame" x="71" y="391" width="97" height="17"/>
@@ -1002,6 +1014,12 @@ Some Value</string>
                         <viewLayoutGuide key="safeArea" id="U4t-Nr-yYA"/>
                     </view>
                     <navigationItem key="navigationItem" id="obT-OB-gAH"/>
+                    <connections>
+                        <outlet property="displayFormatSegment" destination="MEV-Fz-JQ8" id="pCL-GJ-nc8"/>
+                        <outlet property="hardwareField" destination="VDc-N9-GTg" id="J9N-hk-cgX"/>
+                        <outlet property="serialNumberField" destination="7Ra-ef-ICe" id="Fic-f0-BvT"/>
+                        <outlet property="userIdField" destination="igc-jr-yJO" id="t35-BQ-Iht"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3B6-lz-tGC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1153,7 +1171,7 @@ Some Value</string>
                             <fragment content="Syncing...">
                                 <attributes>
                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <font key="NSFont" metaFont="message" size="11"/>
+                                    <font key="NSFont" metaFont="controlContent" size="11"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>

@@ -19,6 +19,9 @@ class RealmMigrations {
       schemaVersion: 8,
       migrationBlock: { migration, oldSchemaVersion in
         // Do Something
+        if oldSchemaVersion < 8 {
+          GFUserDefaults.displayFormatMvp = "A75"
+        }
     })
     
     // Tell Realm to use this new configuration object for the default Realm

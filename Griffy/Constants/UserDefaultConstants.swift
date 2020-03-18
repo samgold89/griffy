@@ -19,7 +19,29 @@ struct UserDefaultConstants {
   
   // Beta Variables
   static let betaUserId = "betaUserId"
+  static let mvpUserId = "mvpUserId"
+  static let mvpDisplayFormat = "mvpDisplayFormat"
   
   // User Variables
   static let userId = "userId"
+}
+
+class GFUserDefaults {
+  public static var userIdMvp: String? {
+    set {
+      UserDefaults.standard.set(newValue, forKey: UserDefaultConstants.mvpUserId)
+    }
+    get {
+      return UserDefaults.standard.string(forKey: UserDefaultConstants.mvpUserId)
+    }
+  }
+  
+  public static var displayFormatMvp: String? {
+    set {
+      UserDefaults.standard.set(newValue, forKey: UserDefaultConstants.mvpDisplayFormat)
+    }
+    get {
+      return UserDefaults.standard.string(forKey: UserDefaultConstants.mvpDisplayFormat)
+    }
+  }
 }

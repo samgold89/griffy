@@ -20,4 +20,5 @@ target 'Griffy' do
   pod 'SwiftDate'
   pod 'SnapKit'
   pod 'SSSpinnerButton'
+  pod 'Toast-Swift'
 end

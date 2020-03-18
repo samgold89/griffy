@@ -127,7 +127,7 @@
 		A9D9A1E3241AD4C500BB8142 /* RadFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1E2241AD4C500BB8142 /* RadFrame.swift */; };
 		A9D9A1E6241AEE7E00BB8142 /* AdFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1E5241AEE7E00BB8142 /* AdFileManager.swift */; };
 		A9D9A1E8241C430900BB8142 /* WheelMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1E7241C430900BB8142 /* WheelMemory.swift */; };
-		A9D9A1EA241C433500BB8142 /* Wheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1E9241C433500BB8142 /* Wheel.swift */; };
+		A9D9A1EA241C433500BB8142 /* Pump.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1E9241C433500BB8142 /* Pump.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -255,7 +255,7 @@
 		A9D9A1E2241AD4C500BB8142 /* RadFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadFrame.swift; sourceTree = "<group>"; };
 		A9D9A1E5241AEE7E00BB8142 /* AdFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdFileManager.swift; sourceTree = "<group>"; };
 		A9D9A1E7241C430900BB8142 /* WheelMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelMemory.swift; sourceTree = "<group>"; };
-		A9D9A1E9241C433500BB8142 /* Wheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wheel.swift; sourceTree = "<group>"; };
+		A9D9A1E9241C433500BB8142 /* Pump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pump.swift; sourceTree = "<group>"; };
 		C7627662C0CC93BB4C7CEC23 /* Pods-Griffy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Griffy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Griffy/Pods-Griffy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -446,7 +446,7 @@
 			children = (
 				A9B966EB21ABC5EA0079EBB7 /* BaseObject.swift */,
 				A9D9A1E7241C430900BB8142 /* WheelMemory.swift */,
-				A9D9A1E9241C433500BB8142 /* Wheel.swift */,
+				A9D9A1E9241C433500BB8142 /* Pump.swift */,
 				A9CD43EB24219E45009726F0 /* User.swift */,
 				A9D9A1D82419B8BF00BB8142 /* TestAd.swift */,
 				A9D9A1E2241AD4C500BB8142 /* RadFrame.swift */,
@@ -732,6 +732,7 @@
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyDropbox/SwiftyDropbox.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -747,6 +748,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyDropbox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -825,7 +827,7 @@
 				A9D74F1923F4BB4C00E54136 /* BaseViewController.swift in Sources */,
 				A9B966F221ABDDED0079EBB7 /* StatusTableViewController.swift in Sources */,
 				A9BBC2D023F3AA6C00B9B60C /* ViewExtensions.swift in Sources */,
-				A9D9A1EA241C433500BB8142 /* Wheel.swift in Sources */,
+				A9D9A1EA241C433500BB8142 /* Pump.swift in Sources */,
 				A983F6A723F544D100DD44B3 /* BetaHistoryVC.swift in Sources */,
 				A95C8A5521A2405F00387444 /* CharacteristicExtensions.swift in Sources */,
 				A95B21D021A0D02B001E1F28 /* AppDelegate.swift in Sources */,

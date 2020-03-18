@@ -11,13 +11,15 @@ import RealmSwift
 
 class Wheel: BaseObject {
   @objc dynamic var adMemoryMap: AdMemoryMap?
-  @objc dynamic var serialNumber: String!
-  @objc dynamic var currentStatus: String! // 'available', 'assigned', 'damaged'
+  @objc dynamic var currentStatus: String? // 'available', 'assigned', 'damaged'
   let userId = RealmOptional<Int>()
   let ownerId = RealmOptional<Int>()
   let shopId = RealmOptional<Int>()
-  @objc dynamic var hardwareModel: String?
-  @objc dynamic var hardwareRev: String?
+  
+  @objc dynamic var serialNumber: String? //TODO MVP: this should not be optional and should come from wheel
+  @objc dynamic var hardwareModel: String? //TODO MVP: this should not be optional and should come from wheel
+  @objc dynamic var hardwareRev: String? //TODO MVP: this should not be optional and should come from wheel
+  @objc dynamic var displayFormat: String? //TODO MVP: this should not be optional and should come from wheel
   
   public static var activeWheel: Wheel? {
     let wheels = Wheel.findAll(Wheel.self)

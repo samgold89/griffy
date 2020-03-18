@@ -68,12 +68,19 @@ class TestAd: BaseObject {
     case both
   }
   
-  func sendToWheel(adSendType: AdSendType) {
-    guard let wheel = Wheel.activeWheel, let memory = wheel.adMemoryMap else { return }
+  struct AdSendError {
+    var error: String
+  }
+  
+  func sendToWheel(adSendType: AdSendType) -> AdSendError? {
+    guard let wheel = Wheel.activeWheel, let memory = wheel.adMemoryMap else {
+      return AdSendError(error: "Failed to find an active wheel and a memory map. Wheel: \(Wheel.activeWheel)")
+    }
 //    assert(!stdIsOnWheel && (!hrIsOnWheel || tryHighRes), "Shouldn't be sending to wheel if the ad already exists on the wheel! Set active: \(memory.existingStartIndex(forAd: self)?.stdResStartIndex ?? -1)")
     
     let info = memory.assignStartIndex(forAd: self, sendType: adSendType)
     BluetoothManager.shared.sendAdToDevice(ad: self, withWheelInfo: info)
+    return nil
   }
   
   var hrRadFilePaths: [String]? {

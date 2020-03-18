@@ -37,6 +37,8 @@ class AdTableViewController: UITableViewController {
   }
 }
 
+import Toast_Swift
+
 class AdTableViewCell: UITableViewCell {
   static let reuseIdentifier = "AdTableViewCell"
   
@@ -65,18 +67,25 @@ class AdTableViewCell: UITableViewCell {
   }
   
   @IBAction func stdButtonPressed() {
-    ad.sendToWheel(adSendType: .std)
+    let result = ad.sendToWheel(adSendType: .std)
     stdButton.setLoaderVisible(visible: true, style: .white)
     delay(1) {
       self.stdButton.setLoaderVisible(visible: false, style: .white)
     }
+    if let result = result {
+      makeToast("Failed to send radial. \(result.error)")
+    }
   }
   
   @IBAction func hrButtonPressed() {
-    ad.sendToWheel(adSendType: .hr)
+    let result = ad.sendToWheel(adSendType: .hr)
     hrButton.setLoaderVisible(visible: true, style: .white)
     delay(1) {
       self.hrButton.setLoaderVisible(visible: false, style: .white)
+    }
+    
+    if let result = result {
+      makeToast("Failed to send radial. \(result.error)")
     }
   }
 }

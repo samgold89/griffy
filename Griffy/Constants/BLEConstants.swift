@@ -85,266 +85,266 @@ class BLEConstants {
     
     //MARK: Characteristics
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.serialNumberId,
+                           uuid: BLEConstants.CharacteristicIds.serialNumberId,
                            parseDataType: .serial,
                            displayName: "Serial Number",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.hardwareVersionId,
+                           uuid: BLEConstants.CharacteristicIds.hardwareVersionId,
                            parseDataType: .uint32,
                            displayName: "Hardware Version",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.firmwareVersionId,
+                           uuid: BLEConstants.CharacteristicIds.firmwareVersionId,
                            parseDataType: .uint32,
                            displayName: "Firmware Version",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.isReversedId,
+                           uuid: BLEConstants.CharacteristicIds.isReversedId,
                            parseDataType: .uint8array,
                            displayName: "Is Reversed",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.statusId,
+                           uuid: BLEConstants.CharacteristicIds.statusId,
                            parseDataType: .uint8array,
                            displayName: "Status",
                            isReadable: false))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.imu1Id,
+                           uuid: BLEConstants.CharacteristicIds.imu1Id,
                            parseDataType: .uint8array,
                            displayName: "imu1",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.imu2Id,
+                           uuid: BLEConstants.CharacteristicIds.imu2Id,
                            parseDataType: .uint8array,
                            displayName: "imu2",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.alu1Id,
+                           uuid: BLEConstants.CharacteristicIds.alu1Id,
                            parseDataType: .uint16,
                            displayName: "alu1",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.alu2Id,
+                           uuid: BLEConstants.CharacteristicIds.alu2Id,
                            parseDataType: .uint16,
                            displayName: "alu2",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.wheelSpeedId,
+                           uuid: BLEConstants.CharacteristicIds.wheelSpeedId,
                            parseDataType: .uint16,
                            displayName: "Wheel Speed",
                            isReadable: false))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.connectTimeoutId,
+                           uuid: BLEConstants.CharacteristicIds.connectTimeoutId,
                            parseDataType: .uint16,
                            displayName: "Connect Timeout",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.imageLoadId,
+                           uuid: BLEConstants.CharacteristicIds.imageLoadId,
                            parseDataType: .uint8array,
                            displayName: "Image Load",
                            isReadable: false))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.imageSelectId,
+                           uuid: BLEConstants.CharacteristicIds.imageSelectId,
                            parseDataType: .uint16,
                            displayName: "Image Select",
                            isReadable: false))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.imageEraseId,
+                           uuid: BLEConstants.CharacteristicIds.imageEraseId,
                            parseDataType: .uint16,
                            displayName: "Image Erase",
                            isReadable: false))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.testId,
+                           uuid: BLEConstants.CharacteristicIds.testId,
                            parseDataType: .uint8array,
                            displayName: "Test",
                            isReadable: false))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.speedThresholdId,
+                           uuid: BLEConstants.CharacteristicIds.speedThresholdId,
                            parseDataType: .uint8array,
                            displayName: "Threshold",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.brightnessId,
+                           uuid: BLEConstants.CharacteristicIds.brightnessId,
                            parseDataType: .uint8array,
                            displayName: "Brightness",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.voltageId,
+                           uuid: BLEConstants.CharacteristicIds.voltageId,
                            parseDataType: .uint16array,
                            displayName: "Voltage (V)",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.animationId,
+                           uuid: BLEConstants.CharacteristicIds.animationId,
                            parseDataType: .uint8array,
                            displayName: "Is Animated",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.frameCountId,
+                           uuid: BLEConstants.CharacteristicIds.frameCountId,
                            parseDataType: .uint8array,
                            displayName: "Frame Count",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.frameDurationId,
+                           uuid: BLEConstants.CharacteristicIds.frameDurationId,
                            parseDataType: .uint16,
                            displayName: "Frame Duration",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.isHighResolutionId,
+                           uuid: BLEConstants.CharacteristicIds.isHighResolutionId,
                            parseDataType: .uint8array,
                            displayName: "Is Hi-Resolution",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.evVoltage,
+                           uuid: BLEConstants.CharacteristicIds.evVoltage,
                            parseDataType: .uint16,
                            displayName: "EV Voltage",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.evBattery,
+                           uuid: BLEConstants.CharacteristicIds.evBattery,
                            parseDataType: .uint8array,
                            displayName: "EV Battery",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.orientation,
+                           uuid: BLEConstants.CharacteristicIds.orientation,
                            parseDataType: .uint16,
                            displayName: "Orientation",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.lastFramePlayCount,
+                           uuid: BLEConstants.CharacteristicIds.lastFramePlayCount,
                            parseDataType: .uint8array,
                            displayName: "Last Frame Play Count",
                            isReadable: true))
     
     //MARK: Test Characteristics
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.dumTest1,
+                           uuid: BLEConstants.CharacteristicIds.dumTest1,
                            parseDataType: .uint8,
                            displayName: "Test 1",
                            isReadable: false)) // Should this be readable!?
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.dumTest2,
+                           uuid: BLEConstants.CharacteristicIds.dumTest2,
                            parseDataType: .uint8array,
                            displayName: "Test 2",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.dumTest3,
+                           uuid: BLEConstants.CharacteristicIds.dumTest3,
                            parseDataType: .uint8array,
                            displayName: "Test 3",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.dumTest4,
+                           uuid: BLEConstants.CharacteristicIds.dumTest4,
                            parseDataType: .uint8array,
                            displayName: "Test 4",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.dumTest5,
+                           uuid: BLEConstants.CharacteristicIds.dumTest5,
                            parseDataType: .uint8array,
                            displayName: "Test 5",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.dumTest6,
+                           uuid: BLEConstants.CharacteristicIds.dumTest6,
                            parseDataType: .uint8array,
                            displayName: "Test 6",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.dumTest7,
+                           uuid: BLEConstants.CharacteristicIds.dumTest7,
                            parseDataType: .uint8array,
                            displayName: "Test 7",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.dumTest8,
+                           uuid: BLEConstants.CharacteristicIds.dumTest8,
                            parseDataType: .uint8array,
                            displayName: "Test 8",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.dumTest9,
+                           uuid: BLEConstants.CharacteristicIds.dumTest9,
                            parseDataType: .uint8array,
                            displayName: "Test 9",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.dumTest10int8,
+                           uuid: BLEConstants.CharacteristicIds.dumTest10int8,
                            parseDataType: .uint8,
                            displayName: "Test 10",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.dumTest10,
+                           uuid: BLEConstants.CharacteristicIds.dumTest10,
                            parseDataType: .uint16,
                            displayName: "Test16a",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.dumTest11,
+                           uuid: BLEConstants.CharacteristicIds.dumTest11,
                            parseDataType: .uint16,
                            displayName: "Test16b",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.dumTest12,
+                           uuid: BLEConstants.CharacteristicIds.dumTest12,
                            parseDataType: .uint16,
                            displayName: "Test16c",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.dumTest13,
+                           uuid: BLEConstants.CharacteristicIds.dumTest13,
                            parseDataType: .uint16,
                            displayName: "Test16d",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.dumTest14,
+                           uuid: BLEConstants.CharacteristicIds.dumTest14,
                            parseDataType: .uint16,
                            displayName: "Test16e",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.dumTest15,
+                           uuid: BLEConstants.CharacteristicIds.dumTest15,
                            parseDataType: .uint16,
                            displayName: "Test16f",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.dumTest16,
+                           uuid: BLEConstants.CharacteristicIds.dumTest16,
                            parseDataType: .uint16,
                            displayName: "Test16g",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
-                           uuid: CharacteristicIds.dumTest17,
+                           uuid: BLEConstants.CharacteristicIds.dumTest17,
                            parseDataType: .uint16,
                            displayName: "Test16h",
                            isReadable: true))

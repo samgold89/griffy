@@ -14,6 +14,6 @@ import SwiftyDropbox
 class AdminMainTableViewController: BaseTableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
-    observedIds = [CharacteristicIds.imageSelectId, CharacteristicIds.wheelSpeedId, CharacteristicIds.orientation]
+    observedIds = [BLEConstants.CharacteristicIds.imageSelectId, BLEConstants.CharacteristicIds.wheelSpeedId, BLEConstants.CharacteristicIds.orientation]
   }
 }

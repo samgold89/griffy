@@ -83,7 +83,7 @@ class BLEBaseObject: CoreObject {
 //  public static var watts: String {
 //    get {
 //      let myWatts = 0
-//      guard let combinedCurrent = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.instantCurrentId)?.griffyDisplayValue(), let combinedVoltagee =  GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.voltageId)?.griffyDisplayValue() else {
+//      guard let combinedCurrent = GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.instantCurrentId)?.griffyDisplayValue(), let combinedVoltagee =  GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.voltageId)?.griffyDisplayValue() else {
 //        return "noVal"
 //      }
 //

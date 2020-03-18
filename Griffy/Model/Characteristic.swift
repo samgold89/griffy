@@ -16,31 +16,31 @@ class GFCharacteristic: BLEBaseObject {
   
   public static var isHighRes: GFCharacteristic? {
     get {
-      return GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.isHighResolutionId)
+      return GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.isHighResolutionId)
     }
   }
   
   public static var animation: GFCharacteristic? {
     get {
-      return GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.animationId)
+      return GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.animationId)
     }
   }
   
   public static var frameCount: GFCharacteristic? {
     get {
-      return GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.frameCountId)
+      return GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.frameCountId)
     }
   }
   
   public static var frameDuration: GFCharacteristic? {
     get {
-      return GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.frameDurationId)
+      return GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.frameDurationId)
     }
   }
   
   public static var status: GFCharacteristic? {
     get {
-      return GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.statusId)
+      return GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.statusId)
     }
   }
   

@@ -79,7 +79,7 @@ final class BluetoothManager: NSObject {
   }
   
   func setImageActive(griffy: GriffyImage, useHighRes: Bool, completion: @escaping ()->()) {
-    guard let g = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.imageSelectId) else {
+    guard let g = GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.imageSelectId) else {
       //      assertionFailure("Missing image active charactersitic.")
       completion()
       return
@@ -181,7 +181,7 @@ final class BluetoothManager: NSObject {
     let maxLength = min((griffyPeripheral?.maximumWriteValueLength(for: CBCharacteristicWriteType.withResponse) ?? minimumPacketSize), 512) - griffyHeaderSize
     let imageDataArray = getDataChunks(data: data, length: maxLength)
     
-    guard let char = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.imageLoadId) else {
+    guard let char = GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.imageLoadId) else {
       return data.count
     }
     
@@ -339,7 +339,7 @@ extension BluetoothManager: CBPeripheralDelegate {
     guard let services = peripheral.services else { return }
     for service in services {
       peripheral.discoverCharacteristics(nil, for: service)
-      peripheral.discoverCharacteristics([CharacteristicIds.imageLoadId.cbuuid], for: service)
+      peripheral.discoverCharacteristics([BLEConstants.CharacteristicIds.imageLoadId.cbuuid], for: service)
     }
   }
   
@@ -355,7 +355,7 @@ extension BluetoothManager: CBPeripheralDelegate {
       let _ = GFCharacteristic.parse(GFCharacteristic.self, characteristic: characteristic)
       cbCharacteristicsById[characteristic.uuid.uuidString] = characteristic
       
-      if characteristic.uuid.uuidString == CharacteristicIds.imageLoadId {
+      if characteristic.uuid.uuidString == BLEConstants.CharacteristicIds.imageLoadId {
         print("we out here")
       }
     }
@@ -376,7 +376,7 @@ extension BluetoothManager: CBPeripheralDelegate {
     }
     
     var length = 0
-    if characteristic.uuid.uuidString == CharacteristicIds.imageLoadId {
+    if characteristic.uuid.uuidString == BLEConstants.CharacteristicIds.imageLoadId {
       length = sendingImageData.first ?? 0
       if sendingImageData.count > 0 {
         sendingImageData.removeFirst()
@@ -402,7 +402,7 @@ extension BluetoothManager: CBPeripheralDelegate {
     if let statusClosure = statusUpdatedClosure {
       statusClosure()
     }
-    //    if characteristic.uuid.uuidString == CharacteristicIds.instantCurrentId || characteristic.uuid.uuidString == CharacteristicIds.averageCurrentId {
+    //    if characteristic.uuid.uuidString == BLEConstants.CharacteristicIds.instantCurrentId || characteristic.uuid.uuidString == BLEConstants.CharacteristicIds.averageCurrentId {
     //      print("we here \(characteristic.uuid.uuidString)")
     //    }
   }

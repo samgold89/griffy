@@ -57,7 +57,7 @@ class MainControlViewController: UIViewController {
   }
   
   @IBAction func onOffToggled(_ sender: Any) {
-    guard let imageCharactersitic = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.imageSelectId) else {
+    guard let imageCharactersitic = GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.imageSelectId) else {
       return
     }
     
@@ -98,7 +98,7 @@ class MainControlViewController: UIViewController {
   
   func setBrightnessValue(newLeftBrightnessValue: Int?, newRightBrightnessValue: Int?, updateSlider: Bool) {
     if newLeftBrightnessValue != BLEStateManager.shared.leftBrightness {
-      guard let brightnessChar = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.brightnessId) else {
+      guard let brightnessChar = GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.brightnessId) else {
         return
       }
       
@@ -114,7 +114,7 @@ class MainControlViewController: UIViewController {
     }
     
     if newRightBrightnessValue != BLEStateManager.shared.rightBrightness {
-      guard let brightnessChar = GFCharacteristic.find(GFCharacteristic.self, byId: CharacteristicIds.brightnessId) else {
+      guard let brightnessChar = GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.brightnessId) else {
         return
       }
       

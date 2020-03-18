@@ -33,10 +33,10 @@ extension CBCharacteristic {
   
   func isValidInput(input: String) -> CharacteristicInputError {
     let myId = uuid.uuidString
-    if myId == CharacteristicIds.testId {
+    if myId == BLEConstants.CharacteristicIds.testId {
       let intValue = Int(input) ?? -1
       return CharacteristicInputError(success: intValue == 0 || intValue == 1, error: "Must be 0 or 1")
-    } else if myId == CharacteristicIds.brightnessId {
+    } else if myId == BLEConstants.CharacteristicIds.brightnessId {
       let split = input.split(separator: ",")
       if split.count != 2 {
         return CharacteristicInputError(success: false, error: "Must have 2 values, each >= 0, <= 31")
@@ -49,10 +49,10 @@ extension CBCharacteristic {
         }
       }
       return CharacteristicInputError(success: allGood, error: "Must be >= 0 and <= 31")
-    } else if myId == CharacteristicIds.isReversedId {
+    } else if myId == BLEConstants.CharacteristicIds.isReversedId {
       let intValue = Int(input) ?? -1
       return CharacteristicInputError(success: intValue == 0 || intValue == 1, error: "Must be 0 or 1")
-    } else if myId == CharacteristicIds.speedThresholdId {
+    } else if myId == BLEConstants.CharacteristicIds.speedThresholdId {
       let split = input.split(separator: ",")
       if split.count != 2 {
         return CharacteristicInputError(success: false, error: "Must have 2 values, each >= 0.00, <= 2.55")
@@ -66,10 +66,10 @@ extension CBCharacteristic {
       }
       
       return CharacteristicInputError(success: allGood, error: "Each number must be >= 0, < 10, and < 3 digits")
-    } else if myId == CharacteristicIds.connectTimeoutId {
+    } else if myId == BLEConstants.CharacteristicIds.connectTimeoutId {
       let intValue = Int(input) ?? -1
       return CharacteristicInputError(success: intValue >= 0, error: "Must be >= 0")
-    } else if myId == CharacteristicIds.imu1Id || myId == CharacteristicIds.imu2Id {
+    } else if myId == BLEConstants.CharacteristicIds.imu1Id || myId == BLEConstants.CharacteristicIds.imu2Id {
       let split = input.split(separator: ",")
       if split.count != 6 {
         return CharacteristicInputError(success: false, error: "Must have 6 values!")

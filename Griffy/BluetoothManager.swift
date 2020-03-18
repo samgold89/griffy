@@ -318,7 +318,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
   
   func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
     NotificationCenter.default.post(name: .bluetoothStateChanged, object: GFBluetoothState(message: "Connected to Griffy!", color: UIColor.gfGreen))
-    peripheral.discoverServices(ServiceIds.allIds)
+    peripheral.discoverServices(BLEConstants.gfBleObjects.filter({ $0.type == BLEConstants.GFBLEObjectType.service}).map({ $0.uuid.cbuuid }))
     peripheral.delegate = self
   }
   
@@ -339,7 +339,7 @@ extension BluetoothManager: CBPeripheralDelegate {
     guard let services = peripheral.services else { return }
     for service in services {
       peripheral.discoverCharacteristics(nil, for: service)
-      peripheral.discoverCharacteristics([CharacteristicIds.imageLoadId.cbuuid()], for: service)
+      peripheral.discoverCharacteristics([CharacteristicIds.imageLoadId.cbuuid], for: service)
     }
   }
   
@@ -350,7 +350,7 @@ extension BluetoothManager: CBPeripheralDelegate {
     }
     
     for characteristic in characteristics {
-      print("Discovered: \(characteristicNameById[characteristic.uuid.uuidString] ?? "nil-zip-nada")")
+      print("Discovered: \(characteristic.gfBleObject?.displayName ?? "nil-zip-nada")")
       //      printCharacteristicValue(characteristic)
       let _ = GFCharacteristic.parse(GFCharacteristic.self, characteristic: characteristic)
       cbCharacteristicsById[characteristic.uuid.uuidString] = characteristic

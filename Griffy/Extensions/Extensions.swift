@@ -50,7 +50,7 @@ extension UInt32 {
 
 import CoreBluetooth
 extension String {
-  func cbuuid() -> CBUUID {
+  var cbuuid: CBUUID {
     return CBUUID(string: self)
   }
   

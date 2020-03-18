@@ -44,19 +44,26 @@ class GFCharacteristic: BLEBaseObject {
     }
   }
   
+  var bleObject: BLEConstants.GFBLEObject? {
+    return BLEConstants.gfBleObjects.first(where: { $0.uuid == uuid })
+  }
+  
   var isReadable: Bool {
-    return ReadableCharacterIds.contains(uuid)
+    bleObject?.isReadable ?? false
   }
   
   var isUInt8: Bool {
-    return uiint8ids.contains(id) || uiint8ArrayIds.contains(id)
+    guard let type = bleObject?.parseDataType else { return true }
+    return type == .uint8 || type == .uint8array
   }
   
   var isUInt16: Bool {
-    return uiint16Ids.contains(id) || uiint16ArrayIds.contains(id)
+    guard let type = bleObject?.parseDataType else { return true }
+    return type == .uint16 || type == .uint16array
   }
   
   var isUInt32: Bool {
-    return uiint32Ids.contains(id)
+    guard let type = bleObject?.parseDataType else { return true }
+    return type == .uint32
   }
 }

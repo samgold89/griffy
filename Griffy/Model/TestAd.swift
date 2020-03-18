@@ -25,11 +25,20 @@ class TestAd: BaseObject {
   @objc dynamic var active: Bool = true
   @objc dynamic var baseName: String!
   @objc dynamic var baseKey: String!
-  @objc dynamic var thumbnailUrl: String!
+  @objc private dynamic var thumbnailUrl: String!
+  @objc private dynamic var thumbnailGifUrl: String?
   @objc dynamic var frameDuration: Double = 0.5
   
   let hrRadUrls = List<HrRadFrame>()
   let stdRadUrls = List<StdRadFrame>()
+  
+  var thumbUrl: String! {
+    if let u = thumbnailGifUrl {
+      return u
+    } else {
+      return thumbnailUrl
+    }
+  }
   
   var baseKeyForFileStorage: String {
     return baseKey.replacingOccurrences(of: "/", with: "-")
@@ -71,7 +80,7 @@ class TestAd: BaseObject {
     let ad = AdFileManager(ad: self)
     do {
       let paths = try FileManager.default.contentsOfDirectory(atPath: ad.hrRadFolderUrl.relativePath).map({ ad.hrRadFolderUrl.appendingPathComponent($0).relativePath })
-      return paths
+      return paths.count == 0 ? nil : paths
     } catch {
       return nil
     }
@@ -81,7 +90,7 @@ class TestAd: BaseObject {
     let ad = AdFileManager(ad: self)
     do {
       let paths = try FileManager.default.contentsOfDirectory(atPath: ad.stdRadFolderUrl.relativePath).map({ ad.stdRadFolderUrl.appendingPathComponent($0).relativePath })
-      return paths
+      return paths.count == 0 ? nil : paths
     } catch {
       return nil
     }

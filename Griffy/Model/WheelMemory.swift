@@ -21,7 +21,7 @@ class AdMemoryMap: Object {
   }
   
   required init() {
-    assertionFailure("Shouldn't initialize from here. User memory size")
+//    assertionFailure("Shouldn't initialize from here. User memory size")
     super.init()
   }
   
@@ -32,7 +32,7 @@ class AdMemoryMap: Object {
     var length: Int // the number of slots this item takes up
     var inputDate: Date // the date this was put onto the wheel
     var isHighRes: Bool
-    var adId: String
+    var adId: Int
     
     var data: Data? {
       let data = try? PropertyListEncoder().encode(self)

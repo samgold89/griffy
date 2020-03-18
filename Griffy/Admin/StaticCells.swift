@@ -11,14 +11,16 @@ import UIKit
 
 class TestButtonsTableViewController: UITableViewController {
   @IBOutlet weak var getAdsButton: UIButton!
+  @IBOutlet weak var resultsLabel: UILabel!
+  
   @IBAction func buttonPressed(button: UIButton) {
     getAdsButton.setLoaderVisible(visible: true, style: .white)
     NetworkManager.shared.getTestAds { (error) in
       self.getAdsButton.setLoaderVisible(visible: false, style: nil)
       if let e = error {
-        print(e.error)
+        self.resultsLabel.text = "Error fetching ads: \(e.error)"
       } else {
-        
+        self.resultsLabel.text = "Successfully fetched ads!"
       }
     }
   }

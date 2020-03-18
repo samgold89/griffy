@@ -10,20 +10,10 @@ import Foundation
 import RealmSwift
 import CoreBluetooth
 
-class BaseObject: Object {
-  @objc dynamic var updatedAt: Date? = nil
+class CoreObject: Object {
   @objc dynamic var deletedAt: Date? = nil
-  @objc dynamic var id = ""
+  @objc dynamic var updatedAt: Date? = nil
   
-  override static func primaryKey() -> String? {
-    return "id"
-  }
-  
-  public static func find<T: Object>(_ type: T.Type, byId id: String) -> T? {
-    let realm = try! Realm()
-    return realm.objects(T.self).filter(NSPredicate(format: "id = %@",id)).first
-  }
-
   public static func findAll<T: Object>(_ type: T.Type) -> [T] {
     var allThings = [T]()
     let realm = try! Realm()
@@ -31,6 +21,19 @@ class BaseObject: Object {
       allThings = Array(realm.objects(T.self))
     }
     return allThings
+  }
+}
+
+class BaseObject: CoreObject {
+  @objc dynamic var id: Int = 0
+  
+  override static func primaryKey() -> String? {
+    return "id"
+  }
+  
+  public static func find<T: Object>(_ type: T.Type, byId id: String) -> T? {
+    let realm = try! Realm()
+    return realm.objects(T.self).filter(NSPredicate(format: "id = %i",id)).first
   }
   
   @discardableResult
@@ -46,7 +49,18 @@ class BaseObject: Object {
   }
 }
 
-class GFObject: BaseObject {
+class BLEBaseObject: CoreObject {
+  @objc dynamic var id = ""
+  
+  override static func primaryKey() -> String? {
+    return "id"
+  }
+  
+  public static func find<T: Object>(_ type: T.Type, byId id: String) -> T? {
+    let realm = try! Realm()
+    return realm.objects(T.self).filter(NSPredicate(format: "id = %@",id)).first
+  }
+  
   public static func parse<T: Object>(_ type: T.Type, characteristic: CBCharacteristic) -> T? {
     let realm = try! Realm()
     
@@ -54,7 +68,7 @@ class GFObject: BaseObject {
     try! realm.write {
       let dict = ["id": characteristic.uuid.uuidString, "uuid": characteristic.uuid.uuidString, "updatedAt": Date(), "name": characteristic.griffyName(), "value": characteristic.value ?? Data()] as [String : Any]
       modified = realm.create(T.self, value: dict, update: .all)
-      if let m = modified as? GFObject {
+      if let m = modified as? BLEBaseObject {
         if m.deletedAt != nil {
           realm.delete(modified!)
           modified = nil

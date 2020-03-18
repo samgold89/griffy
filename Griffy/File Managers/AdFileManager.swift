@@ -58,7 +58,7 @@ struct AdFileManager {
   var adFolderUrl: URL {
     let fileManager = FileManager.default
     let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    let destURL = directoryURL.appendingPathComponent(adFileDirectory).appendingPathComponent(ad.id)
+    let destURL = directoryURL.appendingPathComponent(adFileDirectory).appendingPathComponent(ad.id.string)
     return destURL
   }
   

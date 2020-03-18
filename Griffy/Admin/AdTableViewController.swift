@@ -52,18 +52,16 @@ class AdTableViewCell: UITableViewCell {
     self.ad = ad
     
     adTitleLabel.text = ad.baseName
-    adImageView.sd_setImage(with: URL(string: ad.thumbnailUrl), completed: nil)
+    adImageView.sd_setImage(with: URL(string: ad.thumbUrl), completed: nil)
     
     stdStatusLabel.text = ad.stdIsOnWheel ? "On Wheel" : "Off Wheel"
     stdStatusLabel.textColor = ad.stdIsOnWheel ? UIColor.gfGreen : UIColor.gfRed
     stdButton.setTitle(ad.stdIsOnWheel ? "Activate" : "Send Rad", for: .normal)
     
-    hrStatusLabel.text = ad.hrIsOnWheel ? "On Wheel" : "Off Wheel"
+    hrStatusLabel.text = ad.hrRadFilePaths == nil ? "N/A" : ad.hrIsOnWheel ? "On Wheel" : "Off Wheel"
     hrStatusLabel.textColor = ad.hrIsOnWheel ? UIColor.gfGreen : UIColor.gfRed
     hrButton.setTitle(ad.hrIsOnWheel ? "Activate" : "Send Rad", for: .normal)
-    
-    NA if hr doesn't exist
-    Hide button if hr doesn't exist
+    hrButton.isHidden = ad.hrRadFilePaths == nil
   }
   
   @IBAction func stdButtonPressed() {
@@ -76,6 +74,9 @@ class AdTableViewCell: UITableViewCell {
   
   @IBAction func hrButtonPressed() {
     ad.sendToWheel(adSendType: .hr)
-    self.hrButton.setLoaderVisible(visible: false, style: .white)
+    hrButton.setLoaderVisible(visible: true, style: .white)
+    delay(1) {
+      self.hrButton.setLoaderVisible(visible: false, style: .white)
+    }
   }
 }

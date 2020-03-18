@@ -59,5 +59,9 @@ extension Int {
   var double: Double {
     return Double(self)
   }
+  
+  var string: String {
+    return "\(self)"
+  }
 }
 

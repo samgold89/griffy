@@ -19,4 +19,7 @@ struct UserDefaultConstants {
   
   // Beta Variables
   static let betaUserId = "betaUserId"
+  
+  // User Variables
+  static let userId = "userId"
 }

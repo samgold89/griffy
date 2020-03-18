@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class GFCharacteristic: GFObject {
+class GFCharacteristic: BLEBaseObject {
   @objc dynamic var name = ""
   @objc dynamic var uuid = ""
   @objc dynamic var value: Data? = nil

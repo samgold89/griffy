@@ -118,6 +118,7 @@
 		A9BBC2D923F3AFB300B9B60C /* bicycle-delivery.json in Resources */ = {isa = PBXBuildFile; fileRef = A9BBC2D823F3AFB300B9B60C /* bicycle-delivery.json */; };
 		A9BBC2DB23F3B57100B9B60C /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BBC2DA23F3B57100B9B60C /* RootRouter.swift */; };
 		A9BBC2DD23F3B63B00B9B60C /* BetaWelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BBC2DC23F3B63B00B9B60C /* BetaWelcomeVC.swift */; };
+		A9CD43EC24219E45009726F0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CD43EB24219E45009726F0 /* User.swift */; };
 		A9D74F1023F4B6CD00E54136 /* location-services.json in Resources */ = {isa = PBXBuildFile; fileRef = A9D74F0F23F4B6CD00E54136 /* location-services.json */; };
 		A9D74F1923F4BB4C00E54136 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D74F1823F4BB4C00E54136 /* BaseViewController.swift */; };
 		A9D9A1D92419B8BF00BB8142 /* TestAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1D82419B8BF00BB8142 /* TestAd.swift */; };
@@ -245,6 +246,7 @@
 		A9BBC2D823F3AFB300B9B60C /* bicycle-delivery.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bicycle-delivery.json"; sourceTree = "<group>"; };
 		A9BBC2DA23F3B57100B9B60C /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		A9BBC2DC23F3B63B00B9B60C /* BetaWelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaWelcomeVC.swift; sourceTree = "<group>"; };
+		A9CD43EB24219E45009726F0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A9D74F0F23F4B6CD00E54136 /* location-services.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "location-services.json"; sourceTree = "<group>"; };
 		A9D74F1823F4BB4C00E54136 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A9D9A1D82419B8BF00BB8142 /* TestAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAd.swift; sourceTree = "<group>"; };
@@ -311,7 +313,6 @@
 				A9A543EB21B5BAB900BF99FD /* Admin */,
 				A9B966EF21ABD7E10079EBB7 /* RealmMigrations.swift */,
 				A9AFB0A5240EE6F90022CB2F /* Model */,
-				A95B21EE21A0EF0B001E1F28 /* Extensions.swift */,
 				A95C8A5421A2405F00387444 /* CharacteristicExtensions.swift */,
 				A95B21E621A0D045001E1F28 /* Griffy.entitlements */,
 				A95B21CF21A0D02B001E1F28 /* AppDelegate.swift */,
@@ -446,6 +447,7 @@
 				A9B966EB21ABC5EA0079EBB7 /* BaseObject.swift */,
 				A9D9A1E7241C430900BB8142 /* WheelMemory.swift */,
 				A9D9A1E9241C433500BB8142 /* Wheel.swift */,
+				A9CD43EB24219E45009726F0 /* User.swift */,
 				A9D9A1D82419B8BF00BB8142 /* TestAd.swift */,
 				A9D9A1E2241AD4C500BB8142 /* RadFrame.swift */,
 				A9AFB0A6240EE7060022CB2F /* Location.swift */,
@@ -484,6 +486,7 @@
 		A9BBC2CE23F3A73E00B9B60C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A95B21EE21A0EF0B001E1F28 /* Extensions.swift */,
 				A96AB51123F6218A0078C352 /* ArrayExtensions.swift */,
 				A96AB51723F622220078C352 /* NumberExtensions.swift */,
 				A9877E4723F5381B008F8F44 /* StringExtensions.swift */,
@@ -861,6 +864,7 @@
 				A9877E4623F53464008F8F44 /* ViewControllerExtensions.swift in Sources */,
 				A9D9A1E8241C430900BB8142 /* WheelMemory.swift in Sources */,
 				A9270E6E21B9B56C007BD884 /* ImageChoiceCollectionViewController.swift in Sources */,
+				A9CD43EC24219E45009726F0 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

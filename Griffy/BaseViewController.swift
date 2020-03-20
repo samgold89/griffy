@@ -16,6 +16,8 @@ class BaseViewController: UIViewController {
     let options: UIView.AnimationOptions
   }
   
+  var currentKeyboardInfo: KeyboardInfo?
+  
   // MARK: - Notification selector
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -34,8 +36,9 @@ class BaseViewController: UIViewController {
       let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt else {
         return
     }
-    let keyboradInfo = KeyboardInfo(keyboardSize: keyboardSize, duration: duration, options: UIView.AnimationOptions(rawValue: curve))
-    keyboardWillShow(keyboradInfo)
+    let keyboardInfo = KeyboardInfo(keyboardSize: keyboardSize, duration: duration, options: UIView.AnimationOptions(rawValue: curve))
+    currentKeyboardInfo = keyboardInfo
+    keyboardWillShow(keyboardInfo)
   }
   
   @objc fileprivate func selectorKeyboardWillHide(notification: Notification) {
@@ -45,6 +48,7 @@ class BaseViewController: UIViewController {
         return
     }
     let keyboradInfo = KeyboardInfo(keyboardSize: keyboardSize, duration: duration, options: UIView.AnimationOptions(rawValue: curve))
+    currentKeyboardInfo = nil
     keyboardWillHide(keyboradInfo)
   }
   

@@ -11,7 +11,7 @@ import RealmSwift
 
 class AdMemoryMap: Object {
   
-  static let defaultMemorySize = 730
+  static let defaultMemorySize = 352 // might drop to half with hi-res exansion
   
   @objc dynamic var peripheralName: String!
   /// A list of encoded PumpMemoryItems

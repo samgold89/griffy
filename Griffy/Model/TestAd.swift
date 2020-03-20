@@ -45,12 +45,12 @@ class TestAd: BaseObject {
   }
   
   var stdStartIndexOnWheel: Int? {
-    guard let wheel = Wheel.activeWheel, let memory = wheel.adMemoryMap else { return nil }
+    guard let pump = Pump.activePump, let memory = pump.adMemoryMap else { return nil }
     return memory.existingStartIndex(forAd: self)?.stdResStartIndex
   }
   
   var hrStartIndexOnWheel: Int? {
-    guard let wheel = Wheel.activeWheel, let memory = wheel.adMemoryMap else { return nil }
+    guard let pump = Pump.activePump, let memory = pump.adMemoryMap else { return nil }
     return memory.existingStartIndex(forAd: self)?.hrResStartIndex
   }
     
@@ -83,8 +83,8 @@ class TestAd: BaseObject {
   }
   
   func sendToWheel(adSendType: AdSendType) -> AdSendError? {
-    guard let wheel = Wheel.activeWheel, let memory = wheel.adMemoryMap else {
-      return AdSendError(error: "Failed to find an active wheel and a memory map. Wheel: \(Wheel.activeWheel)")
+    guard let pump = Pump.activePump, let memory = pump.adMemoryMap else {
+      return AdSendError(error: "Failed to find an active wheel and a memory map. Wheel: \(Pump.activePump)")
     }
 //    assert(!stdIsOnWheel && (!hrIsOnWheel || tryHighRes), "Shouldn't be sending to wheel if the ad already exists on the wheel! Set active: \(memory.existingStartIndex(forAd: self)?.stdResStartIndex ?? -1)")
     

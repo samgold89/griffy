@@ -127,7 +127,7 @@
 		A9D9A1E12419CA1C00BB8142 /* FileNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1E02419CA1C00BB8142 /* FileNetworkManager.swift */; };
 		A9D9A1E3241AD4C500BB8142 /* RadFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1E2241AD4C500BB8142 /* RadFrame.swift */; };
 		A9D9A1E6241AEE7E00BB8142 /* AdFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1E5241AEE7E00BB8142 /* AdFileManager.swift */; };
-		A9D9A1E8241C430900BB8142 /* WheelMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1E7241C430900BB8142 /* WheelMemory.swift */; };
+		A9D9A1E8241C430900BB8142 /* AdMemoryMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1E7241C430900BB8142 /* AdMemoryMap.swift */; };
 		A9D9A1EA241C433500BB8142 /* Pump.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9A1E9241C433500BB8142 /* Pump.swift */; };
 /* End PBXBuildFile section */
 
@@ -256,7 +256,7 @@
 		A9D9A1E02419CA1C00BB8142 /* FileNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNetworkManager.swift; sourceTree = "<group>"; };
 		A9D9A1E2241AD4C500BB8142 /* RadFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadFrame.swift; sourceTree = "<group>"; };
 		A9D9A1E5241AEE7E00BB8142 /* AdFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdFileManager.swift; sourceTree = "<group>"; };
-		A9D9A1E7241C430900BB8142 /* WheelMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelMemory.swift; sourceTree = "<group>"; };
+		A9D9A1E7241C430900BB8142 /* AdMemoryMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMemoryMap.swift; sourceTree = "<group>"; };
 		A9D9A1E9241C433500BB8142 /* Pump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pump.swift; sourceTree = "<group>"; };
 		C7627662C0CC93BB4C7CEC23 /* Pods-Griffy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Griffy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Griffy/Pods-Griffy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -448,7 +448,7 @@
 			isa = PBXGroup;
 			children = (
 				A9B966EB21ABC5EA0079EBB7 /* BaseObject.swift */,
-				A9D9A1E7241C430900BB8142 /* WheelMemory.swift */,
+				A9D9A1E7241C430900BB8142 /* AdMemoryMap.swift */,
 				A9D9A1E9241C433500BB8142 /* Pump.swift */,
 				A9CD43EB24219E45009726F0 /* User.swift */,
 				A9D9A1D82419B8BF00BB8142 /* TestAd.swift */,
@@ -868,7 +868,7 @@
 				A95B21EF21A0EF0B001E1F28 /* Extensions.swift in Sources */,
 				A9B966EE21ABCBCE0079EBB7 /* SettingsTableViewController.swift in Sources */,
 				A9877E4623F53464008F8F44 /* ViewControllerExtensions.swift in Sources */,
-				A9D9A1E8241C430900BB8142 /* WheelMemory.swift in Sources */,
+				A9D9A1E8241C430900BB8142 /* AdMemoryMap.swift in Sources */,
 				A9270E6E21B9B56C007BD884 /* ImageChoiceCollectionViewController.swift in Sources */,
 				A9CD43EC24219E45009726F0 /* User.swift in Sources */,
 			);

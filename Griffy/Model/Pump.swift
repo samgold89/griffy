@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class Wheel: BaseObject {
+class Pump: BaseObject {
   @objc dynamic var adMemoryMap: AdMemoryMap?
   @objc dynamic var currentStatus: String? // 'available', 'assigned', 'damaged'
   let userId = RealmOptional<Int>()
@@ -21,11 +21,11 @@ class Wheel: BaseObject {
   @objc dynamic var hardwareRev: String? //TODO MVP: this should not be optional and should come from wheel
   @objc dynamic var displayFormat: String? //TODO MVP: this should not be optional and should come from wheel
   
-  public static var activeWheel: Wheel? {
-    let wheels = Wheel.findAll(Wheel.self)
+  public static var activePump: Pump? {
+    let pumps = Pump.findAll(Pump.self)
       .filter({ $0.userId.value == User.me?.id })
       .sorted(by: { ($0.updatedAt ?? Date()).isBeforeDate($1.updatedAt ?? Date(), granularity: Calendar.Component.second) })
     
-    return wheels.first
+    return pumps.first
   }
 }

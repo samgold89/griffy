@@ -408,12 +408,10 @@ extension BluetoothManager: CBPeripheralDelegate {
   func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {    
     if let e = error {
       let error = "\(e.localizedDescription) - \(characteristic.griffyName())"
-      print("\n\nERROR writing value:\n\(error)\n\n")
-      //      assertionFailure("ERROR writing value: \(e)")
+      print("\n\n⛔️ ERROR writing value:\n\(error)\n\n")
       NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: error, color: UIColor.gfRed))
     } else {
       print("Wrote a value for \(characteristic.griffyCharacteristic?.name ?? "NO NAME")")
-      //      NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Connected! (wrote \(characteristic.griffyName())", color: UIColor.gfGreen))
       if characteristic.griffyCharacteristic?.isReadable ?? false {
         griffyPeripheral?.readValue(for: characteristic)
       }

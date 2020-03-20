@@ -44,6 +44,24 @@ class GFCharacteristic: BLEBaseObject {
     }
   }
   
+  public static var serialNumber: GFCharacteristic? {
+    get {
+      return GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.serialNumberId)
+    }
+  }
+  
+  public static var displayFormat: GFCharacteristic? {
+    get {
+      return GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.serialNumberId)
+    }
+  }
+  
+  public static var hardwareVersion: GFCharacteristic? {
+    get {
+      return GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.hardwareVersionId)
+    }
+  }
+  
   var bleObject: BLEConstants.GFBLEObject? {
     return BLEConstants.gfBleObjects.first(where: { $0.uuid == uuid })
   }

@@ -179,7 +179,7 @@ final class BluetoothManager: NSObject {
     }
   }
   
-  func sendAdToDevice(ad: TestAd, withWheelInfo wheelInfo: AdMemoryMap.WheelMemoryPlacement) {
+  func sendAdToDevice(ad: TestAd, withWheelInfo wheelInfo: AdMemoryMap.PumpMemoryPlacement) {
     var idx = 0
     var dataSize = 0
     

@@ -34,11 +34,13 @@ class FieldsUpdateViewController: BaseViewController {
     if let serialChar = GFCharacteristic.serialNumber {
       serialNumberField.text = serialChar.value?.griffyDisplayValue(characteristicId: serialChar.id)
     }
-    if let displayFormat = 
+    if let displayFormat = GFCharacteristic.displayFormat {
+      let isA75 = displayFormat.value?.griffyDisplayValue(characteristicId: displayFormat.id) == "A75"
+      displayFormatSegment.selectedSegmentIndex = isA75 ? 0 : 1
+    }
     
     // User default properties
     userIdField.text = GFUserDefaults.userIdMvp
-    displayFormatSegment.selectedSegmentIndex = GFUserDefaults.displayFormatMvp == "A75" ? 0 : 1
   }
   
   override func keyboardWillHide(_ info: BaseViewController.KeyboardInfo) {
@@ -48,7 +50,9 @@ class FieldsUpdateViewController: BaseViewController {
   }
   
   @IBAction func segmentChanged(_ sender: Any) {
-    GFUserDefaults.displayFormatMvp = displayFormatSegment.selectedSegmentIndex == 0 ? "A75" : "A85"
+    guard let displayChar = GFCharacteristic.displayFormat else { return }
+    let data = Data(bytes: Array("\(displayFormatSegment.selectedSegmentIndex == 0 ? "A75" : "A85")".utf8))
+    BluetoothManager.shared.writeValue(data: data, toCharacteristic: displayChar)
   }
   
   fileprivate func updateValues(fromTextField textField: UITextField) {
@@ -61,9 +65,8 @@ class FieldsUpdateViewController: BaseViewController {
       let serialData = Data(bytes: Array(serial.utf8))
       BluetoothManager.shared.writeValue(data: serialData, toCharacteristic: serialChar)
     case hardwareField:
-      guard let hardChar = GFCharacteristic.hardwareVersion, let hardware = textField.text, !hardware.isEmpty else { return }
-      let hardwareData = Data(bytes: Array(hardware.utf8))
-      BluetoothManager.shared.writeValue(data: hardwareData, toCharacteristic: hardChar)
+      guard let hardChar = GFCharacteristic.hardwareVersion, let hardware = Int(textField.text ?? "-1") else { return }
+      BluetoothManager.shared.writeValue(data: UInt8(hardware).data, toCharacteristic: hardChar)
     default:
       assertionFailure("Shouldn't really be here")
     }

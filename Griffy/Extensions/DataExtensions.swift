@@ -30,7 +30,13 @@ extension Data {
         idx += 2
       }
       arrayString = array
-    } else if bleObject?.parseDataType == .uint16 {
+      return concatArray(arrayString: arrayString)
+    }
+    
+    guard let parseDataType = bleObject?.parseDataType else { return "" }
+    
+    switch parseDataType {
+    case .uint16:
       let valueInt = Int(self.uint16)
       
       if characteristicId == BLEConstants.CharacteristicIds.wheelSpeedId {
@@ -43,7 +49,7 @@ extension Data {
       } else {
         arrayString = ["\(valueInt)"]
       }
-    } else if bleObject?.parseDataType == .uint32 {
+    case .uint32:
       let intValue = Int(self.uint32)
       if characteristicId == BLEConstants.CharacteristicIds.firmwareVersionId {
         let remainder = intValue % 65536
@@ -54,9 +60,9 @@ extension Data {
       } else {
         arrayString = ["\(intValue)"]
       }
-    } else if bleObject?.parseDataType == .uint8 {
+    case .uint8:
       arrayString = ["\(Int(self.uint8))"]
-    } else if bleObject?.parseDataType == .uint8array {
+    case .uint8array:
       var array = [String]()
       self.forEach({ (int8byte) in
         let valueInt = Int(int8byte)
@@ -68,7 +74,7 @@ extension Data {
         }
       })
       arrayString = array
-    } else if bleObject?.parseDataType == .uint16array {
+    case .uint16array:
       var array = [String]()
       var idx = 0
       while idx < self.count-1 {
@@ -83,14 +89,9 @@ extension Data {
           array.append("\(intValue)")
         }
         idx += 2
-      }
-      
-//      if characteristicId == BLEConstants.CharacteristicIds.instantCurrentId {
-//        array.append(GFCharacteristic.watts)
-//      }
-      
+      }      
       arrayString = array
-    } else if bleObject?.parseDataType == .serial {
+    case .asciiString:
       var array = [String]()
       self.forEach({ (int8byte) in
         let string = "\(Character(UnicodeScalar(UInt32("\(Int(int8byte).toDecimal())", radix: 16)!)!))"
@@ -99,11 +100,13 @@ extension Data {
       
       let joinedArray = [(array.compactMap { $0 == nil ? nil : String($0!) }).joined()]
       arrayString = joinedArray
-    } else {
-      assertionFailure("Not handling the parsing of some kind of thing.")
-      arrayString = ["👎🏽"]
     }
     
+    
+    return concatArray(arrayString: arrayString)
+  }
+  
+  func concatArray(arrayString: [String]) -> String {
     var string = ""
     var i = 0
     for element in arrayString {

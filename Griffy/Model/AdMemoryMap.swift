@@ -25,9 +25,9 @@ class AdMemoryMap: Object {
     super.init()
   }
   
-  /// We'll track memory on the wheel by keeping an array of WheelMemoryItem. This will allow
+  /// We'll track memory on the wheel by keeping an array of PumpMemoryItem. This will allow
   /// us to traverse to find a slot of length N
-  struct WheelMemoryItem: Codable {
+  struct PumpMemoryItem: Codable {
     var wheelStartIndex: Int // the starting index for this item
     var length: Int // the number of slots this item takes up
     var inputDate: Date // the date this was put onto the wheel
@@ -39,9 +39,9 @@ class AdMemoryMap: Object {
       return data
     }
   }
-  /// A list of encoded WheelMemoryItems
+  /// A list of encoded PumpMemoryItems
   private let assignedMemory = List<Data>()
-  private var memoryItems: [WheelMemoryItem]? {
+  private var memoryItems: [PumpMemoryItem]? {
     return assignedMemory.compactMap({$0.wheelMemoryItem})
                                .sorted(by: {$0.wheelStartIndex < $1.wheelStartIndex})
   }
@@ -51,11 +51,11 @@ class AdMemoryMap: Object {
   }
   
 //  MARK: Get ads from wheel
-  struct WheelMemoryPlacement {
+  struct PumpMemoryPlacement {
     var stdResStartIndex: Int?
     var hrResStartIndex: Int?
   }
-  func existingStartIndex(forAd ad: TestAd) -> WheelMemoryPlacement? {
+  func existingStartIndex(forAd ad: TestAd) -> PumpMemoryPlacement? {
     guard let memoryItems = memoryItems else { return nil }
     var stdIdx, hrIdx: Int?
     let matchedAds = memoryItems.filter({ $0.adId == ad.id })
@@ -68,15 +68,15 @@ class AdMemoryMap: Object {
     if let hrStart = matchedAds.filter({ $0.isHighRes == true }).first {
       hrIdx = hrStart.wheelStartIndex
     }
-    return WheelMemoryPlacement(stdResStartIndex: stdIdx!, hrResStartIndex: hrIdx)
+    return PumpMemoryPlacement(stdResStartIndex: stdIdx!, hrResStartIndex: hrIdx)
   }
   
   /// Analyzes the wheels current memory utilization and returns the indices to use to put a new Ad on the wheel
   /// First check existingStartIndex before assigning new placement. Function analyzes current memory on wheel
   /// and returns either free slots or slots that can be clobbered.
-  /// If we're not trying high res, WheelMemoryPlacement will return nil for hiResIndex
+  /// If we're not trying high res, PumpMemoryPlacement will return nil for hiResIndex
   /// - Parameter ad: The Ad we need to make space for
-  func assignStartIndex(forAd ad: TestAd, sendType: TestAd.AdSendType) -> WheelMemoryPlacement {
+  func assignStartIndex(forAd ad: TestAd, sendType: TestAd.AdSendType) -> PumpMemoryPlacement {
     assert(existingStartIndex(forAd: ad) == nil)
     // needs sequential memory for std, needs sequential memory for hr, those don't have to be next to each other
     let stdSlotsNeeded = ad.stdRadFilePaths?.count ?? 0
@@ -93,7 +93,7 @@ class AdMemoryMap: Object {
     
     guard neededSpace > 0 else {
       assertionFailure("Should have files before assigning a start index.")
-      return WheelMemoryPlacement(stdResStartIndex: -1, hrResStartIndex: -1)
+      return PumpMemoryPlacement(stdResStartIndex: -1, hrResStartIndex: -1)
     }
     
     // This assumes sequential memory. Once we're full, that's it.
@@ -106,14 +106,14 @@ class AdMemoryMap: Object {
         stdStartIndex = availableSlotCount
         
         // Add & create the entry for standard resolution images
-        let memoryItem = WheelMemoryItem(wheelStartIndex: stdStartIndex!, length: stdSlotsNeeded, inputDate: Date(), isHighRes: false, adId: ad.id)
+        let memoryItem = PumpMemoryItem(wheelStartIndex: stdStartIndex!, length: stdSlotsNeeded, inputDate: Date(), isHighRes: false, adId: ad.id)
         addMemoryItem(item: memoryItem)
       case .hr:
         hrStartIndex = availableSlotCount
         
         // If relevant, add & create the entry to high resolution images
         if let hrStartIndex = hrStartIndex, hrSlotsNeeded > 0 {
-          let memoryItem = WheelMemoryItem(wheelStartIndex: hrStartIndex, length: hrSlotsNeeded, inputDate: Date(), isHighRes: true, adId: ad.id)
+          let memoryItem = PumpMemoryItem(wheelStartIndex: hrStartIndex, length: hrSlotsNeeded, inputDate: Date(), isHighRes: true, adId: ad.id)
           addMemoryItem(item: memoryItem)
         }
       case .both:
@@ -121,28 +121,28 @@ class AdMemoryMap: Object {
         hrStartIndex = hrSlotsNeeded > 0 ? availableSlotCount + stdSlotsNeeded : nil
         
         // Add & create the entry for standard resolution images
-        let memoryItem = WheelMemoryItem(wheelStartIndex: stdStartIndex!, length: stdSlotsNeeded, inputDate: Date(), isHighRes: false, adId: ad.id)
+        let memoryItem = PumpMemoryItem(wheelStartIndex: stdStartIndex!, length: stdSlotsNeeded, inputDate: Date(), isHighRes: false, adId: ad.id)
         addMemoryItem(item: memoryItem)
         
         // If relevant, add & create the entry to high resolution images
         if let hrStartIndex = hrStartIndex, hrSlotsNeeded > 0 {
-          let memoryItem = WheelMemoryItem(wheelStartIndex: hrStartIndex, length: hrSlotsNeeded, inputDate: Date(), isHighRes: true, adId: ad.id)
+          let memoryItem = PumpMemoryItem(wheelStartIndex: hrStartIndex, length: hrSlotsNeeded, inputDate: Date(), isHighRes: true, adId: ad.id)
           addMemoryItem(item: memoryItem)
         }
       }
       
       // Return something easy to handle
-      let memorySlots = WheelMemoryPlacement(stdResStartIndex: stdStartIndex, hrResStartIndex: hrStartIndex)
+      let memorySlots = PumpMemoryPlacement(stdResStartIndex: stdStartIndex, hrResStartIndex: hrStartIndex)
       return memorySlots
     } else {
       assertionFailure("We ain't ready for this yet...")
       // We'll need to remove something from memory
       // Remove it from the assiged array
-      return WheelMemoryPlacement(stdResStartIndex: -1, hrResStartIndex: -1)
+      return PumpMemoryPlacement(stdResStartIndex: -1, hrResStartIndex: -1)
     }
   }
   
-  fileprivate func addMemoryItem(item: WheelMemoryItem) {
+  fileprivate func addMemoryItem(item: PumpMemoryItem) {
     let realm = try! Realm()
     try! realm.write {
       guard let itemData = item.data else { return }
@@ -150,7 +150,7 @@ class AdMemoryMap: Object {
     }
   }
   
-  fileprivate func removeMemoryItem(item: WheelMemoryItem) {
+  fileprivate func removeMemoryItem(item: PumpMemoryItem) {
     let realm = try! Realm()
     try! realm.write {
       guard let itemData = item.data else { return }

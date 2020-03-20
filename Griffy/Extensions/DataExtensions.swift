@@ -9,8 +9,8 @@
 import Foundation
 
 extension Data {
-  var wheelMemoryItem: AdMemoryMap.WheelMemoryItem? {
-    let mem = try? PropertyListDecoder().decode(AdMemoryMap.WheelMemoryItem.self, from: self)
+  var wheelMemoryItem: AdMemoryMap.PumpMemoryItem? {
+    let mem = try? PropertyListDecoder().decode(AdMemoryMap.PumpMemoryItem.self, from: self)
     assert(mem != nil)
     return mem
   }

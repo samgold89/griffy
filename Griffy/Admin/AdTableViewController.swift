@@ -67,8 +67,33 @@ class AdTableViewCell: UITableViewCell {
   }
   
   @IBAction func stdButtonPressed() {
+    if ad.stdIsOnWheel {
+      setStdActiveOnWheel()
+    } else {
+      sendStdRadToWheel()
+    }
+  }
+  
+  @IBAction func hrButtonPressed() {
+    if ad.hrIsOnWheel {
+      setHrActiveOnWheel()
+    } else {
+      sendHrdRadToWheel()
+    }
+  }
+  
+  fileprivate func setStdActiveOnWheel() {
+    ad.setActiveOnWheel(useHighRes: false)
+  }
+  
+  fileprivate func setHrActiveOnWheel() {
+    ad.setActiveOnWheel(useHighRes: true)
+  }
+  
+  fileprivate func sendStdRadToWheel() {
     let result = ad.sendToWheel(adSendType: .std)
     stdButton.setLoaderVisible(visible: true, style: .white)
+    
     delay(1) {
       self.stdButton.setLoaderVisible(visible: false, style: .white)
     }
@@ -77,7 +102,7 @@ class AdTableViewCell: UITableViewCell {
     }
   }
   
-  @IBAction func hrButtonPressed() {
+  fileprivate func sendHrdRadToWheel() {
     let result = ad.sendToWheel(adSendType: .hr)
     hrButton.setLoaderVisible(visible: true, style: .white)
     delay(1) {

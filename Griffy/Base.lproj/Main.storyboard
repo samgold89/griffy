@@ -923,13 +923,13 @@ Some Value</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="igc-jr-yJO">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User ID" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="igc-jr-yJO">
                                 <rect key="frame" x="71" y="155" width="272" height="34"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="272" id="rHJ-FV-iI0"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="272" id="rHJ-FV-iI0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
                                 <connections>
                                     <outlet property="delegate" destination="IwG-lO-Rsf" id="5pL-m4-Oba"/>
                                 </connections>
@@ -940,13 +940,13 @@ Some Value</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Serial Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Ra-ef-ICe">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Serial Number" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Ra-ef-ICe">
                                 <rect key="frame" x="71" y="241" width="272" height="34"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="272" id="q78-vT-P3L"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="272" id="q78-vT-P3L"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
                                 <connections>
                                     <outlet property="delegate" destination="IwG-lO-Rsf" id="we0-Wf-Tf2"/>
                                 </connections>
@@ -957,13 +957,13 @@ Some Value</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hardware Version" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VDc-N9-GTg">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hardware Version" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VDc-N9-GTg">
                                 <rect key="frame" x="71" y="327" width="272" height="34"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="272" id="lna-SN-bQQ"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="272" id="lna-SN-bQQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" returnKeyType="done"/>
                                 <connections>
                                     <outlet property="delegate" destination="IwG-lO-Rsf" id="rEQ-ei-QmH"/>
                                 </connections>
@@ -994,10 +994,13 @@ Some Value</string>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="VDc-N9-GTg" firstAttribute="top" secondItem="P8O-9n-TrT" secondAttribute="bottom" constant="5" id="3hb-Yj-z1f"/>
+                            <constraint firstItem="U4t-Nr-yYA" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7Ra-ef-ICe" secondAttribute="trailing" symbolic="YES" id="6HQ-qJ-s3x"/>
                             <constraint firstItem="MEV-Fz-JQ8" firstAttribute="trailing" secondItem="VDc-N9-GTg" secondAttribute="trailing" id="Dbg-cd-iKP"/>
                             <constraint firstItem="P8O-9n-TrT" firstAttribute="top" secondItem="7Ra-ef-ICe" secondAttribute="bottom" constant="30" id="FSO-2U-rFw"/>
+                            <constraint firstItem="U4t-Nr-yYA" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Smk-gP-cc9" secondAttribute="trailing" symbolic="YES" id="Fxy-Lv-Kex"/>
                             <constraint firstItem="MEV-Fz-JQ8" firstAttribute="top" secondItem="Smk-gP-cc9" secondAttribute="bottom" constant="8" id="GbU-PT-eQn"/>
                             <constraint firstItem="Smk-gP-cc9" firstAttribute="top" secondItem="VDc-N9-GTg" secondAttribute="bottom" constant="30" id="HrM-qb-H0p"/>
+                            <constraint firstItem="U4t-Nr-yYA" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uRd-Yw-ya6" secondAttribute="trailing" symbolic="YES" id="J6y-kZ-ug5"/>
                             <constraint firstItem="igc-jr-yJO" firstAttribute="top" secondItem="E28-iL-6lU" secondAttribute="bottom" constant="5" id="VJr-tT-cz7"/>
                             <constraint firstItem="uRd-Yw-ya6" firstAttribute="leading" secondItem="igc-jr-yJO" secondAttribute="leading" id="Xae-cI-f7J"/>
                             <constraint firstItem="igc-jr-yJO" firstAttribute="centerX" secondItem="U4t-Nr-yYA" secondAttribute="centerX" id="agE-9a-FOY"/>
@@ -1005,10 +1008,12 @@ Some Value</string>
                             <constraint firstItem="P8O-9n-TrT" firstAttribute="leading" secondItem="7Ra-ef-ICe" secondAttribute="leading" id="cLs-ID-WfX"/>
                             <constraint firstItem="MEV-Fz-JQ8" firstAttribute="leading" secondItem="Smk-gP-cc9" secondAttribute="leading" id="jBE-CM-WgH"/>
                             <constraint firstItem="E28-iL-6lU" firstAttribute="leading" secondItem="igc-jr-yJO" secondAttribute="leading" id="ltj-IN-l9e"/>
+                            <constraint firstItem="U4t-Nr-yYA" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="P8O-9n-TrT" secondAttribute="trailing" symbolic="YES" id="mxP-sw-Q6H"/>
                             <constraint firstItem="uRd-Yw-ya6" firstAttribute="leading" secondItem="7Ra-ef-ICe" secondAttribute="leading" id="mzH-R9-4Sg"/>
                             <constraint firstItem="E28-iL-6lU" firstAttribute="top" secondItem="U4t-Nr-yYA" secondAttribute="top" constant="45" id="rNt-JE-EZt"/>
                             <constraint firstItem="P8O-9n-TrT" firstAttribute="leading" secondItem="VDc-N9-GTg" secondAttribute="leading" id="t96-HN-yw4"/>
                             <constraint firstItem="uRd-Yw-ya6" firstAttribute="top" secondItem="igc-jr-yJO" secondAttribute="bottom" constant="30" id="urH-tp-jdh"/>
+                            <constraint firstItem="U4t-Nr-yYA" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="E28-iL-6lU" secondAttribute="trailing" symbolic="YES" id="vC2-Iz-szR"/>
                             <constraint firstItem="Smk-gP-cc9" firstAttribute="leading" secondItem="VDc-N9-GTg" secondAttribute="leading" id="xP0-Y5-lRM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="U4t-Nr-yYA"/>
@@ -1171,7 +1176,7 @@ Some Value</string>
                             <fragment content="Syncing...">
                                 <attributes>
                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <font key="NSFont" metaFont="controlContent" size="11"/>
+                                    <font key="NSFont" metaFont="message" size="11"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>

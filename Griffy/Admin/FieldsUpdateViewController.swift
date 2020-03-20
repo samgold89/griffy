@@ -17,6 +17,26 @@ class FieldsUpdateViewController: BaseViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupInitialValues()
+    let tap = UITapGestureRecognizer(target: self, action: #selector(FieldsUpdateViewController.tapperTapped))
+    view.addGestureRecognizer(tap)
+  }
+  
+  @objc fileprivate func tapperTapped() {
+    [userIdField, serialNumberField, hardwareField].forEach({ $0?.endEditing(true) })
+  }
+  
+  fileprivate func setupInitialValues() {
+    // Wheel properties
+    if let hardChar = GFCharacteristic.hardwareVersion {
+      hardwareField.text = hardChar.value?.griffyDisplayValue(characteristicId: hardChar.id)
+    }
+    if let serialChar = GFCharacteristic.serialNumber {
+      serialNumberField.text = serialChar.value?.griffyDisplayValue(characteristicId: serialChar.id)
+    }
+    if let displayFormat = 
+    
+    // User default properties
     userIdField.text = GFUserDefaults.userIdMvp
     displayFormatSegment.selectedSegmentIndex = GFUserDefaults.displayFormatMvp == "A75" ? 0 : 1
   }
@@ -32,16 +52,18 @@ class FieldsUpdateViewController: BaseViewController {
   }
   
   fileprivate func updateValues(fromTextField textField: UITextField) {
-    print(Array(textField.text!.utf8))
     switch textField {
     case userIdField:
       guard let val = textField.text else { return }
       GFUserDefaults.userIdMvp = val
-//          BluetoothManager.shared.writeValue(data: intVal, toCharacteristic: <#T##GFCharacteristic#>)
     case serialNumberField:
-      print("Yo")
+      guard let serialChar = GFCharacteristic.serialNumber, let serial = textField.text, !serial.isEmpty else { return }
+      let serialData = Data(bytes: Array(serial.utf8))
+      BluetoothManager.shared.writeValue(data: serialData, toCharacteristic: serialChar)
     case hardwareField:
-      print("Yo")
+      guard let hardChar = GFCharacteristic.hardwareVersion, let hardware = textField.text, !hardware.isEmpty else { return }
+      let hardwareData = Data(bytes: Array(hardware.utf8))
+      BluetoothManager.shared.writeValue(data: hardwareData, toCharacteristic: hardChar)
     default:
       assertionFailure("Shouldn't really be here")
     }

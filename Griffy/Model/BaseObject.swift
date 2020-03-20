@@ -22,6 +22,13 @@ class CoreObject: Object {
     }
     return allThings
   }
+  
+  public static func deleteAll<T: Object>(_ type: T.Type) {
+    let realm = try! Realm()
+    try! realm.write {
+      realm.delete(realm.objects(T.self))
+    }
+  }
 }
 
 class BaseObject: CoreObject {

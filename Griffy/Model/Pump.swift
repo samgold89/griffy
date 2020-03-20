@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 class Pump: BaseObject {
-  @objc dynamic var adMemoryMap: AdMemoryMap?
+  @objc dynamic var peripheralName: String!
   @objc dynamic var currentStatus: String? // 'available', 'assigned', 'damaged'
   let userId = RealmOptional<Int>()
   let ownerId = RealmOptional<Int>()
@@ -23,8 +23,7 @@ class Pump: BaseObject {
   
   public static var activePump: Pump? {
     let pumps = Pump.findAll(Pump.self)
-      .filter({ $0.userId.value == User.me?.id })
-      .sorted(by: { ($0.updatedAt ?? Date()).isBeforeDate($1.updatedAt ?? Date(), granularity: Calendar.Component.second) })
+      .filter({ $0.peripheralName == BluetoothManager.shared.griffyPeripheral?.name })
     
     return pumps.first
   }

@@ -38,6 +38,16 @@ class AdMemoryMap: Object {
     }
   }
   
+  public static var activeMemoryMap: AdMemoryMap? {
+    guard let pName = BluetoothManager.shared.griffyPeripheral?.name else { return nil }
+    
+    let realm = try! Realm()
+    let obj = realm.objects(AdMemoryMap.self).first { (map) -> Bool in
+      map.peripheralName == pName
+    }
+    return obj
+  }
+  
   /// We'll track memory on the wheel by keeping an array of PumpMemoryItem. This will allow
   /// us to traverse to find a slot of length N
   struct PumpMemoryItem: Codable {

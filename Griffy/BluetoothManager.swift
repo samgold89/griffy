@@ -25,21 +25,21 @@ struct GFYWriteRequest {
 
 final class BluetoothManager: NSObject {
   static let shared = BluetoothManager()
-  var centralManager: CBCentralManager!
+  fileprivate var centralManager: CBCentralManager!
   var griffyPeripheral: CBPeripheral?
   var cbCharacteristicsById = [String: CBCharacteristic]()
-  var timer: Timer?
+  fileprivate var timer: Timer?
   /****************************
    NOTE: this doesn't work when multiple, different, concurrent write requests are ongoing
    ****************************/
-  var sendingImageData = [Int]()
+  fileprivate var sendingImageData = [Int]()
   
-  var statusUpdatedClosure: (()->())?
+  fileprivate var statusUpdatedClosure: (()->())?
   
-  let minimumPacketSize = 27
-  let griffyHeaderSize = 11 //Change from 7-->11 on 4/10 due to reported but of it going over 512
+  fileprivate let minimumPacketSize = 27
+  fileprivate let griffyHeaderSize = 11 //Change from 7-->11 on 4/10 due to reported but of it going over 512
   
-  var pendingWriteRequests = [GFYWriteRequest]()
+  fileprivate var pendingWriteRequests = [GFYWriteRequest]()
   
   var visibleCharacteristics: [GFCharacteristic]?
   
@@ -306,7 +306,7 @@ final class BluetoothManager: NSObject {
   
   fileprivate func setupModels(forPeripheral peripheral: CBPeripheral) {
     GFCharacteristic.deleteAll(GFCharacteristic.self)
-    if Pump.activePump?.adMemoryMap != nil { return }
+    if AdMemoryMap.activeMemoryMap != nil { return }
     guard let name = griffyPeripheral?.name else {
       assertionFailure("Missing peripheral name when setting up admemorymap")
       return

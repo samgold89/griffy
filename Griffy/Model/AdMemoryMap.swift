@@ -13,8 +13,12 @@ class AdMemoryMap: Object {
   
   static let defaultMemorySize = 730
   
-  //  @objc dynamic var wheel: Wheel?
+  @objc dynamic var peripheralName: String!
+  /// A list of encoded PumpMemoryItems
+  private let assignedMemory = List<Data>()
+  
   @objc private dynamic var totalMemorySlots: Int = AdMemoryMap.defaultMemorySize
+  
   required init(memorySize: Int) {
     super.init()
     totalMemorySlots = memorySize
@@ -23,6 +27,15 @@ class AdMemoryMap: Object {
   required init() {
 //    assertionFailure("Shouldn't initialize from here. User memory size")
     super.init()
+  }
+  
+  public static func create(withPeripheralName name: String, memorySize: Int) {
+    let realm = try! Realm()
+    try! realm.write {
+      let adMem = realm.create(AdMemoryMap.self)
+      adMem.peripheralName = name
+      adMem.totalMemorySlots = memorySize
+    }
   }
   
   /// We'll track memory on the wheel by keeping an array of PumpMemoryItem. This will allow
@@ -39,8 +52,7 @@ class AdMemoryMap: Object {
       return data
     }
   }
-  /// A list of encoded PumpMemoryItems
-  private let assignedMemory = List<Data>()
+  
   private var memoryItems: [PumpMemoryItem]? {
     return assignedMemory.compactMap({$0.wheelMemoryItem})
                                .sorted(by: {$0.wheelStartIndex < $1.wheelStartIndex})

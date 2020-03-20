@@ -303,6 +303,18 @@ final class BluetoothManager: NSObject {
   func scanForPeripherals() {
     centralManager.scanForPeripherals(withServices: nil, options: nil)
   }
+  
+  fileprivate func setupModels(forPeripheral peripheral: CBPeripheral) {
+    GFCharacteristic.deleteAll(GFCharacteristic.self)
+    if Pump.activePump?.adMemoryMap != nil { return }
+    guard let name = griffyPeripheral?.name else {
+      assertionFailure("Missing peripheral name when setting up admemorymap")
+      return
+    }
+    
+    //TODO MVP: use/read the memory size for a memory map
+    AdMemoryMap.create(withPeripheralName: name, memorySize: AdMemoryMap.defaultMemorySize)
+  }
 }
 
 struct GFBluetoothState {

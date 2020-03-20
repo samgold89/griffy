@@ -19,7 +19,7 @@ class BLEConstants {
     case uint32
     case uint8
     case uint8array
-    case serial
+    case asciiString
   }
   
   struct GFBLEObject {
@@ -86,13 +86,13 @@ class BLEConstants {
     //MARK: Characteristics
     all.append(GFBLEObject(type: .characteristic,
                            uuid: BLEConstants.CharacteristicIds.serialNumberId,
-                           parseDataType: .serial,
+                           parseDataType: .asciiString,
                            displayName: "Serial Number",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
                            uuid: BLEConstants.CharacteristicIds.hardwareVersionId,
-                           parseDataType: .uint32,
+                           parseDataType: .uint8array,
                            displayName: "Hardware Version",
                            isReadable: true))
     
@@ -240,6 +240,12 @@ class BLEConstants {
                            displayName: "Last Frame Play Count",
                            isReadable: true))
     
+    all.append(GFBLEObject(type: .characteristic,
+                           uuid: BLEConstants.CharacteristicIds.displayFormat,
+                           parseDataType: .uint8array,
+                           displayName: "Display Format",
+                           isReadable: true))
+    
     //MARK: Test Characteristics
     all.append(GFBLEObject(type: .characteristic,
                            uuid: BLEConstants.CharacteristicIds.dumTest1,
@@ -378,6 +384,7 @@ class BLEConstants {
     static let evBattery = "B1F9E355-87FF-4FBE-9F62-A7C2E7A249F0"
     static let evVoltage = "CFBDDB18-ECCB-4F26-9A0D-53D01B4366E5"
     static let orientation = "D6782FCF-9D36-42C4-B533-854337C12BEB"
+    static let displayFormat = "A03B3301-D050-40B8-911F-4D20B5C9BA3F"
     
     static let dumTest1 = "9A681C49-919E-488E-9987-E821E91612B4"
     static let dumTest2 = "668BAA75-3E1C-4E75-8926-9F8A5E7C438C"
@@ -401,5 +408,5 @@ class BLEConstants {
     static let dumTest17 = "2B1782C0-7E0F-4E47-8787-E60A82CDF4DF"
     static let lastFramePlayCount = "88109ADB-EDFD-49DD-AA9A-7032ECC4EBD2"
   }
-
+  
 }

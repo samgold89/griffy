@@ -61,6 +61,16 @@ class TestAd: BaseObject {
   var hrIsOnWheel: Bool {
     return hrStartIndexOnWheel != nil
   }
+  
+  var isAnimation: Bool {
+    guard let stdRadFilePaths = stdRadFilePaths else { return false }
+    return stdRadFilePaths.count > 1
+  }
+  
+  var frameCount: Int {
+    guard let stdRadFilePaths = stdRadFilePaths else { return 1 }
+    return stdRadFilePaths.count
+  }
 
   enum AdSendType {
     case std
@@ -81,6 +91,10 @@ class TestAd: BaseObject {
     let info = memory.assignStartIndex(forAd: self, sendType: adSendType)
     BluetoothManager.shared.sendAdToDevice(ad: self, withWheelInfo: info)
     return nil
+  }
+  
+  func setActiveOnWheel(useHighRes: Bool) {
+    BluetoothManager.shared.setAdActive(ad: self, useHighRes: useHighRes)
   }
   
   var hrRadFilePaths: [String]? {

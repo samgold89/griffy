@@ -78,6 +78,23 @@ final class BluetoothManager: NSObject {
     }
   }
   
+  /*vvv*********************vvv*******Old Dropbox Methods - Delete******************************/
+  fileprivate func setMetaDataValues(griffyImage: GriffyImage, useHighRes: Bool) {
+    if let animation = GFCharacteristic.animation, let frameCountChar = GFCharacteristic.frameCount, let frameDuration = GFCharacteristic.frameDuration {
+      
+      let isAnimation = griffyImage.frameCount > 1
+      writeValue(data: UInt8(isAnimation ? 1 : 0).data, toCharacteristic: animation)
+      
+      writeValue(data: UInt8(griffyImage.frameCount).data, toCharacteristic: frameCountChar)
+      
+      writeValue(data: UInt16(griffyImage.frameDuration).data, toCharacteristic: frameDuration)
+    }
+    
+    if let highRes = GFCharacteristic.isHighRes {
+      writeValue(data: UInt8(useHighRes ? 1 : 0).data, toCharacteristic: highRes)
+    }
+  }
+  
   func setImageActive(griffy: GriffyImage, useHighRes: Bool, completion: @escaping ()->()) {
     guard let g = GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.imageSelectId) else {
       //      assertionFailure("Missing image active charactersitic.")
@@ -100,23 +117,6 @@ final class BluetoothManager: NSObject {
     }
   }
   
-  func setMetaDataValues(griffyImage: GriffyImage, useHighRes: Bool) {
-    if let animation = GFCharacteristic.animation, let frameCountChar = GFCharacteristic.frameCount, let frameDuration = GFCharacteristic.frameDuration {
-      
-      let isAnimation = griffyImage.frameCount > 1
-      writeValue(data: UInt8(isAnimation ? 1 : 0).data, toCharacteristic: animation)
-      
-      writeValue(data: UInt8(griffyImage.frameCount).data, toCharacteristic: frameCountChar)
-      
-      writeValue(data: UInt16(griffyImage.frameDuration).data, toCharacteristic: frameDuration)
-    }
-    
-    if let highRes = GFCharacteristic.isHighRes {
-      writeValue(data: UInt8(useHighRes ? 1 : 0).data, toCharacteristic: highRes)
-    }
-  }
-  
-  /*vvv*********************vvv*******Old Dropbox Methods - Delete******************************/
   func sendGriffyImageToDevice(griffy: GriffyImage) -> Int {
     return sendGriffyImageToDevice(griffy: griffy, resetDataTotal: true)
   }
@@ -148,6 +148,37 @@ final class BluetoothManager: NSObject {
   
   /*^^^*********************^^^*******Old Dropbox Methods - Delete******************************/
   
+  fileprivate func setMetaDataValues(ad: TestAd, useHighRes: Bool) {
+    if let animation = GFCharacteristic.animation, let frameCountChar = GFCharacteristic.frameCount, let frameDuration = GFCharacteristic.frameDuration {
+      
+      writeValue(data: UInt8(ad.isAnimation ? 1 : 0).data, toCharacteristic: animation)
+      
+      writeValue(data: UInt8(ad.frameCount).data, toCharacteristic: frameCountChar)
+      
+      writeValue(data: UInt16(ad.frameDuration).data, toCharacteristic: frameDuration)
+    }
+    
+    if let highRes = GFCharacteristic.isHighRes {
+      writeValue(data: UInt8(useHighRes ? 1 : 0).data, toCharacteristic: highRes)
+    }
+  }
+  
+  func setAdActive(ad: TestAd, useHighRes: Bool) {
+    guard let g = GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.imageSelectId) else {
+      return
+    }
+    
+    setMetaDataValues(ad: ad, useHighRes: useHighRes)
+    
+    let index = useHighRes ? ad.hrStartIndexOnWheel ?? -1 : ad.stdStartIndexOnWheel ?? -1
+    assert(index >= 0, "Index should exist if we're setting it active on the wheel.")
+    
+    writeValue(data: UInt16(index).data, toCharacteristic: g)
+    delay(1) {
+      // save state
+    }
+  }
+  
   func sendAdToDevice(ad: TestAd, withWheelInfo wheelInfo: AdMemoryMap.WheelMemoryPlacement) {
     var idx = 0
     var dataSize = 0
@@ -167,10 +198,10 @@ final class BluetoothManager: NSObject {
         idx += 1
       }
     }
-//    return dataSize
+    //    return dataSize
   }
   
-  private func sendImageToDevice(radialFilePath: String, index: Int) -> Int {
+  fileprivate func sendImageToDevice(radialFilePath: String, index: Int) -> Int {
     let dataSize = FileManager.default.contents(atPath: radialFilePath)?.count ?? 0
     
     guard let data = FileManager.default.contents(atPath: radialFilePath) else {
@@ -208,7 +239,7 @@ final class BluetoothManager: NSObject {
     return dataSize
   }
   
-  func getOffsetData(imageId: Int, offset: Int) -> Data {
+  fileprivate func getOffsetData(imageId: Int, offset: Int) -> Data {
     let imageIdByteZero = imageId % 256
     let imageIdByteOne = (imageId - imageIdByteZero) / 256
     
@@ -219,10 +250,11 @@ final class BluetoothManager: NSObject {
     
     let data = Data(bytes: [UInt8(imageIdByteZero), UInt8(imageIdByteOne), UInt8(byteZero), UInt8(byteOne), UInt8(byteTwo), UInt8(0)])
     
+    
     return data
   }
   
-  func getDataChunks(data: Data, length: Int) -> [[Data]] {
+  fileprivate func getDataChunks(data: Data, length: Int) -> [[Data]] {
     var idx = 0
     var chunks = [[Data]]()
     while idx < data.count {
@@ -317,6 +349,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
   }
   
   func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+    setupModels(forPeripheral: peripheral)
     NotificationCenter.default.post(name: .bluetoothStateChanged, object: GFBluetoothState(message: "Connected to Griffy!", color: UIColor.gfGreen))
     peripheral.discoverServices(BLEConstants.gfBleObjects.filter({ $0.type == BLEConstants.GFBLEObjectType.service}).map({ $0.uuid.cbuuid }))
     peripheral.delegate = self
@@ -344,7 +377,6 @@ extension BluetoothManager: CBPeripheralDelegate {
   }
   
   func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-    //    print(service.characteristics)
     guard let characteristics = service.characteristics else {
       return
     }

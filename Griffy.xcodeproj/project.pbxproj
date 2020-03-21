@@ -86,6 +86,7 @@
 		A9AFB0A9240EE7100022CB2F /* BetaUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AFB0A8240EE7100022CB2F /* BetaUser.swift */; };
 		A9AFB0AB240EE7190022CB2F /* Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AFB0AA240EE7190022CB2F /* Shift.swift */; };
 		A9AFB0AD240EE7490022CB2F /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AFB0AC240EE7490022CB2F /* Characteristic.swift */; };
+		A9B062D22426C98400097E0D /* BluetoothCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B062D12426C98400097E0D /* BluetoothCommunicator.swift */; };
 		A9B966EC21ABC5EA0079EBB7 /* BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966EB21ABC5EA0079EBB7 /* BaseObject.swift */; };
 		A9B966EE21ABCBCE0079EBB7 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966ED21ABCBCE0079EBB7 /* SettingsTableViewController.swift */; };
 		A9B966F021ABD7E10079EBB7 /* RealmMigrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B966EF21ABD7E10079EBB7 /* RealmMigrations.swift */; };
@@ -215,6 +216,7 @@
 		A9AFB0A8240EE7100022CB2F /* BetaUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaUser.swift; sourceTree = "<group>"; };
 		A9AFB0AA240EE7190022CB2F /* Shift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shift.swift; sourceTree = "<group>"; };
 		A9AFB0AC240EE7490022CB2F /* Characteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characteristic.swift; sourceTree = "<group>"; };
+		A9B062D12426C98400097E0D /* BluetoothCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCommunicator.swift; sourceTree = "<group>"; };
 		A9B966EB21ABC5EA0079EBB7 /* BaseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseObject.swift; sourceTree = "<group>"; };
 		A9B966ED21ABCBCE0079EBB7 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		A9B966EF21ABD7E10079EBB7 /* RealmMigrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMigrations.swift; sourceTree = "<group>"; };
@@ -321,7 +323,7 @@
 				A95B21D421A0D02B001E1F28 /* MasterViewController.swift */,
 				A9A543EE21B5C24B00BF99FD /* t.pdf */,
 				A9A543F321B9AF6900BF99FD /* GriffyImages.swift */,
-				A95B21EC21A0DC88001E1F28 /* BluetoothManager.swift */,
+				A9B062CE2426C8CA00097E0D /* Griffy Bluetooth */,
 				A9A543F521B9B01E00BF99FD /* Dummy Data */,
 				A9D9A1E4241AEE6F00BB8142 /* File Managers */,
 				A95B21D821A0D02B001E1F28 /* Main.storyboard */,
@@ -383,7 +385,6 @@
 		A981195A23DFA8E400E2387D /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				A95B21EA21A0D8E8001E1F28 /* BLEConstants.swift */,
 				A981195B23DFA96900E2387D /* UserDefaultConstants.swift */,
 				A981195823DFA8CD00E2387D /* ErrorConstants.swift */,
 				A981195D23DFA98C00E2387D /* APIConstants.swift */,
@@ -459,6 +460,16 @@
 				A9AFB0AA240EE7190022CB2F /* Shift.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A9B062CE2426C8CA00097E0D /* Griffy Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				A95B21EA21A0D8E8001E1F28 /* BLEConstants.swift */,
+				A95B21EC21A0DC88001E1F28 /* BluetoothManager.swift */,
+				A9B062D12426C98400097E0D /* BluetoothCommunicator.swift */,
+			);
+			path = "Griffy Bluetooth";
 			sourceTree = "<group>";
 		};
 		A9BBC2A723F3A68700B9B60C /* Fonts */ = {
@@ -814,6 +825,7 @@
 				A9877E4E23F53E27008F8F44 /* Formatters.swift in Sources */,
 				A9BBC2DD23F3B63B00B9B60C /* BetaWelcomeVC.swift in Sources */,
 				A9BBC2CD23F3A73700B9B60C /* FontExtensions.swift in Sources */,
+				A9B062D22426C98400097E0D /* BluetoothCommunicator.swift in Sources */,
 				A95AE18823F3BA0900E15EA1 /* BetaTabBarVC.swift in Sources */,
 				A976F32021DC724D00A00817 /* MainControlViewController.swift in Sources */,
 				A9D9A1DF2419BC1400BB8142 /* StaticCells.swift in Sources */,

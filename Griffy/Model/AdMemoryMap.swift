@@ -39,7 +39,7 @@ class AdMemoryMap: Object {
   }
   
   public static var activeMemoryMap: AdMemoryMap? {
-    guard let pName = BluetoothManager.shared.griffyPeripheral?.name else { return nil }
+    guard let pName = BluetoothManager.shared.peripheralName else { return nil }
     
     let realm = try! Realm()
     let obj = realm.objects(AdMemoryMap.self).first { (map) -> Bool in

@@ -23,7 +23,7 @@ class Pump: BaseObject {
   
   public static var activePump: Pump? {
     let pumps = Pump.findAll(Pump.self)
-      .filter({ $0.peripheralName == BluetoothManager.shared.griffyPeripheral?.name })
+      .filter({ $0.peripheralName == BluetoothManager.shared.peripheralName })
     
     return pumps.first
   }

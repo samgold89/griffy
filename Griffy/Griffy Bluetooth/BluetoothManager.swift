@@ -18,33 +18,49 @@ struct CharacterWriteResponse {
   var dataLength: Int
 }
 
-struct GFYWriteRequest {
-  var data: Data
+enum BLECommType {
+  case read
+  case write
+}
+
+struct GFBLERequest {
+  var data: Data?
   var characteristic: CBCharacteristic
+  var type: BLECommType
+  var completion: (()->())?
 }
 
 final class BluetoothManager: NSObject {
   static let shared = BluetoothManager()
   fileprivate var centralManager: CBCentralManager!
-  var griffyPeripheral: CBPeripheral?
+  fileprivate var griffyPeripheral: CBPeripheral?
   var cbCharacteristicsById = [String: CBCharacteristic]()
   fileprivate var timer: Timer?
   /****************************
    NOTE: this doesn't work when multiple, different, concurrent write requests are ongoing
    ****************************/
-  fileprivate var sendingImageData = [Int]()
-  
-  fileprivate var statusUpdatedClosure: (()->())?
+  private var sendingImageData = [Int]()
   
   fileprivate let minimumPacketSize = 27
   fileprivate let griffyHeaderSize = 11 //Change from 7-->11 on 4/10 due to reported but of it going over 512
   
-  fileprivate var pendingWriteRequests = [GFYWriteRequest]()
+  fileprivate var enqueuedBLERequests = [GFBLERequest]() {
+    didSet {
+      checkDoPendingRequests()
+    }
+  }
+  fileprivate var ongoingRequest: GFBLERequest? {
+    return enqueuedBLERequests.first
+  }
   
   var visibleCharacteristics: [GFCharacteristic]?
   
   var hasDiscoveredGriffy: Bool {
     return griffyPeripheral != nil
+  }
+  
+  var peripheralName: String? {
+    return griffyPeripheral?.name
   }
   
   fileprivate override init() {
@@ -72,81 +88,11 @@ final class BluetoothManager: NSObject {
     
     for characteristic in visibleCharacteristics {
       if let char = cbCharacteristicsById[characteristic.id] {
-        griffyPeripheral?.readValue(for: char)
+        enqueuedBLERequests.append(GFBLERequest(data: nil, characteristic: char, type: .read, completion: nil))
         print("reading \(characteristic.name)")
       }
     }
   }
-  
-  /*vvv*********************vvv*******Old Dropbox Methods - Delete******************************/
-  fileprivate func setMetaDataValues(griffyImage: GriffyImage, useHighRes: Bool) {
-    if let animation = GFCharacteristic.animation, let frameCountChar = GFCharacteristic.frameCount, let frameDuration = GFCharacteristic.frameDuration {
-      
-      let isAnimation = griffyImage.frameCount > 1
-      writeValue(data: UInt8(isAnimation ? 1 : 0).data, toCharacteristic: animation)
-      
-      writeValue(data: UInt8(griffyImage.frameCount).data, toCharacteristic: frameCountChar)
-      
-      writeValue(data: UInt16(griffyImage.frameDuration).data, toCharacteristic: frameDuration)
-    }
-    
-    if let highRes = GFCharacteristic.isHighRes {
-      writeValue(data: UInt8(useHighRes ? 1 : 0).data, toCharacteristic: highRes)
-    }
-  }
-  
-  func setImageActive(griffy: GriffyImage, useHighRes: Bool, completion: @escaping ()->()) {
-    guard let g = GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.imageSelectId) else {
-      //      assertionFailure("Missing image active charactersitic.")
-      completion()
-      return
-    }
-    
-    assert(((useHighRes && griffy.hiResRadialFilePaths != nil) || (!useHighRes && griffy.stdRadialFilePaths != nil)), "Must have hi res images if hi res, and std images if standard")
-    
-    setMetaDataValues(griffyImage: griffy, useHighRes: useHighRes)
-    
-    var index = griffy.startingIndex
-    if let stds = griffy.stdRadialFilePaths, useHighRes {
-      index += stds.count
-    }
-    writeValue(data: UInt16(index).data, toCharacteristic: g)
-    delay(1) {
-      GriffyImageState(griffyImage: griffy, setHighRes: useHighRes).saveInfo()
-      completion()
-    }
-  }
-  
-  func sendGriffyImageToDevice(griffy: GriffyImage) -> Int {
-    return sendGriffyImageToDevice(griffy: griffy, resetDataTotal: true)
-  }
-  
-  func sendGriffyImageToDevice(griffy: GriffyImage, resetDataTotal: Bool) -> Int {
-    if resetDataTotal {
-      sendingImageData.removeAll()
-    }
-    
-    var idx = 0
-    var dataSize = 0
-    
-    if let stds = griffy.stdRadialFilePaths {
-      for radial in stds {
-        dataSize += sendImageToDevice(radialFilePath: radial, index: griffy.startingIndex+idx)
-        idx += 1
-      }
-    }
-    
-    if let hiRes = griffy.hiResRadialFilePaths {
-      for radial in hiRes {
-        dataSize += sendImageToDevice(radialFilePath: radial, index: griffy.startingIndex+idx)
-        idx += 1
-      }
-    }
-    
-    return dataSize
-  }
-  
-  /*^^^*********************^^^*******Old Dropbox Methods - Delete******************************/
   
   fileprivate func setMetaDataValues(ad: TestAd, useHighRes: Bool) {
     if let animation = GFCharacteristic.animation, let frameCountChar = GFCharacteristic.frameCount, let frameDuration = GFCharacteristic.frameDuration {
@@ -220,7 +166,6 @@ final class BluetoothManager: NSObject {
     var offsetCounter = 0
     
     NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Sending Image Parts", color: UIColor.gfGreen), userInfo: nil)
-    self.statusUpdatedClosure = nil
     
     for el in imageDataArray {
       if let data = el.first {
@@ -250,6 +195,7 @@ final class BluetoothManager: NSObject {
     
     let data = Data(bytes: [UInt8(imageIdByteZero), UInt8(imageIdByteOne), UInt8(byteZero), UInt8(byteOne), UInt8(byteTwo), UInt8(0)])
     
+    // Read log data, look for when the data FFF x 128 times
     
     return data
   }
@@ -265,32 +211,28 @@ final class BluetoothManager: NSObject {
     return chunks
   }
   
-  func writeValue(data: Data, toCharacteristic characteristic: GFCharacteristic) {
+  func writeValue(data: Data, toCharacteristic characteristic: GFCharacteristic, completion: (()->())? = nil) {
     guard let char = cbCharacteristicsById[characteristic.uuid] else {
       // If we try to set up values before connection is established, we crash (namely setting brightness on didappear in main vc
       assertionFailure("Couldn't find characteristic with that GFUUID: \(characteristic)")
       return
     }
     
-    pendingWriteRequests.append(GFYWriteRequest(data: data, characteristic: char))
-    checkSendPendingWriteRequests()
+    enqueuedBLERequests.append(GFBLERequest(data: data, characteristic: char, type: .write, completion: completion))
   }
   
-  func checkSendPendingWriteRequests() {
-    //    if pendingWriteRequestCount < UserDefaults.standard.integer(forKey: UserDefaultConstants.maxOutgoingBLERequests) {
-    //      print("skipping the write request due to volume reasons")
-    //      return
-    //    } else if let pend = pendingWriteRequests.first {
-    //      print("SENDING a request from the queue")
-    //      pendingWriteRequestCount += 1
-    //      griffyPeripheral?.writeValue(pend.data, for: pend.characteristic, type: CBCharacteristicWriteType.withResponse)
-    //      pendingWriteRequests.remove(at: 0)
-    //    }
-    while pendingWriteRequests.count > 0 {
-      let pend = pendingWriteRequests.first!
-      //      griffyPeripheral?.writeValue(pend.data, for: pend.characteristic, type: (pend.characteristic.griffyCharacteristic?.isReadable ?? false) ? CBCharacteristicWriteType.withResponse : CBCharacteristicWriteType.withoutResponse)
-      griffyPeripheral?.writeValue(pend.data, for: pend.characteristic, type: CBCharacteristicWriteType.withResponse)
-      pendingWriteRequests.remove(at: 0)
+  func checkDoPendingRequests() {
+    guard let req = enqueuedBLERequests.last else { return }
+    switch req.type {
+    case .write:
+      guard let data = req.data else {
+        assertionFailure("All write requests should have corresponding data.")
+        return
+      }
+      griffyPeripheral?.writeValue(data, for: req.characteristic, type: CBCharacteristicWriteType.withResponse)
+    case .read:
+      // TODO MVP test if you read a value that is not readable that didUpdate gets called with an error
+      griffyPeripheral?.readValue(for: req.characteristic)
     }
   }
   
@@ -303,6 +245,16 @@ final class BluetoothManager: NSObject {
   func scanForPeripherals() {
     centralManager.scanForPeripherals(withServices: nil, options: nil)
   }
+  
+  // MARK: Logging
+//  func readLog() {
+//    guard let imageLoad = GFCharacteristic.imageLoad, let char = imageLoad.cbCharacteristic else { return }
+//    enqueuedBLERequests.append(GFBLERequest(data: nil, characteristic: char, type: .read, completion: {
+//      // Check if still data to be read ...
+//      assertionFailure("yup")
+//      print("here we go")
+//    }))
+//  }
   
   fileprivate func setupModels(forPeripheral peripheral: CBPeripheral) {
     GFCharacteristic.deleteAll(GFCharacteristic.self)
@@ -395,7 +347,6 @@ extension BluetoothManager: CBPeripheralDelegate {
     
     for characteristic in characteristics {
       print("Discovered: \(characteristic.gfBleObject?.displayName ?? "nil-zip-nada")")
-      //      printCharacteristicValue(characteristic)
       let _ = GFCharacteristic.parse(GFCharacteristic.self, characteristic: characteristic)
       cbCharacteristicsById[characteristic.uuid.uuidString] = characteristic
       
@@ -412,8 +363,12 @@ extension BluetoothManager: CBPeripheralDelegate {
       NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: error, color: UIColor.gfRed))
     } else {
       print("Wrote a value for \(characteristic.griffyCharacteristic?.name ?? "NO NAME")")
-      if characteristic.griffyCharacteristic?.isReadable ?? false {
-        griffyPeripheral?.readValue(for: characteristic)
+      if let gfChar = characteristic.griffyCharacteristic, let req = enqueuedBLERequests.first {
+        if req.characteristic == characteristic {
+          gfChar.value = req.data
+        } else {
+          assertionFailure("Characteristics don't match after a write.")
+        }
       }
     }
     
@@ -425,36 +380,110 @@ extension BluetoothManager: CBPeripheralDelegate {
       }
     }
     
+    //TODO MVP: can remove this notification
     NotificationCenter.default.post(name: .didWriteToCharacteristic, object: CharacterWriteResponse(characteristic: characteristic, error: error?.localizedDescription, dataLength: length))
     
-    checkSendPendingWriteRequests()
+    finishAndPopTopRequest(lastUpdatedChar: characteristic)
   }
   
   func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
     let _ = GFCharacteristic.parse(GFCharacteristic.self, characteristic: characteristic)
     cbCharacteristicsById[characteristic.uuid.uuidString] = characteristic
     NotificationCenter.default.post(name: .didUpdateCharacteristic, object: characteristic)
-    
-    //    NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Updated Values", color: UIColor.gfGreen))
     delay(0.5) {
       NotificationCenter.default.post(name: .setBluetoothBanner, object: GFBluetoothState(message: "Connected to Griffy!", color: UIColor.gfGreen))
     }
-    print("we here \(characteristic.griffyName())")
     
-    if let statusClosure = statusUpdatedClosure {
-      statusClosure()
-    }
-    //    if characteristic.uuid.uuidString == BLEConstants.CharacteristicIds.instantCurrentId || characteristic.uuid.uuidString == BLEConstants.CharacteristicIds.averageCurrentId {
-    //      print("we here \(characteristic.uuid.uuidString)")
-    //    }
+    finishAndPopTopRequest(lastUpdatedChar: characteristic)
+    
   }
   
-  private func printCharacteristicValue(_ characteristic: CBCharacteristic) {
-    //    guard let characteristicData = characteristic.value else {return}
-    //    SerialNumber(
-    //    print(characteristicNameById[characteristic.uuid.uuidString]!, characteristicData.count)
-    //    let vals = characteristic.griffyDisplayValue()
-    //    print(vals!)
-    //    print("\(characteristicNameById[characteristic.uuid.uuidString]!) = \(vals ?? nil)")
+  fileprivate func finishAndPopTopRequest(lastUpdatedChar: CBCharacteristic) {
+    guard let ongoing = ongoingRequest else {
+      assertionFailure("Should have an ongoing request when poppping")
+      return
+    }
+    assert(lastUpdatedChar == ongoing.characteristic, "Something off with request enqueueing. Chars should be equal.")
+    ongoing.completion?()
+  }
+}
+
+
+
+
+
+
+extension BluetoothManager {
+  
+  /*vvv*********************vvv*******Old Dropbox Methods - Delete******************************/
+  /*vvv*********************vvv*******Old Dropbox Methods - Delete******************************/
+  /*vvv*********************vvv*******Old Dropbox Methods - Delete******************************/
+  /*vvv*********************vvv*******Old Dropbox Methods - Delete******************************/
+  
+  fileprivate func setMetaDataValues(griffyImage: GriffyImage, useHighRes: Bool) {
+    if let animation = GFCharacteristic.animation, let frameCountChar = GFCharacteristic.frameCount, let frameDuration = GFCharacteristic.frameDuration {
+      
+      let isAnimation = griffyImage.frameCount > 1
+      writeValue(data: UInt8(isAnimation ? 1 : 0).data, toCharacteristic: animation)
+      
+      writeValue(data: UInt8(griffyImage.frameCount).data, toCharacteristic: frameCountChar)
+      
+      writeValue(data: UInt16(griffyImage.frameDuration).data, toCharacteristic: frameDuration)
+    }
+    
+    if let highRes = GFCharacteristic.isHighRes {
+      writeValue(data: UInt8(useHighRes ? 1 : 0).data, toCharacteristic: highRes)
+    }
+  }
+  
+  func setImageActive(griffy: GriffyImage, useHighRes: Bool, completion: @escaping ()->()) {
+    guard let g = GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.imageSelectId) else {
+      //      assertionFailure("Missing image active charactersitic.")
+      completion()
+      return
+    }
+    
+    assert(((useHighRes && griffy.hiResRadialFilePaths != nil) || (!useHighRes && griffy.stdRadialFilePaths != nil)), "Must have hi res images if hi res, and std images if standard")
+    
+    setMetaDataValues(griffyImage: griffy, useHighRes: useHighRes)
+    
+    var index = griffy.startingIndex
+    if let stds = griffy.stdRadialFilePaths, useHighRes {
+      index += stds.count
+    }
+    writeValue(data: UInt16(index).data, toCharacteristic: g)
+    delay(1) {
+      GriffyImageState(griffyImage: griffy, setHighRes: useHighRes).saveInfo()
+      completion()
+    }
+  }
+  
+  func sendGriffyImageToDevice(griffy: GriffyImage) -> Int {
+    return sendGriffyImageToDevice(griffy: griffy, resetDataTotal: true)
+  }
+  
+  func sendGriffyImageToDevice(griffy: GriffyImage, resetDataTotal: Bool) -> Int {
+    if resetDataTotal {
+      sendingImageData.removeAll()
+    }
+    
+    var idx = 0
+    var dataSize = 0
+    
+    if let stds = griffy.stdRadialFilePaths {
+      for radial in stds {
+        dataSize += sendImageToDevice(radialFilePath: radial, index: griffy.startingIndex+idx)
+        idx += 1
+      }
+    }
+    
+    if let hiRes = griffy.hiResRadialFilePaths {
+      for radial in hiRes {
+        dataSize += sendImageToDevice(radialFilePath: radial, index: griffy.startingIndex+idx)
+        idx += 1
+      }
+    }
+    
+    return dataSize
   }
 }

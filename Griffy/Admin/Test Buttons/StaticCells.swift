@@ -66,11 +66,9 @@ class TestButtonsTableViewController: UITableViewController {
       // Initially, we'll only read & write to log 0 for simplicity.
       BluetoothManager.shared.writeValue(data: activeLog.bleObject.dataValue(fromInt: 0) , toCharacteristic: activeLog)
       BluetoothManager.shared.writeValue(data: logPeriod.bleObject.dataValue(fromInt: loggingValue), toCharacteristic: logPeriod)
-      BluetoothManager.shared.writeValue(data: clockTick.bleObject.dataValue(fromInt: 0) , toCharacteristic: clockTick)
-      
-      self.delay(0.5) {
+      BluetoothManager.shared.writeValue(data: clockTick.bleObject.dataValue(fromInt: 0) , toCharacteristic: clockTick, completion: {
         self.startButton.setLoaderVisible(visible: false, style: nil)
-      }
+      })
     }
   }
   

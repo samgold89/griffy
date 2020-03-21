@@ -8,14 +8,29 @@
 
 import Foundation
 import RealmSwift
+import CoreBluetooth
 
 class GFCharacteristic: BLEBaseObject {
   @objc dynamic var name = ""
   @objc dynamic var uuid = ""
-  @objc dynamic var value: Data? = nil
+  @objc dynamic var value: Data? = nil {
+    didSet {
+      //TODO MVP test that when we set this after updating value in BluetoothManager this actually works
+      let realm = try! Realm()
+      try! realm.write {
+        if let obj = realm.objects(GFCharacteristic.self).filter({ $0.id == self.id }).first {
+          obj.value = value
+        }
+      }
+    }
+  }
   
   var griffyDisplayValue: String? {
     return value?.griffyDisplayValue(characteristicId: uuid)
+  }
+  
+  var cbCharacteristic: CBCharacteristic? {
+    return BluetoothManager.shared.cbCharacteristicsById[uuid]
   }
   
   var bleObject: BLEConstants.GFBLEObject! {

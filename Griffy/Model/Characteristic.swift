@@ -14,6 +14,14 @@ class GFCharacteristic: BLEBaseObject {
   @objc dynamic var uuid = ""
   @objc dynamic var value: Data? = nil
   
+  var griffyDisplayValue: String? {
+    return value?.griffyDisplayValue(characteristicId: uuid)
+  }
+  
+  var bleObject: BLEConstants.GFBLEObject! {
+    return BLEConstants.gfBleObjects.first(where: { $0.uuid == uuid })
+  }
+  
   public static var isHighRes: GFCharacteristic? {
     get {
       return GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.isHighResolutionId)
@@ -38,6 +46,18 @@ class GFCharacteristic: BLEBaseObject {
     }
   }
   
+  public static var imageSelect: GFCharacteristic? {
+    get {
+      GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.imageSelectId)
+    }
+  }
+  
+  public static var imageLoad: GFCharacteristic? {
+    get {
+      GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.imageLoadId)
+    }
+  }
+  
   public static var status: GFCharacteristic? {
     get {
       return GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.statusId)
@@ -47,6 +67,42 @@ class GFCharacteristic: BLEBaseObject {
   public static var serialNumber: GFCharacteristic? {
     get {
       return GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.serialNumberId)
+    }
+  }
+  
+  public static var connectTimeout: GFCharacteristic? {
+    get {
+      return GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.connectTimeoutId)
+    }
+  }
+  
+  public static var activeLog: GFCharacteristic? {
+    get {
+      return GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.activeLog)
+    }
+  }
+  
+  public static var logClockTickReset: GFCharacteristic? {
+    get {
+      return GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.logClockTickReset)
+    }
+  }
+  
+  public static var loggingPeriod: GFCharacteristic? {
+    get {
+      return GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.loggingPeriod)
+    }
+  }
+  
+  public static var logMemCount0: GFCharacteristic? {
+    get {
+      return GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.logMemCount0)
+    }
+  }
+  
+  public static var logMemCount1: GFCharacteristic? {
+    get {
+      return GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.logMemCount1)
     }
   }
   
@@ -60,10 +116,6 @@ class GFCharacteristic: BLEBaseObject {
     get {
       return GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.hardwareVersionId)
     }
-  }
-  
-  var bleObject: BLEConstants.GFBLEObject? {
-    return BLEConstants.gfBleObjects.first(where: { $0.uuid == uuid })
   }
   
   var isReadable: Bool {

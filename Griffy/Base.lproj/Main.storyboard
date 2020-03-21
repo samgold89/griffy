@@ -692,7 +692,7 @@ Some Value</string>
                         <sections>
                             <tableViewSection id="oSz-am-gbo">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="140" id="FB8-0K-OIp" customClass="GetAdsCell" customModule="Griffy" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="140" id="FB8-0K-OIp">
                                         <rect key="frame" x="0.0" y="28" width="414" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FB8-0K-OIp" id="BzH-1q-ceE">
@@ -744,6 +744,119 @@ Some Value</string>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="140" id="S7C-Ew-AGn">
+                                        <rect key="frame" x="0.0" y="168" width="414" height="140"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S7C-Ew-AGn" id="bpf-9t-FXP">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="me4-8e-6bQ">
+                                                    <rect key="frame" x="20.5" y="89" width="373" height="40"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cy0-QE-5I5">
+                                                            <rect key="frame" x="0.0" y="0.0" width="85" height="40"/>
+                                                            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="40" id="Mh2-oa-J1f"/>
+                                                                <constraint firstAttribute="width" constant="85" id="eZc-8W-gKM"/>
+                                                            </constraints>
+                                                            <state key="normal" title="Start">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="8"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="startLoggingPressed:" destination="kNU-C9-aJP" eventType="touchUpInside" id="oHc-e6-1We"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Bo-zR-OF4">
+                                                            <rect key="frame" x="96" y="0.0" width="85" height="40"/>
+                                                            <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="40" id="hfB-ge-aFo"/>
+                                                            </constraints>
+                                                            <state key="normal" title="Stop">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="8"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="stopLoggingPressed:" destination="kNU-C9-aJP" eventType="touchUpInside" id="CsL-qp-0f1"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4KQ-jI-mjV">
+                                                            <rect key="frame" x="192" y="0.0" width="85" height="40"/>
+                                                            <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="40" id="De8-Zg-Zgo"/>
+                                                            </constraints>
+                                                            <state key="normal" title="Fetch">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="8"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="fetchLogPressed:" destination="kNU-C9-aJP" eventType="touchUpInside" id="IZT-yC-Chf"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U7c-vV-95d">
+                                                            <rect key="frame" x="288" y="0.0" width="85" height="40"/>
+                                                            <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="40" id="0Sz-cT-Xjz"/>
+                                                            </constraints>
+                                                            <state key="normal" title="Upload">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="8"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="clearLogPressed:" destination="kNU-C9-aJP" eventType="touchUpInside" id="Qvr-A9-Km7"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="U7c-vV-95d" firstAttribute="width" secondItem="Cy0-QE-5I5" secondAttribute="width" id="Ojz-Ap-R4i"/>
+                                                        <constraint firstItem="4KQ-jI-mjV" firstAttribute="width" secondItem="Cy0-QE-5I5" secondAttribute="width" id="ieE-VN-MMb"/>
+                                                        <constraint firstItem="7Bo-zR-OF4" firstAttribute="width" secondItem="Cy0-QE-5I5" secondAttribute="width" id="rC9-ja-JXk"/>
+                                                    </constraints>
+                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logging" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2f-B9-fhF">
+                                                    <rect key="frame" x="170" y="15" width="74.5" height="25.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status: Not Logging" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8RO-JL-ush">
+                                                    <rect key="frame" x="135" y="48" width="144.5" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="X2f-B9-fhF" firstAttribute="top" secondItem="bpf-9t-FXP" secondAttribute="top" constant="15" id="AdM-xM-2Em"/>
+                                                <constraint firstAttribute="bottom" secondItem="me4-8e-6bQ" secondAttribute="bottom" constant="11" id="KRs-10-eHy"/>
+                                                <constraint firstItem="me4-8e-6bQ" firstAttribute="centerX" secondItem="bpf-9t-FXP" secondAttribute="centerX" id="O4z-hj-cRw"/>
+                                                <constraint firstItem="8RO-JL-ush" firstAttribute="centerX" secondItem="X2f-B9-fhF" secondAttribute="centerX" id="XJe-Hp-OBN"/>
+                                                <constraint firstItem="X2f-B9-fhF" firstAttribute="centerX" secondItem="bpf-9t-FXP" secondAttribute="centerX" id="l81-bY-TMh"/>
+                                                <constraint firstItem="8RO-JL-ush" firstAttribute="top" secondItem="X2f-B9-fhF" secondAttribute="bottom" constant="7.5" id="vxE-a7-kX4"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -754,8 +867,12 @@ Some Value</string>
                     </tableView>
                     <navigationItem key="navigationItem" id="w00-Pc-BGu"/>
                     <connections>
+                        <outlet property="clearButton" destination="U7c-vV-95d" id="jfZ-6n-oFf"/>
+                        <outlet property="fetchButton" destination="4KQ-jI-mjV" id="hq1-4B-kfW"/>
                         <outlet property="getAdsButton" destination="53g-5i-9iy" id="2OV-ei-h62"/>
                         <outlet property="resultsLabel" destination="CIG-H5-Px5" id="MqD-pF-FiI"/>
+                        <outlet property="startButton" destination="Cy0-QE-5I5" id="Efk-9f-itC"/>
+                        <outlet property="stopButton" destination="7Bo-zR-OF4" id="3JU-i5-4nc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mre-JJ-ujb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1176,7 +1293,7 @@ Some Value</string>
                             <fragment content="Syncing...">
                                 <attributes>
                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <font key="NSFont" metaFont="message" size="11"/>
+                                    <font key="NSFont" metaFont="menu" size="11"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>

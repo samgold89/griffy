@@ -6,6 +6,8 @@
 //  Copyright © 2018 Sam Goldstein. All rights reserved.
 //
 
+import UIKit
+
 class BLEConstants {
   enum GFBLEObjectType {
     case peripheral
@@ -29,6 +31,20 @@ class BLEConstants {
     var displayName: String
     var isReadable: Bool
     
+    func dataValue(fromInt int: Int) -> Data {
+      switch parseDataType {
+      case .uint8:
+        return UInt8(int).data
+      case .uint16:
+        return UInt16(int).data
+      case .uint32:
+        return UInt32(int).data
+      case .uint8array, .uint16array, .asciiString, .none:
+        assertionFailure("No value available")
+        return Data()
+      }
+    }
+
     var isUInt8: Bool {
       return parseDataType == .uint8 || parseDataType == .uint8array
     }
@@ -246,6 +262,36 @@ class BLEConstants {
                            displayName: "Display Format",
                            isReadable: true))
     
+    all.append(GFBLEObject(type: .characteristic,
+                           uuid: BLEConstants.CharacteristicIds.activeLog,
+                           parseDataType: .uint8,
+                           displayName: "Active Log",
+                           isReadable: true))
+    
+    all.append(GFBLEObject(type: .characteristic,
+                           uuid: BLEConstants.CharacteristicIds.logClockTickReset,
+                           parseDataType: .uint8,
+                           displayName: "Log Clock Tick",
+                           isReadable: true))
+    
+    all.append(GFBLEObject(type: .characteristic,
+                           uuid: BLEConstants.CharacteristicIds.loggingPeriod,
+                           parseDataType: .uint16,
+                           displayName: "Log Active Log",
+                           isReadable: true))
+    
+    all.append(GFBLEObject(type: .characteristic,
+                           uuid: BLEConstants.CharacteristicIds.logMemCount0,
+                           parseDataType: .uint32,
+                           displayName: "Log MemCount 0",
+                           isReadable: true))
+    
+    all.append(GFBLEObject(type: .characteristic,
+                           uuid: BLEConstants.CharacteristicIds.logMemCount1,
+                           parseDataType: .uint32,
+                           displayName: "Log MemCount 1",
+                           isReadable: true))
+    
     //MARK: Test Characteristics
     all.append(GFBLEObject(type: .characteristic,
                            uuid: BLEConstants.CharacteristicIds.dumTest1,
@@ -369,7 +415,6 @@ class BLEConstants {
     static let alu2Id = "427195F5-8ACC-48A0-A155-D045CC5C47CA"
     static let statusId = "D8AFC950-E229-414B-BF30-3EC23264535E"
     static let wheelSpeedId = "353A780E-468D-4A02-8F9A-3A7BC0C502D0"
-    static let connectTimeoutId = "84B749D2-AD90-47C1-A18E-BD3927AC80E1"
     static let imageLoadId = "B03EE9AE-F2EC-4829-812D-182EDD2F9C53"
     static let imageSelectId = "FDC342B7-00E9-427F-9AF5-7A1CA5097468"
     static let imageEraseId = "BBCF9D7A-8A2F-4A2F-960A-8A583019D7E5"
@@ -385,6 +430,14 @@ class BLEConstants {
     static let evVoltage = "CFBDDB18-ECCB-4F26-9A0D-53D01B4366E5"
     static let orientation = "D6782FCF-9D36-42C4-B533-854337C12BEB"
     static let displayFormat = "A03B3301-D050-40B8-911F-4D20B5C9BA3F"
+    
+    // Logging
+    static let connectTimeoutId = "84B749D2-AD90-47C1-A18E-BD3927AC80E1"
+    static let activeLog = "CBFA3971-5BD5-4FB1-B379-DF6091A608D4"
+    static let logClockTickReset = "D4154C5A-8DFC-4F75-8D82-B40542B60FB9"
+    static let loggingPeriod = "53B61C98-CACD-41FD-AF11-90CDD08F2A34"
+    static let logMemCount0 = "D1FFC670-0BFC-4BC5-AFBC-0115A37F7DC7"
+    static let logMemCount1 = "958D76C2-73DA-4D29-AE9A-97C91E9AA95C"
     
     static let dumTest1 = "9A681C49-919E-488E-9987-E821E91612B4"
     static let dumTest2 = "668BAA75-3E1C-4E75-8926-9F8A5E7C438C"

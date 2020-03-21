@@ -212,7 +212,7 @@ final class BluetoothManager: NSObject {
     let maxLength = min((griffyPeripheral?.maximumWriteValueLength(for: CBCharacteristicWriteType.withResponse) ?? minimumPacketSize), 512) - griffyHeaderSize
     let imageDataArray = getDataChunks(data: data, length: maxLength)
     
-    guard let char = GFCharacteristic.find(GFCharacteristic.self, byId: BLEConstants.CharacteristicIds.imageLoadId) else {
+    guard let char = GFCharacteristic.imageLoad else {
       return data.count
     }
     

@@ -35,7 +35,7 @@ final class BluetoothManager: NSObject {
   fileprivate var centralManager: CBCentralManager!
   fileprivate var griffyPeripheral: CBPeripheral?
   var cbCharacteristicsById = [String: CBCharacteristic]()
-  var discoveredPeripherals = [CBPeripheral]()
+  var discoveredPeripherals = Set<CBPeripheral>()
   fileprivate var timer: Timer?
   /****************************
    NOTE: this doesn't work when multiple, different, concurrent write requests are ongoing
@@ -306,7 +306,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
   }
   
   func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-    discoveredPeripherals.append(peripheral)
+    discoveredPeripherals.insert(peripheral)
     if peripheral.name == GFUserDefaults.lastPeripheralName && !(GFUserDefaults.lastPeripheralName?.isEmpty ?? true) {
       connectToPeripheral(peripheral: peripheral)
     }

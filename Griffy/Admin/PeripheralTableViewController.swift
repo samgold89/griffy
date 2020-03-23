@@ -15,7 +15,7 @@ class PeripheralTableViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    peripherals = BluetoothManager.shared.discoveredPeripherals
+    updatePeripherals()
   }
   
   override func numberOfSections(in tableView: UITableView) -> Int {
@@ -46,7 +46,11 @@ class PeripheralTableViewController: UITableViewController {
   }
   
   @IBAction func refreshPressed(_ sender: Any) {
-    peripherals = BluetoothManager.shared.discoveredPeripherals
+    updatePeripherals()
+  }
+  
+  fileprivate func updatePeripherals() {
+    peripherals = BluetoothManager.shared.discoveredPeripherals.filter({$0.name != nil})
     tableView.reloadData()
   }
 }

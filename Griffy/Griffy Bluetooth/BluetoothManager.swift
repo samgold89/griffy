@@ -230,6 +230,7 @@ final class BluetoothManager: NSObject {
         assertionFailure("All write requests should have corresponding data.")
         return
       }
+      // If you ever do without response, make sure the "enqueuedRequests" get cleared properly
       griffyPeripheral?.writeValue(data, for: req.characteristic, type: CBCharacteristicWriteType.withResponse)
     case .read:
       // TODO MVP test if you read a value that is not readable that didUpdate gets called with an error

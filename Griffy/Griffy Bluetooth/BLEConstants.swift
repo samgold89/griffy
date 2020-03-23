@@ -234,13 +234,13 @@ class BLEConstants {
     
     all.append(GFBLEObject(type: .characteristic,
                            uuid: BLEConstants.CharacteristicIds.evVoltage,
-                           parseDataType: .uint16,
+                           parseDataType: .uint16array,
                            displayName: "EV Voltage",
                            isReadable: true))
     
     all.append(GFBLEObject(type: .characteristic,
                            uuid: BLEConstants.CharacteristicIds.evBattery,
-                           parseDataType: .uint8array,
+                           parseDataType: .uint8,
                            displayName: "EV Battery",
                            isReadable: true))
     

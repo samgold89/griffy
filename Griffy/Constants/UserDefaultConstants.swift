@@ -16,6 +16,7 @@ struct UserDefaultConstants {
   static let lastLeftBrightness = "lastLeftBrightness"
   static let lastRightBrightness = "lastRightBrightness"
   static let lastGriffyImage = "lastGriffyImage"
+  static let lastPeripheralName = "lastPeripheralName"
   
   // Beta Variables
   static let betaUserId = "betaUserId"
@@ -42,6 +43,15 @@ class GFUserDefaults {
     }
     get {
       return UserDefaults.standard.string(forKey: UserDefaultConstants.mvpDisplayFormat)
+    }
+  }
+  
+  public static var lastPeripheralName: String? {
+    set {
+      UserDefaults.standard.set(newValue, forKey: UserDefaultConstants.lastPeripheralName)
+    }
+    get {
+      return UserDefaults.standard.string(forKey: UserDefaultConstants.lastPeripheralName)
     }
   }
 }

@@ -307,15 +307,20 @@ extension BluetoothManager: CBCentralManagerDelegate {
   
   func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
     discoveredPeripherals.append(peripheral)
-    if peripheral.name == "bikepump" {
+    if peripheral.name == GFUserDefaults.lastPeripheralName && !(GFUserDefaults.lastPeripheralName?.isEmpty ?? true) {
       connectToPeripheral(peripheral: peripheral)
     }
   }
+  
   func connectToPeripheral(peripheral: CBPeripheral) {
     NotificationCenter.default.post(name: .bluetoothStateChanged, object: GFBluetoothState(message: "Did discover peripheral!", color: UIColor.gfYellow))
     griffyPeripheral = peripheral
     centralManager.connect(griffyPeripheral!, options: nil)
     griffyPeripheral?.delegate = self
+    
+    if let name = griffyPeripheral?.name {
+      GFUserDefaults.lastPeripheralName = name
+    }
   }
   
   func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {

@@ -77,6 +77,7 @@ class AdMemoryMap: Object {
     var stdResStartIndex: Int?
     var hrResStartIndex: Int?
   }
+  
   func existingStartIndex(forAd ad: TestAd) -> PumpMemoryPlacement? {
     guard let memoryItems = memoryItems else { return nil }
     var stdIdx, hrIdx: Int?

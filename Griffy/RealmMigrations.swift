@@ -16,7 +16,7 @@ class RealmMigrations {
     let config = Realm.Configuration(
       // Set the new schema version. This must be greater than the previously used
       // version (if you've never set a schema version before, the version is 0).
-      schemaVersion: 8,
+      schemaVersion: 9,
       migrationBlock: { migration, oldSchemaVersion in
         // Do Something
         if oldSchemaVersion < 8 {

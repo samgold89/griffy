@@ -35,6 +35,7 @@ final class BluetoothManager: NSObject {
   fileprivate var centralManager: CBCentralManager!
   fileprivate var griffyPeripheral: CBPeripheral?
   var cbCharacteristicsById = [String: CBCharacteristic]()
+  var discoveredPeripherals = [CBPeripheral]()
   fileprivate var timer: Timer?
   /****************************
    NOTE: this doesn't work when multiple, different, concurrent write requests are ongoing
@@ -247,14 +248,14 @@ final class BluetoothManager: NSObject {
   }
   
   // MARK: Logging
-//  func readLog() {
-//    guard let imageLoad = GFCharacteristic.imageLoad, let char = imageLoad.cbCharacteristic else { return }
-//    enqueuedBLERequests.append(GFBLERequest(data: nil, characteristic: char, type: .read, completion: {
-//      // Check if still data to be read ...
-//      assertionFailure("yup")
-//      print("here we go")
-//    }))
-//  }
+  func readLog() {
+    guard let imageLoad = GFCharacteristic.imageLoad, let char = imageLoad.cbCharacteristic else { return }
+    enqueuedBLERequests.append(GFBLERequest(data: nil, characteristic: char, type: .read, completion: {
+      // Check if still data to be read ...
+      assertionFailure("yup")
+      print("here we go")
+    }))
+  }
   
   fileprivate func setupModels(forPeripheral peripheral: CBPeripheral) {
     GFCharacteristic.deleteAll(GFCharacteristic.self)
@@ -304,17 +305,21 @@ extension BluetoothManager: CBCentralManagerDelegate {
   }
   
   func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-    if peripheral.name == "Griffy" {
-      NotificationCenter.default.post(name: .bluetoothStateChanged, object: GFBluetoothState(message: "Did discover peripheral!", color: UIColor.gfYellow))
-      griffyPeripheral = peripheral
-      centralManager.connect(griffyPeripheral!, options: nil)
-      griffyPeripheral?.delegate = self
+    discoveredPeripherals.append(peripheral)
+    if peripheral.name == "bikepump" {
+      connectToPeripheral(peripheral: peripheral)
     }
+  }
+  func connectToPeripheral(peripheral: CBPeripheral) {
+    NotificationCenter.default.post(name: .bluetoothStateChanged, object: GFBluetoothState(message: "Did discover peripheral!", color: UIColor.gfYellow))
+    griffyPeripheral = peripheral
+    centralManager.connect(griffyPeripheral!, options: nil)
+    griffyPeripheral?.delegate = self
   }
   
   func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
     setupModels(forPeripheral: peripheral)
-    NotificationCenter.default.post(name: .bluetoothStateChanged, object: GFBluetoothState(message: "Connected to Griffy!", color: UIColor.gfGreen))
+    NotificationCenter.default.post(name: .bluetoothStateChanged, object: GFBluetoothState(message: "Connected to \(peripheral.name ?? "NoName")!", color: UIColor.gfGreen))
     peripheral.discoverServices(BLEConstants.gfBleObjects.filter({ $0.type == BLEConstants.GFBLEObjectType.service}).map({ $0.uuid.cbuuid }))
     peripheral.delegate = self
   }

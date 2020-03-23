@@ -82,6 +82,8 @@
 		A9A5442521B9B1B800BF99FD /* testfile2.radial in Resources */ = {isa = PBXBuildFile; fileRef = A9A5440D21B9B1B800BF99FD /* testfile2.radial */; };
 		A9A5442721B9B41500BF99FD /* ImageChoiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5442621B9B41500BF99FD /* ImageChoiceCell.swift */; };
 		A9A665EF221CAE0300D0FABD /* UIImage+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A665EE221CAE0300D0FABD /* UIImage+GIF.swift */; };
+		A9A7BC0D242724EE002D7CA6 /* PeripheralTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A7BC0C242724EE002D7CA6 /* PeripheralTableViewController.swift */; };
+		A9A7BC0F24272A67002D7CA6 /* AdminHomeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A7BC0E24272A67002D7CA6 /* AdminHomeTVC.swift */; };
 		A9AFB0A7240EE7060022CB2F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AFB0A6240EE7060022CB2F /* Location.swift */; };
 		A9AFB0A9240EE7100022CB2F /* BetaUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AFB0A8240EE7100022CB2F /* BetaUser.swift */; };
 		A9AFB0AB240EE7190022CB2F /* Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AFB0AA240EE7190022CB2F /* Shift.swift */; };
@@ -212,6 +214,8 @@
 		A9A5440D21B9B1B800BF99FD /* testfile2.radial */ = {isa = PBXFileReference; lastKnownFileType = file; path = testfile2.radial; sourceTree = "<group>"; };
 		A9A5442621B9B41500BF99FD /* ImageChoiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageChoiceCell.swift; sourceTree = "<group>"; };
 		A9A665EE221CAE0300D0FABD /* UIImage+GIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+GIF.swift"; sourceTree = "<group>"; };
+		A9A7BC0C242724EE002D7CA6 /* PeripheralTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralTableViewController.swift; sourceTree = "<group>"; };
+		A9A7BC0E24272A67002D7CA6 /* AdminHomeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomeTVC.swift; sourceTree = "<group>"; };
 		A9AFB0A6240EE7060022CB2F /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		A9AFB0A8240EE7100022CB2F /* BetaUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaUser.swift; sourceTree = "<group>"; };
 		A9AFB0AA240EE7190022CB2F /* Shift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shift.swift; sourceTree = "<group>"; };
@@ -404,12 +408,14 @@
 			isa = PBXGroup;
 			children = (
 				A99A85132422CCE700FCB2B3 /* FieldsUpdateViewController.swift */,
+				A9A7BC0C242724EE002D7CA6 /* PeripheralTableViewController.swift */,
 				A976F31F21DC724C00A00817 /* MainControlViewController.swift */,
 				A998F71A2420617300706978 /* AdTableViewController.swift */,
 				A998F7202421711800706978 /* Test Buttons */,
 				A9D9A1EC241C443D00BB8142 /* Dropbox VCs */,
 				A9D9A1ED241C444500BB8142 /* Image Selection */,
 				A9D9A1EB241C441500BB8142 /* TableViewControllers */,
+				A9A7BC0E24272A67002D7CA6 /* AdminHomeTVC.swift */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -869,6 +875,8 @@
 				A95AE18023F3B7B700E15EA1 /* BetaSetupVC.swift in Sources */,
 				A95FEF6E23F89E82008F21C5 /* BetaHistoryCell.swift in Sources */,
 				A9AFB0AB240EE7190022CB2F /* Shift.swift in Sources */,
+				A9A7BC0F24272A67002D7CA6 /* AdminHomeTVC.swift in Sources */,
+				A9A7BC0D242724EE002D7CA6 /* PeripheralTableViewController.swift in Sources */,
 				A9B966F621ABDE9A0079EBB7 /* AdminMainTableViewController.swift in Sources */,
 				A9B966EC21ABC5EA0079EBB7 /* BaseObject.swift in Sources */,
 				A9BBC2D223F3ABA700B9B60C /* PaddedTextField.swift in Sources */,
@@ -1030,7 +1038,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Griffy/Griffy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Q43VC9K527;
 				INFOPLIST_FILE = Griffy/Info.plist;
@@ -1051,7 +1059,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Griffy/Griffy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = Q43VC9K527;
 				INFOPLIST_FILE = Griffy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
